@@ -1,4 +1,7 @@
 # Icons
+
+![screenshot](https://gh.stackoverflow.com/storage/user/84/files/72bb9d84-319f-11e7-8db1-20d4add17a8c)
+
 This repo provides authoring tools for Stack Overflow’s shared icon library. Here’s our general workflow:
 
 1. Open the [Sketch document](https://gh.stackoverflow.com/Design/Icons/blob/master/icons.sketch) to modify an existing icon, or add a new one. Pay close attention to the name of the newly-added artboard. This will determine your SVG’s filename.
