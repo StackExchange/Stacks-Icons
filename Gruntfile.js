@@ -7,7 +7,9 @@ module.exports = function(grunt) {
       options: {
   			plugins: [
   				{
-            removeXMLNS: true,
+            removeAttrs: {
+  						attrs: ['xmlns', 'fill-rule']
+  					},
             collapseGroups: true
   				}
   			]
