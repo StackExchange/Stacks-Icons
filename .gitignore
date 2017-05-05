@@ -1,0 +1,13 @@
+*.DS_Store
+.AppleDouble
+.LSOverride
+.metadata_never_index
+
+# Icon must end with two \r
+Icon
+
+
+# Resource forks
+._*
+
+node_modules
