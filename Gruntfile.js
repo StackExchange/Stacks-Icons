@@ -1,36 +1,33 @@
 module.exports = function(grunt) {
-
   // Project configuration.  
   grunt.initConfig({
     clean: ["build"],
-  	svgmin: {
+    svgmin: {
       options: {
-  			plugins: [
-  				{
-            // Unfortunately, adding attributes doesn't play well with removing
-            // them. For reasons™, we can't rely on our Svg.cs helper to add
-            // them for us. We'll use a find and replace after SVGmin on each
-            // of these built SVGs.
-            //
-            // addAttributesToSVGElement: {
-            //   attributes: ['class="icon"', 'role="icon"']
-            // },
-            removeAttrs: {
-  						attrs: ['xmlns', 'fill-rule']
-  					},
-            collapseGroups: true,
-  				}
-  			]
-  		},
-  		build: {
+        plugins: [{
+          // Unfortunately, adding attributes doesn't play well with removing
+          // them. For reasons™, we can't rely on our Svg.cs helper to add
+          // them for us. We'll use a find and replace after SVGmin on each
+          // of these built SVGs.
+          //
+          // addAttributesToSVGElement: {
+          //   attributes: ['class="icon"', 'role="icon"']
+          // },
+          removeAttrs: {
+            attrs: ['xmlns', 'fill-rule']
+          },
+          collapseGroups: true,
+        }]
+      },
+      build: {
         files: [{
           expand: true,
           cwd: 'src',
           src: '*.svg',
           dest: 'build',
         }]
-  		}
-  	},
+      }
+    },
     'string-replace': {
       build: {
         files: [{
@@ -55,5 +52,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-string-replace');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean','svgmin', 'string-replace']);
+  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace']);
 };
