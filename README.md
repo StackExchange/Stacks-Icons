@@ -11,4 +11,4 @@ This repo provides authoring tools for Stack Overflow’s shared icon library. H
 
 ### Grunt
 
-In order to use this repo, you must [install grunt](https://gruntjs.com/getting-started) globally on your machine. Once that’s installed, open this repo’s directory in your Terminal. Then, you’ll wanna install Grunt locally in this directory. Type `npm install grunt --save-dev`. This will download all the dependencies to `node_modules`. Now, if you've made changes to the `src` directory, you can type `grunt` into the Terminal and it’ll generate all the optimized SVGs. 😎
+In order to use this repo, you must install [Node & NPM](https://nodejs.org/en/download/), and then [Grunt](https://gruntjs.com/getting-started) globally on your machine. Once that’s installed, open this repo’s directory in your Terminal. Then, you’ll wanna run `npm install` in this repo's directory. This will download all the dependencies to a directory called `node_modules`. Now you can type `grunt` into the Terminal and it’ll generate all the optimized SVGs in `build` from `src`. 😎
