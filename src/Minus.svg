@@ -1,3 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-  <polygon fill="#000000" points="16 4.41 14.59 3 6 11.59 2.41 8 1 9.41 6 14.41"/>
+  <polygon fill="#000000" fill-rule="evenodd" points="4 8 4 10 14 10 14 8"/>
 </svg>
