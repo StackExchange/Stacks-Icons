@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         options: {
           replacements: [{
             pattern: '<svg',
-            replacement: '<svg role="icon" class="icon"'
+            replacement: '<svg role="icon" class="svg-icon"'
           }]
         }
       }
