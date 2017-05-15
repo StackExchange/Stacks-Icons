@@ -1,3 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-  <path fill="#000000" fill-rule="evenodd" d="M1,0 L1,18 L3,18 L3,10 L8.6,10 L9,12 L17,12 L17,3.99961498 C17,2.89525812 16.0962029,2 14.9967477,2 L10.5,2 L10,0 L1,0 Z"/>
+  <polygon fill="#000000" fill-rule="evenodd" points="2 1 2 17 4 17 4 10 8.6 10 9 12 16 12 16 3 10.5 3 10 1"/>
 </svg>
