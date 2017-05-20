@@ -1,6 +1,6 @@
 # Icons
 
-![screenshot](https://gh.stackoverflow.com/storage/user/84/files/6509fb4c-34b8-11e7-8c6c-1f0004f449ba)
+![screenshot](https://gh.stackoverflow.com/storage/user/84/files/df664294-3d44-11e7-837c-2b62c884dc1f)
 
 This repo provides authoring tools for Stack Overflow’s shared icon library. Here’s our general workflow:
 
