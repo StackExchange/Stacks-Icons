@@ -39,18 +39,43 @@ module.exports = function(grunt) {
         options: {
           replacements: [{
             pattern: '<svg',
-            replacement: '<svg role="icon" class="svg-icon"'
+            replacement: '<svg role="icon" class="svg-icon icon@@__TARGET_FILENAME__"'
+          }]
+        }
+      },
+      replaceSvg: {
+        files: [{
+          expand: true,
+          cwd: 'build/',
+          src: '**/*',
+          dest: 'build/'
+        }],
+        options: {
+          replacements: [{
+            pattern: '.svg',
+            replacement: ''
           }]
         }
       }
-    }
+    },
+    replace: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'build/',
+          src: '**/*',
+          dest: 'build/'
+        }]
+      }
+    },
   });
 
   // Load the plugins
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-string-replace');
+  grunt.loadNpmTasks('grunt-replace');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace']);
+  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg']);
 };
