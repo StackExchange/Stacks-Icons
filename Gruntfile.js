@@ -56,6 +56,23 @@ module.exports = function(grunt) {
             replacement: ''
           }]
         }
+      },
+      manifest: {
+        files: {
+          'manifest.js': 'manifest.js',
+        },
+        options: {
+          replacements: [{
+            pattern: /<svg/g,
+            replacement: '<div class="-item" data-core><i><svg'
+          }, {
+            pattern: /<\/svg>build\//g,
+            replacement: '</svg></i><code>@Svg.'
+          }, {
+            pattern: /\.svg/g,
+            replacement: '</code></div>'
+          }]
+        }
       }
     },
     replace: {
@@ -68,6 +85,17 @@ module.exports = function(grunt) {
         }]
       }
     },
+    concat: {
+      options: {
+        process: function(src, filename) {
+          return src.replace(/\.svg/g, '') + filename;
+        }
+      },
+      dist: {
+        src: ['build/**/*.svg'],
+        dest: 'manifest.js',
+      },
+    },
   });
 
   // Load the plugins
@@ -75,7 +103,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-replace');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg']);
+  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat', 'string-replace:manifest']);
 };
