@@ -57,9 +57,9 @@ module.exports = function(grunt) {
           }]
         }
       },
-      manifest: {
+      manifestStyleGuide: {
         files: {
-          'manifest.js': 'manifest.js',
+          'manifest-styleguide.js': 'manifest-styleguide.js',
         },
         options: {
           replacements: [{
@@ -71,6 +71,23 @@ module.exports = function(grunt) {
           }, {
             pattern: /\.svg/g,
             replacement: '</code></div>'
+          }]
+        }
+      },
+      manifestHelper: {
+        files: {
+          'manifest-helper.js': 'manifest-helper.js',
+        },
+        options: {
+          replacements: [{
+            pattern: /<svg role="icon" class="svg-icon icon/g,
+            replacement: 'public static IHtmlString '
+          }, {
+            pattern: /" width=".*<\/svg>/g,
+            replacement: ' { get; } = GetImage();'
+          }, {
+            pattern: /build\/.*\.svg/g,
+            replacement: ''
           }]
         }
       }
@@ -91,9 +108,13 @@ module.exports = function(grunt) {
           return src.replace(/\.svg/g, '') + filename;
         }
       },
-      dist: {
+      manifestStyleGuide: {
         src: ['build/**/*.svg'],
-        dest: 'manifest.js',
+        dest: 'manifest-styleguide.js',
+      },
+      manifestHelper: {
+        src: ['build/**/*.svg'],
+        dest: 'manifest-helper.js',
       },
     },
   });
@@ -106,5 +127,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat', 'string-replace:manifest']);
+  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestStyleGuide', 'string-replace:manifestStyleGuide', 'concat:manifestHelper', 'string-replace:manifestHelper']);
 };
