@@ -60,6 +60,7 @@ public static IHtmlString ReviewQueue { get; } = GetImage();
 public static IHtmlString Rss { get; } = GetImage();
 public static IHtmlString Search { get; } = GetImage();
 public static IHtmlString Share { get; } = GetImage();
+public static IHtmlString ShareSmall { get; } = GetImage();
 public static IHtmlString SpeechBubble { get; } = GetImage();
 public static IHtmlString StackExchange { get; } = GetImage();
 public static IHtmlString Star { get; } = GetImage();
