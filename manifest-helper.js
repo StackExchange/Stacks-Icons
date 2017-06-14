@@ -14,6 +14,7 @@ public static IHtmlString ArrowRightAlt { get; } = GetImage();
 public static IHtmlString ArrowRightSmall { get; } = GetImage();
 public static IHtmlString ArrowUp { get; } = GetImage();
 public static IHtmlString ArrowUpAlt { get; } = GetImage();
+public static IHtmlString ArrowUpDownSmall { get; } = GetImage();
 public static IHtmlString ArrowUpSmall { get; } = GetImage();
 public static IHtmlString Avatar { get; } = GetImage();
 public static IHtmlString Calendar { get; } = GetImage();
