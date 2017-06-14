@@ -81,7 +81,7 @@ module.exports = function(grunt) {
         options: {
           replacements: [{
             pattern: /<svg role="icon" class="svg-icon icon/g,
-            replacement: 'public static IHtmlString '
+            replacement: 'public static SvgImage '
           }, {
             pattern: /" width=".*<\/svg>/g,
             replacement: ' { get; } = GetImage();'
