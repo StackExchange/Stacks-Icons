@@ -63,6 +63,7 @@ public static SvgImage NotInterested { get; } = GetImage();
 public static SvgImage Pencil { get; } = GetImage();
 public static SvgImage Phone { get; } = GetImage();
 public static SvgImage Plus { get; } = GetImage();
+public static SvgImage PromoteDemote { get; } = GetImage();
 public static SvgImage Refresh { get; } = GetImage();
 public static SvgImage ReviewQueue { get; } = GetImage();
 public static SvgImage Rss { get; } = GetImage();
