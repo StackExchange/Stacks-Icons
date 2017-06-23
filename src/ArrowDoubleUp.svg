@@ -1,3 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-  <path fill="#000000" d="M16.0141602,14.6191406 L14.6041602,16.0291406 L9.01416016,10.4391406 L3.42416016,16.0291406 L2.01416016,14.6191406 L9.01416016,7.61914063 L16.0141602,14.6191406 Z M16.0141602,9.61914062 L14.6041602,11.0291406 L9.01416016,5.43914062 L3.42416016,11.0291406 L2.01416016,9.61914062 L9.01416016,2.61914062 L16.0141602,9.61914062 Z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>ArrowDoubleUp</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ArrowDoubleUp" fill-rule="nonzero" fill="#000000">
+            <path d="M16.0141602,14.6191406 L14.6041602,16.0291406 L9.01416016,10.4391406 L3.42416016,16.0291406 L2.01416016,14.6191406 L9.01416016,7.61914063 L16.0141602,14.6191406 Z M16.0141602,9.61914062 L14.6041602,11.0291406 L9.01416016,5.43914062 L3.42416016,11.0291406 L2.01416016,9.61914062 L9.01416016,2.61914062 L16.0141602,9.61914062 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
 </svg>

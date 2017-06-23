@@ -1,3 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-  <polygon fill="#000000" points="16.014 6.428 14.604 5.018 9.014 10.608 3.424 5.018 2.014 6.428 9.014 13.428"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>ArrowDownAlt</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ArrowDownAlt" fill-rule="nonzero" fill="#000000">
+            <polygon id="Shape" points="16.0141602 6.42843262 14.6041602 5.01843262 9.01416016 10.6084326 3.42416016 5.01843262 2.01416016 6.42843262 9.01416016 13.4284326"></polygon>
+        </g>
+    </g>
 </svg>
