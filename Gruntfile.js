@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           //   attributes: ['class="icon"', 'role="icon"']
           // },
           removeAttrs: {
-            attrs: ['xmlns', 'fill-rule', 'fill']
+            attrs: ['xmlns', 'fill-rule']
           },
           collapseGroups: true,
         }]
@@ -42,6 +42,14 @@ module.exports = function(grunt) {
             replacement: '<svg role="icon" class="svg-icon icon@@__TARGET_FILENAME__"'
           }, {
             pattern: /<title>.*<\/title>/,
+            replacement: ''
+          },
+          {
+            pattern: ' fill="#000"',
+            replacement: ''
+          },
+          {
+            pattern: ' fill="none"',
             replacement: ''
           }]
         }
