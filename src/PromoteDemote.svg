@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <title>SpeechBubble</title>
+    <title>PromoteDemote</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="SpeechBubble" fill="#000000">
-            <path d="M4,3 L14,3 C15.1045695,3 16,3.8954305 16,5 L16,12 L16,12 C16,13.1045695 15.1045695,14 14,14 L2,14 L2,5 L2,5 C2,3.8954305 2.8954305,3 4,3 L4,3 Z M2,14 L5,14 L2,16 L2,14 Z" id="Combined-Shape"></path>
+        <g id="PromoteDemote" fill="#000000">
+            <polygon id="Up-Arrow" points="5.5 2.5 1 8 4 8 4 12 7 12 7 8 10 8"></polygon>
+            <path d="M11,6 L11,9 L8,9 L12.5,15.5 L17,9 L14,9 L14,6 L11,6 Z M9.75,10 L12,10 L12,7 L13,7 L13,10 L15.25,10 L12.5,14 L9.75,10 Z" id="Down-Arrow"></path>
         </g>
     </g>
 </svg>
