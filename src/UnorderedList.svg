@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="18px" viewBox="0 0 17 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>UnorderedList</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UnorderedList" fill-rule="nonzero" fill="#000000">
+            <path d="M6,3 L6,5 L15,5 L15,3 L6,3 Z M6,15 L15,15 L15,13 L6,13 L6,15 Z M6,10 L6,8 L15,8 L15,10 L6,10 Z M3,15.25 C2.30964406,15.25 1.75,14.6903559 1.75,14 C1.75,13.3096441 2.30964406,12.75 3,12.75 C3.69035594,12.75 4.25,13.3096441 4.25,14 C4.25,14.6903559 3.69035594,15.25 3,15.25 Z M3,10.25 C2.30964406,10.25 1.75,9.69035594 1.75,9 C1.75,8.30964406 2.30964406,7.75 3,7.75 C3.69035594,7.75 4.25,8.30964406 4.25,9 C4.25,9.69035594 3.69035594,10.25 3,10.25 Z M3,5.25 C2.30964406,5.25 1.75,4.69035594 1.75,4 C1.75,3.30964406 2.30964406,2.75 3,2.75 C3.69035594,2.75 4.25,3.30964406 4.25,4 C4.25,4.69035594 3.69035594,5.25 3,5.25 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>
