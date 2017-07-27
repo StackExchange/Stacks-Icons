@@ -25,6 +25,14 @@ module.exports = function(grunt) {
           src: '*.svg',
           dest: 'build',
         }]
+      },
+      multipass: {
+        files: [{
+          expand: true,
+          cwd: 'build',
+          src: '*.svg',
+          dest: 'build',
+        }]
       }
     },
     'string-replace': {
@@ -132,5 +140,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestStyleGuide', 'string-replace:manifestStyleGuide', 'concat:manifestHelper', 'string-replace:manifestHelper']);
+  grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestStyleGuide', 'string-replace:manifestStyleGuide', 'concat:manifestHelper', 'string-replace:manifestHelper']);
 };
