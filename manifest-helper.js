@@ -58,6 +58,7 @@ public static SvgImage Logo { get; } = GetImage();
 public static SvgImage LogoGlyph { get; } = GetImage();
 public static SvgImage LogoGlyphMedium { get; } = GetImage();
 public static SvgImage LogoMedium { get; } = GetImage();
+public static SvgImage LogoSE { get; } = GetImage();
 public static SvgImage LogoWordmark { get; } = GetImage();
 public static SvgImage LogoWordmarkMedium { get; } = GetImage();
 public static SvgImage Mail { get; } = GetImage();
