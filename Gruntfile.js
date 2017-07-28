@@ -6,8 +6,13 @@ module.exports = function(grunt) {
       options: {
         plugins: [
           {
+            convertPathData: {
+              floatPrecision: 2,
+              transformPrecision: 4,
+            }
+          }, {
             cleanupNumericValues: {
-                floatPrecision: 2,
+              floatPrecision: 2,
             }
           }, {
             collapseGroups: true,
