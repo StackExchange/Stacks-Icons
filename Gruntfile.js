@@ -6,6 +6,15 @@ module.exports = function(grunt) {
       options: {
         plugins: [
           {
+            convertPathData: {
+              floatPrecision: 2,
+              transformPrecision: 4,
+            }
+          }, {
+            cleanupNumericValues: {
+              floatPrecision: 2,
+            }
+          }, {
             collapseGroups: true,
           }, {
             removeTitle: true,
@@ -22,6 +31,14 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src',
+          src: '*.svg',
+          dest: 'build',
+        }]
+      },
+      multipass: {
+        files: [{
+          expand: true,
+          cwd: 'build',
           src: '*.svg',
           dest: 'build',
         }]
@@ -132,5 +149,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'svgmin', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestStyleGuide', 'string-replace:manifestStyleGuide', 'concat:manifestHelper', 'string-replace:manifestHelper']);
+  grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestStyleGuide', 'string-replace:manifestStyleGuide', 'concat:manifestHelper', 'string-replace:manifestHelper']);
 };
