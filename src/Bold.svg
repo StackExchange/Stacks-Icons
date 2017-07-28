@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
     <title>Bold</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Bold" fill-rule="nonzero" fill="#000000">
-            <path d="M11.63,8.82 C12.46,8.24 13,7.38 13,6.5 C13,4.57 11.43,3 9.5,3 L4,3 L4,15 L10.25,15 C12.04,15 13.5,13.54 13.5,11.75 C13.5,10.45 12.73,9.34 11.63,8.82 L11.63,8.82 Z M6.5,5 L9.25,5 C10.08,5 10.75,5.67 10.75,6.5 C10.75,7.33 10.08,8 9.25,8 L6.5,8 L6.5,5 Z M9.75,13 L6.5,13 L6.5,10 L9.75,10 C10.58,10 11.25,10.67 11.25,11.5 C11.25,12.33 10.58,13 9.75,13 Z" id="Shape"></path>
+            <path d="M13,6 C13,4.5 11.43,3 9.5,3 L4,3 L4,15 L10.25,15 C12.04,15 13.5,13.29 13.5,11.5 C13.5,10.2 12.6,9.02 11.5,8.5 C12.33,7.92 13,7.5 13,6 Z M6.5,5 L9,5 C9.83,5 10.5,5.67 10.5,6.5 C10.5,7.33 9.83,8 9,8 L6.5,8 L6.5,5 Z M9.5,13 L6.5,13 L6.5,10 L9.5,10 C10.33,10 11,10.67 11,11.5 C11,12.33 10.33,13 9.5,13 Z" id="Shape"></path>
         </g>
     </g>
 </svg>
