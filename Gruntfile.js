@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         options: {
           replacements: [{
             pattern: '<svg',
-            replacement: '<svg role="icon" class="svg-icon icon@@__TARGET_FILENAME__"'
+            replacement: '<svg aria-label="hidden" class="svg-icon icon@@__TARGET_FILENAME__"'
           }, {
             pattern: ' fill="#000"',
             replacement: ''
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [{
-            pattern: /<svg role="icon" class="svg-icon icon/g,
+            pattern: /<svg aria-label="hidden" class="svg-icon icon/g,
             replacement: 'public static SvgImage '
           }, {
             pattern: /" width=".*<\/svg>/g,
