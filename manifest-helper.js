@@ -81,6 +81,7 @@ public static SvgImage LogoWordmark { get; } = GetImage();
 public static SvgImage LogoWordmarkMedium { get; } = GetImage();
 public static SvgImage LogoWordmarkSm { get; } = GetImage();
 public static SvgImage Mail { get; } = GetImage();
+public static SvgImage Message { get; } = GetImage();
 public static SvgImage Minus { get; } = GetImage();
 public static SvgImage Moderator { get; } = GetImage();
 public static SvgImage Money { get; } = GetImage();
