@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Google</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Google" fill-rule="nonzero" fill="#DC4E41">
+            <path d="M9.0135498,7.99816895 L9.0135498,11.0025635 L13.7054443,11.0025635 C13.5183695,12.1792301 12.3945578,14.0493333 9.16326531,14.0493333 C6.37755102,14.0493333 4.10272109,11.79 4.10272109,9 C4.10272109,6.21 6.37823129,3.95066667 9.16326531,3.95066667 C10.7482993,3.95066667 11.8102041,4.61 12.4183673,5.18333333 L14.6319728,3.09133333 C13.2102041,1.79066667 11.3666667,1 9.16326531,1 C4.64965986,1 1,4.57666667 1,9 C1,13.4233333 4.64965986,17 9.16326531,17 C13.8748299,17 17,13.754 17,9.18266667 C17,8.65733333 16.9421769,8.39750228 16.8714286,7.99816895 L9.0135498,7.99816895 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
