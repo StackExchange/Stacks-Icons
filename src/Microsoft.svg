@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Microsoft</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Microsoft">
+            <polygon id="Shape" fill="#00A4EF" fill-rule="nonzero" points="9 18 1 18 1 10 9 10"></polygon>
+            <polygon id="Path" fill="#FFB902" points="18 18 10 18 10 10 18 10"></polygon>
+            <polygon id="Path" fill="#F25C33" points="9 9 1 9 1 1 9 1"></polygon>
+            <polygon id="Path" fill="#7FBA00" points="18 9 10 9 10 1 18 1"></polygon>
+        </g>
+    </g>
+</svg>
