@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>ShareSmall</title>
+    <title>ShareSm</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="ShareSmall" fill="#000000">
+        <g id="ShareSm" fill="#000000">
             <path d="M12,3.5 L5.5,10 L4,8.5 L10.5,2 L7,2 L7,0 L14,0 L14,7 L12,7 L12,3.5 Z M5,0 L5,2 L2,2 L2,12 L12,12 L12,9 L14,9 L14,12.0059397 C14,13.1072288 13.1054862,14 12.0059397,14 L1.99406028,14 C0.892771196,14 0,13.1054862 0,12.0059397 L0,1.99406028 C0,0.892771196 0.894513756,0 1.99406028,0 L5,0 Z" id="Combined-Shape"></path>
         </g>
     </g>
