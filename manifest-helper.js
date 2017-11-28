@@ -114,6 +114,7 @@ public static SvgImage Search { get; } = GetImage();
 public static SvgImage Share { get; } = GetImage();
 public static SvgImage ShareSm { get; } = GetImage();
 public static SvgImage Shield { get; } = GetImage();
+public static SvgImage ShieldSm { get; } = GetImage();
 public static SvgImage ShieldXSm { get; } = GetImage();
 public static SvgImage SpeechBubble { get; } = GetImage();
 public static SvgImage StackExchange { get; } = GetImage();

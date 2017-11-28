@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ShieldSm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ShieldSm" fill-rule="nonzero" fill="#000000">
+            <path d="M5.5,0 L11,2.235 L11,6 C11,9.5025 6.70714286,12 5.5,12 C4.29285714,12 0,9.5175 0,6.015 L0,2.25 L5.5,0 Z M4,9 L7,9 L6.145,6.6 C6.1075,6.40285714 6.19,6.20571429 6.3325,6.09428571 C6.7525,5.78571429 7,5.06571429 7,4.5 C7,3.56571429 6.295,3 5.485,3 C4.6675,3 4,3.56571429 4,4.5 C4,5.06571429 4.2475,5.78571429 4.6675,6.09428571 C4.81517584,6.20263009 4.88960748,6.40338283 4.855,6.6 L4,9 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>
