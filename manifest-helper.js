@@ -55,6 +55,7 @@ public static SvgImage GitLab { get; } = GetImage();
 public static SvgImage Globe { get; } = GetImage();
 public static SvgImage Google { get; } = GetImage();
 public static SvgImage Grabber { get; } = GetImage();
+public static SvgImage Hamburger" viewBox="0 0 18 18 { get; } = GetImage();
 public static SvgImage Header { get; } = GetImage();
 public static SvgImage Health { get; } = GetImage();
 public static SvgImage Heart { get; } = GetImage();
