@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
     <title>Image</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Image" fill-rule="nonzero" fill="#000000">
+        <g id="Image" fill="#000000" fill-rule="nonzero">
             <path d="M1,2.99406028 C1,1.8927712 1.89451376,1 2.99406028,1 L15.0059397,1 C16.1072288,1 17,1.89451376 17,2.99406028 L17,15.0059397 C17,16.1072288 16.1054862,17 15.0059397,17 L2.99406028,17 C1.8927712,17 1,16.1054862 1,15.0059397 L1,2.99406028 Z M5.5,10.5 L2,15 L16,15 L11.5,9 L8,13.51 L5.5,10.5 Z M5.5,6 C6.328,6 7,5.328 7,4.5 C7,3.672 6.328,3 5.5,3 C4.672,3 4,3.672 4,4.5 C4,5.328 4.672,6 5.5,6 Z" id="Shape"></path>
         </g>
     </g>
