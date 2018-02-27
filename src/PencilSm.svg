@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>PencilSm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PencilSm" fill="#000000">
+            <polygon id="Shape" fill-rule="nonzero" points="8.36999989 4.69424552 2 11.1199999 2 13 3.88000011 13 10.2466431 6.5703125"></polygon>
+            <path d="M12.2346802,3.8302002 L11.093689,2.71081543 C10.893689,2.51095818 10.583689,2.51095818 10.383689,2.71081543 L9.21000004,3.86474609 L11.0897827,5.70381695 L12.2346802,4.53969341 C12.4346802,4.33983617 12.4346802,4.03005744 12.2346802,3.8302002 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>
