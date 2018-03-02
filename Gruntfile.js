@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             build: {
                 files: [{
                     expand: true,
-                    cwd: 'src',
+                    cwd: 'src/export',
                     src: '*.svg',
                     dest: 'build/lib',
                 }]
