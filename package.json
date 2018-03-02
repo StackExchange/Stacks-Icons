@@ -1,12 +1,11 @@
 {
-  "name": "stackoverflow-icons",
-  "version": "0.1.0",
-  "description": "Authoring tools for Stack Overflow's shared icon set.",
+  "name": "@stackoverflow/stacks-icons",
+  "version": "1.0.0",
+  "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
   "repository": {
     "type": "git",
     "url": "https://gh.stackoverflow.com/Design/Icons.git"
   },
-  "author": "Aaron Shekey",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.1.0",
