@@ -29,15 +29,15 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src',
                     src: '*.svg',
-                    dest: 'build',
+                    dest: 'build/lib',
                 }]
             },
             multipass: {
                 files: [{
                     expand: true,
-                    cwd: 'build',
+                    cwd: 'build/lib',
                     src: '*.svg',
-                    dest: 'build',
+                    dest: 'build/lib',
                 }]
             }
         },
@@ -45,9 +45,9 @@ module.exports = function(grunt) {
             build: {
                 files: [{
                     expand: true,
-                    cwd: 'build/',
+                    cwd: 'build/lib',
                     src: '**/*',
-                    dest: 'build/'
+                    dest: 'build/lib'
                 }],
                 options: {
                     replacements: [{
@@ -65,9 +65,9 @@ module.exports = function(grunt) {
             replaceSvg: {
                 files: [{
                     expand: true,
-                    cwd: 'build/',
+                    cwd: 'build/lib',
                     src: '**/*',
-                    dest: 'build/'
+                    dest: 'build/lib'
                 }],
                 options: {
                     replacements: [{
@@ -76,26 +76,26 @@ module.exports = function(grunt) {
                     }]
                 }
             },
-            manifestStyleGuide: {
+            manifestIcons: {
                 files: {
-                    'manifest-styleguide.js': 'manifest-styleguide.js',
+                    'icons.js': 'icons.js',
                 },
                 options: {
                     replacements: [{
-                        pattern: /<svg/g,
-                        replacement: '<div class="-item" data-core><i><svg'
+                        pattern: /<svg aria-hidden="true" class="svg-icon icon/g,
+                        replacement: '- helper: '
                     }, {
-                        pattern: /<\/svg>build\//g,
-                        replacement: '</svg></i><code>@Svg.'
+                        pattern: /" width=".*<\/svg>/g,
+                        replacement: ''
                     }, {
-                        pattern: /\.svg/g,
-                        replacement: '</code></div>'
+                        pattern: /build\/lib\/.*\.svg/g,
+                        replacement: ''
                     }]
                 }
             },
             manifestHelper: {
                 files: {
-                    'manifest-helper.js': 'manifest-helper.js',
+                    'helper.js': 'helper.js',
                 },
                 options: {
                     replacements: [{
@@ -127,15 +127,29 @@ module.exports = function(grunt) {
                     return src.replace(/\.svg/g, '') + filename;
                 }
             },
-            manifestStyleGuide: {
+            manifestIcons: {
                 src: ['build/**/*.svg'],
-                dest: 'manifest-styleguide.js',
+                dest: 'icons.js',
             },
             manifestHelper: {
                 src: ['build/**/*.svg'],
-                dest: 'manifest-helper.js',
+                dest: 'helper.js',
             },
         },
+        rename: {
+            helper: {
+                files: [{
+                    src: ['helper.js'],
+                    dest: 'build/helper.cs'
+                },]
+            },
+            icons: {
+                files: [{
+                    src: ['icons.js'],
+                    dest: 'build/icons.yml'
+                },]
+            },
+        }
     });
 
     // Load the plugins
@@ -144,7 +158,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-rename');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestStyleGuide', 'string-replace:manifestStyleGuide', 'concat:manifestHelper', 'string-replace:manifestHelper']);
+    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'string-replace:manifestIcons', 'concat:manifestHelper', 'string-replace:manifestHelper', 'rename:helper', 'rename:icons']);
 };
