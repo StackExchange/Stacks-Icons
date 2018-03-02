@@ -1,11 +1,7 @@
 {
   "name": "@stackoverflow/stacks-icons",
-  "version": "1.0.0",
   "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
-  "repository": {
-    "type": "git",
-    "url": "https://gh.stackoverflow.com/Design/Icons.git"
-  },
+  "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
