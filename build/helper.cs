@@ -84,6 +84,7 @@ public static SvgImage LogoGlyphXxs { get; } = GetImage();
 public static SvgImage LogoMd { get; } = GetImage();
 public static SvgImage LogoSE { get; } = GetImage();
 public static SvgImage LogoSEAlternativeSm { get; } = GetImage();
+public static SvgImage LogoSEGlyphMd { get; } = GetImage();
 public static SvgImage LogoSm { get; } = GetImage();
 public static SvgImage LogoWordmark { get; } = GetImage();
 public static SvgImage LogoWordmarkMd { get; } = GetImage();
