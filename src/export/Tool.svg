@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
     <title>Tool</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Tool" fill="#000000" fill-rule="nonzero">
-            <path d="M4.19906422,1.33415675 C4.75783512,1.1183366 5.36509806,1 6,1 C8.76142375,1 11,3.23857625 11,6 C11,6.63351036 10.8821816,7.23950275 10.6672609,7.79726094 L17,14.13 L14.12,17.01 L7.78280527,10.6728053 C7.22903798,10.884207 6.62804144,11 6,11 C3.23857625,11 1,8.76142375 1,6 C1,5.37334038 1.11528404,4.7736068 1.32580073,4.22085064 L4.55175781,7.4263916 L7.43175781,4.5463916 L4.19906422,1.33415675 Z" id="Combined-Shape"></path>
-        </g>
+    <g id="Tool" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M4.19906422,1.33415675 C4.75783512,1.1183366 5.36509806,1 6,1 C8.76142375,1 11,3.23857625 11,6 C11,6.63351036 10.8821816,7.23950275 10.6672609,7.79726094 L17,14.13 L14.12,17.01 L7.78280527,10.6728053 C7.22903798,10.884207 6.62804144,11 6,11 C3.23857625,11 1,8.76142375 1,6 C1,5.37334038 1.11528404,4.7736068 1.32580073,4.22085064 L4.55175781,7.4263916 L7.43175781,4.5463916 L4.19906422,1.33415675 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
 </svg>
