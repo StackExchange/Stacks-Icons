@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
     <title>Header</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Header" fill="#000000" fill-rule="nonzero">
-            <path d="M13.62,10.08 L12.1,4.66 L12.04,4.66 L10.54,10.08 L13.62,10.08 Z M5.7,11.13 C5.7,11.13 4.68,7.52 4.53,7.02 L4.45,7.02 L3.32,11.13 L5.7,11.13 Z M17.31,15 L15.06,15 L14.11,11.75 L10.04,11.75 L9.09,15 L6.84,15 L6.15,12.67 L2.87,12.67 L2.17,15 L0,15 L3.3,5.41 L5.8,5.41 L7.97,11.75 L10.86,3 L13.38,3 L17.32,15 L17.31,15 Z" id="Shape"></path>
-        </g>
+    <g id="Header" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M13.62,10.08 L12.1,4.66 L12.04,4.66 L10.54,10.08 L13.62,10.08 Z M5.7,11.13 C5.7,11.13 4.68,7.52 4.53,7.02 L4.45,7.02 L3.32,11.13 L5.7,11.13 Z M17.31,15 L15.06,15 L14.11,11.75 L10.04,11.75 L9.09,15 L6.84,15 L6.15,12.67 L2.87,12.67 L2.17,15 L0,15 L3.3,5.41 L5.8,5.41 L7.97,11.75 L10.86,3 L13.38,3 L17.32,15 L17.31,15 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
 </svg>

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
     <title>LaunchPad</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="LaunchPad">
-            <polygon id="Shape" fill="#9E2831" fill-rule="nonzero" points="15.2487793 13.7543945 12.5036735 11.9948206 9.02691943 14.0039672 9 17.75"></polygon>
-            <polygon id="Path" fill="#BB3A84" points="8 17.75 8.00518506 14.0017865 4.5269772 11.9940937 1.74584961 13.7485352"></polygon>
-            <polygon id="Path" fill="#F8C300" points="12 11 12 7 8.5 5 5 7 5 11 8.5 13"></polygon>
-            <polygon id="Path" fill="#3941BF" points="1.02548767 12.8692791 4 11 4 7 1 5"></polygon>
-            <polygon id="Path" fill="#D08935" points="13.0177755 6.99303409 13.0177755 11.0069659 16 13 16 5"></polygon>
-            <polygon id="Path" fill="#3292BB" points="1.75109863 4.24951172 4.51938123 6.00736014 7.99468149 3.99966733 8 0.25"></polygon>
-            <polygon id="Path" fill="#90B636" points="12.5 6 15.25 4.24890137 9 0.25 9 4"></polygon>
-        </g>
+    <g id="LaunchPad" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Shape" fill="#9E2831" fill-rule="nonzero" points="15.2487793 13.7543945 12.5036735 11.9948206 9.02691943 14.0039672 9 17.75"></polygon>
+        <polygon id="Path" fill="#BB3A84" points="8 17.75 8.00518506 14.0017865 4.5269772 11.9940937 1.74584961 13.7485352"></polygon>
+        <polygon id="Path" fill="#F8C300" points="12 11 12 7 8.5 5 5 7 5 11 8.5 13"></polygon>
+        <polygon id="Path" fill="#3941BF" points="1.02548767 12.8692791 4 11 4 7 1 5"></polygon>
+        <polygon id="Path" fill="#D08935" points="13.0177755 6.99303409 13.0177755 11.0069659 16 13 16 5"></polygon>
+        <polygon id="Path" fill="#3292BB" points="1.75109863 4.24951172 4.51938123 6.00736014 7.99468149 3.99966733 8 0.25"></polygon>
+        <polygon id="Path" fill="#90B636" points="12.5 6 15.25 4.24890137 9 0.25 9 4"></polygon>
     </g>
 </svg>
