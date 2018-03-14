@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
     <title>ShareSm</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="ShareSm" fill="#000000">
-            <path d="M11,4.5 L6.5,9 L5,7.5 L9.5,3 L7,3 L7,1 L13,1 L13,7 L11,7 L11,4.5 Z M5,1 L5,3 L3,3 L3,11 L11,11 L11,9 L13,9 L13,11.0059397 C13,12.1072288 12.1054862,13 11.0059397,13 L2.99406028,13 C1.8927712,13 1,12.1054862 1,11.0059397 L1,2.99406028 C1,1.8927712 1.89451376,1 2.99406028,1 L5,1 Z" id="Combined-Shape"></path>
-        </g>
+    <g id="ShareSm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M11,4.5 L6.5,9 L5,7.5 L9.5,3 L7,3 L7,1 L13,1 L13,7 L11,7 L11,4.5 Z M5,1 L5,3 L3,3 L3,11 L11,11 L11,9 L13,9 L13,11.0059397 C13,12.1072288 12.1054862,13 11.0059397,13 L2.99406028,13 C1.8927712,13 1,12.1054862 1,11.0059397 L1,2.99406028 C1,1.8927712 1.89451376,1 2.99406028,1 L5,1 Z" id="Combined-Shape" fill="#000000"></path>
     </g>
 </svg>

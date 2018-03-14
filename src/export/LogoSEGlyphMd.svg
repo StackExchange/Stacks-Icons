@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32px" height="37px" viewBox="0 0 32 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g fill="none" fill-rule="evenodd">
-        <path fill="#8FD8F7" d="M31 7H1V6c0-2.613 2.42-5 5-5h20c2.582 0 5 2.387 5 5v1z"/>
-        <path fill="#155397" d="M1 25v1c0 2.613 2.42 5 5 5h13v6l6-6h1c2.582 0 5-2.387 5-5v-1H1z"/>
-        <path fill="#2D6DB5" d="M1 17v6h30v-6z"/>
-        <path fill="#46A2D9" d="M1 9v6h30V9z"/>
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>LogoSEGlyphMd</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="LogoSEGlyphMd" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M31,7 L1,7 L1,6 C1,3.38733333 3.41931818,1 6,1 L26,1 C28.5820455,1 31,3.38733333 31,6 L31,7 Z" id="Fill-1" fill="#8FD8F7"></path>
+        <path d="M1,25 L1,26 C1,28.6126667 3.41931818,31 6,31 L19,31 L19,37 L25,31 L26,31 C28.5820455,31 31,28.6126667 31,26 L31,25 L1,25 Z" id="Path" fill="#155397"></path>
+        <polygon id="Path" fill="#2D6DB5" points="1 17 1 23 31 23 31 17"></polygon>
+        <polygon id="Path" fill="#46A2D9" points="1 9 1 15 31 15 31 9"></polygon>
     </g>
 </svg>
