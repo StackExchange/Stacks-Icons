@@ -72,7 +72,7 @@ public static SvgImage International { get; } = GetImage();
 public static SvgImage Italic { get; } = GetImage();
 public static SvgImage KeySmall { get; } = GetImage();
 public static SvgImage LaunchPad { get; } = GetImage();
-public static SvgImage Lightbulb" height="18" viewBox="0 0 18 18 { get; } = GetImage();
+public static SvgImage Lightbulb { get; } = GetImage();
 public static SvgImage Link { get; } = GetImage();
 public static SvgImage LinkedIn { get; } = GetImage();
 public static SvgImage Location { get; } = GetImage();
