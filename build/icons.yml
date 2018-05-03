@@ -82,6 +82,7 @@
 - helper: Location
 - helper: Lock
 - helper: Logo
+- helper: LogoEnterprise
 - helper: LogoEnterpriseWordmarkSm
 - helper: LogoGlyph
 - helper: LogoGlyphMd
