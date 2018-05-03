@@ -82,6 +82,7 @@ public static SvgImage LinkedIn { get; } = GetImage();
 public static SvgImage Location { get; } = GetImage();
 public static SvgImage Lock { get; } = GetImage();
 public static SvgImage Logo { get; } = GetImage();
+public static SvgImage LogoEnterprise { get; } = GetImage();
 public static SvgImage LogoEnterpriseWordmarkSm { get; } = GetImage();
 public static SvgImage LogoGlyph { get; } = GetImage();
 public static SvgImage LogoGlyphMd { get; } = GetImage();
