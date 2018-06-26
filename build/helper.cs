@@ -150,4 +150,5 @@ public static SvgImage Twitter { get; } = GetImage();
 public static SvgImage UnorderedList { get; } = GetImage();
 public static SvgImage Vacation { get; } = GetImage();
 public static SvgImage VK { get; } = GetImage();
+public static SvgImage Wave { get; } = GetImage();
 public static SvgImage Yandex { get; } = GetImage();
