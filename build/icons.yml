@@ -48,6 +48,7 @@
 - helper: FireSm
 - helper: Fitness
 - helper: Flag
+- helper: FlagSm
 - helper: Food
 - helper: Gear
 - helper: GearSm

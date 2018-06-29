@@ -48,6 +48,7 @@ public static SvgImage Fire { get; } = GetImage();
 public static SvgImage FireSm { get; } = GetImage();
 public static SvgImage Fitness { get; } = GetImage();
 public static SvgImage Flag { get; } = GetImage();
+public static SvgImage FlagSm { get; } = GetImage();
 public static SvgImage Food { get; } = GetImage();
 public static SvgImage Gear { get; } = GetImage();
 public static SvgImage GearSm { get; } = GetImage();
