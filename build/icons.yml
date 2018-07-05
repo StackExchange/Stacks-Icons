@@ -136,6 +136,7 @@
 - helper: ShieldSm
 - helper: ShieldXSm
 - helper: SpeechBubble
+- helper: SpeechBubbleError
 - helper: StackExchange
 - helper: Star
 - helper: Steam

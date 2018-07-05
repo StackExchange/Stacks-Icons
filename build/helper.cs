@@ -136,6 +136,7 @@ public static SvgImage Shield { get; } = GetImage();
 public static SvgImage ShieldSm { get; } = GetImage();
 public static SvgImage ShieldXSm { get; } = GetImage();
 public static SvgImage SpeechBubble { get; } = GetImage();
+public static SvgImage SpeechBubbleError { get; } = GetImage();
 public static SvgImage StackExchange { get; } = GetImage();
 public static SvgImage Star { get; } = GetImage();
 public static SvgImage Steam { get; } = GetImage();
