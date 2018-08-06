@@ -1,4 +1,5 @@
 public static SvgImage Achievements { get; } = GetImage();
+public static SvgImage AchievementsSm { get; } = GetImage();
 public static SvgImage Alert { get; } = GetImage();
 public static SvgImage AlertCircle { get; } = GetImage();
 public static SvgImage AlertCircleSm { get; } = GetImage();
@@ -137,6 +138,7 @@ public static SvgImage ShieldSm { get; } = GetImage();
 public static SvgImage ShieldXSm { get; } = GetImage();
 public static SvgImage SpeechBubble { get; } = GetImage();
 public static SvgImage SpeechBubbleError { get; } = GetImage();
+public static SvgImage SpeechBubbleSm { get; } = GetImage();
 public static SvgImage StackExchange { get; } = GetImage();
 public static SvgImage Star { get; } = GetImage();
 public static SvgImage Steam { get; } = GetImage();
