@@ -136,6 +136,7 @@
 - helper: Shield
 - helper: ShieldSm
 - helper: ShieldXSm
+- helper: Slack
 - helper: SpeechBubble
 - helper: SpeechBubbleError
 - helper: SpeechBubbleSm
