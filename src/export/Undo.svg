@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Undo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Undo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3.35146967,3.35 C4.80237649,1.9 6.79362101,1 9.00500313,1 C13.4277674,1 17,4.58 17,9 C17,13.42 13.4277674,17 9.00500313,17 C5.27267042,17 2.16072545,14.45 1.27016886,11 L3.35146967,11 C4.17198249,13.33 6.39337086,15 9.00500313,15 C12.3170732,15 15.0087555,12.31 15.0087555,9 C15.0087555,5.69 12.3170732,3 9.00500313,3 C7.34396498,3 5.8630394,3.69 4.78236398,4.78 L8.00437774,8 L1,8 L1,1 L3.35146967,3.35 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>
