@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>UndoSm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UndoSm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M2.75735931,2.75735931 C3.84314575,1.67157288 5.34314575,1 7,1 C10.3137085,1 13,3.6862915 13,7 C13,10.3137085 10.3137085,13 7,13 C4.02700371,13 1.55903653,10.8377133 1.08295844,8 L3.02281777,8 C3.46920765,9.781029 5.08057273,11.1 7,11.1 C9.26436747,11.1 11.1,9.26436747 11.1,7 C11.1,4.73563253 9.26436747,2.9 7,2.9 C5.86781626,2.9 4.84281626,3.35890813 4.1008622,4.1008622 L6,6 L1,6 L1,1 L2.75735931,2.75735931 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>
