@@ -5,7 +5,7 @@
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="ArrowUpDownSm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Shape" fill="#000000" fill-rule="nonzero" points="3 7 11 7 7 11"></polygon>
+        <polygon id="Shape" fill="#000000" fill-rule="nonzero" points="3 8 11 8 7 12"></polygon>
         <polygon id="Shape" fill="#000000" fill-rule="nonzero" transform="translate(7.000000, 4.000000) scale(1, -1) translate(-7.000000, -4.000000) " points="3 2 11 2 7 6"></polygon>
     </g>
 </svg>
