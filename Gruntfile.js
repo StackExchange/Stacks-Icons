@@ -17,6 +17,8 @@ module.exports = function(grunt) {
                 }, {
                     removeTitle: true,
                 }, {
+                    removeViewBox: false,
+                }, {
                     removeUselessStrokeAndFill: true,
                 }, {
                     removeAttrs: {
