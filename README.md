@@ -1,13 +1,12 @@
 # Icons
 
-![Icons](https://gh.stackoverflow.com/storage/user/84/files/417daa58-1b39-11e8-9c3c-f1108b31c896)
+<img src="https://user-images.githubusercontent.com/1369864/45044111-c3871d00-b034-11e8-82b1-332d0f719cb2.png" width="628" height="853" alt="Icons">
 
 This repo provides authoring tools for Stack Overflow’s shared icon library. Here’s our general workflow:
 
-1. Open the [Sketch document](https://gh.stackoverflow.com/Design/Icons/blob/master/src/Icons.sketch) to modify an existing icon, or add a new one. Pay close attention to the name of the newly-added artboard. This will determine your SVG’s filename.
+1. Open the [Sketch document](https://github.com/StackExchange/Stacks-Icons/blob/master/src/Icons.sketch) to modify an existing icon, or add a new one. Pay close attention to the name of the newly-added artboard. This will determine your SVG’s filename.
 2. Export each artboard to the `src/export` directory.
 3. Open this repo’s directory in Terminal, and type `grunt`. This will spit out optimized SVGs in the `build/lib` directory. Some manifest files are included in `build` as well.
-4. Commit those optimized SVGs from `build/lib` to [Core/StackOverflow](https://gh.stackoverflow.com/Core/StackOverflow) and [Design/Stacks](https://gh.stackoverflow.com/Design/Stacks)
 
 ### Installing Grunt
 
