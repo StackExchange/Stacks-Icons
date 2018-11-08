@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
     <title>International</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="International" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M6.69401201,14.5408673 C6.02976749,13.2015075 5.7,11.2151526 5.7,9 C5.7,6.78484745 6.02976749,4.79849254 6.69401201,3.45913267 C4.52484312,4.36293069 3,6.50339225 3,9 C3,11.4966078 4.52484312,13.6370693 6.69401201,14.5408673 Z M11.305988,3.45913267 C11.9702325,4.79849254 12.3,6.78484745 12.3,9 C12.3,11.2151526 11.9702325,13.2015075 11.305988,14.5408673 C13.4751569,13.6370693 15,11.4966078 15,9 C15,6.50339225 13.4751569,4.36293069 11.305988,3.45913267 Z M9,17 C4.581722,17 1,13.418278 1,9 C1,4.581722 4.581722,1 9,1 C13.418278,1 17,4.581722 17,9 C17,13.418278 13.418278,17 9,17 Z M9,15 C10.1045695,15 11,12.3137085 11,9 C11,5.6862915 10.1045695,3 9,3 C7.8954305,3 7,5.6862915 7,9 C7,12.3137085 7.8954305,15 9,15 Z" id="Combined-Shape" fill="#000000"></path>
         <rect id="Path" fill="#000000" x="2" y="6" width="14" height="1"></rect>
