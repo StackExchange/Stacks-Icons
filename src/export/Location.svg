@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
     <title>Location</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="Location" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M8.1007441,17.698333 C8.1007441,17.698333 2,9.90639903 2,6.38181818 C2,2.85723733 4.91014913,0 8.5,0 C12.0898509,0 15,2.85723733 15,6.38181818 C15,9.90639903 8.90169883,17.69509 8.90169883,17.69509 C8.6806313,17.9866187 8.32124703,17.987085 8.1007441,17.698333 Z M8.5,9.25 C10.0187831,9.25 11.25,8.01878305 11.25,6.5 C11.25,4.98121695 10.0187831,3.75 8.5,3.75 C6.98121695,3.75 5.75,4.98121695 5.75,6.5 C5.75,8.01878305 6.98121695,9.25 8.5,9.25 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
