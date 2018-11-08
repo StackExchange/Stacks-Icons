@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
     <title>Moderator</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="Moderator" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M8.391,0.783 C8.727,0.351 9.274,0.353 9.609,0.783 L15.391,8.217 C15.727,8.649 15.726,9.353 15.391,9.783 L9.609,17.217 C9.273,17.649 8.726,17.647 8.391,17.217 L2.609,9.783 C2.273,9.351 2.274,8.647 2.609,8.217 L8.391,0.783 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
