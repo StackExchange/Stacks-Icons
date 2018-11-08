@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
     <title>Graph</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="Graph" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M3,1 L15,1 C16.1045695,1 17,1.8954305 17,3 L17,15 C17,16.1045695 16.1045695,17 15,17 L3,17 C1.8954305,17 1,16.1045695 1,15 L1,3 C1,1.8954305 1.8954305,1 3,1 Z M4,9 L4,14 L6,14 L6,9 L4,9 Z M8,4 L8,14 L10,14 L10,4 L8,4 Z M12,7 L12,14 L14,14 L14,7 L12,7 Z" id="Combined-Shape" fill="#000000"></path>
     </g>

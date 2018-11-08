@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
     <title>ShieldSm</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
     <g id="ShieldSm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M7.5,1 L13,3.235 L13,7 C13,10.5025 8.70714286,13 7.5,13 C6.29285714,13 2,10.5175 2,7.015 L2,3.25 L7.5,1 Z M6,10 L9,10 L8.145,7.6 C8.1075,7.40285714 8.19,7.20571429 8.3325,7.09428571 C8.7525,6.78571429 9,6.06571429 9,5.5 C9,4.56571429 8.295,4 7.485,4 C6.6675,4 6,4.56571429 6,5.5 C6,6.06571429 6.2475,6.78571429 6.6675,7.09428571 C6.81517584,7.20263009 6.88960748,7.40338283 6.855,7.6 L6,10 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
