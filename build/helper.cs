@@ -35,6 +35,7 @@ public static SvgImage Clear { get; } = GetImage();
 public static SvgImage ClearSm { get; } = GetImage();
 public static SvgImage Clock { get; } = GetImage();
 public static SvgImage Code { get; } = GetImage();
+public static SvgImage Columns { get; } = GetImage();
 public static SvgImage Computer { get; } = GetImage();
 public static SvgImage Copy { get; } = GetImage();
 public static SvgImage CreditCard { get; } = GetImage();
