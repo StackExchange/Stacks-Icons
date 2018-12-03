@@ -4,6 +4,7 @@
 - helper: AlertCircle
 - helper: AlertCircleSm
 - helper: AlertSm
+- helper: Aol
 - helper: ArrowDoubleDown
 - helper: ArrowDoubleUp
 - helper: ArrowDown
@@ -23,6 +24,7 @@
 - helper: ArrowUpLg
 - helper: ArrowUpSm
 - helper: Badge
+- helper: Blogger
 - helper: Bold
 - helper: Book
 - helper: Briefcase
@@ -89,6 +91,7 @@
 - helper: Lightbulb
 - helper: Link
 - helper: LinkedIn
+- helper: LiveJournal
 - helper: Location
 - helper: Lock
 - helper: Logo
@@ -103,6 +106,7 @@
 - helper: LogoSE
 - helper: LogoSEAlternativeSm
 - helper: LogoSEGlyphMd
+- helper: LogoSEXxs
 - helper: LogoSm
 - helper: LogoWordmark
 - helper: LogoWordmarkMd
@@ -160,6 +164,7 @@
 - helper: Tool
 - helper: Trash
 - helper: TrendingDown
+- helper: TrendingNone
 - helper: TrendingUp
 - helper: Twitter
 - helper: Undo
@@ -168,4 +173,6 @@
 - helper: Vacation
 - helper: VK
 - helper: Wave
+- helper: Wordpress
+- helper: Yahoo
 - helper: Yandex
