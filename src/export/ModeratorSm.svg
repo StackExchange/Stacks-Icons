@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
     <title>ModeratorSm</title>
     <desc>Created with Sketch.</desc>
     <g id="ModeratorSm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M6.52785046,0.765017979 C6.78469693,0.410841296 7.20283688,0.412481003 7.45891893,0.765017979 L11.8788187,6.8598084 C12.1356652,7.21398508 12.1349007,7.7911619 11.8788187,8.14369887 L7.45891893,14.2384893 C7.20207246,14.592666 6.78393251,14.5910263 6.52785046,14.2384893 L2.1079507,8.14369887 C1.85110423,7.78952219 1.85186865,7.21234537 2.1079507,6.8598084 L6.52785046,0.765017979 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+        <path d="M6.52785046,0.746092864 C6.78469693,0.41720818 7.20283688,0.418730794 7.45891893,0.746092864 L11.8788187,6.40565014 C12.1356652,6.73453483 12.1349007,7.27049506 11.8788187,7.59785713 L7.45891893,13.2574144 C7.20207246,13.5862991 6.78393251,13.5847765 6.52785046,13.2574144 L2.1079507,7.59785713 C1.85110423,7.26897244 1.85186865,6.73301221 2.1079507,6.40565014 L6.52785046,0.746092864 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
 </svg>
