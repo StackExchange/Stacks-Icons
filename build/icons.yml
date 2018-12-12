@@ -92,6 +92,7 @@
 - helper: Location
 - helper: Lock
 - helper: Logo
+- helper: LogoEngagement
 - helper: LogoEnterprise
 - helper: LogoEnterpriseWordmarkSm
 - helper: LogoGlyph
@@ -105,6 +106,8 @@
 - helper: LogoSEGlyphMd
 - helper: LogoSEXxs
 - helper: LogoSm
+- helper: LogoTalent
+- helper: LogoTeams
 - helper: LogoWordmark
 - helper: LogoWordmarkMd
 - helper: LogoWordmarkSm
