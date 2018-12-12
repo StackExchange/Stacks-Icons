@@ -4,7 +4,7 @@
 - helper: AlertCircle
 - helper: AlertCircleSm
 - helper: AlertSm
-- helper: Aol
+- helper: Answer
 - helper: ArrowDoubleDown
 - helper: ArrowDoubleUp
 - helper: ArrowDown
@@ -24,7 +24,6 @@
 - helper: ArrowUpLg
 - helper: ArrowUpSm
 - helper: Badge
-- helper: Blogger
 - helper: Bold
 - helper: Book
 - helper: Briefcase
@@ -43,7 +42,6 @@
 - helper: CreditCard
 - helper: Document
 - helper: Dropbox
-- helper: Edx
 - helper: EllipsisHorizontal
 - helper: EllipsisVertical
 - helper: Eye
@@ -91,10 +89,10 @@
 - helper: Lightbulb
 - helper: Link
 - helper: LinkedIn
-- helper: LiveJournal
 - helper: Location
 - helper: Lock
 - helper: Logo
+- helper: LogoEngagement
 - helper: LogoEnterprise
 - helper: LogoEnterpriseWordmarkSm
 - helper: LogoGlyph
@@ -108,6 +106,8 @@
 - helper: LogoSEGlyphMd
 - helper: LogoSEXxs
 - helper: LogoSm
+- helper: LogoTalent
+- helper: LogoTeams
 - helper: LogoWordmark
 - helper: LogoWordmarkMd
 - helper: LogoWordmarkSm
@@ -134,6 +134,7 @@
 - helper: Plus
 - helper: PlusSm
 - helper: PromoteDemote
+- helper: Question
 - helper: Quote
 - helper: Refresh
 - helper: RefreshSm
@@ -156,7 +157,6 @@
 - helper: SpeechBubbleSm
 - helper: StackExchange
 - helper: Star
-- helper: Steam
 - helper: Stroller
 - helper: Subway
 - helper: Sync
@@ -173,6 +173,4 @@
 - helper: Vacation
 - helper: VK
 - helper: Wave
-- helper: Wordpress
-- helper: Yahoo
 - helper: Yandex
