@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                     removeUselessStrokeAndFill: true,
                 }, {
                     removeAttrs: {
-                        attrs: ['xmlns', 'fill-rule']
+                        attrs: ['fill-rule']
                     }
                 }]
             },
