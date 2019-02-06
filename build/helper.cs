@@ -16,6 +16,7 @@ public static SvgImage ArrowLeftAlt { get; } = GetImage();
 public static SvgImage ArrowLeftSm { get; } = GetImage();
 public static SvgImage ArrowRight { get; } = GetImage();
 public static SvgImage ArrowRightAlt { get; } = GetImage();
+public static SvgImage ArrowRightAltSm { get; } = GetImage();
 public static SvgImage ArrowRightSm { get; } = GetImage();
 public static SvgImage ArrowUp { get; } = GetImage();
 public static SvgImage ArrowUpAlt { get; } = GetImage();
