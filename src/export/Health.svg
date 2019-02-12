@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
-    <title>Health</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Health" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M10,8 L10,5 L8,5 L8,8 L5,8 L5,10 L8,10 L8,13 L10,13 L10,10 L13,10 L13,8 L10,8 Z M9,1 L16,4 L16,9.02 C16,13.69 10.69,17 9,17 C7.31,17 2,13.69 2,9.02 L2,4 L9,1 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
-    </g>
-</svg>
