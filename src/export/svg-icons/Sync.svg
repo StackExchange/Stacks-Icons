@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>svg-icons/Sync</title>
+    <desc>Created with Sketch.</desc>
+    <g id="svg-icons/Sync" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3,9 C3,4.58 6.58,1 11,1 C12.57,1 14.03,1.46 15.26,2.24 L13.8,3.7 C12.97,3.25 12.01,3 11,3 C7.69,3 5,5.69 5,9 L8,9 L4,13 L0,9 L3,9 Z M17,9 L14,9 L18,5 L22,9 L19,9 C19,13.42 15.42,17 11,17 C9.43,17 7.97,16.54 6.74,15.76 L8.2,14.3 C9.03,14.75 9.99,15 11,15 C14.31,15 17,12.31 17,9 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

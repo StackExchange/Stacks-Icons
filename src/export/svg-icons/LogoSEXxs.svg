@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>svg-icons/LogoSEXxs</title>
+    <desc>Created with Sketch.</desc>
+    <g id="svg-icons/LogoSEXxs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5,2 L13,2 C14.1045695,2 15,2.8954305 15,4 L15,4 L3,4 L3,4 C3,2.8954305 3.8954305,2 5,2 Z" id="Rectangle-32" fill="#8FD8F7"></path>
+        <path d="M13,13 L10,16 L10,13 L5,13 C3.8954305,13 3,12.1045695 3,11 L15,11 C15,12.1045695 14.1045695,13 13,13 Z" id="Combined-Shape" fill="#155397"></path>
+        <rect id="Rectangle-33" fill="#46A2D9" x="3" y="5" width="12" height="2"></rect>
+        <rect id="Rectangle" fill="#2D6DB5" x="3" y="8" width="12" height="2"></rect>
+    </g>
+</svg>
