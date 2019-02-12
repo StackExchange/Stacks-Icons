@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>svg-icons/Phone</title>
+    <desc>Created with Sketch.</desc>
+    <g id="svg-icons/Phone" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5,8 C6.12,10.2011111 7.79888889,11.8722222 10,13 L12,11 L14,11 C15.1045695,11 16,11.8954305 16,13 L16,14.5 C16,15.375 15.375,16 14.5,16 C7.19666667,16 2,10.8033333 2,3.5 C2,2.625 2.625,2 3.5,2 L5,2 C6.1045695,2 7,2.8954305 7,4 L7,6 L5,8 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>
