@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/export',
-                    src: '*.svg',
+                    src: '**/*.svg',
                     dest: 'build/lib',
                 }]
             },
@@ -38,23 +38,43 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'build/lib',
-                    src: '*.svg',
+                    src: '**/*.svg',
                     dest: 'build/lib',
                 }]
             }
         },
         'string-replace': {
-            build: {
+            buildIcons: {
                 files: [{
                     expand: true,
-                    cwd: 'build/lib',
-                    src: '**/*',
-                    dest: 'build/lib'
+                    cwd: 'build/lib/svg-icons',
+                    src: '*',
+                    dest: 'build/lib/svg-icons'
                 }],
                 options: {
                     replacements: [{
                         pattern: '<svg',
                         replacement: '<svg aria-hidden="true" class="svg-icon icon@@__TARGET_FILENAME__"'
+                    }, {
+                        pattern: ' fill="#000"',
+                        replacement: ''
+                    }, {
+                        pattern: ' fill="none"',
+                        replacement: ''
+                    }]
+                }
+            },
+            buildSpots: {
+                files: [{
+                    expand: true,
+                    cwd: 'build/lib/svg-spots',
+                    src: '*',
+                    dest: 'build/lib/svg-spots'
+                }],
+                options: {
+                    replacements: [{
+                        pattern: '<svg',
+                        replacement: '<svg aria-hidden="true" class="svg-spot spot@@__TARGET_FILENAME__"'
                     }, {
                         pattern: ' fill="#000"',
                         replacement: ''
@@ -90,18 +110,52 @@ module.exports = function(grunt) {
                         pattern: /" width=".*<\/svg>/g,
                         replacement: ''
                     }, {
-                        pattern: /build\/lib\/.*\.svg/g,
+                        pattern: /build\/lib\/svg-icons\/.*\.svg/g,
                         replacement: ''
                     }]
                 }
             },
-            manifestHelper: {
+            manifestSpots: {
                 files: {
-                    'helper.js': 'helper.js',
+                    'spots.js': 'spots.js',
+                },
+                options: {
+                    replacements: [{
+                        pattern: /<svg aria-hidden="true" class="svg-spot spot/g,
+                        replacement: '- helper: '
+                    }, {
+                        pattern: /" width=".*<\/svg>/g,
+                        replacement: ''
+                    }, {
+                        pattern: /build\/lib\/svg-spots\/.*\.svg/g,
+                        replacement: ''
+                    }]
+                }
+            },
+            manifestHelperIcons: {
+                files: {
+                    'helperIcons.js': 'helperIcons.js',
                 },
                 options: {
                     replacements: [{
                         pattern: /<svg aria-hidden="true" class="svg-icon icon/g,
+                        replacement: 'public static SvgImage '
+                    }, {
+                        pattern: /" width=".*<\/svg>/g,
+                        replacement: ' { get; } = GetImage();'
+                    }, {
+                        pattern: /build\/.*\.svg/g,
+                        replacement: ''
+                    }]
+                }
+            },
+            manifestHelperSpots: {
+                files: {
+                    'helperSpots.js': 'helperSpots.js',
+                },
+                options: {
+                    replacements: [{
+                        pattern: /<svg aria-hidden="true" class="svg-spot spot/g,
                         replacement: 'public static SvgImage '
                     }, {
                         pattern: /" width=".*<\/svg>/g,
@@ -130,25 +184,45 @@ module.exports = function(grunt) {
                 }
             },
             manifestIcons: {
-                src: ['build/**/*.svg'],
+                src: ['build/lib/svg-icons/*.svg'],
                 dest: 'icons.js',
             },
-            manifestHelper: {
-                src: ['build/**/*.svg'],
-                dest: 'helper.js',
+            manifestSpots: {
+                src: ['build/lib/svg-spots/*.svg'],
+                dest: 'spots.js',
+            },
+            manifestHelperIcons: {
+                src: ['build/lib/svg-icons/*.svg'],
+                dest: 'helperIcons.js',
+            },
+            manifestHelperSpots: {
+                src: ['build/lib/svg-spots/*.svg'],
+                dest: 'helperSpots.js',
             },
         },
         rename: {
-            helper: {
+            helperIcons: {
                 files: [{
-                    src: ['helper.js'],
-                    dest: 'build/helper.cs'
+                    src: ['helperIcons.js'],
+                    dest: 'build/helperIcons.cs'
+                },]
+            },
+            helperSpots: {
+                files: [{
+                    src: ['helperSpots.js'],
+                    dest: 'build/helperSpots.cs'
                 },]
             },
             icons: {
                 files: [{
                     src: ['icons.js'],
                     dest: 'build/icons.yml'
+                },]
+            },
+            spots: {
+                files: [{
+                    src: ['spots.js'],
+                    dest: 'build/spots.yml'
                 },]
             },
         }
@@ -163,5 +237,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-rename');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'string-replace:manifestIcons', 'concat:manifestHelper', 'string-replace:manifestHelper', 'rename:helper', 'rename:icons']);
+    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:buildIcons', 'string-replace:buildSpots', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'concat:manifestSpots', 'string-replace:manifestIcons', 'string-replace:manifestSpots', 'concat:manifestHelperIcons', 'concat:manifestHelperSpots', 'string-replace:manifestHelperIcons', 'string-replace:manifestHelperSpots', 'rename:helperIcons', 'rename:helperSpots', 'rename:icons', 'rename:spots']);
 };
