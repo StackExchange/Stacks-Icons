@@ -164,6 +164,7 @@ public static SvgImage Sync { get; } = GetImage();
 public static SvgImage Tack { get; } = GetImage();
 public static SvgImage Tool { get; } = GetImage();
 public static SvgImage Trash { get; } = GetImage();
+public static SvgImage TrashSm { get; } = GetImage();
 public static SvgImage TrendingDown { get; } = GetImage();
 public static SvgImage TrendingNone { get; } = GetImage();
 public static SvgImage TrendingUp { get; } = GetImage();
