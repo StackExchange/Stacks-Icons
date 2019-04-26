@@ -1,14 +1,14 @@
 {
   "name": "@stackoverflow/stacks-icons",
   "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
   "scripts": {
     "start": "grunt"
   },
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.0.4",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-rename": "^0.2.0",
