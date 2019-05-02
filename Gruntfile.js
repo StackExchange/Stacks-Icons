@@ -22,14 +22,14 @@ module.exports = function(grunt) {
                     removeUselessStrokeAndFill: true,
                 }, {
                     removeAttrs: {
-                        attrs: ['xmlns', 'fill-rule']
+                        attrs: ['xmlns', 'fill-rule', 'clip-rule']
                     }
                 }]
             },
             build: {
                 files: [{
                     expand: true,
-                    cwd: 'src/export',
+                    cwd: 'src/Icon',
                     src: '*.svg',
                     dest: 'build/lib',
                 }]
@@ -55,6 +55,9 @@ module.exports = function(grunt) {
                     replacements: [{
                         pattern: '<svg',
                         replacement: '<svg aria-hidden="true" class="svg-icon icon@@__TARGET_FILENAME__"'
+                    }, {
+                        pattern: /<\/?g(\s.+?)*>/g,
+                        replacement: ''
                     }, {
                         pattern: ' fill="#000"',
                         replacement: ''
@@ -158,7 +161,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-string-replace');
-    grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-replace-regex');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-rename');
 
