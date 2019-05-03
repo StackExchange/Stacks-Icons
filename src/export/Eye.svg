@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Eye</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Eye" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9.06,3 C4,3 1,9 1,9 C1,9 4,15 9.06,15 C14,15 17,9 17,9 C17,9 14,3 9.06,3 L9.06,3 Z M9,13 C6.8,13 5,11.22 5,9 C5,6.8 6.8,5 9,5 C11.22,5 13,6.8 13,9 C13,11.22 11.22,13 9,13 L9,13 Z M11,9 C11,10.11 10.11,11 9,11 C7.89,11 7,10.11 7,9 C7,7.89 7.89,7 9,7 C10.11,7 11,7.89 11,9 L11,9 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>
