@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>AlertCircle</title>
+    <desc>Created with Sketch.</desc>
+    <g id="AlertCircle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,17 C4.581722,17 1,13.418278 1,9 C1,4.581722 4.581722,1 9,1 C13.418278,1 17,4.581722 17,9 C17,13.418278 13.418278,17 9,17 Z M8,4 L8,10 L10,10 L10,4 L8,4 Z M8,12 L8,14 L10,14 L10,12 L8,12 Z" id="Combined-Shape" fill="#000000"></path>
+    </g>
+</svg>
