@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>FaceSmile</title>
+    <desc>Created with Sketch.</desc>
+    <g id="FaceSmile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,15 C12.3137085,15 15,12.3137085 15,9 C15,5.6862915 12.3137085,3 9,3 C5.6862915,3 3,5.6862915 3,9 C3,12.3137085 5.6862915,15 9,15 Z M9,17 C4.581722,17 1,13.418278 1,9 C1,4.581722 4.581722,1 9,1 C13.418278,1 17,4.581722 17,9 C17,13.418278 13.418278,17 9,17 Z" id="Oval-6" fill="#000000" fill-rule="nonzero"></path>
+        <path d="M4.52555916,10 L13.4744408,10 C13.0842264,12.1164564 11.229351,13.7197772 9,13.7197772 C6.77064899,13.7197772 4.91577363,12.1164564 4.52555916,10 Z" id="Combined-Shape" fill="#000000"></path>
+        <circle id="Oval-7" fill="#000000" cx="7" cy="8" r="1.25"></circle>
+        <circle id="Oval-7" fill="#000000" cx="11" cy="8" r="1.25"></circle>
+    </g>
+</svg>
