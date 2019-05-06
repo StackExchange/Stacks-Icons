@@ -1,6 +1,7 @@
 # Icons
 
-<img width="1095" alt="Icons" src="https://user-images.githubusercontent.com/1369864/57243245-41079080-6ffb-11e9-860e-f2b5a555088c.png">
+<img width="659" alt="Icons" src="https://user-images.githubusercontent.com/1369864/57243772-84aeca00-6ffc-11e9-96d8-208315e070e8.png">
+
 
 ### Introduction
 
