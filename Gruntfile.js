@@ -59,10 +59,10 @@ module.exports = function(grunt) {
                         pattern: /<\/?g(\s.+?)*>/g,
                         replacement: ''
                     }, {
-                        pattern: ' fill="#000"',
+                        pattern: / fill="#000"/gm,
                         replacement: ''
                     }, {
-                        pattern: ' fill="none"',
+                        pattern: / fill="none"/gm,
                         replacement: ''
                     }]
                 }
