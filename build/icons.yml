@@ -42,6 +42,8 @@
 - helper: Copy
 - helper: CreditCard
 - helper: Document
+- helper: Download
+- helper: DownloadSm
 - helper: Dropbox
 - helper: EllipsisHorizontal
 - helper: EllipsisVertical
