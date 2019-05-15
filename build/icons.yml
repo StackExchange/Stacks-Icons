@@ -95,7 +95,6 @@
 - helper: Location
 - helper: Lock
 - helper: Logo
-- helper: LogoEngagement
 - helper: LogoEnterprise
 - helper: LogoEnterpriseWordmarkSm
 - helper: LogoGlyph
