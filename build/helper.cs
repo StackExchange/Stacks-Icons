@@ -28,6 +28,7 @@ public static SvgImage Badge { get; } = GetImage();
 public static SvgImage Bold { get; } = GetImage();
 public static SvgImage Book { get; } = GetImage();
 public static SvgImage Briefcase { get; } = GetImage();
+public static SvgImage BriefcaseSm { get; } = GetImage();
 public static SvgImage Calendar { get; } = GetImage();
 public static SvgImage Chair { get; } = GetImage();
 public static SvgImage Checkmark { get; } = GetImage();
