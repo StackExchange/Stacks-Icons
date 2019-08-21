@@ -42,6 +42,7 @@
 - helper: Computer
 - helper: Copy
 - helper: CreditCard
+- helper: Devto
 - helper: Document
 - helper: Download
 - helper: DownloadSm
