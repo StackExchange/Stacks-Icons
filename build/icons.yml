@@ -154,6 +154,7 @@
 - helper: Person
 - helper: Phone
 - helper: Plus
+- helper: PlusOne
 - helper: PlusSm
 - helper: PromoteDemote
 - helper: Question

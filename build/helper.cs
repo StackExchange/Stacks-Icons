@@ -154,6 +154,7 @@ public static SvgImage People { get; } = GetImage();
 public static SvgImage Person { get; } = GetImage();
 public static SvgImage Phone { get; } = GetImage();
 public static SvgImage Plus { get; } = GetImage();
+public static SvgImage PlusOne { get; } = GetImage();
 public static SvgImage PlusSm { get; } = GetImage();
 public static SvgImage PromoteDemote { get; } = GetImage();
 public static SvgImage Question { get; } = GetImage();
