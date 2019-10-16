@@ -32,6 +32,7 @@
 - helper: Book
 - helper: Briefcase
 - helper: BriefcaseSm
+- helper: Bullhorn
 - helper: Calendar
 - helper: Chair
 - helper: Checkmark
