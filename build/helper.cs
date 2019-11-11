@@ -173,6 +173,7 @@ public static SvgImage Remote { get; } = GetImage();
 public static SvgImage ReviewQueue { get; } = GetImage();
 public static SvgImage Rss { get; } = GetImage();
 public static SvgImage School { get; } = GetImage();
+public static SvgImage SchoolSm { get; } = GetImage();
 public static SvgImage Search { get; } = GetImage();
 public static SvgImage SearchSm { get; } = GetImage();
 public static SvgImage Share { get; } = GetImage();
