@@ -173,6 +173,7 @@
 - helper: ReviewQueue
 - helper: Rss
 - helper: School
+- helper: SchoolSm
 - helper: Search
 - helper: SearchSm
 - helper: Share
