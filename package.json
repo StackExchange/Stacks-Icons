@@ -1,7 +1,7 @@
 {
   "name": "@stackoverflow/stacks-icons",
   "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
   "scripts": {
