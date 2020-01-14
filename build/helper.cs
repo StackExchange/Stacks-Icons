@@ -49,6 +49,7 @@ public static SvgImage Columns { get; } = GetImage();
 public static SvgImage Computer { get; } = GetImage();
 public static SvgImage Copy { get; } = GetImage();
 public static SvgImage CreditCard { get; } = GetImage();
+public static SvgImage Crosshairs { get; } = GetImage();
 public static SvgImage Currency { get; } = GetImage();
 public static SvgImage DevTo { get; } = GetImage();
 public static SvgImage Document { get; } = GetImage();
