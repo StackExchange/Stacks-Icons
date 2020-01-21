@@ -109,6 +109,7 @@ public static SvgImage Info { get; } = GetImage();
 public static SvgImage InfoSm { get; } = GetImage();
 public static SvgImage International { get; } = GetImage();
 public static SvgImage Italic { get; } = GetImage();
+public static SvgImage Jira { get; } = GetImage();
 public static SvgImage KeySmall { get; } = GetImage();
 public static SvgImage Laptop { get; } = GetImage();
 public static SvgImage LaunchPad { get; } = GetImage();
