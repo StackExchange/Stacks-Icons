@@ -85,6 +85,7 @@
 - helper: Google
 - helper: GoogleDrive
 - helper: Grabber
+- helper: GrabberVertical
 - helper: Graph
 - helper: Grid
 - helper: Hamburger
@@ -146,6 +147,7 @@
 - helper: Merge
 - helper: Message
 - helper: Microsoft
+- helper: MicrosoftTeams
 - helper: Migrate
 - helper: Milestone
 - helper: Minus
@@ -154,6 +156,7 @@
 - helper: ModeratorSm
 - helper: Money
 - helper: NotInterested
+- helper: Okta
 - helper: OpenSource
 - helper: OrderedList
 - helper: Outdent
@@ -162,6 +165,7 @@
 - helper: Pencil
 - helper: PencilSm
 - helper: People
+- helper: PeopleSm
 - helper: Person
 - helper: Phone
 - helper: Play
@@ -200,6 +204,7 @@
 - helper: Sync
 - helper: Tack
 - helper: Tada
+- helper: Theme
 - helper: ThumbsDown
 - helper: ThumbsUp
 - helper: TIL
@@ -215,5 +220,6 @@
 - helper: UnorderedList
 - helper: Vacation
 - helper: VK
+- helper: Wand
 - helper: Wave
 - helper: Yandex
