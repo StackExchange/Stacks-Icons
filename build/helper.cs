@@ -30,6 +30,7 @@ public static SvgImage Balloon { get; } = GetImage();
 public static SvgImage Bell { get; } = GetImage();
 public static SvgImage Bold { get; } = GetImage();
 public static SvgImage Book { get; } = GetImage();
+public static SvgImage Bookmark { get; } = GetImage();
 public static SvgImage Briefcase { get; } = GetImage();
 public static SvgImage BriefcaseSm { get; } = GetImage();
 public static SvgImage Bullhorn { get; } = GetImage();
