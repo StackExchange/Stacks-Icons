@@ -54,6 +54,7 @@ public static SvgImage Crosshairs { get; } = GetImage();
 public static SvgImage Currency { get; } = GetImage();
 public static SvgImage DevTo { get; } = GetImage();
 public static SvgImage Document { get; } = GetImage();
+public static SvgImage DocumentAlt { get; } = GetImage();
 public static SvgImage Download { get; } = GetImage();
 public static SvgImage DownloadSm { get; } = GetImage();
 public static SvgImage Dropbox { get; } = GetImage();

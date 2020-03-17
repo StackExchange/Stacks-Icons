@@ -54,6 +54,7 @@
 - helper: Currency
 - helper: DevTo
 - helper: Document
+- helper: DocumentAlt
 - helper: Download
 - helper: DownloadSm
 - helper: Dropbox
