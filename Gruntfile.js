@@ -70,6 +70,9 @@ module.exports = function(grunt) {
                     }, {
                         pattern: / fill="#fff"/gm,
                         replacement: ' fill="var(--white)"'
+                    }, {
+                        pattern: / fill="#6A7E7C"/gm,
+                        replacement: ' fill="var(--black-500)"'
                     }]
                 }
             },
