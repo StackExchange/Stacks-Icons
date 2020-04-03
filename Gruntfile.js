@@ -67,6 +67,9 @@ module.exports = function(grunt) {
                     }, {
                         pattern: / fill="#222426"/gm,
                         replacement: ' fill="var(--black-800)"'
+                    }, {
+                        pattern: / fill="#fff"/gm,
+                        replacement: ' fill="var(--white)"'
                     }]
                 }
             },
