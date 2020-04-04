@@ -64,6 +64,18 @@ module.exports = function(grunt) {
                     }, {
                         pattern: / fill="none"/gm,
                         replacement: ''
+                    }, {
+                        pattern: / fill="#222426"/gm,
+                        replacement: ' fill="var(--black-800)"'
+                    }, {
+                        pattern: / fill="#fff"/gm,
+                        replacement: ' fill="var(--white)"'
+                    }, {
+                        pattern: / fill="#6A7E7C"/gm,
+                        replacement: ' fill="var(--black-500)"'
+                    }, {
+                        pattern: / fill="#1A1104"/gm,
+                        replacement: ' fill="var(--black-900)"'
                     }]
                 }
             },
