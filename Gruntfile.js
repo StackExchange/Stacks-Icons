@@ -125,7 +125,7 @@ module.exports = function(grunt) {
                         pattern: /" width=".*<\/svg>/g,
                         replacement: ''
                     }, {
-                        pattern: /build\/lib\/svg-icons\/.*\.svg/g,
+                        pattern: /build\/lib\/Icons\/.*\.svg/g,
                         replacement: ''
                     }]
                 }
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
                         pattern: /" width=".*<\/svg>/g,
                         replacement: ''
                     }, {
-                        pattern: /build\/lib\/svg-spots\/.*\.svg/g,
+                        pattern: /build\/lib\/Spots\/.*\.svg/g,
                         replacement: ''
                     }]
                 }
@@ -216,19 +216,19 @@ module.exports = function(grunt) {
                 }
             },
             manifestIcons: {
-                src: ['build/lib/svg-icons/*.svg'],
+                src: ['build/lib/Icons/*.svg'],
                 dest: 'icons.js',
             },
             manifestSpots: {
-                src: ['build/lib/svg-spots/*.svg'],
+                src: ['build/lib/Spots/*.svg'],
                 dest: 'spots.js',
             },
             manifestHelperIcons: {
-                src: ['build/lib/svg-icons/*.svg'],
+                src: ['build/lib/Icons/*.svg'],
                 dest: 'helperIcons.js',
             },
             manifestHelperSpots: {
-                src: ['build/lib/svg-spots/*.svg'],
+                src: ['build/lib/Spots/*.svg'],
                 dest: 'helperSpots.js',
             },
         },
