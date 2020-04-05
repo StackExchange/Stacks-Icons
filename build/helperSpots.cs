@@ -1,3 +1,4 @@
+public static SvgImage AchievementsMd { get; } = GetImage();
 public static SvgImage BellMd { get; } = GetImage();
 public static SvgImage LocationMd { get; } = GetImage();
 public static SvgImage MailMd { get; } = GetImage();
