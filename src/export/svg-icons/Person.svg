@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>svg-icons/Person</title>
-    <desc>Created with Sketch.</desc>
-    <g id="svg-icons/Person" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M15,15.002 C15,15.553 14.553,16 14.002,16 L4.001,16 C3.448,16 3,15.552 3,14.999 L3,14 C3,11.367 7,10 7,10 C7,10 7.229,9.591 7,9 C6.159,8.38 6.056,7.41 6,5 C6.173,2.587 7.867,2 9,2 C10.133,2 11.827,2.586 12,5 C11.944,7.41 11.841,8.38 11,9 C10.771,9.59 11,10 11,10 C11,10 15,11.367 15,14 L15,15.002 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
-    </g>
-</svg>
