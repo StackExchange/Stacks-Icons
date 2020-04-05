@@ -180,24 +180,7 @@ module.exports = function(grunt) {
                         replacement: ''
                     }]
                 }
-            },
-            finalRemove: {
-                files: [{
-                    expand: true,
-                    cwd: 'build/lib',
-                    src: '**/*.svg',
-                    dest: 'build/lib'
-                }],
-                options: {
-                    replacements: [{
-                        pattern: ' fill="#000"',
-                        replacement: ''
-                    }, {
-                        pattern: ' fill="black"',
-                        replacement: ''
-                    }]
-                }
-            },
+            }
         },
         replace: {
             dist: {
@@ -279,7 +262,6 @@ module.exports = function(grunt) {
         'string-replace:buildSpots', // Spots: Add classes placeholders and remove unnecessary colors for CSS recoloring eg. aria-hidden="true" class="svg-spot spot@@__TARGET_FILENAME__" width="48" height="48" viewBox="0 0 48 48"
         'replace', // Replaces class placeholder with the filename eg. class="svg-spot spotShield.svg"
         'string-replace:replaceSvg', // Replaces Shield.svg with Shield for final classname outputs eg. class="svg-spot spotShield"
-        'string-replace:finalRemove', // Removes any stubborn remaining fill="black" or fill="#000"
 
         // Build a YML manifest
         'concat:manifestYMLIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
