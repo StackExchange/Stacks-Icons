@@ -91,10 +91,10 @@ module.exports = function(grunt) {
                         pattern: '<svg',
                         replacement: '<svg aria-hidden="true" class="svg-spot spot@@__TARGET_FILENAME__"'
                     }, {
-                        pattern: ' fill="#000"',
+                        pattern: / fill="#000"/gm,
                         replacement: ''
                     }, {
-                        pattern: ' fill="none"',
+                        pattern: / fill="none"/gm,
                         replacement: ''
                     }]
                 }
