@@ -47,9 +47,9 @@ module.exports = function(grunt) {
             buildIcons: {
                 files: [{
                     expand: true,
-                    cwd: 'build/lib/svg-icons',
-                    src: '*',
-                    dest: 'build/lib/svg-icons'
+                    cwd: 'build/lib/Icons',
+                    src: '**/*.svg',
+                    dest: 'build/lib/Icons'
                 }],
                 options: {
                     replacements: [{
@@ -82,9 +82,9 @@ module.exports = function(grunt) {
             buildSpots: {
                 files: [{
                     expand: true,
-                    cwd: 'build/lib/svg-spots',
-                    src: '*',
-                    dest: 'build/lib/svg-spots'
+                    cwd: 'build/lib/Spots',
+                    src: '**/*.svg',
+                    dest: 'build/lib/Spots'
                 }],
                 options: {
                     replacements: [{
@@ -185,12 +185,15 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'build/lib',
-                    src: '**/*',
+                    src: '**/*.svg',
                     dest: 'build/lib'
                 }],
                 options: {
                     replacements: [{
                         pattern: ' fill="#000"',
+                        replacement: ''
+                    }, {
+                        pattern: ' fill="black"',
                         replacement: ''
                     }]
                 }
