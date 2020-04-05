@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                     removeUselessStrokeAndFill: true,
                 }, {
                     removeAttrs: {
-                        attrs: ['xmlns', 'fill-rule']
+                        attrs: ['xmlns', 'fill-rule', 'clip-rule']
                     }
                 }]
             },
@@ -56,11 +56,26 @@ module.exports = function(grunt) {
                         pattern: '<svg',
                         replacement: '<svg aria-hidden="true" class="svg-icon icon@@__TARGET_FILENAME__"'
                     }, {
-                        pattern: ' fill="#000"',
+                        pattern: /<\/?g(\s.+?)*>/g,
                         replacement: ''
                     }, {
-                        pattern: ' fill="none"',
+                        pattern: / fill="#000"/gm,
                         replacement: ''
+                    }, {
+                        pattern: / fill="none"/gm,
+                        replacement: ''
+                    }, {
+                        pattern: / fill="#222426"/gm,
+                        replacement: ' fill="var(--black-800)"'
+                    }, {
+                        pattern: / fill="#fff"/gm,
+                        replacement: ' fill="var(--white)"'
+                    }, {
+                        pattern: / fill="#6A7E7C"/gm,
+                        replacement: ' fill="var(--black-500)"'
+                    }, {
+                        pattern: / fill="#1A1104"/gm,
+                        replacement: ' fill="var(--black-900)"'
                     }]
                 }
             },
@@ -165,7 +180,21 @@ module.exports = function(grunt) {
                         replacement: ''
                     }]
                 }
-            }
+            },
+            finalRemove: {
+                files: [{
+                    expand: true,
+                    cwd: 'build/lib',
+                    src: '**/*',
+                    dest: 'build/lib'
+                }],
+                options: {
+                    replacements: [{
+                        pattern: ' fill="#000"',
+                        replacement: ''
+                    }]
+                }
+            },
         },
         replace: {
             dist: {
@@ -232,10 +261,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-string-replace');
-    grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-replace-regex');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-rename');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:buildIcons', 'string-replace:buildSpots', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'concat:manifestSpots', 'string-replace:manifestIcons', 'string-replace:manifestSpots', 'concat:manifestHelperIcons', 'concat:manifestHelperSpots', 'string-replace:manifestHelperIcons', 'string-replace:manifestHelperSpots', 'rename:helperIcons', 'rename:helperSpots', 'rename:icons', 'rename:spots']);
+    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:buildIcons', 'string-replace:buildSpots', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'concat:manifestSpots', 'string-replace:manifestIcons', 'string-replace:manifestSpots', 'concat:manifestHelperIcons', 'concat:manifestHelperSpots', 'string-replace:manifestHelperIcons', 'string-replace:manifestHelperSpots', 'rename:helperIcons', 'rename:helperSpots', 'rename:icons', 'rename:spots', 'finalRemove']);
 };
