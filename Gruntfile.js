@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             build: {
                 files: [{
                     expand: true,
-                    cwd: 'src/export',
+                    cwd: 'src/',
                     src: '**/*.svg',
                     dest: 'build/lib',
                 }]
@@ -266,5 +266,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-rename');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:buildIcons', 'string-replace:buildSpots', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'concat:manifestSpots', 'string-replace:manifestIcons', 'string-replace:manifestSpots', 'concat:manifestHelperIcons', 'concat:manifestHelperSpots', 'string-replace:manifestHelperIcons', 'string-replace:manifestHelperSpots', 'rename:helperIcons', 'rename:helperSpots', 'rename:icons', 'rename:spots', 'finalRemove']);
+    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:buildIcons', 'string-replace:buildSpots', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'concat:manifestSpots', 'string-replace:manifestIcons', 'string-replace:manifestSpots', 'concat:manifestHelperIcons', 'concat:manifestHelperSpots', 'string-replace:manifestHelperIcons', 'string-replace:manifestHelperSpots', 'string-replace:finalRemove', 'rename:helperIcons', 'rename:helperSpots', 'rename:icons', 'rename:spots']);
 };
