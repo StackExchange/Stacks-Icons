@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>svg-icons/Computer</title>
-    <desc>Created with Sketch.</desc>
-    <g id="svg-icons/Computer" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M1,4 L1,11 C1,12.1045695 1.8954305,13 3,13 L7,13 L6,15 L6,16 L12,16 L12,15 L11,13 L15,13 C16.1045695,13 17,12.1045695 17,11 L17,4 C17,2.8954305 16.1045695,2 15,2 L3,2 C1.8954305,2 1,2.8954305 1,4 Z M15,11 L3,11 L3,4 L15,4 L15,11 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
-    </g>
-</svg>

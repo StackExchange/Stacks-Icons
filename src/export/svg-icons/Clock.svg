@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>svg-icons/Clock</title>
-    <desc>Created with Sketch.</desc>
-    <g id="svg-icons/Clock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M9,17 C4.581722,17 1,13.418278 1,9 C1,4.581722 4.581722,1 9,1 C13.418278,1 17,4.581722 17,9 C17,13.418278 13.418278,17 9,17 Z M9,15 C12.3137085,15 15,12.3137085 15,9 C15,5.6862915 12.3137085,3 9,3 C5.6862915,3 3,5.6862915 3,9 C3,12.3137085 5.6862915,15 9,15 Z M8,5 L9.01342773,5.00726318 L9,9.35125732 L12.2245483,11.4567261 L11.6179199,12.3824463 L8,10 L8,5 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
-    </g>
-</svg>

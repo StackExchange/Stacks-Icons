@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>svg-icons/SmartPhone</title>
-    <desc>Created with Sketch.</desc>
-    <g id="svg-icons/SmartPhone" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M6,1 L12,1 C13.1045695,1 14,1.8954305 14,3 L14,15 C14,16.1045695 13.1045695,17 12,17 L6,17 C4.8954305,17 4,16.1045695 4,15 L4,3 C4,1.8954305 4.8954305,1 6,1 Z M6,3 L6,13 L12,13 L12,3 L6,3 Z M9,16.2 C9.6627417,16.2 10.2,15.6627417 10.2,15 C10.2,14.3372583 9.6627417,13.8 9,13.8 C8.3372583,13.8 7.8,14.3372583 7.8,15 C7.8,15.6627417 8.3372583,16.2 9,16.2 Z" id="Combined-Shape" fill="#000000"></path>
-    </g>
-</svg>
