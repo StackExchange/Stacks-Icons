@@ -1,5 +1,6 @@
 - helper: AchievementsLg
 - helper: AchievementsMd
+- helper: AchievementsXL
 - helper: BellMd
 - helper: LocationMd
 - helper: MailMd
