@@ -47,9 +47,9 @@ module.exports = function(grunt) {
             buildIcons: {
                 files: [{
                     expand: true,
-                    cwd: 'build/lib/Icons',
+                    cwd: 'build/lib/Icon',
                     src: '**/*.svg',
-                    dest: 'build/lib/Icons'
+                    dest: 'build/lib/Icon'
                 }],
                 options: {
                     replacements: [{
@@ -82,9 +82,9 @@ module.exports = function(grunt) {
             buildSpots: {
                 files: [{
                     expand: true,
-                    cwd: 'build/lib/Spots',
+                    cwd: 'build/lib/Spot',
                     src: '**/*.svg',
-                    dest: 'build/lib/Spots'
+                    dest: 'build/lib/Spot'
                 }],
                 options: {
                     replacements: [{
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
                     }]
                 }
             },
-            manifestIcons: {
+            manifestYMLIcons: {
                 files: {
                     'icons.js': 'icons.js',
                 },
@@ -125,12 +125,12 @@ module.exports = function(grunt) {
                         pattern: /" width=".*<\/svg>/g,
                         replacement: ''
                     }, {
-                        pattern: /build\/lib\/Icons\/.*\.svg/g,
+                        pattern: /build\/lib\/Icon\/.*\.svg/g,
                         replacement: ''
                     }]
                 }
             },
-            manifestSpots: {
+            manifestYMLSpots: {
                 files: {
                     'spots.js': 'spots.js',
                 },
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
                         pattern: /" width=".*<\/svg>/g,
                         replacement: ''
                     }, {
-                        pattern: /build\/lib\/Spots\/.*\.svg/g,
+                        pattern: /build\/lib\/Spot\/.*\.svg/g,
                         replacement: ''
                     }]
                 }
@@ -215,20 +215,20 @@ module.exports = function(grunt) {
                     return src.replace(/\.svg/g, '') + filename;
                 }
             },
-            manifestIcons: {
-                src: ['build/lib/Icons/*.svg'],
+            manifestYMLIcons: {
+                src: ['build/lib/Icon/*.svg'],
                 dest: 'icons.js',
             },
-            manifestSpots: {
-                src: ['build/lib/Spots/*.svg'],
+            manifestYMLSpots: {
+                src: ['build/lib/Spot/*.svg'],
                 dest: 'spots.js',
             },
             manifestHelperIcons: {
-                src: ['build/lib/Icons/*.svg'],
+                src: ['build/lib/Icon/*.svg'],
                 dest: 'helperIcons.js',
             },
             manifestHelperSpots: {
-                src: ['build/lib/Spots/*.svg'],
+                src: ['build/lib/Spot/*.svg'],
                 dest: 'helperSpots.js',
             },
         },
@@ -245,13 +245,13 @@ module.exports = function(grunt) {
                     dest: 'build/helperSpots.cs'
                 },]
             },
-            icons: {
+            iconsYML: {
                 files: [{
                     src: ['icons.js'],
                     dest: 'build/icons.yml'
                 },]
             },
-            spots: {
+            spotsYML: {
                 files: [{
                     src: ['spots.js'],
                     dest: 'build/spots.yml'
@@ -269,5 +269,32 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-rename');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:buildIcons', 'string-replace:buildSpots', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'concat:manifestSpots', 'string-replace:manifestIcons', 'string-replace:manifestSpots', 'concat:manifestHelperIcons', 'concat:manifestHelperSpots', 'string-replace:manifestHelperIcons', 'string-replace:manifestHelperSpots', 'string-replace:finalRemove', 'rename:helperIcons', 'rename:helperSpots', 'rename:icons', 'rename:spots']);
+    grunt.registerTask('default', [
+        'clean', // Delete everything in the build directory to start fresh
+
+        // SVG optimization and meta data
+        'svgmin:build', // Apply SVG optimization
+        'svgmin:multipass', // Apply SVG optimization again with same options for even more savings
+        'string-replace:buildIcons', // Icons: Add classes placeholders and remove unnecessary colors for CSS recoloring eg. aria-hidden="true" class="svg-icon icon@@__TARGET_FILENAME__" width="18" height="18" viewBox="0 0 18 18"
+        'string-replace:buildSpots', // Spots: Add classes placeholders and remove unnecessary colors for CSS recoloring eg. aria-hidden="true" class="svg-spot spot@@__TARGET_FILENAME__" width="48" height="48" viewBox="0 0 48 48"
+        'replace', // Replaces class placeholder with the filename eg. class="svg-spot spotShield.svg"
+        'string-replace:replaceSvg', // Replaces Shield.svg with Shield for final classname outputs eg. class="svg-spot spotShield"
+        'string-replace:finalRemove', // Removes any stubborn remaining fill="black" or fill="#000"
+
+        // Build a YML manifest
+        'concat:manifestYMLIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
+        'concat:manifestYMLSpots', // Spots: Take the entire contents of each SVG and shove it into a single file
+        'string-replace:manifestYMLIcons', // Icons: Replace as much of the output SVG with text that makes sense in the context of a YML file
+        'string-replace:manifestYMLSpots', // Spots: Replace as much of the output SVG with text that makes sense in the context of a YML file
+        'rename:iconsYML', // Rename the file to icons.yml
+        'rename:spotsYML', // Rename the file to spots.yml
+
+        // Build a C# helper manifest
+        'concat:manifestHelperIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
+        'concat:manifestHelperSpots', // Spots: Take the entire contents of each SVG and shove it into a single file
+        'string-replace:manifestHelperIcons', // Icons: Replace as much of the output SVG with text that makes sense in the context of a C# file
+        'string-replace:manifestHelperSpots', // Spots: Replace as much of the output SVG with text that makes sense in the context of a C# file
+        'rename:helperIcons', // Rename the file to helperIcons.cs
+        'rename:helperSpots' // Rename the file to helperSpots.cs
+    ]);
 };
