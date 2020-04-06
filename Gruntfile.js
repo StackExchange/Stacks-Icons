@@ -113,17 +113,17 @@ module.exports = function(grunt) {
                     }]
                 }
             },
-            manifestYMLIcons: {
+            manifestJsonIcons: {
                 files: {
                     'icons.js': 'icons.js',
                 },
                 options: {
                     replacements: [{
                         pattern: /<svg aria-hidden="true" class="svg-icon icon/g,
-                        replacement: '- helper: '
+                        replacement: '\n  {\n\    "helper": "'
                     }, {
                         pattern: /" width=".*<\/svg>/g,
-                        replacement: ''
+                        replacement: '"\n\  }'
                     }, {
                         pattern: /build\/lib\/Icon\/.*\.svg/g,
                         replacement: ''
@@ -198,7 +198,12 @@ module.exports = function(grunt) {
                     return src.replace(/\.svg/g, '') + filename;
                 }
             },
-            manifestYMLIcons: {
+            manifestJsonIcons: {
+                options: {
+                    banner: '[',
+                    footer: '\n]',
+                    separator: ',',
+                },
                 src: ['build/lib/Icon/*.svg'],
                 dest: 'icons.js',
             },
@@ -228,10 +233,10 @@ module.exports = function(grunt) {
                     dest: 'build/helperSpots.cs'
                 },]
             },
-            iconsYML: {
+            iconsJson: {
                 files: [{
                     src: ['icons.js'],
-                    dest: 'build/icons.yml'
+                    dest: 'build/icons.json'
                 },]
             },
             spotsYML: {
@@ -263,12 +268,12 @@ module.exports = function(grunt) {
         'replace', // Replaces class placeholder with the filename eg. class="svg-spot spotShield.svg"
         'string-replace:replaceSvg', // Replaces Shield.svg with Shield for final classname outputs eg. class="svg-spot spotShield"
 
-        // Build a YML manifest
-        'concat:manifestYMLIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
+        // Build a Json manifest
+        'concat:manifestJsonIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
         'concat:manifestYMLSpots', // Spots: Take the entire contents of each SVG and shove it into a single file
-        'string-replace:manifestYMLIcons', // Icons: Replace as much of the output SVG with text that makes sense in the context of a YML file
+        'string-replace:manifestJsonIcons', // Icons: Replace as much of the output SVG with text that makes sense in the context of a Json file
         'string-replace:manifestYMLSpots', // Spots: Replace as much of the output SVG with text that makes sense in the context of a YML file
-        'rename:iconsYML', // Rename the file to icons.yml
+        'rename:iconsJson', // Rename the file to icons.json
         'rename:spotsYML', // Rename the file to spots.yml
 
         // Build a C# helper manifest
