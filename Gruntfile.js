@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/Icon',
-                    src: '*.svg',
+                    src: '**/*.svg',
                     dest: 'build/lib',
                 }]
             },
@@ -38,17 +38,17 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'build/lib',
-                    src: '*.svg',
+                    src: '**/*.svg',
                     dest: 'build/lib',
                 }]
             }
         },
         'string-replace': {
-            build: {
+            buildIcons: {
                 files: [{
                     expand: true,
                     cwd: 'build/lib',
-                    src: '**/*',
+                    src: '**/*.svg',
                     dest: 'build/lib'
                 }],
                 options: {
@@ -93,24 +93,24 @@ module.exports = function(grunt) {
                     }]
                 }
             },
-            manifestIcons: {
+            manifestJsonIcons: {
                 files: {
                     'icons.js': 'icons.js',
                 },
                 options: {
                     replacements: [{
                         pattern: /<svg aria-hidden="true" class="svg-icon icon/g,
-                        replacement: '- helper: '
+                        replacement: '\n  {\n\    "helper": "'
                     }, {
                         pattern: /" width=".*<\/svg>/g,
-                        replacement: ''
+                        replacement: '"\n\  }'
                     }, {
                         pattern: /build\/lib\/.*\.svg/g,
                         replacement: ''
                     }]
                 }
             },
-            manifestHelper: {
+            manifestHelperIcons: {
                 files: {
                     'helper.js': 'helper.js',
                 },
@@ -123,20 +123,6 @@ module.exports = function(grunt) {
                         replacement: ' { get; } = GetImage();'
                     }, {
                         pattern: /build\/.*\.svg/g,
-                        replacement: ''
-                    }]
-                }
-            },
-            finalRemove: {
-                files: [{
-                    expand: true,
-                    cwd: 'build/lib',
-                    src: '**/*',
-                    dest: 'build/lib'
-                }],
-                options: {
-                    replacements: [{
-                        pattern: ' fill="#000"',
                         replacement: ''
                     }]
                 }
@@ -158,26 +144,31 @@ module.exports = function(grunt) {
                     return src.replace(/\.svg/g, '') + filename;
                 }
             },
-            manifestIcons: {
-                src: ['build/**/*.svg'],
+            manifestJsonIcons: {
+                options: {
+                    banner: '[',
+                    footer: '\n]',
+                    separator: ',',
+                },
+                src: ['build/lib/*.svg'],
                 dest: 'icons.js',
             },
-            manifestHelper: {
-                src: ['build/**/*.svg'],
+            manifestHelperIcons: {
+                src: ['build/lib/*.svg'],
                 dest: 'helper.js',
             },
         },
         rename: {
-            helper: {
+            helperIcons: {
                 files: [{
                     src: ['helper.js'],
                     dest: 'build/helper.cs'
                 },]
             },
-            icons: {
+            iconsJson: {
                 files: [{
                     src: ['icons.js'],
-                    dest: 'build/icons.yml'
+                    dest: 'build/icons.json'
                 },]
             },
         }
@@ -192,5 +183,24 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-rename');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'svgmin:build', 'svgmin:multipass', 'string-replace:build', 'replace', 'string-replace:replaceSvg', 'concat:manifestIcons', 'string-replace:manifestIcons', 'concat:manifestHelper', 'string-replace:manifestHelper', 'rename:helper', 'rename:icons', 'string-replace:finalRemove']);
+    grunt.registerTask('default', [
+        'clean', // Delete everything in the build directory to start fresh
+
+        // SVG optimization and meta data
+        'svgmin:build', // Apply SVG optimization
+        'svgmin:multipass', // Apply SVG optimization again with same options for even more savings
+        'string-replace:buildIcons', // Icons: Add classes placeholders and remove unnecessary colors for CSS recoloring eg. aria-hidden="true" class="svg-icon icon@@__TARGET_FILENAME__" width="18" height="18" viewBox="0 0 18 18"
+        'replace', // Replaces class placeholder with the filename eg. class="svg-spot spotShield.svg"
+        'string-replace:replaceSvg', // Replaces Shield.svg with Shield for final classname outputs eg. class="svg-spot spotShield"
+
+        // Build a Json manifest
+        'concat:manifestJsonIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
+        'string-replace:manifestJsonIcons', // Icons: Replace as much of the output SVG with text that makes sense in the context of a Json file
+        'rename:iconsJson', // Rename the file to icons.json
+
+        // Build a C# helper manifest
+        'concat:manifestHelperIcons', // Icons: Take the entire contents of each SVG and shove it into a single file
+        'string-replace:manifestHelperIcons', // Icons: Replace as much of the output SVG with text that makes sense in the context of a C# file
+        'rename:helperIcons', // Rename the file to helperIcons.cs
+    ]);
 };
