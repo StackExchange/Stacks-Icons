@@ -63,7 +63,6 @@
 - helper: Eye
 - helper: EyeOff
 - helper: Eyes
-- helper: Facebook
 - helper: FaceFrown
 - helper: FaceJoy
 - helper: FaceMindBlown
@@ -71,6 +70,7 @@
 - helper: FaceSad
 - helper: FaceShocked
 - helper: FaceSmile
+- helper: Facebook
 - helper: Female
 - helper: Fire
 - helper: FireSm
@@ -183,6 +183,7 @@
 - helper: Remote
 - helper: ReviewQueue
 - helper: Rss
+- helper: SOS
 - helper: School
 - helper: SchoolSm
 - helper: Search
@@ -195,7 +196,6 @@
 - helper: Skull
 - helper: Slack
 - helper: SmartPhone
-- helper: SOS
 - helper: SpeechBubble
 - helper: SpeechBubbleError
 - helper: SpeechBubbleSm
@@ -204,12 +204,12 @@
 - helper: Stroller
 - helper: Subway
 - helper: Sync
+- helper: TIL
 - helper: Tack
 - helper: Tada
 - helper: Theme
 - helper: ThumbsDown
 - helper: ThumbsUp
-- helper: TIL
 - helper: Tool
 - helper: Trash
 - helper: TrashSm
@@ -220,8 +220,8 @@
 - helper: Undo
 - helper: UndoSm
 - helper: UnorderedList
-- helper: Vacation
 - helper: VK
+- helper: Vacation
 - helper: Wand
 - helper: Wave
 - helper: Yandex
