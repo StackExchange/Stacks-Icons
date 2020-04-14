@@ -25,6 +25,7 @@ const ext = '.svg'
 // SVGO settings
 const SVGO = require('svgo')
 const svgo = new SVGO({
+  multipass: true,
   plugins: [
     {
       convertPathData: {
