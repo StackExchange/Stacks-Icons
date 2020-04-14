@@ -50,6 +50,11 @@ const svgo = new SVGO({
       removeAttrs: {
         attrs: ['xmlns', 'fill-rule', 'clip-rule']
       }
+    },
+    {
+      mergePaths: {
+        force: true
+      }
     }
   ]
 });
