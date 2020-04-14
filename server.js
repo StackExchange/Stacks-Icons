@@ -89,6 +89,8 @@ const svgo = new SVGO({
       .replace(/fill="#fff"/gmi, 'fill="var(--white)"')
       .replace(/fill="#6A7E7C"/gmi, 'fill="var(--black-500)"')
       .replace(/fill="#1A1104"/gmi, 'fill="var(--black-900)"')
+      .replace(/\s>/gm, '>')
+      .replace(/\s\/>/gm, '/>')
   )
 
   // Make an object of our icons { IconName: '<svg>' }
