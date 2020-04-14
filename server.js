@@ -16,6 +16,9 @@ const csFile = path.join(__dirname, '/build/helper.cs')
 // Output the YAML helper
 const ymlFile = path.join(__dirname, '/build/icons.yml')
 
+// Output the JSON helper
+const jsonFile = path.join(__dirname, '/build/icons.json')
+
 // File format
 const ext = '.svg'
 
@@ -123,11 +126,15 @@ const svgo = new SVGO({
   // icons.yml
   const ymlOutput = icons.map(i => `- helper: ${i}`).join("\n")
 
+  // icons.json
+  const jsonOutput = JSON.stringify(icons.map(i => ({ helper: i })), null, 2)
+
   // Write it all to the files
   try {
     fs.writeFile(jsFile, jsOutput, 'utf8')
     fs.writeFile(csFile, csOutput, 'utf8')
     fs.writeFile(ymlFile, ymlOutput, 'utf8')
+    fs.writeFile(jsonFile, jsonOutput, 'utf8')
   }
   catch (err) {
     throw err
