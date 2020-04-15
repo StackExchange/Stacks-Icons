@@ -1,23 +1,9 @@
 const path = require('path')
 const fs = require('fs').promises
 
-// Path to Stacks Icons, exprted from Figma
+// Import/export paths
 const srcIcons = path.join(__dirname, '/src/Icon')
-
-// Path to destination for SVGs
 const destIcons = path.join(__dirname, '/build/lib')
-
-// Output the front-end helper
-const jsFile = path.join(__dirname, '/index.js')
-
-// Output the Razor helper
-const csFile = path.join(__dirname, '/build/helper.cs')
-
-// Output the YAML helper
-const ymlFile = path.join(__dirname, '/build/icons.yml')
-
-// Output the JSON helper
-const jsonFile = path.join(__dirname, '/build/icons.json')
 
 // File format
 const ext = '.svg'
@@ -111,35 +97,36 @@ const svgo = new SVGO({
     fs.writeFile(path.resolve(destIcons, icons[idx] + ext), icon, 'utf8')
   })
 
-  // The string to print in our helper.js
-  let jsDefinition = 'var stacksIcons = ' + JSON.stringify(iconsObj)
-
   // Read the existing helper.js
+  // Replaces everything inbetween "// Start icons" and "// End icons"
+  const jsFile = path.join(__dirname, '/build/helper.js')
+
   let jsOutput = await fs.readFile(jsFile, 'utf8')
 
-  // Replace the object in the js file
-  // Replaces everything inbetween "// Start icons" and "// End icons"
-  jsOutput = jsOutput.replace(/\/\/ Start icons(.|[\r\n])*\/\/ End icons/gm, "// Start icons\n" + jsDefinition + "\n// End icons")
+  jsOutput = jsOutput.replace(
+    /\/\/ Start icons(.|[\r\n])*\/\/ End icons/gm,
+    "// Start icons\n" +
+    "var stacksIcons = " +
+    JSON.stringify(iconsObj) +
+    "\n// End icons"
+  )
 
-  // Razor - helpers.cs
+  fs.writeFile(jsFile, jsOutput, 'utf8')
+
+  // Output the Razor helper
+  const csFile = path.join(__dirname, '/build/helper.cs')
   const csOutput = icons.map(i => `public static SvgImage ${i} { get; } = GetImage();`).join("\n")
+  fs.writeFile(csFile, csOutput, 'utf8')
 
-  // icons.yml
+  // Output the YAML helper
+  const ymlFile = path.join(__dirname, '/build/icons.yml')
   const ymlOutput = icons.map(i => `- helper: ${i}`).join("\n")
+  fs.writeFile(ymlFile, ymlOutput, 'utf8')
 
-  // icons.json
-  const jsonOutput = JSON.stringify(icons.map(i => ({ helper: i })), null, 2)
-
-  // Write it all to the files
-  try {
-    fs.writeFile(jsFile, jsOutput, 'utf8')
-    fs.writeFile(csFile, csOutput, 'utf8')
-    fs.writeFile(ymlFile, ymlOutput, 'utf8')
-    fs.writeFile(jsonFile, jsonOutput, 'utf8')
-  }
-  catch (err) {
-    throw err
-  }
+  // Output the JSON helper
+  const jsonFile = path.join(__dirname, '/build/icons.json')
+  const jsonOutput = JSON.stringify(iconsObj, null, 2)
+  fs.writeFile(jsonFile, jsonOutput, 'utf8')
 
   // All good
   console.log('Successfuly built ' + icons.length + ' icons!')

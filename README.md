@@ -31,7 +31,7 @@ If you include the `index.js` into your prototype (`<script src="https://unpkg.c
 
 This package looks out for elements that look like `svg[data-icon]`. If the icon doesn't exist in Stacks, it will throw you an error in console. Anything in the `class=""` attribute will be passed to the included SVG e.g., `native`
 
-### Regex replacing with `@Svg` helper
+### Regex for replacing with `@Svg` helper
 
 This might be useful if you want to convert a large prototype to use the Razor helper.
 
