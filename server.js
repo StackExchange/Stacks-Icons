@@ -50,6 +50,11 @@ const svgo = new SVGO({
 });
 
 (async () => {
+  // Clear the existing SVGs in build/lib
+  let existing = await fs.readdir(destIcons)
+  existing.map(file => fs.unlink(path.resolve(destIcons, file)))
+  await Promise.all(existing)
+
   // Read the source directory of SVGs
   let icons = await fs.readdir(srcIcons)
 
