@@ -97,8 +97,7 @@ const svgo = new SVGO({
     fs.writeFile(path.resolve(destIcons, icons[idx] + ext), icon, 'utf8')
   })
 
-  // Read the existing helper.js
-  // Replaces everything inbetween "// Start icons" and "// End icons"
+  // Read the existing helper.js between "// Start icons" and "// End icons"
   const jsFile = path.join(__dirname, '/build/helper.js')
 
   let jsOutput = await fs.readFile(jsFile, 'utf8')
