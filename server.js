@@ -70,7 +70,7 @@ const svgo = new SVGO({
   processed = processed.map(i => svgo.optimize(i))
   processed = await Promise.all(processed)
 
-  // Get the data from the SVG object
+  // Get the data from the SVGO object
   processed = processed.map(i => i.data)
 
   // Do our custom tweaks to the output
