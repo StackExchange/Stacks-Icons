@@ -81,7 +81,6 @@ const svgo = new SVGO({
   // Do our custom tweaks to the output
   processed = processed.map((i, idx) =>
     i
-      .replace(/<\/?g(\s.+?)*>/g, '')
       .replace('<svg', `<svg aria-hidden="true" class="svg-icon icon${icons[idx]}"`) // Add classes and aria-attributes since our source files don't have them
       .replace(/fill="#000"/gmi, '') // Remove any fills so paths are colored by the parents' color
       .replace(/fill="none"/gmi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
