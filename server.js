@@ -81,16 +81,16 @@ const svgo = new SVGO({
   // Do our custom tweaks to the output
   processed = processed.map((i, idx) =>
     i
-      .replace('<svg', `<svg aria-hidden="true" class="svg-icon icon${icons[idx]}"`)
       .replace(/<\/?g(\s.+?)*>/g, '')
-      .replace(/fill="#000"/gmi, '')
-      .replace(/fill="none"/gmi, '')
-      .replace(/fill="#222426"/gmi, 'fill="var(--black-800)"')
+      .replace('<svg', `<svg aria-hidden="true" class="svg-icon icon${icons[idx]}"`) // Add classes and aria-attributes since our source files don't have them
+      .replace(/fill="#000"/gmi, '') // Remove any fills so paths are colored by the parents' color
+      .replace(/fill="none"/gmi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
+      .replace(/fill="#222426"/gmi, 'fill="var(--black-800)"') // Replace hardcoded hex value with appropriate CSS variables
       .replace(/fill="#fff"/gmi, 'fill="var(--white)"')
       .replace(/fill="#6A7E7C"/gmi, 'fill="var(--black-500)"')
       .replace(/fill="#1A1104"/gmi, 'fill="var(--black-900)"')
-      .replace(/\s>/gm, '>')
-      .replace(/\s\/>/gm, '/>')
+      .replace(/\s>/gm, '>') // Remove extra space before closing bracket on opening svg element
+      .replace(/\s\/>/gm, '/>') // Remove extra space before closing bracket on path tag element
   )
 
   // Make an object of our icons { IconName: '<svg>' }
