@@ -21,15 +21,15 @@ Stacks Icons are [delivered via NPM](https://www.npmjs.com/package/@stackoverflo
 
 ## Using the front-end helper for prototyping
 
-**N.B. This is not intented to be used in production.**
+**Note: This is not intended to be used in production.**
 
-If you include the `index.js` into your prototype (`<script src="https://unpkg.com/@stackoverflow/stacks-icons"></script>`) you can render Stacks Icons in the browser using only the following format:
+If you include the `index.js` in your prototype (`<script src="https://unpkg.com/@stackoverflow/stacks-icons"></script>`) you can render Stacks Icons in the browser using only the following format:
 
 ```html
 <svg data-icon="FaceMindBlown" class="native"></svg>
 ```
 
-This package looks out for elements that look like `svg[data-icon]`. If the icon doesn't exist in Stacks, it will throw you an error in console. Anything in the `class=""` attribute will be passed to the included SVG e.g., `native`
+This package looks out for elements that look like `svg[data-icon]`. If the icon doesn’t exist in Stacks, it will throw you an error in console. Anything in the `class=""` attribute will be passed to the included SVG e.g., `native`
 
 ### Regex for replacing with `@Svg` helper
 
