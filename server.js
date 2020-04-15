@@ -2,8 +2,8 @@ const path = require('path')
 const fs = require('fs').promises
 
 // Import/export paths
-const srcIcons = path.join(__dirname, '/src/Icon')
-const destIcons = path.join(__dirname, '/build/lib')
+const srcIconsPath = path.join(__dirname, '/src/Icon')
+const destIconsPath = path.join(__dirname, '/build/lib')
 
 // File format
 const ext = '.svg'
@@ -51,12 +51,12 @@ const svgo = new SVGO({
 
 (async () => {
   // Clear the existing SVGs in build/lib
-  let existing = await fs.readdir(destIcons)
-  existing.map(file => fs.unlink(path.resolve(destIcons, file)))
+  let existing = await fs.readdir(destIconsPath)
+  existing.map(file => fs.unlink(path.resolve(destIconsPath, file)))
   await Promise.all(existing)
 
   // Read the source directory of SVGs
-  let icons = await fs.readdir(srcIcons)
+  let icons = await fs.readdir(srcIconsPath)
 
   // We only want .svg, ignore the rest
   icons = icons.filter(i => path.extname(i).toLowerCase() === ext)
@@ -68,7 +68,7 @@ const svgo = new SVGO({
   icons = icons.sort()
 
   // Array of promises which do the fetching of the files
-  let processed = icons.map(i => fs.readFile(path.resolve(srcIcons, i + ext), 'utf8'))
+  let processed = icons.map(i => fs.readFile(path.resolve(srcIconsPath, i + ext), 'utf8'))
   processed = await Promise.all(processed)
 
   // Optimise them with SVGO
@@ -99,7 +99,7 @@ const svgo = new SVGO({
     iconsObj[icons[idx]] = icon
 
     // Save each svg
-    fs.writeFile(path.resolve(destIcons, icons[idx] + ext), icon, 'utf8')
+    fs.writeFile(path.resolve(destIconsPath, icons[idx] + ext), icon, 'utf8')
   })
 
   // Read the existing helper.js between "// Start icons" and "// End icons"
