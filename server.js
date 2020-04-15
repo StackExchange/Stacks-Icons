@@ -122,6 +122,13 @@ const svgo = new SVGO({
   const csOutput = icons.map(i => `public static SvgImage ${i} { get; } = GetImage();`).join("\n")
   fs.writeFile(csFile, csOutput, 'utf8')
 
+  // Output enums file
+  const enumsFile = path.join(__dirname, '/build/Icons.cs')
+  let enumsOutput = "public enum Icons\n{\n"
+  enumsOutput += icons.map(i => `    ${i},`).join("\n")
+  enumsOutput += "\n}"
+  fs.writeFile(enumsFile, enumsOutput, 'utf8')
+
   // Output the YAML helper
   const ymlFile = path.join(__dirname, '/build/icons.yml')
   const ymlOutput = icons.map(i => `- helper: ${i}`).join("\n")
