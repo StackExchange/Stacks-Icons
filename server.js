@@ -10,44 +10,8 @@ const ext = '.svg'
 
 // SVGO settings
 const SVGO = require('svgo')
-const svgo = new SVGO({
-  multipass: true,
-  plugins: [
-    {
-      convertPathData: {
-        floatPrecision: 2,
-        transformPrecision: 4
-      }
-    },
-    {
-      cleanupNumericValues: {
-        floatPrecision: 2
-      }
-    },
-    {
-      collapseGroups: true
-    },
-    {
-      removeTitle: true
-    },
-    {
-      removeViewBox: false
-    },
-    {
-      removeUselessStrokeAndFill: true
-    },
-    {
-      removeAttrs: {
-        attrs: ['xmlns', 'fill-rule', 'clip-rule']
-      }
-    },
-    {
-      mergePaths: {
-        force: true
-      }
-    }
-  ]
-});
+const svgoConfig = require('./svgo.json')
+const svgo = new SVGO(svgoConfig);
 
 (async () => {
   // Clear the existing SVGs in build/lib
