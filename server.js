@@ -28,13 +28,13 @@ const svgo = new SVGO({
       collapseGroups: true
     },
     {
-      removeTitle: true,
+      removeTitle: true
     },
     {
-      removeViewBox: false,
+      removeViewBox: false
     },
     {
-      removeUselessStrokeAndFill: true,
+      removeUselessStrokeAndFill: true
     },
     {
       removeAttrs: {
@@ -108,29 +108,29 @@ const svgo = new SVGO({
 
   jsOutput = jsOutput.replace(
     /\/\/ Start icons(.|[\r\n])*\/\/ End icons/gm,
-    "// Start icons\n" +
-    "var stacksIcons = " +
+    '// Start icons\n' +
+    'var stacksIcons = ' +
     JSON.stringify(iconsObj) +
-    "\n// End icons"
+    '\n// End icons'
   )
 
   fs.writeFile(jsFile, jsOutput, 'utf8')
 
   // Output the Razor helper
   const csFile = path.join(__dirname, '/build/helper.cs')
-  const csOutput = icons.map(i => `public static SvgImage ${i} { get; } = GetImage();`).join("\n")
+  const csOutput = icons.map(i => `public static SvgImage ${i} { get; } = GetImage();`).join('\n')
   fs.writeFile(csFile, csOutput, 'utf8')
 
   // Output enums file
   const enumsFile = path.join(__dirname, '/build/Icons.cs')
-  let enumsOutput = "public enum Icons\n{\n"
-  enumsOutput += icons.map(i => `    ${i},`).join("\n")
-  enumsOutput += "\n}"
+  let enumsOutput = 'public enum Icons\n{\n'
+  enumsOutput += icons.map(i => `    ${i},`).join('\n')
+  enumsOutput += '\n}'
   fs.writeFile(enumsFile, enumsOutput, 'utf8')
 
   // Output the YAML helper
   const ymlFile = path.join(__dirname, '/build/icons.yml')
-  const ymlOutput = icons.map(i => `- helper: ${i}`).join("\n")
+  const ymlOutput = icons.map(i => `- helper: ${i}`).join('\n')
   fs.writeFile(ymlFile, ymlOutput, 'utf8')
 
   // Output the JSON helper
