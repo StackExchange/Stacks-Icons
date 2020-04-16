@@ -39,7 +39,7 @@ function browserHelper() {
       var svgEl = document.createRange().createContextualFragment(svgStr)
 
       // Replace the existing SVG
-      var svgDom = icon.parentNode.replaceChild(svgEl, icon)
+      icon.parentNode.replaceChild(svgEl, icon)
     }
     else {
       console.log(iconName + ' is not a Stacks icon - did you spell something wrong?')
