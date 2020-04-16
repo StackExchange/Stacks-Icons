@@ -42,7 +42,7 @@ function browserHelper() {
       var svgDom = icon.parentNode.replaceChild(svgEl, icon)
     }
     else {
-      console.log(iconName + ' is not a Stacks icon - did you mispell something?')
+      console.log(iconName + ' is not a Stacks icon - did you spell something wrong?')
       console.log('https://stackoverflow.design/product/resources/icons/#icon-set')
     }
   })
