@@ -103,5 +103,5 @@ const svgo = new SVGO(svgoConfig);
   fs.writeFile(jsonFile, jsonOutput, 'utf8')
 
   // All good
-  console.log('Successfuly built ' + icons.length + ' icons!')
+  console.log('Successfully built ' + icons.length + ' icons!')
 })()
