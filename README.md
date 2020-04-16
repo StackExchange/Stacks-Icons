@@ -46,3 +46,13 @@ Replace
 ```
 @Svg.$1.With("$2")
 ```
+
+## Use as a JavaScript module
+
+```
+const stacksIcons = require('@stackoverflow/stacks-icons')
+
+console.log(stacksIcons.FaceMindBlown)
+
+// Returns <svg>...</svg>
+```
