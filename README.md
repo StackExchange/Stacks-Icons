@@ -50,9 +50,9 @@ Replace
 ## Use as a JavaScript module
 
 ```
-const stacksIcons = require('@stackoverflow/stacks-icons')
+import Icons from "stacks-icons";
 
-console.log(stacksIcons.FaceMindBlown)
+console.log(Icons.FaceMindBlown);
 
 // Returns <svg>...</svg>
 ```
