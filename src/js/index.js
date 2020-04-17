@@ -1,9 +1,9 @@
-import * as Icons from '../../build/icons.json'
+import Icons from '../../build/icons.json'
 export default Icons
 import { browserHelper } from './helpers'
 export { browserHelper }
 
-// auto execute the helper if running in a browser context
-if (typeof window !== 'undefined') {
+// automatically run if in the browser and not being imported
+if (global && global.document && typeof exports !== 'object') {
   browserHelper(Icons)
 }

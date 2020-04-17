@@ -104,7 +104,8 @@ const svgo = new SVGO(svgoConfig)
       filename: 'index.js',
       path: path.resolve(__dirname, 'build'),
       library: 'StacksIcons',
-      libraryTarget: 'umd'
+      libraryTarget: 'umd',
+      globalObject: 'this'
     }
   }).run((err, stats) => {
     if (err) {
