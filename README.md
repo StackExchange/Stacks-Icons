@@ -23,7 +23,7 @@ Stacks Icons are [delivered via NPM](https://www.npmjs.com/package/@stackoverflo
 
 **Note: This is not intended to be used in production.**
 
-If you include the `index.js` in your prototype (`<script src="https://unpkg.com/@stackoverflow/stacks-icons"></script>`) you can render Stacks Icons in the browser using only the following format:
+If you include the `index.js` within your prototype’s `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons"></script>`) you can render Stacks Icons in the browser using only the following format:
 
 ```html
 <svg data-icon="FaceMindBlown" class="native"></svg>
