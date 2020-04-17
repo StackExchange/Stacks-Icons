@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs').promises
+const webpack = require('webpack');
 
 // Import/export paths
 const srcIconsPath = path.join(__dirname, '/src/Icon')
@@ -65,21 +66,6 @@ const svgo = new SVGO(svgoConfig);
     fs.writeFile(path.resolve(destIconsPath, icons[idx] + ext), icon, 'utf8')
   })
 
-  // Read the existing helper.js between "// Start icons" and "// End icons"
-  const jsFile = path.join(__dirname, '/build/helper.js')
-
-  let jsOutput = await fs.readFile(jsFile, 'utf8')
-
-  jsOutput = jsOutput.replace(
-    /\/\/ Start icons(.|[\r\n])*\/\/ End icons/gm,
-    '// Start icons\n' +
-    'var stacksIcons = ' +
-    JSON.stringify(iconsObj) +
-    '\n// End icons'
-  )
-
-  fs.writeFile(jsFile, jsOutput, 'utf8')
-
   // Output the Razor helper
   const csFile = path.join(__dirname, '/build/helper.cs')
   const csOutput = icons.map(i => `public static SvgImage ${i} { get; } = GetImage();`).join('\n')
@@ -101,6 +87,25 @@ const svgo = new SVGO(svgoConfig);
   const jsonFile = path.join(__dirname, '/build/icons.json')
   const jsonOutput = JSON.stringify(iconsObj, null, 2)
   fs.writeFile(jsonFile, jsonOutput, 'utf8')
+
+  // bundle together our JS after building the required JSON file
+  webpack({
+    entry: './src/js/index.js',
+    mode: 'production',
+    output: {
+      filename: 'index.js',
+      path: path.resolve(__dirname, 'build'),
+      library: 'StacksIcons',
+      libraryTarget: 'umd'
+    }
+  }).run((err, stats) => {
+    if (err) {
+      console.error(err.stack || err)
+    }
+    if (stats.hasErrors()) {
+      console.error(stats.toJson().errors)
+    }
+  });
 
   // All good
   console.log('Successfully built ' + icons.length + ' icons!')

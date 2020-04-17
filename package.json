@@ -4,8 +4,12 @@
   "version": "1.35.0",
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
-  "main": "build/helper.js",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "devDependencies": {
-    "svgo": "^1.3.2"
+    "svgo": "^1.3.2",
+    "webpack": "^4.42.1"
   }
 }
