@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs').promises
-const webpack = require('webpack');
+const webpack = require('webpack')
 
 // Import/export paths
 const srcIconsPath = path.join(__dirname, '/src/Icon')
@@ -12,9 +12,9 @@ const ext = '.svg'
 // SVGO settings
 const SVGO = require('svgo')
 const svgoConfig = require('./svgo.json')
-const svgo = new SVGO(svgoConfig);
+const svgo = new SVGO(svgoConfig)
 
-(async () => {
+;(async () => {
   // Clear the existing SVGs in build/lib
   let existing = await fs.readdir(destIconsPath)
   existing.map(file => fs.unlink(path.resolve(destIconsPath, file)))
@@ -33,7 +33,9 @@ const svgo = new SVGO(svgoConfig);
   icons = icons.sort()
 
   // Array of promises which do the fetching of the files
-  let processed = icons.map(i => fs.readFile(path.resolve(srcIconsPath, i + ext), 'utf8'))
+  let processed = icons.map(i =>
+    fs.readFile(path.resolve(srcIconsPath, i + ext), 'utf8')
+  )
   processed = await Promise.all(processed)
 
   // Optimise them with SVGO
@@ -44,17 +46,21 @@ const svgo = new SVGO(svgoConfig);
   processed = processed.map(i => i.data)
 
   // Do our custom tweaks to the output
-  processed = processed.map((i, idx) =>
-    i
-      .replace('<svg', `<svg aria-hidden="true" class="svg-icon icon${icons[idx]}"`) // Add classes and aria-attributes since our source files don't have them
-      .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
-      .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
-      .replace(/fill="#222426"/gi, 'fill="var(--black-800)"') // Replace hardcoded hex value with appropriate CSS variables
-      .replace(/fill="#fff"/gi, 'fill="var(--white)"')
-      .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-500)"')
-      .replace(/fill="#1A1104"/gi, 'fill="var(--black-900)"')
-      .replace(/\s>/g, '>') // Remove extra space before closing bracket on opening svg element
-      .replace(/\s\/>/g, '/>') // Remove extra space before closing bracket on path tag element
+  processed = processed.map(
+    (i, idx) =>
+      i
+        .replace(
+          '<svg',
+          `<svg aria-hidden="true" class="svg-icon icon${icons[idx]}"`
+        ) // Add classes and aria-attributes since our source files don't have them
+        .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
+        .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
+        .replace(/fill="#222426"/gi, 'fill="var(--black-800)"') // Replace hardcoded hex value with appropriate CSS variables
+        .replace(/fill="#fff"/gi, 'fill="var(--white)"')
+        .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-500)"')
+        .replace(/fill="#1A1104"/gi, 'fill="var(--black-900)"')
+        .replace(/\s>/g, '>') // Remove extra space before closing bracket on opening svg element
+        .replace(/\s\/>/g, '/>') // Remove extra space before closing bracket on path tag element
   )
 
   // Make an object of our icons { IconName: '<svg>' }
@@ -68,7 +74,9 @@ const svgo = new SVGO(svgoConfig);
 
   // Output the Razor helper
   const csFile = path.join(__dirname, '/build/helper.cs')
-  const csOutput = icons.map(i => `public static SvgImage ${i} { get; } = GetImage();`).join('\n')
+  const csOutput = icons
+    .map(i => `public static SvgImage ${i} { get; } = GetImage();`)
+    .join('\n')
   fs.writeFile(csFile, csOutput, 'utf8')
 
   // Output enums file
@@ -105,7 +113,7 @@ const svgo = new SVGO(svgoConfig);
     if (stats.hasErrors()) {
       console.error(stats.toJson().errors)
     }
-  });
+  })
 
   // All good
   console.log('Successfully built ' + icons.length + ' icons!')
