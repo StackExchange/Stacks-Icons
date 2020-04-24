@@ -42,13 +42,15 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
   // Get the data from the SVGO object
   processed = processed.map(i => i.data)
 
+  var typeClass = type.toLowerCase();
+
   // Do our custom tweaks to the output
   processed = processed.map(
     (i, idx) =>
       i
         .replace(
           '<svg',
-          `<svg aria-hidden="true" class="svg-${type} ${type}${icons[idx]}"`
+          `<svg aria-hidden="true" class="svg-${typeClass} ${typeClass}${icons[idx]}"`
         ) // Add classes and aria-attributes since our source files don't have them
         .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
         .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
@@ -111,7 +113,7 @@ async function buildSvgSetAsync(buildPrefix) {
   // Import/export paths
   const srcIconsPath = path.join(__dirname, '/src/' + buildPrefix)
   const destIconsPath = path.join(__dirname, '/build/lib/' + buildPrefix)
-  let { icons, iconsObj } = await processSvgFilesAsync(srcIconsPath, destIconsPath, buildPrefix.toLowerCase());
+  let { icons, iconsObj } = await processSvgFilesAsync(srcIconsPath, destIconsPath, buildPrefix);
 
   writeRazor(icons, buildPrefix);
   writeEnums(icons, buildPrefix);
