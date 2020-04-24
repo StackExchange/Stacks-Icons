@@ -1,6 +1,7 @@
 public enum Icons
 {
     Achievements,
+    AchievementsLg,
     AchievementsSm,
     Alert,
     AlertCircle,
@@ -150,6 +151,7 @@ public enum Icons
     Medal,
     Merge,
     Message,
+    Meta,
     Microsoft,
     MicrosoftTeams,
     Migrate,

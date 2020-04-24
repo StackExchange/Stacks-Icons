@@ -1,4 +1,5 @@
 - helper: Achievements
+- helper: AchievementsLg
 - helper: AchievementsSm
 - helper: Alert
 - helper: AlertCircle
@@ -148,6 +149,7 @@
 - helper: Medal
 - helper: Merge
 - helper: Message
+- helper: Meta
 - helper: Microsoft
 - helper: MicrosoftTeams
 - helper: Migrate
