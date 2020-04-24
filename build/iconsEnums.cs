@@ -1,4 +1,4 @@
-public enum Icons
+public enum Icon
 {
     Achievements,
     AchievementsLg,
