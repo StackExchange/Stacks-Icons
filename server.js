@@ -3,6 +3,8 @@ const fs = require('fs').promises
 const webpack = require('webpack')
 
 // Import/export paths
+const destPath = path.join(__dirname, '/build')
+
 const srcIconsPath = path.join(__dirname, '/src/Icon')
 const destIconsPath = path.join(__dirname, '/build/lib/icon')
 
@@ -22,32 +24,9 @@ const svgo = new SVGO(svgoConfig)
   clearDirectory(destIconsPath)
   clearDirectory(destSpotsPath)
 
-  processSVG(srcIconsPath, destIconsPath, "svg-icon icon")
-  processSVG(srcSpotsPath, destSpotsPath, "svg-spot spot")
-
-  // // Output the Razor helper
-  // const csFile = path.join(__dirname, '/build/helper.cs')
-  // const csOutput = icons
-  //   .map(i => `public static SvgImage ${i} { get; } = GetImage();`)
-  //   .join('\n')
-  // fs.writeFile(csFile, csOutput, 'utf8')
-
-  // // Output enums file
-  // const enumsFile = path.join(__dirname, '/build/Icons.cs')
-  // let enumsOutput = 'public enum Icons\n{\n'
-  // enumsOutput += icons.map(i => `    ${i},`).join('\n')
-  // enumsOutput += '\n}'
-  // fs.writeFile(enumsFile, enumsOutput, 'utf8')
-
-  // // Output the YAML helper
-  // const ymlFile = path.join(__dirname, '/build/icons.yml')
-  // const ymlOutput = icons.map(i => `- helper: ${i}`).join('\n')
-  // fs.writeFile(ymlFile, ymlOutput, 'utf8')
-
-  // // Output the JSON helper
-  // const jsonFile = path.join(__dirname, '/build/icons.json')
-  // const jsonOutput = JSON.stringify(iconsObj, null, 2)
-  // fs.writeFile(jsonFile, jsonOutput, 'utf8')
+  // Process the SVGs by optimizing and adding attributes
+  processSVG(srcIconsPath, destIconsPath, "icon")
+  processSVG(srcSpotsPath, destSpotsPath, "spot")
 
   // // bundle together our JS after building the required JSON file
   // webpack({
@@ -79,7 +58,7 @@ async function clearDirectory(destinationPath) {
   await Promise.all(existing)
 }
 
-async function processSVG(sourcePath, destinationPath, classes) {
+async function processSVG(sourcePath, destinationPath, prefix) {
   // Read the source directory of SVGs
   let svgs = await fs.readdir(sourcePath)
 
@@ -111,7 +90,7 @@ async function processSVG(sourcePath, destinationPath, classes) {
       i
         .replace(
           '<svg',
-          `<svg aria-hidden="true" class="${classes}${svgs[idx]}"`
+          `<svg aria-hidden="true" class="svg-${prefix} ${prefix}${svgs[idx]}"`
         ) // Add classes and aria-attributes since our source files don't have them
         .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
         .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
@@ -123,7 +102,7 @@ async function processSVG(sourcePath, destinationPath, classes) {
         .replace(/\s\/>/g, '/>') // Remove extra space before closing bracket on path tag element
   )
 
-  // Make an object of our icons { IconName: '<svg>' }
+  // Make an object of our SVGs { SvgName: '<svg>' }
   let svgsObj = {}
   processed.forEach((svg, idx) => {
     svgsObj[svgs[idx]] = svg
@@ -131,4 +110,40 @@ async function processSVG(sourcePath, destinationPath, classes) {
     // Save each svg
     fs.writeFile(path.resolve(destinationPath, svgs[idx] + ext), svg, 'utf8')
   })
+
+  // Output Razor
+  buildRazor(svgs, destPath, prefix, "Helper.cs")
+
+  // Output Enums
+  buildEnums(svgs, destPath, prefix, "Enums.cs")
+
+  // Output Json
+  buildJson(svgsObj, destPath, prefix, ".json")
+}
+
+async function buildRazor(svgs, destinationPath, prefix, filename) {
+  // Output the Razor helper
+  const pluralizeFilename = prefix + "s" + filename
+  const csFile = path.join(destinationPath, pluralizeFilename)
+  const csOutput = svgs
+    .map(i => `public static SvgImage ${i} { get; } = GetImage();`)
+    .join('\n')
+  fs.writeFile(csFile, csOutput, 'utf8')
+}
+
+async function buildEnums(svgs, destinationPath, prefix, filename) {
+  const pluralizeFilename = prefix + "s" + filename
+  const enumsName = prefix.charAt(0).toUpperCase() + prefix.slice(1)
+  const enumsFile = path.join(destinationPath, pluralizeFilename)
+  let enumsOutput = `public enum ${enumsName}\n{\n`
+  enumsOutput += svgs.map(i => `    ${i},`).join('\n')
+  enumsOutput += '\n}'
+  fs.writeFile(enumsFile, enumsOutput, 'utf8')
+}
+
+async function buildJson(object, destinationPath, prefix, filename) {
+  const pluralizeFilename = prefix + "s" + filename
+  const jsonFile = path.join(destinationPath, pluralizeFilename)
+  const jsonOutput = JSON.stringify(object, null, 2)
+  fs.writeFile(jsonFile, jsonOutput, 'utf8')
 }
