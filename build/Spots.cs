@@ -9,5 +9,8 @@ public enum Icons
     SearchMd,
     ShieldMd,
     TrashMd,
+    Wave,
+    WaveLg,
     WaveMd,
+    WaveXL,
 }

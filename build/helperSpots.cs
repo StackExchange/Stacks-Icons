@@ -7,4 +7,7 @@ public static SvgImage MailMd { get; } = GetImage();
 public static SvgImage SearchMd { get; } = GetImage();
 public static SvgImage ShieldMd { get; } = GetImage();
 public static SvgImage TrashMd { get; } = GetImage();
+public static SvgImage Wave { get; } = GetImage();
+public static SvgImage WaveLg { get; } = GetImage();
 public static SvgImage WaveMd { get; } = GetImage();
+public static SvgImage WaveXL { get; } = GetImage();
