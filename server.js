@@ -80,8 +80,14 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
 function writeRazor(icons, type) {
   // Output the Razor helper
   const csFile = path.join(__dirname, '/build/Helper' + type + 's.cs')
+  let imagePath = ""
+
+  if (type === 'Spot') {
+    imagePath = 'folder: "../stacks-spots"'
+  }
+
   const csOutput = icons
-    .map(i => `public static SvgImage ${i} { get; } = GetImage();`)
+    .map(i => `public static SvgImage ${i} { get; } = GetImage(${imagePath});`)
     .join('\n')
   fs.writeFile(csFile, csOutput, 'utf8')
 }
