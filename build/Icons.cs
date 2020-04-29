@@ -151,7 +151,6 @@ public enum Icons
     Medal,
     Merge,
     Message,
-    Meta,
     Microsoft,
     MicrosoftTeams,
     Migrate,
