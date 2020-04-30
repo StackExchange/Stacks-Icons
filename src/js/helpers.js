@@ -1,16 +1,22 @@
-export function browserHelper(stacksIcons) {
+export function browserHelper(stacksIcons, stackSpots) {
   // Get all the SVG elements
-  var icons = document.querySelectorAll("svg[data-icon]");
+  var items = document.querySelectorAll("svg[data-icon], svg[data-spot]");
 
   // Loop over them
-  icons.forEach(function (icon) {
+  items.forEach(function (icon) {
     // Find an icon name in the format 'iconSomething'
-    var iconName = icon.getAttribute("data-icon");
+    var iconName = icon.dataset.icon || icon.dataset.spot;
+
+    var source = stacksIcons;
+
+    if (icon.dataset.spot) {
+      source = stackSpots;
+    }
 
     // Do we recognise this icon?
-    if (stacksIcons[iconName]) {
+    if (source[iconName]) {
       // Get the SVG string from our object
-      var svgStr = stacksIcons[iconName];
+      var svgStr = source[iconName];
 
       // Replace classes
       if (icon.getAttribute("class"))
@@ -26,7 +32,7 @@ export function browserHelper(stacksIcons) {
       icon.parentNode.replaceChild(svgEl, icon);
     } else {
       console.log(
-        iconName + " is not a Stacks icon - did you spell something wrong?"
+        iconName + " is not a Stacks icon or spot - did you spell something wrong?"
       );
       console.log(
         "https://stackoverflow.design/product/resources/icons/#icon-set"

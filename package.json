@@ -9,6 +9,7 @@
     "start": "node server.js"
   },
   "devDependencies": {
+    "del": "^5.1.0",
     "svgo": "^1.3.2",
     "webpack": "^4.42.1"
   }
