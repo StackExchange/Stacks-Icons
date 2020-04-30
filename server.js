@@ -1,27 +1,24 @@
 const path = require('path')
 const fs = require('fs').promises
+const del = require('del')
 const webpack = require('webpack')
-
-// Import/export paths
-const srcIconsPath = path.join(__dirname, '/src/Icon')
-const destIconsPath = path.join(__dirname, '/build/lib')
-
-// File format
-const ext = '.svg'
 
 // SVGO settings
 const SVGO = require('svgo')
 const svgoConfig = require('./svgo.json')
 const svgo = new SVGO(svgoConfig)
 
-;(async () => {
+async function cleanBuildDirectoryAsync () {
   // Clear the existing SVGs in build/lib
-  let existing = await fs.readdir(destIconsPath)
-  existing.map(file => fs.unlink(path.resolve(destIconsPath, file)))
-  await Promise.all(existing)
+  await del(path.join(__dirname, '/build/**'))
+}
+
+async function processSvgFilesAsync(srcPath, destPath, type) {
+  // File format
+  const ext = '.svg'
 
   // Read the source directory of SVGs
-  let icons = await fs.readdir(srcIconsPath)
+  let icons = await fs.readdir(srcPath)
 
   // We only want .svg, ignore the rest
   icons = icons.filter(i => path.extname(i).toLowerCase() === ext)
@@ -34,7 +31,7 @@ const svgo = new SVGO(svgoConfig)
 
   // Array of promises which do the fetching of the files
   let processed = icons.map(i =>
-    fs.readFile(path.resolve(srcIconsPath, i + ext), 'utf8')
+    fs.readFile(path.resolve(srcPath, i + ext), 'utf8')
   )
   processed = await Promise.all(processed)
 
@@ -45,13 +42,15 @@ const svgo = new SVGO(svgoConfig)
   // Get the data from the SVGO object
   processed = processed.map(i => i.data)
 
+  var typeClass = type.toLowerCase();
+
   // Do our custom tweaks to the output
   processed = processed.map(
     (i, idx) =>
       i
         .replace(
           '<svg',
-          `<svg aria-hidden="true" class="svg-icon icon${icons[idx]}"`
+          `<svg aria-hidden="true" class="svg-${typeClass} ${typeClass}${icons[idx]}"`
         ) // Add classes and aria-attributes since our source files don't have them
         .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
         .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
@@ -63,59 +62,111 @@ const svgo = new SVGO(svgoConfig)
         .replace(/\s\/>/g, '/>') // Remove extra space before closing bracket on path tag element
   )
 
+  // ensure the directory is created
+  await fs.mkdir(path.join(__dirname, '/build/lib/' + type), { recursive: true })
+
   // Make an object of our icons { IconName: '<svg>' }
   let iconsObj = {}
   processed.forEach((icon, idx) => {
     iconsObj[icons[idx]] = icon
 
     // Save each svg
-    fs.writeFile(path.resolve(destIconsPath, icons[idx] + ext), icon, 'utf8')
+    fs.writeFile(path.resolve(destPath, icons[idx] + ext), icon, 'utf8')
   })
 
+  return { icons, iconsObj }
+}
+
+function writeRazor(icons, type) {
   // Output the Razor helper
-  const csFile = path.join(__dirname, '/build/helper.cs')
+  const csFile = path.join(__dirname, '/build/Helper' + type + 's.cs')
+  let imagePath = ""
+
+  if (type === 'Spot') {
+    imagePath = 'folder: "../stacks-spots"'
+  }
+
   const csOutput = icons
-    .map(i => `public static SvgImage ${i} { get; } = GetImage();`)
+    .map(i => `public static SvgImage ${i} { get; } = GetImage(${imagePath});`)
     .join('\n')
   fs.writeFile(csFile, csOutput, 'utf8')
+}
 
+function writeEnums(icons, type) {
   // Output enums file
-  const enumsFile = path.join(__dirname, '/build/Icons.cs')
+  const enumsFile = path.join(__dirname, '/build/' + type + 's.cs')
   let enumsOutput = 'public enum Icons\n{\n'
   enumsOutput += icons.map(i => `    ${i},`).join('\n')
   enumsOutput += '\n}'
   fs.writeFile(enumsFile, enumsOutput, 'utf8')
+}
 
+function writeYaml(icons, type) {
   // Output the YAML helper
-  const ymlFile = path.join(__dirname, '/build/icons.yml')
+  const ymlFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.yml')
   const ymlOutput = icons.map(i => `- helper: ${i}`).join('\n')
   fs.writeFile(ymlFile, ymlOutput, 'utf8')
+}
 
+function writeJson(iconsObj, type) {
   // Output the JSON helper
-  const jsonFile = path.join(__dirname, '/build/icons.json')
+  const jsonFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.json')
   const jsonOutput = JSON.stringify(iconsObj, null, 2)
   fs.writeFile(jsonFile, jsonOutput, 'utf8')
+}
 
-  // bundle together our JS after building the required JSON file
-  webpack({
-    entry: './src/js/index.js',
-    mode: 'production',
-    output: {
-      filename: 'index.js',
-      path: path.resolve(__dirname, 'build'),
-      library: 'StacksIcons',
-      libraryTarget: 'umd',
-      globalObject: 'this'
-    }
-  }).run((err, stats) => {
-    if (err) {
-      console.error(err.stack || err)
-    }
-    if (stats.hasErrors()) {
-      console.error(stats.toJson().errors)
-    }
-  })
+async function buildSvgSetAsync(buildPrefix) {
+  // Import/export paths
+  const srcIconsPath = path.join(__dirname, '/src/' + buildPrefix)
+  const destIconsPath = path.join(__dirname, '/build/lib/' + buildPrefix)
+  let { icons, iconsObj } = await processSvgFilesAsync(srcIconsPath, destIconsPath, buildPrefix);
+
+  writeRazor(icons, buildPrefix);
+  writeEnums(icons, buildPrefix);
+  writeYaml(icons, buildPrefix);
+  writeJson(iconsObj, buildPrefix);
+
+  return icons.length
+}
+
+function bundleHelperJsAsync() {
+  return new Promise((resolve, reject) => {
+    // bundle together our JS after building the required JSON file
+    webpack({
+      entry: './src/js/index.js',
+      mode: 'production',
+      output: {
+        filename: 'index.js',
+        path: path.resolve(__dirname, 'build'),
+        library: 'StacksIcons',
+        libraryTarget: 'umd',
+        globalObject: 'this'
+      }
+    }).run((err, stats) => {
+      if (err) {
+        let errors = err.stack || err;
+        console.error(errors)
+        reject(errors)
+      }
+      else if (stats.hasErrors()) {
+        let errors = stats.toJson().errors;
+        console.error(errors)
+        reject(errors)
+      }
+      else {
+        resolve()
+      }
+    })
+  });
+}
+
+;(async () => {
+  await cleanBuildDirectoryAsync();
+
+  let iconCount = await buildSvgSetAsync('Icon');
+  let spotCount = await buildSvgSetAsync('Spot');
+  await bundleHelperJsAsync();
 
   // All good
-  console.log('Successfully built ' + icons.length + ' icons!')
+  console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`)
 })()

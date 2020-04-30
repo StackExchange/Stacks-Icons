@@ -1,6 +1,7 @@
 public enum Icons
 {
     Achievements,
+    AchievementsLg,
     AchievementsSm,
     Alert,
     AlertCircle,

@@ -27,6 +27,7 @@ If you include the `index.js` within your prototype’s `body` element (`<script
 
 ```html
 <svg data-icon="FaceMindBlown" class="native"></svg>
+<svg data-spot="Search"></svg>
 ```
 
 This package looks out for elements that look like `svg[data-icon]`. If the icon doesn’t exist in Stacks, it will throw you an error in console. Anything in the `class=""` attribute will be passed to the included SVG e.g., `native`

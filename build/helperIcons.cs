@@ -1,4 +1,5 @@
 public static SvgImage Achievements { get; } = GetImage();
+public static SvgImage AchievementsLg { get; } = GetImage();
 public static SvgImage AchievementsSm { get; } = GetImage();
 public static SvgImage Alert { get; } = GetImage();
 public static SvgImage AlertCircle { get; } = GetImage();
