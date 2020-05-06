@@ -4,10 +4,15 @@
 - helper: Bullhorn
 - helper: BullhornLg
 - helper: BullhornXL
+- helper: DocumentAlt
+- helper: DocumentAltLg
+- helper: DocumentAltXL
 - helper: Lightbulb
 - helper: LightbulbLg
 - helper: LightbulbXL
 - helper: Mail
+- helper: MailLg
+- helper: MailXL
 - helper: Puzzle
 - helper: PuzzleLg
 - helper: PuzzleXL
