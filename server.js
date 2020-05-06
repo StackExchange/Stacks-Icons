@@ -115,6 +115,19 @@ function writeJson(iconsObj, type) {
   fs.writeFile(jsonFile, jsonOutput, 'utf8')
 }
 
+function writeHTML(iconsObj, type) {
+  // Output the HTML manifest
+  const htmlFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.html')
+  let htmlOutput = `<!DOCTYPE html>\n<html>\n<head>\n<title>${type}s Test Preview</title>\n</head>\n<body style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">\n`
+
+  for (let [key, value] of Object.entries(iconsObj)) {
+    htmlOutput += `  <div>${key}<br><br>${value}</div>\n`
+  }
+
+  htmlOutput += '</body>\n</html>'
+  fs.writeFile(htmlFile, htmlOutput, 'utf8')
+}
+
 async function buildSvgSetAsync(buildPrefix) {
   // Import/export paths
   const srcIconsPath = path.join(__dirname, '/src/' + buildPrefix)
@@ -125,6 +138,7 @@ async function buildSvgSetAsync(buildPrefix) {
   writeEnums(icons, buildPrefix);
   writeYaml(icons, buildPrefix);
   writeJson(iconsObj, buildPrefix);
+  writeHTML(iconsObj, buildPrefix);
 
   return icons.length
 }
