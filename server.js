@@ -101,11 +101,13 @@ function writeEnums(icons, type) {
   fs.writeFile(enumsFile, enumsOutput, 'utf8')
 }
 
-function writeYaml(icons, type) {
-  // Output the YAML helper
-  const ymlFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.yml')
-  const ymlOutput = icons.map(i => `- helper: ${i}`).join('\n')
-  fs.writeFile(ymlFile, ymlOutput, 'utf8')
+function writeEleventyJson(icons, type) {
+  // Output the Json helper
+  const eleventyJsonFile = path.join(__dirname, '/build/' + type.toLowerCase() + 'sEleventy.json')
+  let eleventyJsonOutput = '[\n'
+  eleventyJsonOutput += icons.map(i => `  {\n    "helper": "${i}"`).join('\n  },\n')
+  eleventyJsonOutput += '\n  }\n]'
+  fs.writeFile(eleventyJsonFile, eleventyJsonOutput, 'utf8')
 }
 
 function writeJson(iconsObj, type) {
@@ -136,7 +138,7 @@ async function buildSvgSetAsync(buildPrefix) {
 
   writeRazor(icons, buildPrefix);
   writeEnums(icons, buildPrefix);
-  writeYaml(icons, buildPrefix);
+  writeEleventyJson(icons, buildPrefix);
   writeJson(iconsObj, buildPrefix);
   writeHTML(iconsObj, buildPrefix);
 
