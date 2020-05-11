@@ -27,6 +27,15 @@
     "helper": "DocumentAltXL"
   },
   {
+    "helper": "Empty"
+  },
+  {
+    "helper": "EmptyLg"
+  },
+  {
+    "helper": "EmptyXL"
+  },
+  {
     "helper": "Lightbulb"
   },
   {
