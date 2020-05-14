@@ -144,6 +144,9 @@
     "helper": "Code"
   },
   {
+    "helper": "Codeblock"
+  },
+  {
     "helper": "Coins"
   },
   {
@@ -358,6 +361,9 @@
   },
   {
     "helper": "Lightbulb"
+  },
+  {
+    "helper": "LightbulbSm"
   },
   {
     "helper": "Link"
@@ -612,6 +618,9 @@
     "helper": "Star"
   },
   {
+    "helper": "Strikethrough"
+  },
+  {
     "helper": "Stroller"
   },
   {
@@ -664,6 +673,12 @@
   },
   {
     "helper": "UndoSm"
+  },
+  {
+    "helper": "Unlock"
+  },
+  {
+    "helper": "UnlockSm"
   },
   {
     "helper": "UnorderedList"
