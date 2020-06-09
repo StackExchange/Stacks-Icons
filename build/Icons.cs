@@ -114,6 +114,7 @@ public enum Icons
     Industry,
     Info,
     InfoSm,
+    Instagram,
     International,
     Italic,
     Jira,

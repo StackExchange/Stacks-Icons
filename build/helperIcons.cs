@@ -112,6 +112,7 @@ public static SvgImage Indent { get; } = GetImage();
 public static SvgImage Industry { get; } = GetImage();
 public static SvgImage Info { get; } = GetImage();
 public static SvgImage InfoSm { get; } = GetImage();
+public static SvgImage Instagram { get; } = GetImage();
 public static SvgImage International { get; } = GetImage();
 public static SvgImage Italic { get; } = GetImage();
 public static SvgImage Jira { get; } = GetImage();
