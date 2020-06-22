@@ -151,6 +151,7 @@ public static SvgImage LogoWordmark { get; } = GetImage();
 public static SvgImage LogoWordmarkMd { get; } = GetImage();
 public static SvgImage LogoWordmarkSm { get; } = GetImage();
 public static SvgImage Mail { get; } = GetImage();
+public static SvgImage Markdown { get; } = GetImage();
 public static SvgImage Medal { get; } = GetImage();
 public static SvgImage Merge { get; } = GetImage();
 public static SvgImage Message { get; } = GetImage();

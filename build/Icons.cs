@@ -153,6 +153,7 @@ public enum Icons
     LogoWordmarkMd,
     LogoWordmarkSm,
     Mail,
+    Markdown,
     Medal,
     Merge,
     Message,
