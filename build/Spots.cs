@@ -1,5 +1,8 @@
 public enum Icons
 {
+    Alert,
+    AlertLg,
+    AlertXL,
     Answer,
     AnswerLg,
     AnswerXL,

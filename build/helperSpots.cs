@@ -1,3 +1,6 @@
+public static SvgImage Alert { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertLg { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertXL { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage Answer { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage AnswerLg { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage AnswerXL { get; } = GetImage(folder: "../stacks-spots");

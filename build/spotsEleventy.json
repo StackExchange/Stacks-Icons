@@ -1,5 +1,14 @@
 [
   {
+    "helper": "Alert"
+  },
+  {
+    "helper": "AlertLg"
+  },
+  {
+    "helper": "AlertXL"
+  },
+  {
     "helper": "Answer"
   },
   {
