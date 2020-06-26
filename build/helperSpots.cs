@@ -1,6 +1,15 @@
+public static SvgImage Alert { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertCircle { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertCircleLg { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertCircleXL { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertLg { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage AlertXL { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage Answer { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage AnswerLg { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage AnswerXL { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage Approve { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage ApproveLg { get; } = GetImage(folder: "../stacks-spots");
+public static SvgImage ApproveXL { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage Astronaut { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage AstronautLg { get; } = GetImage(folder: "../stacks-spots");
 public static SvgImage AstronautXL { get; } = GetImage(folder: "../stacks-spots");

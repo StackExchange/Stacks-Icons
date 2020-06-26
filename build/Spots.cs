@@ -1,8 +1,17 @@
 public enum Icons
 {
+    Alert,
+    AlertCircle,
+    AlertCircleLg,
+    AlertCircleXL,
+    AlertLg,
+    AlertXL,
     Answer,
     AnswerLg,
     AnswerXL,
+    Approve,
+    ApproveLg,
+    ApproveXL,
     Astronaut,
     AstronautLg,
     AstronautXL,
