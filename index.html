@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Stack Overflow Icons &amp; Spot Illustrations</title>
+    <script src="build/index.js"></script>
+    <style>
+        body {
+            background: #fafafb;
+        }
+
+        .grid {
+            padding: 32px;
+            display: grid;
+            gap: 32px;
+            text-align: center;
+            color: #666;
+            font-family: arial, sans-serif;
+            font-size: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .grid div {
+            background: #fff;
+            border-radius: 7px;
+            padding: 16px 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid div:hover {
+            background: #2d2d2d;
+            color: #0095ff;
+        }
+
+        .grid div:hover svg * {
+            fill: currentColor;
+        }
+
+        .grid span {
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="icons" class="grid"></div>
+    <div id="spots" class="grid"></div>
+
+    <script>
+        function renderSvgs(containerId, svgs) {
+            var container = document.getElementById(containerId)
+            container.innerHtml = '';
+
+            for (var name in svgs) {
+                var svgEl = document
+                    .createRange()
+                    .createContextualFragment(`<div><span>${name}</span>${svgs[name]}</div>`)
+
+                container.appendChild(svgEl)
+            }
+        }
+
+        renderSvgs('icons', window.StacksIcons.default)
+        renderSvgs('spots', window.StacksIcons.Spots)
+    </script>
+</body>
+
+</html>
