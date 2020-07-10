@@ -405,6 +405,9 @@
     "helper": "LogoEnterprise"
   },
   {
+    "helper": "LogoEnterpriseAlt"
+  },
+  {
     "helper": "LogoEnterpriseWordmarkSm"
   },
   {
@@ -426,6 +429,15 @@
     "helper": "LogoJobs"
   },
   {
+    "helper": "LogoJobsAlt"
+  },
+  {
+    "helper": "LogoJobsAltMd"
+  },
+  {
+    "helper": "LogoJobsEnterpriseMd"
+  },
+  {
     "helper": "LogoMd"
   },
   {
@@ -445,6 +457,12 @@
   },
   {
     "helper": "LogoTalent"
+  },
+  {
+    "helper": "LogoTalentAlt"
+  },
+  {
+    "helper": "LogoTalentAltMd"
   },
   {
     "helper": "LogoTeams"
