@@ -408,6 +408,9 @@
     "helper": "LogoEnterpriseAlt"
   },
   {
+    "helper": "LogoEnterpriseAltMd"
+  },
+  {
     "helper": "LogoEnterpriseWordmarkSm"
   },
   {
@@ -433,9 +436,6 @@
   },
   {
     "helper": "LogoJobsAltMd"
-  },
-  {
-    "helper": "LogoJobsEnterpriseMd"
   },
   {
     "helper": "LogoMd"
