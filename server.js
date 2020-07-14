@@ -10,7 +10,7 @@ const svgo = new SVGO(svgoConfig)
 
 async function cleanBuildDirectoryAsync () {
   // Clear the existing SVGs in build/lib
-  await del(path.join(__dirname, '/build/**'))
+  await del([path.join(__dirname, '/build/**'), !path.join(__dirname, '/build/index.html')])
 }
 
 async function processSvgFilesAsync(srcPath, destPath, type) {
