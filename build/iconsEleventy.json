@@ -186,6 +186,9 @@
     "helper": "DevTo"
   },
   {
+    "helper": "Diff"
+  },
+  {
     "helper": "Document"
   },
   {
@@ -255,7 +258,16 @@
     "helper": "Flag"
   },
   {
+    "helper": "FlagGermany"
+  },
+  {
     "helper": "FlagSm"
+  },
+  {
+    "helper": "FlagUnitedKingdom"
+  },
+  {
+    "helper": "FlagUnitedStates"
   },
   {
     "helper": "Float"
@@ -618,6 +630,12 @@
     "helper": "SchoolSm"
   },
   {
+    "helper": "ScreenFull"
+  },
+  {
+    "helper": "ScreenNormal"
+  },
+  {
     "helper": "Search"
   },
   {
@@ -679,6 +697,9 @@
   },
   {
     "helper": "TIL"
+  },
+  {
+    "helper": "Table"
   },
   {
     "helper": "Tack"
