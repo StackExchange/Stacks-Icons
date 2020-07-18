@@ -139,8 +139,8 @@ function writeIndex() {
   const spotsFile = path.join(__dirname, '/build/spots.html')
 
   const inputPathList = [
-      iconsFile,
-      spotsFile
+    iconsFile,
+    spotsFile
   ];
 
   concat(inputPathList, htmlFile);
