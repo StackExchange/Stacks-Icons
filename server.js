@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs').promises
 const del = require('del')
 const webpack = require('webpack')
+const concat = require('concat')
 
 // SVGO settings
 const SVGO = require('svgo')
@@ -121,14 +122,28 @@ function writeJson(iconsObj, type) {
 function writeHTML(iconsObj, type) {
   // Output the HTML manifest
   const htmlFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.html')
-  let htmlOutput = `<!DOCTYPE html>\n<html>\n<head>\n<title>${type}s Test Preview</title>\n</head>\n<body style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">\n`
+  let htmlOutput = `<h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">${type}s Preview</h2>\n<div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">\n`
 
   for (let [key, value] of Object.entries(iconsObj)) {
     htmlOutput += `  <div>${key}<br><br>${value}</div>\n`
   }
 
-  htmlOutput += '</body>\n</html>'
+  htmlOutput += '</div>\n'
   fs.writeFile(htmlFile, htmlOutput, 'utf8')
+}
+
+function writeIndex() {
+  // Output the HTML manifest
+  const htmlFile = path.join(__dirname, '/build/index.html')
+  const iconsFile = path.join(__dirname, '/build/icons.html')
+  const spotsFile = path.join(__dirname, '/build/spots.html')
+
+  const inputPathList = [
+    iconsFile,
+    spotsFile
+  ];
+
+  concat(inputPathList, htmlFile);
 }
 
 async function buildSvgSetAsync(buildPrefix) {
@@ -182,7 +197,9 @@ function bundleHelperJsAsync() {
 
   let iconCount = await buildSvgSetAsync('Icon');
   let spotCount = await buildSvgSetAsync('Spot');
+
   await bundleHelperJsAsync();
+  await writeIndex();
 
   // All good
   console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`)
