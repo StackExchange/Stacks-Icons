@@ -138,6 +138,8 @@ public enum Icons
     Lock,
     LockSm,
     Logo,
+    LogoAdvertisingAlt,
+    LogoAdvertisingAltMd,
     LogoEnterprise,
     LogoEnterpriseAlt,
     LogoEnterpriseAltMd,
