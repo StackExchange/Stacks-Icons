@@ -153,6 +153,7 @@ public static SvgImage LogoJobsAltMd { get; } = GetImage();
 public static SvgImage LogoMd { get; } = GetImage();
 public static SvgImage LogoSE { get; } = GetImage();
 public static SvgImage LogoSEAlternativeSm { get; } = GetImage();
+public static SvgImage LogoSEGlyph { get; } = GetImage();
 public static SvgImage LogoSEGlyphMd { get; } = GetImage();
 public static SvgImage LogoSEXxs { get; } = GetImage();
 public static SvgImage LogoSm { get; } = GetImage();
