@@ -193,14 +193,36 @@ function bundleHelperJsAsync() {
 }
 
 ;(async () => {
-  await cleanBuildDirectoryAsync();
+  try {
+    const result = await cleanBuildDirectoryAsync()
 
-  let iconCount = await buildSvgSetAsync('Icon');
-  let spotCount = await buildSvgSetAsync('Spot');
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+  }
 
-  await bundleHelperJsAsync();
-  await writeIndex();
+  try {
+    let iconCount = await buildSvgSetAsync('Icon')
+    let spotCount = await buildSvgSetAsync('Spot')
 
-  // All good
-  console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`)
+    console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`)
+  } catch (error) {
+    console.log(error)
+  }
+
+  try {
+    let result = await bundleHelperJsAsync()
+
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+  }
+
+  try {
+    let result = await writeIndex()
+
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+  }
 })()
