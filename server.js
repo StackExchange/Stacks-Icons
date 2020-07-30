@@ -201,9 +201,7 @@ function bundleHelperJsAsync() {
 
 ;(async () => {
   try {
-    const result = await cleanBuildDirectoryAsync()
-
-    console.log(result)
+    await cleanBuildDirectoryAsync()
   } catch (error) {
     console.log(error)
   }
@@ -218,17 +216,13 @@ function bundleHelperJsAsync() {
   }
 
   try {
-    let result = await bundleHelperJsAsync()
-
-    console.log(result)
+    await bundleHelperJsAsync()
   } catch (error) {
     console.log(error)
   }
 
   try {
-    let result = await writeIndex()
-
-    console.log(result)
+    await writeIndex()
   } catch (error) {
     console.log(error)
   }
