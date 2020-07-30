@@ -91,7 +91,8 @@ function writeRazor(icons, type) {
   const csOutput = icons
     .map(i => `public static SvgImage ${i} { get; } = GetImage(${imagePath});`)
     .join('\n')
-  fs.writeFile(csFile, csOutput, 'utf8')
+
+  return fs.writeFile(csFile, csOutput, 'utf8')
 }
 
 function writeEnums(icons, type) {
@@ -100,7 +101,8 @@ function writeEnums(icons, type) {
   let enumsOutput = 'public enum Icons\n{\n'
   enumsOutput += icons.map(i => `    ${i},`).join('\n')
   enumsOutput += '\n}'
-  fs.writeFile(enumsFile, enumsOutput, 'utf8')
+  
+  return fs.writeFile(enumsFile, enumsOutput, 'utf8')
 }
 
 function writeEleventyJson(icons, type) {
@@ -109,14 +111,16 @@ function writeEleventyJson(icons, type) {
   let eleventyJsonOutput = '[\n'
   eleventyJsonOutput += icons.map(i => `  {\n    "helper": "${i}"`).join('\n  },\n')
   eleventyJsonOutput += '\n  }\n]'
-  fs.writeFile(eleventyJsonFile, eleventyJsonOutput, 'utf8')
+  
+  return fs.writeFile(eleventyJsonFile, eleventyJsonOutput, 'utf8')
 }
 
 function writeJson(iconsObj, type) {
   // Output the JSON helper
   const jsonFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.json')
   const jsonOutput = JSON.stringify(iconsObj, null, 2)
-  fs.writeFile(jsonFile, jsonOutput, 'utf8')
+  
+  return fs.writeFile(jsonFile, jsonOutput, 'utf8')
 }
 
 function writeHTML(iconsObj, type) {
@@ -129,7 +133,8 @@ function writeHTML(iconsObj, type) {
   }
 
   htmlOutput += '</div>\n'
-  fs.writeFile(htmlFile, htmlOutput, 'utf8')
+  
+  return fs.writeFile(htmlFile, htmlOutput, 'utf8')
 }
 
 function writeIndex() {
@@ -152,11 +157,13 @@ async function buildSvgSetAsync(buildPrefix) {
   const destIconsPath = path.join(__dirname, '/build/lib/' + buildPrefix)
   let { icons, iconsObj } = await processSvgFilesAsync(srcIconsPath, destIconsPath, buildPrefix);
 
-  writeRazor(icons, buildPrefix);
-  writeEnums(icons, buildPrefix);
-  writeEleventyJson(icons, buildPrefix);
-  writeJson(iconsObj, buildPrefix);
-  writeHTML(iconsObj, buildPrefix);
+  await Promise.all([
+    writeRazor(icons, buildPrefix),
+    writeEnums(icons, buildPrefix),
+    writeEleventyJson(icons, buildPrefix),
+    writeJson(iconsObj, buildPrefix),
+    writeHTML(iconsObj, buildPrefix)
+  ])
 
   return icons.length
 }
