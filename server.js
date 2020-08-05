@@ -105,16 +105,6 @@ function writeEnums(icons, type) {
   return fs.writeFile(enumsFile, enumsOutput, 'utf8')
 }
 
-function writeEleventyJson(icons, type) {
-  // Output the Json helper
-  const eleventyJsonFile = path.join(__dirname, '/build/' + type.toLowerCase() + 'sEleventy.json')
-  let eleventyJsonOutput = '[\n'
-  eleventyJsonOutput += icons.map(i => `  {\n    "helper": "${i}"`).join('\n  },\n')
-  eleventyJsonOutput += '\n  }\n]'
-  
-  return fs.writeFile(eleventyJsonFile, eleventyJsonOutput, 'utf8')
-}
-
 function writeJson(iconsObj, type) {
   // Output the JSON helper
   const jsonFile = path.join(__dirname, '/build/' + type.toLowerCase() + 's.json')
@@ -160,7 +150,6 @@ async function buildSvgSetAsync(buildPrefix) {
   await Promise.all([
     writeRazor(icons, buildPrefix),
     writeEnums(icons, buildPrefix),
-    writeEleventyJson(icons, buildPrefix),
     writeJson(iconsObj, buildPrefix),
     writeHTML(iconsObj, buildPrefix)
   ])
