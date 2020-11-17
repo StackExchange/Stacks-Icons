@@ -77,6 +77,8 @@ public enum Icons
     EllipsisVertical,
     Eye,
     EyeOff,
+    EyeOffSm,
+    EyeSm,
     Eyes,
     FaceFrown,
     FaceJoy,
