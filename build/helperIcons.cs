@@ -56,6 +56,7 @@ public static SvgImage Clear { get; } = GetImage();
 public static SvgImage ClearSm { get; } = GetImage();
 public static SvgImage Clock { get; } = GetImage();
 public static SvgImage Code { get; } = GetImage();
+public static SvgImage CodeSnippet { get; } = GetImage();
 public static SvgImage Codeblock { get; } = GetImage();
 public static SvgImage Coins { get; } = GetImage();
 public static SvgImage Columns { get; } = GetImage();

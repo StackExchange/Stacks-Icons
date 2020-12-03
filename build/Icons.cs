@@ -58,6 +58,7 @@ public enum Icons
     ClearSm,
     Clock,
     Code,
+    CodeSnippet,
     Codeblock,
     Coins,
     Columns,
