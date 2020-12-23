@@ -35,6 +35,8 @@ public enum Icons
     ArrowUpDownSm,
     ArrowUpLg,
     ArrowUpSm,
+    Asterisk,
+    AsteriskSm,
     Badge,
     BadgeSm,
     Balloon,
