@@ -61,6 +61,7 @@ public static SvgImage Code { get; } = GetImage();
 public static SvgImage CodeSnippet { get; } = GetImage();
 public static SvgImage Codeblock { get; } = GetImage();
 public static SvgImage Coins { get; } = GetImage();
+public static SvgImage Collection { get; } = GetImage();
 public static SvgImage Columns { get; } = GetImage();
 public static SvgImage Computer { get; } = GetImage();
 public static SvgImage Copy { get; } = GetImage();
