@@ -63,6 +63,7 @@ public enum Icons
     CodeSnippet,
     Codeblock,
     Coins,
+    Collection,
     Columns,
     Computer,
     Copy,
