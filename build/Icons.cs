@@ -1,5 +1,6 @@
 public enum Icons
 {
+    Accessibility,
     Achievements,
     AchievementsLg,
     AchievementsSm,

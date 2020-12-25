@@ -1,3 +1,4 @@
+public static SvgImage Accessibility { get; } = GetImage();
 public static SvgImage Achievements { get; } = GetImage();
 public static SvgImage AchievementsLg { get; } = GetImage();
 public static SvgImage AchievementsSm { get; } = GetImage();
