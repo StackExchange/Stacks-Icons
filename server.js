@@ -3,6 +3,7 @@ const fs = require('fs').promises
 const del = require('del')
 const webpack = require('webpack')
 const concat = require('concat')
+var svgToMiniDataURI = require('mini-svg-data-uri')
 
 // SVGO settings
 const SVGO = require('svgo')
@@ -188,6 +189,45 @@ function bundleHelperJsAsync() {
   });
 }
 
+async function bundleCssIcons() {
+  const cssIcons = require("./src/cssIcons.json")
+  const iconJson = require("./build/icons.json")
+  iconCss = cssIcons.map(i => {
+    let iconData = i;
+    // data can look like "IconName" or { name: "IconName", css: "..." }
+    if (typeof i === 'string') {
+      iconData = {
+        name: i,
+        css: ''
+      }
+    }
+
+    // load the data from our built icons.json file
+    const svgString = iconJson[iconData.name]
+
+    if (!svgString) {
+      return `/* Unable to find icon ${iconData.name} */`;
+    }
+
+    // transform the svg file string into a data uri
+    const svgDataUri = svgToMiniDataURI(svgString)
+
+    // create the css class
+    const outputCss = `.icon-bg.icon${iconData.name} {
+    --bg-icon: url(${svgDataUri});
+    ${iconData.css || ''}
+}`
+
+  // strip any empty lines and return the output
+  return outputCss.replace(/\n\s*$/gm, "");
+  }).join('\n\n')
+
+  // read in the base css file, add our icons and write to build/
+  var cssFile = await fs.readFile(path.resolve('./src/icons.css'), 'utf8')
+  cssFile += '\n\n' + iconCss
+  await fs.writeFile(path.resolve('./build/icons.css'), cssFile, 'utf8')
+}
+
 ;(async () => {
   try {
     await cleanBuildDirectoryAsync()
@@ -206,6 +246,7 @@ function bundleHelperJsAsync() {
 
   try {
     await bundleHelperJsAsync()
+    await bundleCssIcons();
   } catch (error) {
     console.log(error)
   }
