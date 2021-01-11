@@ -133,10 +133,12 @@ function writeIndex() {
   const htmlFile = path.join(__dirname, '/build/index.html')
   const iconsFile = path.join(__dirname, '/build/icons.html')
   const spotsFile = path.join(__dirname, '/build/spots.html')
+  const cssIconsFile = path.join(__dirname, '/build/cssIcons.html')
 
   const inputPathList = [
     iconsFile,
-    spotsFile
+    spotsFile,
+    cssIconsFile
   ];
 
   concat(inputPathList, htmlFile);
@@ -191,7 +193,9 @@ function bundleHelperJsAsync() {
 
 async function bundleCssIcons() {
   const cssIcons = require("./src/cssIcons.json")
-  const iconData = cssIcons.map(i => (typeof i === 'string' ? { name: i } : i))
+  const iconData = cssIcons
+    .map(i => (typeof i === 'string' ? { name: i } : i))
+    .sort((a, b) => (a.name > b.name ? 1 : -1 ))
   const allIconSvgStrings = await Promise.all(iconData.map(async i => fs.readFile(path.resolve('./src/Icon/', i.name + '.svg'), 'utf8')))
 
   if (iconData.length !== allIconSvgStrings.length) {
@@ -226,10 +230,19 @@ async function bundleCssIcons() {
 
   // create the preview html file now
   iconHtml = iconData.map(i => {
-    return `<div><span class="icon-bg icon${i.name}"></span> <span class="icon-bg icon${i.name} native"></span> ${i.name}</div>`;
+    return `<div>
+    ${i.name}
+    <br/>
+    <span class="icon-bg icon${i.name}"></span>
+    <span class="icon-bg icon${i.name} native"></span>
+    </div>`;
   }).join('\n\n')
 
-  iconHtml = `<link rel="stylesheet" href="./icons.css" />` + iconHtml;
+  iconHtml = `<link rel="stylesheet" href="./icons.css" />
+  <h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">CSS Icons Preview</h2>
+  <div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">
+    ${iconHtml}
+  </div>`;
 
   await fs.writeFile(path.resolve('./build/cssIcons.html'), iconHtml, 'utf8')
 }
