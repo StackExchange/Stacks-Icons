@@ -191,31 +191,28 @@ function bundleHelperJsAsync() {
 
 async function bundleCssIcons() {
   const cssIcons = require("./src/cssIcons.json")
-  const iconJson = require("./build/icons.json")
-  iconCss = cssIcons.map(i => {
-    let iconData = i;
-    // data can look like "IconName" or { name: "IconName", css: "..." }
-    if (typeof i === 'string') {
-      iconData = {
-        name: i,
-        css: ''
-      }
-    }
+  const iconData = cssIcons.map(i => (typeof i === 'string' ? { name: i } : i))
+  const allIconSvgStrings = await Promise.all(iconData.map(async i => fs.readFile(path.resolve('./src/Icon/', i.name + '.svg'), 'utf8')))
 
-    // load the data from our built icons.json file
-    const svgString = iconJson[iconData.name]
+  if (iconData.length !== allIconSvgStrings.length) {
+    throw "Unable to bundle css icons - unable to load some svgs";
+  }
+
+  iconCss = iconData.map((data, i) => {
+    // load the original source file - the optimized versions don't always work quite right
+    const svgString = allIconSvgStrings[i]
 
     if (!svgString) {
-      return `/* Unable to find icon ${iconData.name} */`;
+      return `/* Unable to find icon ${data.name} */`;
     }
 
     // transform the svg file string into a data uri
     const svgDataUri = svgToMiniDataURI(svgString)
 
     // create the css class
-    const outputCss = `.icon-bg.icon${iconData.name} {
-    --bg-icon: url(${svgDataUri});
-    ${iconData.css || ''}
+    const outputCss = `.icon-bg.icon${data.name} {
+    --bg-icon: url("${svgDataUri}");
+    ${data.css || ''}
 }`
 
   // strip any empty lines and return the output
@@ -226,6 +223,15 @@ async function bundleCssIcons() {
   var cssFile = await fs.readFile(path.resolve('./src/icons.css'), 'utf8')
   cssFile += '\n\n' + iconCss
   await fs.writeFile(path.resolve('./build/icons.css'), cssFile, 'utf8')
+
+  // create the preview html file now
+  iconHtml = iconData.map(i => {
+    return `<div><span class="icon-bg icon${i.name}"></span> <span class="icon-bg icon${i.name} native"></span> ${i.name}</div>`;
+  }).join('\n\n')
+
+  iconHtml = `<link rel="stylesheet" href="./icons.css" />` + iconHtml;
+
+  await fs.writeFile(path.resolve('./build/cssIcons.html'), iconHtml, 'utf8')
 }
 
 ;(async () => {
