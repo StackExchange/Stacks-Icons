@@ -214,7 +214,7 @@ async function bundleCssIcons() {
     const svgDataUri = svgToMiniDataURI(svgString)
 
     // create the css class
-    const outputCss = `.icon-bg.icon${data.name} {
+    const outputCss = `.svg-icon-bg.icon${data.name} {
     --bg-icon: url("${svgDataUri}");
     ${data.css || ''}
 }`
@@ -233,8 +233,8 @@ async function bundleCssIcons() {
     return `<div>
     ${i.name}
     <br/>
-    <span class="icon-bg icon${i.name}"></span>
-    <span class="icon-bg icon${i.name} native"></span>
+    <span class="svg-icon-bg icon${i.name}"></span>
+    <span class="svg-icon-bg icon${i.name} native"></span>
     </div>`;
   }).join('\n\n')
 
