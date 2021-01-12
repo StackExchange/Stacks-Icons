@@ -1,0 +1,36 @@
+/* set the parameter of the icon itself */
+/* size is important here since we're setting our image to "contain" */
+.svg-icon-bg {
+    display: inline-block;
+    vertical-align: bottom; /* This is the same alignment as .svg-icon */
+    border: none;
+    height: 18px;
+    width: 18px;
+    padding: 0;
+}
+
+/* use ::after so we can theme our icons without affecting the mask */
+/* useful for e.g. setting the background-color for buttons, etc */
+.svg-icon-bg::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask: var(--bg-icon) no-repeat center;
+    mask: var(--bg-icon) no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+/* in order to support "native" coloring of an icon, */
+/* set it as the bg; masks don't have any concept of color themselves */
+.svg-icon-bg.native::after {
+    background-color: unset;
+    -webkit-mask: none;
+    mask: none;
+    background-image: var(--bg-icon);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

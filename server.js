@@ -3,6 +3,7 @@ const fs = require('fs').promises
 const del = require('del')
 const webpack = require('webpack')
 const concat = require('concat')
+var svgToMiniDataURI = require('mini-svg-data-uri')
 
 // SVGO settings
 const SVGO = require('svgo')
@@ -132,10 +133,12 @@ function writeIndex() {
   const htmlFile = path.join(__dirname, '/build/index.html')
   const iconsFile = path.join(__dirname, '/build/icons.html')
   const spotsFile = path.join(__dirname, '/build/spots.html')
+  const cssIconsFile = path.join(__dirname, '/build/cssIcons.html')
 
   const inputPathList = [
     iconsFile,
-    spotsFile
+    spotsFile,
+    cssIconsFile
   ];
 
   concat(inputPathList, htmlFile);
@@ -188,6 +191,62 @@ function bundleHelperJsAsync() {
   });
 }
 
+async function bundleCssIcons() {
+  const cssIcons = require("./src/cssIcons.json")
+  const iconData = cssIcons
+    .map(i => (typeof i === 'string' ? { name: i } : i))
+    .sort((a, b) => (a.name > b.name ? 1 : -1 ))
+  const allIconSvgStrings = await Promise.all(iconData.map(async i => fs.readFile(path.resolve('./src/Icon/', i.name + '.svg'), 'utf8')))
+
+  if (iconData.length !== allIconSvgStrings.length) {
+    throw "Unable to bundle css icons - unable to load some svgs";
+  }
+
+  iconCss = iconData.map((data, i) => {
+    // load the original source file - the optimized versions don't always work quite right
+    const svgString = allIconSvgStrings[i]
+
+    if (!svgString) {
+      return `/* Unable to find icon ${data.name} */`;
+    }
+
+    // transform the svg file string into a data uri
+    const svgDataUri = svgToMiniDataURI(svgString)
+
+    // create the css class
+    const outputCss = `.svg-icon-bg.icon${data.name} {
+    --bg-icon: url("${svgDataUri}");
+    ${data.css || ''}
+}`
+
+  // strip any empty lines and return the output
+  return outputCss.replace(/\n\s*$/gm, "");
+  }).join('\n\n')
+
+  // read in the base css file, add our icons and write to build/
+  var cssFile = await fs.readFile(path.resolve('./src/icons.css'), 'utf8')
+  cssFile += '\n\n' + iconCss
+  await fs.writeFile(path.resolve('./build/icons.css'), cssFile, 'utf8')
+
+  // create the preview html file now
+  iconHtml = iconData.map(i => {
+    return `<div>
+    ${i.name}
+    <br/>
+    <span class="svg-icon-bg icon${i.name}"></span>
+    <span class="svg-icon-bg icon${i.name} native"></span>
+    </div>`;
+  }).join('\n\n')
+
+  iconHtml = `<link rel="stylesheet" href="./icons.css" />
+  <h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">CSS Icons Preview</h2>
+  <div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">
+    ${iconHtml}
+  </div>`;
+
+  await fs.writeFile(path.resolve('./build/cssIcons.html'), iconHtml, 'utf8')
+}
+
 ;(async () => {
   try {
     await cleanBuildDirectoryAsync()
@@ -206,6 +265,7 @@ function bundleHelperJsAsync() {
 
   try {
     await bundleHelperJsAsync()
+    await bundleCssIcons();
   } catch (error) {
     console.log(error)
   }
