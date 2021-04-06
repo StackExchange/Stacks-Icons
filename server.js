@@ -5,10 +5,9 @@ const webpack = require('webpack')
 const concat = require('concat')
 var svgToMiniDataURI = require('mini-svg-data-uri')
 
-// SVGO settings
-const SVGO = require('svgo')
-const svgoConfig = require('./svgo.json')
-const svgo = new SVGO(svgoConfig)
+// SVGO
+const { optimize } = require('svgo')
+const svgoConfig = require('./svgo.config')
 
 async function cleanBuildDirectoryAsync () {
   // Clear the existing SVGs in build/lib
@@ -38,7 +37,7 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
   processed = await Promise.all(processed)
 
   // Optimise them with SVGO
-  processed = processed.map(i => svgo.optimize(i))
+  processed = processed.map(i => optimize(i, svgoConfig))
   processed = await Promise.all(processed)
 
   // Get the data from the SVGO object
@@ -55,6 +54,7 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
           `<svg aria-hidden="true" class="svg-${typeClass} ${typeClass}${icons[idx]}"`
         ) // Add classes and aria-attributes since our source files don't have them
         .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
+        .replace(/fill="black"/gi, '') // Remove any fills so paths are colored by the parents' color
         .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
         .replace(/fill="#222426"/gi, 'fill="var(--black-800)"') // Replace hardcoded hex value with appropriate CSS variables
         .replace(/fill="#fff"/gi, 'fill="var(--white)"')
