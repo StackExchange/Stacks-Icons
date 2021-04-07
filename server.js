@@ -54,7 +54,6 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
           `<svg aria-hidden="true" class="svg-${typeClass} ${typeClass}${icons[idx]}"`
         ) // Add classes and aria-attributes since our source files don't have them
         .replace(/fill="#000"/gi, '') // Remove any fills so paths are colored by the parents' color
-        .replace(/fill="black"/gi, '') // Remove any fills so paths are colored by the parents' color
         .replace(/fill="none"/gi, '') // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
         .replace(/fill="#222426"/gi, 'fill="var(--black-800)"') // Replace hardcoded hex value with appropriate CSS variables
         .replace(/fill="#fff"/gi, 'fill="var(--white)"')
