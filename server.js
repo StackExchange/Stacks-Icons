@@ -59,7 +59,8 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
         .replace(/fill="#fff"/gi, 'fill="var(--white)"')
         .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-500)"')
         .replace(/fill="#1A1104"/gi, 'fill="var(--black-900)"')
-        .replace(/paint(.*?)_linear/gi, `${icons[idx]}$1_linear`) // Replace any gradient ID with the icon name to namespace
+        .replace(/linearGradient id="(.*?)/gi, `linearGradient id="${icons[idx]}$1`) // Replace any gradient ID with the icon name to namespace
+        .replace(/url\(#(.*?)\)/gi, `url(#${icons[idx]}$1)`) // Replace any reference to fill IDs with the icon name to namespace
         .replace(/\s>/g, '>') // Remove extra space before closing bracket on opening svg element
         .replace(/\s\/>/g, '/>') // Remove extra space before closing bracket on path tag element
   )
