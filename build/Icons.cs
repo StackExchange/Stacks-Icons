@@ -272,6 +272,8 @@ public enum Icons
     Table,
     Tack,
     Tada,
+    Tag,
+    TagSm,
     Theme,
     ThumbsDown,
     ThumbsUp,
