@@ -191,6 +191,7 @@ public enum Icons
     Medal,
     Merge,
     Message,
+    MessageCompose,
     Microsoft,
     MicrosoftTeams,
     Migrate,

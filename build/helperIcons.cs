@@ -189,6 +189,7 @@ public static SvgImage Markdown { get; } = GetImage();
 public static SvgImage Medal { get; } = GetImage();
 public static SvgImage Merge { get; } = GetImage();
 public static SvgImage Message { get; } = GetImage();
+public static SvgImage MessageCompose { get; } = GetImage();
 public static SvgImage Microsoft { get; } = GetImage();
 public static SvgImage MicrosoftTeams { get; } = GetImage();
 public static SvgImage Migrate { get; } = GetImage();
