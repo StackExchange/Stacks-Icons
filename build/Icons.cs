@@ -143,7 +143,6 @@ public enum Icons
     Italic,
     Jira,
     KeySm,
-    KeySmall,
     Laptop,
     LaunchPad,
     Lightbulb,

@@ -141,7 +141,6 @@ public static SvgImage InternationalSm { get; } = GetImage();
 public static SvgImage Italic { get; } = GetImage();
 public static SvgImage Jira { get; } = GetImage();
 public static SvgImage KeySm { get; } = GetImage();
-public static SvgImage KeySmall { get; } = GetImage();
 public static SvgImage Laptop { get; } = GetImage();
 public static SvgImage LaunchPad { get; } = GetImage();
 public static SvgImage Lightbulb { get; } = GetImage();
