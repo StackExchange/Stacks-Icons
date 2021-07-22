@@ -94,6 +94,7 @@ public enum Icons
     FaceSmile,
     Facebook,
     Female,
+    Filter,
     Fire,
     FireSm,
     Fitness,
