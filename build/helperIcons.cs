@@ -47,6 +47,7 @@ public static SvgImage Briefcase { get; } = GetImage();
 public static SvgImage BriefcaseSm { get; } = GetImage();
 public static SvgImage Bullhorn { get; } = GetImage();
 public static SvgImage BullhornSm { get; } = GetImage();
+public static SvgImage Cake { get; } = GetImage();
 public static SvgImage Calendar { get; } = GetImage();
 public static SvgImage Chair { get; } = GetImage();
 public static SvgImage Checkmark { get; } = GetImage();

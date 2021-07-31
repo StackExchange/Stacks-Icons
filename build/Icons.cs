@@ -49,6 +49,7 @@ public enum Icons
     BriefcaseSm,
     Bullhorn,
     BullhornSm,
+    Cake,
     Calendar,
     Chair,
     Checkmark,
