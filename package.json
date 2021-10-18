@@ -11,7 +11,7 @@
   "devDependencies": {
     "concat": "^1.0.3",
     "del": "^6.0.0",
-    "mini-svg-data-uri": "^1.3.3",
+    "mini-svg-data-uri": "^1.4.3",
     "svgo": "^2.7.0",
     "webpack": "^5.58.1"
   }
