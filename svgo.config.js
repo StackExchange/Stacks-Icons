@@ -2,41 +2,26 @@ const { extendDefaultPlugins } = require('svgo')
 
 module.exports = {
   multipass: true,
-  plugins: extendDefaultPlugins([
+  floatPrecision: 2,
+  plugins: [
     {
-      name: 'convertPathData',
+      name: 'preset-default',
       params: {
-        floatPrecision: 2,
-        transformPrecision: 4,
-        noSpaceAfterFlags: true
+        overrides: {
+          removeViewBox: false,
+          mergePaths: {
+            force: true,
+            noSpaceAfterFlags: true
+          }
+        }
       }
     },
-    {
-      name: 'cleanupNumericValues',
-      params: {
-        floatPrecision: 2
-      }
-    },
+    'removeXMLNS',
     {
       name: 'removeAttrs',
       params: {
         attrs: '(fill-rule|clip-rule)'
-      }
+      },
     },
-    {
-      name: 'removeViewBox',
-      active: false
-    },
-    {
-      name: 'removeXMLNS',
-      active: true
-    },
-    {
-      name: 'mergePaths',
-      params: {
-        force: true,
-        noSpaceAfterFlags: true
-      }
-    }
-  ])
+  ]
 }
