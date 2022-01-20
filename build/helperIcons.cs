@@ -93,6 +93,7 @@ public static SvgImage FaceShocked { get; } = GetImage();
 public static SvgImage FaceSmile { get; } = GetImage();
 public static SvgImage Facebook { get; } = GetImage();
 public static SvgImage Female { get; } = GetImage();
+public static SvgImage Figma { get; } = GetImage();
 public static SvgImage Filter { get; } = GetImage();
 public static SvgImage Fire { get; } = GetImage();
 public static SvgImage FireSm { get; } = GetImage();
