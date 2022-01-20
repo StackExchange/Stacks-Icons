@@ -95,6 +95,7 @@ public enum Icons
     FaceSmile,
     Facebook,
     Female,
+    Figma,
     Filter,
     Fire,
     FireSm,
