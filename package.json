@@ -6,7 +6,8 @@
   "license": "MIT",
   "main": "build/index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "prepublishOnly": "npm start"
   },
   "devDependencies": {
     "concat": "^1.0.3",
