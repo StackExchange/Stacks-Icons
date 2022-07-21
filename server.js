@@ -4,6 +4,7 @@ const del = require("del");
 const webpack = require("webpack");
 const concat = require("concat");
 var svgToMiniDataURI = require("mini-svg-data-uri");
+const packageJson = require("./package.json");
 
 // SVGO
 const { optimize } = require("svgo");
@@ -124,6 +125,41 @@ function writeJson(iconsObj, type) {
   return fs.writeFile(jsonFile, jsonOutput, "utf8");
 }
 
+function writeJsModule(iconsObj, type) {
+  // Output the js helper
+  const modFile = path.join(
+    __dirname,
+    "/build/" + type.toLowerCase() + "s.mjs"
+  );
+
+  // output the TypeScript definitions
+  const dtsFile = path.join(
+    __dirname,
+    "/build/" + type.toLowerCase() + "s.d.ts"
+  );
+
+  let jsOutput = "";
+  let dtsOutput = "";
+
+  Object.entries(iconsObj).forEach(([name, svg]) => {
+    jsOutput += `export const ${type}${name} = "${svg.replace(
+      /"/g,
+      `\\"`
+    )}";\n`;
+
+    dtsOutput += `export const ${type}${name}: string;\n`;
+  });
+
+  dtsOutput = `declare module "${
+    packageJson.name
+  }/${type.toLowerCase()}s" {\n${dtsOutput}\n}`;
+
+  return Promise.all([
+    fs.writeFile(modFile, jsOutput, "utf8"),
+    fs.writeFile(dtsFile, dtsOutput, "utf8"),
+  ]);
+}
+
 function writeHTML(iconsObj, type) {
   // Output the HTML manifest
   const htmlFile = path.join(
@@ -151,6 +187,14 @@ function writeIndex() {
   const inputPathList = [iconsFile, spotsFile, cssIconsFile];
 
   concat(inputPathList, htmlFile);
+
+  concat(
+    [
+      path.join(__dirname, "/build/icons.d.ts"),
+      path.join(__dirname, "/build/spots.d.ts"),
+    ],
+    path.join(__dirname, "/build/index.d.ts")
+  );
 }
 
 async function buildSvgSetAsync(buildPrefix) {
@@ -167,6 +211,7 @@ async function buildSvgSetAsync(buildPrefix) {
     writeRazor(icons, buildPrefix),
     writeEnums(icons, buildPrefix),
     writeJson(iconsObj, buildPrefix),
+    writeJsModule(iconsObj, buildPrefix),
     writeHTML(iconsObj, buildPrefix),
   ]);
 

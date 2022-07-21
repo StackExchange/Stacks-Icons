@@ -5,6 +5,11 @@
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "exports": {
+    "./icons": "./build/icons.mjs",
+    "./spots": "./build/spots.mjs"
+  },
   "scripts": {
     "start": "node server.js",
     "prepublishOnly": "npm start"
