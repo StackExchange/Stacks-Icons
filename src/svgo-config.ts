@@ -1,5 +1,6 @@
-/** @type {import("svgo").OptimizeOptions} */
-export default {
+import type { OptimizeOptions } from "svgo";
+
+const config: OptimizeOptions = {
   multipass: true,
   floatPrecision: 2,
   plugins: [
@@ -24,3 +25,5 @@ export default {
     },
   ],
 };
+
+export default config;

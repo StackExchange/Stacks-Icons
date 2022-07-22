@@ -1,4 +1,3 @@
-// @ts-check
 import concat from "concat";
 import del from "del";
 import { promises as fs } from "fs";
@@ -6,19 +5,24 @@ import svgToMiniDataURI from "mini-svg-data-uri";
 import path from "path";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
-import { fileURLToPath } from "url";
-import packageJson from "./package.json" assert { type: "json" };
-import cssIcons from "./src/cssIcons.json" assert { type: "json" };
-import svgoConfig from "./svgo.config.js";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import packageJson from "./package.json";
+import cssIcons from "./src/cssIcons";
+import svgoConfig from "./src/svgo-config";
+import rollupTypescript from "@rollup/plugin-typescript";
 
 async function cleanBuildDirectoryAsync() {
   // Clear the existing SVGs in build/lib
   await del(path.join(__dirname, "/build/**"));
 }
 
-async function processSvgFilesAsync(srcPath, destPath, type) {
+type OutputType = "Spot" | "Icon";
+
+/** Optimizes svg files using svgo then writes them to build/lib */
+async function processSvgFilesAsync(
+  srcPath: string,
+  destPath: string,
+  type: OutputType
+) {
   // File format
   const ext = ".svg";
 
@@ -48,10 +52,13 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
   processed = optimized.map((i) => {
     if (i.error) {
       console.error(i.error);
-      return null;
-    } else {
+    }
+
+    if ("data" in i && i.data) {
       return i.data;
     }
+
+    return "";
   });
 
   var typeClass = type.toLowerCase();
@@ -85,18 +92,23 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
   });
 
   // Make an object of our icons { IconName: '<svg>' }
-  let iconsObj = {};
-  processed.forEach((icon, idx) => {
-    iconsObj[icons[idx]] = icon;
+  let iconsObj: Record<string, string> = {};
+  processed.forEach((svgStr, idx) => {
+    const iconName = icons[idx];
+    if (!iconName) {
+      return;
+    }
+
+    iconsObj[iconName] = svgStr;
 
     // Save each svg
-    fs.writeFile(path.resolve(destPath, icons[idx] + ext), icon, "utf8");
+    fs.writeFile(path.resolve(destPath, icons[idx] + ext), svgStr, "utf8");
   });
 
   return { icons, iconsObj };
 }
 
-function writeRazor(icons, type) {
+function writeRazor(icons: string[], type: OutputType) {
   // Output the Razor helper
   const csFile = path.join(__dirname, "/build/Helper" + type + "s.cs");
   let imagePath = "";
@@ -114,7 +126,7 @@ function writeRazor(icons, type) {
   return fs.writeFile(csFile, csOutput, "utf8");
 }
 
-function writeEnums(icons, type) {
+function writeEnums(icons: string[], type: OutputType) {
   // Output enums file
   const enumsFile = path.join(__dirname, "/build/" + type + "s.cs");
   let enumsOutput = "public enum Icons\n{\n";
@@ -124,7 +136,7 @@ function writeEnums(icons, type) {
   return fs.writeFile(enumsFile, enumsOutput, "utf8");
 }
 
-function writeJson(iconsObj, type) {
+function writeJson(iconsObj: Record<string, string>, type: OutputType) {
   // Output the JSON helper
   const jsonFile = path.join(
     __dirname,
@@ -135,7 +147,7 @@ function writeJson(iconsObj, type) {
   return fs.writeFile(jsonFile, jsonOutput, "utf8");
 }
 
-function writeJsModule(iconsObj, type) {
+function writeJsModule(iconsObj: Record<string, string>, type: OutputType) {
   // Output the js helper
   const modFile = path.join(__dirname, "/build/" + type.toLowerCase() + "s.js");
 
@@ -167,7 +179,7 @@ function writeJsModule(iconsObj, type) {
   ]);
 }
 
-function writeHTML(iconsObj, type) {
+function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
   // Output the HTML manifest
   const htmlFile = path.join(
     __dirname,
@@ -204,7 +216,7 @@ function writeIndex() {
   );
 }
 
-async function buildSvgSetAsync(buildPrefix) {
+async function buildSvgSetAsync(buildPrefix: OutputType) {
   // Import/export paths
   const srcIconsPath = path.join(__dirname, "/src/" + buildPrefix);
   const destIconsPath = path.join(__dirname, "/build/lib/" + buildPrefix);
@@ -227,11 +239,15 @@ async function buildSvgSetAsync(buildPrefix) {
 
 async function bundleHelperJsAsync() {
   let bundle;
+  const plugin = rollupTypescript({
+    include: "**/src/js/*.ts",
+  });
 
   try {
     // create the browser bundle
     bundle = await rollup({
-      input: "./src/js/browser.js",
+      input: "./src/js/browser.ts",
+      plugins: [plugin],
     });
     await bundle.write({
       file: "./build/index.umd.js",
@@ -242,7 +258,8 @@ async function bundleHelperJsAsync() {
     // create the es6 bundle
     // create the browser bundle
     bundle = await rollup({
-      input: "./src/js/index.js",
+      input: "./src/js/index.ts",
+      plugins: [plugin],
     });
     await bundle.write({
       file: "./build/index.esm.js",
@@ -262,7 +279,7 @@ async function bundleHelperJsAsync() {
 
 async function bundleCssIcons() {
   const iconData = cssIcons
-    .map((i) => (typeof i === "string" ? { name: i } : i))
+    .map((i) => (typeof i === "string" ? { name: i, css: null } : i))
     .sort((a, b) => (a.name > b.name ? 1 : -1));
   const allIconSvgStrings = await Promise.all(
     iconData.map(async (i) =>
@@ -342,12 +359,15 @@ async function bundleCssIcons() {
   try {
     await bundleHelperJsAsync();
     await bundleCssIcons();
+
+    console.log(`Successfully built helper JS and css`);
   } catch (error) {
     console.log(error);
   }
 
   try {
     await writeIndex();
+    console.log(`Successfully built html index`);
   } catch (error) {
     console.log(error);
   }

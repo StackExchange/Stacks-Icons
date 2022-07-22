@@ -4,7 +4,6 @@
   "version": "2.27.0",
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
-  "type": "module",
   "main": "build/index.umd.js",
   "module": "build/index.esm.js",
   "types": "build/index.d.ts",
@@ -14,14 +13,19 @@
     "./spots": "./build/spots.js"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "ts-node ./server.ts",
     "prepublishOnly": "npm start"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@types/svgo": "^2.6.3",
     "concat": "^1.0.3",
     "del": "^6.1.1",
     "mini-svg-data-uri": "^1.4.4",
     "rollup": "^2.77.0",
-    "svgo": "^2.8.0"
+    "svgo": "^2.8.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
   }
 }
