@@ -1,10 +1,10 @@
 const path = require("path");
 const fs = require("fs").promises;
 const del = require("del");
-const webpack = require("webpack");
 const concat = require("concat");
 var svgToMiniDataURI = require("mini-svg-data-uri");
 const packageJson = require("./package.json");
+const { rollup } = require("rollup");
 
 // SVGO
 const { optimize } = require("svgo");
@@ -127,10 +127,7 @@ function writeJson(iconsObj, type) {
 
 function writeJsModule(iconsObj, type) {
   // Output the js helper
-  const modFile = path.join(
-    __dirname,
-    "/build/" + type.toLowerCase() + "s.mjs"
-  );
+  const modFile = path.join(__dirname, "/build/" + type.toLowerCase() + "s.js");
 
   // output the TypeScript definitions
   const dtsFile = path.join(
@@ -218,33 +215,39 @@ async function buildSvgSetAsync(buildPrefix) {
   return icons.length;
 }
 
-function bundleHelperJsAsync() {
-  return new Promise((resolve, reject) => {
-    // bundle together our JS after building the required JSON file
-    webpack({
-      entry: "./src/js/index.js",
-      mode: "production",
-      output: {
-        filename: "index.js",
-        path: path.resolve(__dirname, "build"),
-        library: "StacksIcons",
-        libraryTarget: "umd",
-        globalObject: "this",
-      },
-    }).run((err, stats) => {
-      if (err) {
-        let errors = err.stack || err;
-        console.error(errors);
-        reject(errors);
-      } else if (stats.hasErrors()) {
-        let errors = stats.toJson().errors;
-        console.error(errors);
-        reject(errors);
-      } else {
-        resolve();
-      }
+async function bundleHelperJsAsync() {
+  let bundle;
+
+  try {
+    // create the browser bundle
+    bundle = await rollup({
+      input: "./src/js/browser.js",
     });
-  });
+    await bundle.write({
+      file: "./build/index.umd.js",
+      format: "umd",
+      name: "StacksIcons",
+    });
+
+    // create the es6 bundle
+    // create the browser bundle
+    bundle = await rollup({
+      input: "./src/js/index.js",
+    });
+    await bundle.write({
+      file: "./build/index.esm.js",
+      format: "esm",
+      name: "StacksIcons",
+    });
+  } catch (error) {
+    // do some error reporting
+    console.error(error);
+  }
+
+  if (bundle) {
+    // closes the bundle
+    await bundle.close();
+  }
 }
 
 async function bundleCssIcons() {
