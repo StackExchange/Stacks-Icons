@@ -4,6 +4,7 @@
   "version": "2.27.0",
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
+  "type": "module",
   "main": "build/index.umd.js",
   "module": "build/index.esm.js",
   "types": "build/index.d.ts",

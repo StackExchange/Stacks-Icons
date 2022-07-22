@@ -1,14 +1,17 @@
-const path = require("path");
-const fs = require("fs").promises;
-const del = require("del");
-const concat = require("concat");
-var svgToMiniDataURI = require("mini-svg-data-uri");
-const packageJson = require("./package.json");
-const { rollup } = require("rollup");
+// @ts-check
+import concat from "concat";
+import del from "del";
+import { promises as fs } from "fs";
+import svgToMiniDataURI from "mini-svg-data-uri";
+import path from "path";
+import { rollup } from "rollup";
+import { optimize } from "svgo";
+import { fileURLToPath } from "url";
+import packageJson from "./package.json" assert { type: "json" };
+import cssIcons from "./src/cssIcons.json" assert { type: "json" };
+import svgoConfig from "./svgo.config.js";
 
-// SVGO
-const { optimize } = require("svgo");
-const svgoConfig = require("./svgo.config");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function cleanBuildDirectoryAsync() {
   // Clear the existing SVGs in build/lib
@@ -32,17 +35,24 @@ async function processSvgFilesAsync(srcPath, destPath, type) {
   icons = icons.sort();
 
   // Array of promises which do the fetching of the files
-  let processed = icons.map((i) =>
+  const readPromises = icons.map((i) =>
     fs.readFile(path.resolve(srcPath, i + ext), "utf8")
   );
-  processed = await Promise.all(processed);
+  let processed = await Promise.all(readPromises);
 
-  // Optimise them with SVGO
-  processed = processed.map((i) => optimize(i, svgoConfig));
-  processed = await Promise.all(processed);
+  // Optimize them with SVGO
+  const optimizePromises = processed.map((i) => optimize(i, svgoConfig));
+  const optimized = await Promise.all(optimizePromises);
 
   // Get the data from the SVGO object
-  processed = processed.map((i) => i.data);
+  processed = optimized.map((i) => {
+    if (i.error) {
+      console.error(i.error);
+      return null;
+    } else {
+      return i.data;
+    }
+  });
 
   var typeClass = type.toLowerCase();
 
@@ -251,7 +261,6 @@ async function bundleHelperJsAsync() {
 }
 
 async function bundleCssIcons() {
-  const cssIcons = require("./src/cssIcons.json");
   const iconData = cssIcons
     .map((i) => (typeof i === "string" ? { name: i } : i))
     .sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -265,7 +274,7 @@ async function bundleCssIcons() {
     throw "Unable to bundle css icons - unable to load some svgs";
   }
 
-  iconCss = iconData
+  const iconCss = iconData
     .map((data, i) => {
       // load the original source file - the optimized versions don't always work quite right
       const svgString = allIconSvgStrings[i];
@@ -294,7 +303,7 @@ async function bundleCssIcons() {
   await fs.writeFile(path.resolve("./build/icons.css"), cssFile, "utf8");
 
   // create the preview html file now
-  iconHtml = iconData
+  let iconHtml = iconData
     .map((i) => {
       return `<div>
     ${i.name}
