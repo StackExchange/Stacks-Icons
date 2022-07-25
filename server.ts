@@ -209,6 +209,7 @@ function writeIndex() {
 
   concat(
     [
+      path.join(__dirname, "/src/js/global.d.ts"),
       path.join(__dirname, "/build/icons.d.ts"),
       path.join(__dirname, "/build/spots.d.ts"),
     ],
