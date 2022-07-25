@@ -8,7 +8,10 @@
   "module": "build/index.esm.js",
   "types": "build/index.d.ts",
   "exports": {
-    ".": "./build/index.esm.js",
+    ".": {
+      "require": "./build/index.umd.js",
+      "default": "./build/index.esm.js"
+    },
     "./icons": "./build/icons.js",
     "./spots": "./build/spots.js"
   },
