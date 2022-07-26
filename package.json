@@ -13,7 +13,9 @@
       "default": "./build/index.esm.js"
     },
     "./icons": "./build/icons.js",
-    "./spots": "./build/spots.js"
+    "./spots": "./build/spots.js",
+    "./src/Icon/*": "./src/Icon/*",
+    "./src/Spot/*": "./src/Spot/*"
   },
   "scripts": {
     "start": "ts-node ./server.ts",
