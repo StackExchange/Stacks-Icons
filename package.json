@@ -17,6 +17,10 @@
     "./src/Icon/*": "./src/Icon/*",
     "./src/Spot/*": "./src/Spot/*"
   },
+  "files": [
+    "build/**/*",
+    "src/**/*"
+  ],
   "scripts": {
     "start": "ts-node ./server.ts",
     "prepublishOnly": "npm start"
