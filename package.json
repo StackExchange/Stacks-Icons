@@ -26,7 +26,7 @@
     "prepublishOnly": "npm start"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.3",
+    "@rollup/plugin-typescript": "^8.3.4",
     "@types/svgo": "^2.6.3",
     "concat": "^1.0.3",
     "del": "^6.1.1",
