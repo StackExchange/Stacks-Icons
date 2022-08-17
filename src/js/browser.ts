@@ -7,6 +7,6 @@ import { browserHelper } from "./helpers";
 export { Icons, Spots, browserHelper };
 
 // automatically run if in the browser and not being imported
-if (global && global.document && typeof exports !== "object") {
+if (window && window.document && typeof exports !== "object") {
   browserHelper(Icons, Spots);
 }
