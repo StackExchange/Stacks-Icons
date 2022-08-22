@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
-    "@types/svgo": "^2.6.3",
+    "@types/svgo": "^2.6.4",
     "concat": "^1.0.3",
     "del": "^6.1.1",
     "mini-svg-data-uri": "^1.4.4",
