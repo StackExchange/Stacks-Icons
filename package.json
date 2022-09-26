@@ -26,15 +26,15 @@
     "prepublishOnly": "npm start"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.3",
-    "@types/svgo": "^2.6.3",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@types/svgo": "^2.6.4",
     "concat": "^1.0.3",
     "del": "^6.1.1",
     "mini-svg-data-uri": "^1.4.4",
-    "rollup": "^2.77.0",
+    "rollup": "^2.79.1",
     "svgo": "^2.8.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.3"
   }
 }
