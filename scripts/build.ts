@@ -149,28 +149,42 @@ async function processSvgFilesAsync(type: OutputType) {
 
 function writeRazor(icons: string[], type: OutputType) {
   // Output the Razor helper
-  const csFile = path.build("Helper" + type + "s.cs");
+  const csFile = path.root(
+    "nuget/generated/Helper" + type + "s.g.cs"
+  );
   let imagePath = "";
+  const isSpot = type === "Spot";
 
-  if (type === "Spot") {
+  if (isSpot) {
     imagePath = 'folder: "../stacks-spots"';
   }
 
-  const csOutput = icons
+  const iconsOutput = icons
     .map(
-      (i) => `public static SvgImage ${i} { get; } = GetImage(${imagePath});`
+      (i) =>
+        `    public static SvgImage ${i} { get; } = GetImage(${imagePath});`
     )
     .join("\n");
+
+  const csOutput = `namespace StackExchange.StacksIcons;
+${isSpot ? "public static partial class Svg {" : ""}
+public static partial class ${isSpot ? "Spot" : "Svg"}
+{
+${iconsOutput}
+}
+${isSpot ? "}" : ""}`;
 
   return fs.writeFile(csFile, csOutput, "utf8");
 }
 
 function writeEnums(icons: string[], type: OutputType) {
   // Output enums file
-  const enumsFile = path.build(type + "s.cs");
-  let enumsOutput = "public enum Icons\n{\n";
-  enumsOutput += icons.map((i) => `    ${i},`).join("\n");
-  enumsOutput += "\n}";
+  const enumsFile = path.root("nuget/generated/" + type + "s.g.cs");
+  const enumsOutput = `namespace StackExchange.StacksIcons;
+public enum Stacks${type}
+{
+${icons.map((i) => `    ${i},`).join("\n")}
+}`;
 
   return fs.writeFile(enumsFile, enumsOutput, "utf8");
 }

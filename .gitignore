@@ -16,3 +16,6 @@ src/Spot
 
 # don't check in environmental variables / secrets
 .env
+nuget/obj
+nuget/bin
+nuget/generated

@@ -25,7 +25,9 @@
   "scripts": {
     "start": "npm run build",
     "build": "ts-node --esm ./scripts/build.ts",
-    "prepublishOnly": "npm start"
+    "build:nuget": "cd nuget && dotnet pack",
+    "prepublishOnly": "npm start",
+    "publish:nuget": "echo 'Not implemented'"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
