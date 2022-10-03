@@ -23,7 +23,8 @@
   ],
   "scripts": {
     "start": "ts-node ./server.ts",
-    "prepublishOnly": "npm start"
+    "prepublishOnly": "npm start",
+    "fetch": "ts-node ./scr/fetchFigmaComponents.ts"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
@@ -36,5 +37,8 @@
     "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
     "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }

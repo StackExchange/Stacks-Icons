@@ -1,8 +1,5 @@
 # Icons
 
-<img width="659" alt="Icons" src="https://user-images.githubusercontent.com/1369864/57243772-84aeca00-6ffc-11e9-96d8-208315e070e8.png">
-
-
 ## Introduction
 
 This repo provides authoring tools for building Stack Overflow’s shared icon library. Here’s our general workflow:
