@@ -54,7 +54,7 @@ export default async () => {
     const url = urls.data.images[node_id]
     const location = `./src/${name}.svg`
 
-    console.log(`👀 Fetching: '${name}' (${url})`)
+    console.log(`💾 '${name}' (${url})`)
     
     queue.push(
       axios
@@ -63,9 +63,5 @@ export default async () => {
     )
   }
 
-  Promise.all(queue)
-    .then(() => `✅ Fetched ${components.length} icons from Figma!`)
-    .catch(err => {
-      throw err
-    })
+  return Promise.all(queue).then(() => components)
 }

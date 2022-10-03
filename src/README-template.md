@@ -2,11 +2,12 @@
 
 ## Introduction
 
-This repo provides authoring tools for building Stack Overflow’s shared icon library. Here’s our general workflow:
+This repo provides authoring tools for building Stack Overflow’s [shared icon library](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM/Icons?node-id=0%3A1). Here’s our general workflow:
 
-1. Open the [Figma document](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM/Icons?node-id=0%3A1) to modify an existing icon, or add a new one. Pay close attention to the name of the newly-added artboard. This will determine your SVG’s filename.
-2. Export each artboard / component to the `src` directory. Since the artboards are prefixed with `Icon`, the final output directory will be `src/Icon`.
-3. Open this repo’s directory in Terminal, and type `npm start`. This will churn through the exported SVGs and build optimized SVGs in the `build/lib` directory. Some manifest files are included in `build` as well.
+1. Get a [Figma personal access token](https://www.figma.com/developers/api#access-tokens).
+3. Open this repo’s directory in Terminal, and type ` FIGMA_ACCESS_TOKEN=<TOKEN> npm start`.
+
+This will download any components from the Figma file as SVGs and build optimized SVGs ([using SVGO](./src/svgo-congig.ts)) in the `build/lib` directory. Some manifest files are included in `build` as well.
 
 ## Installing dependencies
 
@@ -78,3 +79,5 @@ console.log(Icons.FaceMindBlown);
 
 // Returns <svg>...</svg>
 ```
+
+## Manifest
