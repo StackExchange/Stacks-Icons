@@ -10,9 +10,15 @@ import cssIcons from "./src/cssIcons";
 import svgoConfig from "./src/svgo-config";
 import rollupTypescript from "@rollup/plugin-typescript";
 
+import fetchFromFigma from './src/fetchFigmaComponents'
+
 async function cleanBuildDirectoryAsync() {
   // Clear the existing SVGs in build/lib
   await del(path.join(__dirname, "/build/**"));
+
+  // Clear the downloads from figma
+  await del(path.join(__dirname, "/src/Icon"));
+  await del(path.join(__dirname, "/src/Spot"));
 }
 
 type OutputType = "Spot" | "Icon";
@@ -348,6 +354,19 @@ async function bundleCssIcons() {
     console.log(error);
   }
 
+  try {
+    // ensure the download directory is created
+    await fs.mkdir(path.join(__dirname, "/src/Icon"), { recursive: true });
+    await fs.mkdir(path.join(__dirname, "/src/Spot"), { recursive: true });
+
+    await fetchFromFigma();
+  } catch (error) {
+    console.log(error);
+  }
+
+  // Fetch the raw svgs from figma
+  await fetchFromFigma()
+  
   try {
     let iconCount = await buildSvgSetAsync("Icon");
     let spotCount = await buildSvgSetAsync("Spot");

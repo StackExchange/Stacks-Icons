@@ -8,3 +8,7 @@
 
 node_modules
 build/**/*
+
+# files we download from figma in src/fetchFigmaComponents
+src/Icon
+src/Spot

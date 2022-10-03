@@ -23,8 +23,7 @@
   ],
   "scripts": {
     "start": "ts-node ./server.ts",
-    "prepublishOnly": "npm start",
-    "fetch": "ts-node ./scr/fetchFigmaComponents.ts"
+    "prepublishOnly": "npm start"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.5.0",
