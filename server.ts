@@ -10,15 +10,7 @@ import cssIcons from "./src/cssIcons";
 import svgoConfig from "./src/svgo-config";
 import rollupTypescript from "@rollup/plugin-typescript";
 
-import fetchFromFigma from './src/fetchFigmaComponents'
-
-interface FigmaComponent {
-  name: string,
-  node_id: string,
-  thumbnail_url: string,
-  created_at: string,
-  updated_at: string,
-};
+import { fetchFromFigma, FigmaComponent } from "./src/fetchFigmaComponents";
 
 async function cleanBuildDirectoryAsync() {
   // Clear the existing SVGs in build/lib
@@ -30,14 +22,6 @@ async function cleanBuildDirectoryAsync() {
 }
 
 type OutputType = "Spot" | "Icon";
-
-interface FigmaComponent {
-  name: string,
-  node_id: string,
-  thumbnail_url: string,
-  created_at: string,
-  updated_at: string,
-};
 
 /** Optimizes svg files using svgo then writes them to build/lib */
 async function processSvgFilesAsync(
@@ -221,7 +205,7 @@ function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
 function writeReadme(figmaComponents: FigmaComponent[]) {
   // Output the Readme manifest
   const mdFile = path.join(__dirname, "/build/manifest.md");
-  
+
   let mdOutput = `| Preview | Name | Created | Updated |\n`;
   mdOutput += `| --- | --- | --- | --- |\n`;
 
@@ -231,7 +215,7 @@ function writeReadme(figmaComponents: FigmaComponent[]) {
       if (a.name > b.name) return 1;
       return 0;
     })
-    .forEach(c => {
+    .forEach((c) => {
       mdOutput += `| <img src="${c.thumbnail_url}" style="max-width:100%" /> | ${c.name} | ${c.created_at} | ${c.updated_at} |\n`;
     });
 
@@ -240,17 +224,23 @@ function writeReadme(figmaComponents: FigmaComponent[]) {
 
 function writeManifests() {
   // Output the HTML manifest
-  concat([
-    path.join(__dirname, "/build/icons.html"),
-    path.join(__dirname, "/build/spots.html"),
-    path.join(__dirname, "/build/cssIcons.html"),
-  ], path.join(__dirname, "/build/index.html"));
+  concat(
+    [
+      path.join(__dirname, "/build/icons.html"),
+      path.join(__dirname, "/build/spots.html"),
+      path.join(__dirname, "/build/cssIcons.html"),
+    ],
+    path.join(__dirname, "/build/index.html")
+  );
 
   // Output the Readme
-  concat([
-    path.join(__dirname, "/src/README-template.md"),
-    path.join(__dirname, "/build/manifest.md"),
-  ], path.join(__dirname, "/README.md"));
+  concat(
+    [
+      path.join(__dirname, "/src/README-template.md"),
+      path.join(__dirname, "/build/manifest.md"),
+    ],
+    path.join(__dirname, "/README.md")
+  );
 
   concat(
     [
@@ -403,7 +393,7 @@ async function bundleCssIcons() {
   } catch (error) {
     console.log(error);
   }
-  
+
   try {
     let iconCount = await buildSvgSetAsync("Icon");
     let spotCount = await buildSvgSetAsync("Spot");
