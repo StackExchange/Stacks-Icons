@@ -22,7 +22,8 @@
     "src/**/*"
   ],
   "scripts": {
-    "start": "ts-node ./server.ts",
+    "start": "npm run build",
+    "build": "ts-node ./server.ts",
     "prepublishOnly": "npm start"
   },
   "devDependencies": {
