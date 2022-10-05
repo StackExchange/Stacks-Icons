@@ -1,15 +1,7 @@
 import axios from "axios";
-import fs from "fs";
-
-// https://www.figma.com/developers/api
-const fetch = axios.create({
-  baseURL: "https://api.figma.com/v1",
-  headers: { "X-Figma-Token": process.env["FIGMA_ACCESS_TOKEN"]! },
-});
-
-// Derived from the file url of the Stacks icons:
-// https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM
-const key = "NxAqQAi9i5XsrZSm1WYj6tsM";
+import fs from "fs/promises";
+import { createHash } from "node:crypto";
+import { definitions, FILE_KEY } from "./definitions";
 
 // https://www.figma.com/developers/api#get-files-endpoint
 export interface FigmaComponent {
@@ -21,44 +13,109 @@ export interface FigmaComponent {
 }
 
 export const fetchFromFigma = async () => {
+  // https://www.figma.com/developers/api
+  const fetch = axios.create({
+    baseURL: "https://api.figma.com/v1",
+    headers: { "X-Figma-Token": process.env["FIGMA_ACCESS_TOKEN"]! },
+  });
+
   // Get the Stacks icon file
-  const stacksFile = await fetch.get(`/files/${key}/components`);
+  const stacksFile = await fetch.get(`/files/${FILE_KEY}/components`);
 
   // Full returned components list
   const components: FigmaComponent[] = stacksFile.data.meta.components;
 
-  // Create an array of their nodes
-  // ['2:18', '7938:0', ...]
-  const componentIds = components.map((c) => c.node_id);
-
-  // Get the component name by node_id
-  // { "NODE_ID": "NAME", ... }
+  // "2:18,7938:0,...""
+  let componentIds = "";
+  // mapping of node_id to component name
   let names: Record<string, string> = {};
-  components.forEach((c) => (names[c.node_id] = c.name));
+
+  for (const component of components) {
+    const name = component.name;
+    const nodeId = component.node_id;
+
+    // only fetch the images that are in the definitions file
+    if (!(name in definitions)) {
+      continue;
+    }
+
+    componentIds += nodeId + ",";
+    names[nodeId] = component.name;
+  }
 
   // Returns a object of urls
   // https://www.figma.com/developers/api#get-images-endpoint
   // { "images": { "NODE_ID": "AWS URL", ... } }
-  const urls = await fetch.get(`/images/${key}`, {
-    params: { format: "svg", ids: componentIds.join(",") },
+  const urls = await fetch.get(`/images/${FILE_KEY}`, {
+    params: { format: "svg", ids: componentIds.slice(0, -1) },
   });
 
   let queue = [];
+  const incorrectHashes: Record<string, string> = {};
+  const images = Object.entries(urls.data.images as Record<string, string>);
+  console.log(`Attempting to fetch ${images.length} files from Figma...`);
 
   // Loop over the object of images
-  for (let node_id in urls.data.images) {
-    const name = names[node_id];
-    const url = urls.data.images[node_id];
-    const location = `./src/${name}.svg`;
+  for (const entry of images) {
+    const [node_id, url] = entry;
+    const name = names[node_id!];
 
-    console.log(`💾 '${name}' (${url})`);
+    if (!name || !url) {
+      console.error(
+        `Unable to find name or url: name: "${name}", url: "${url}"`
+      );
+      continue;
+    }
+
+    const location = `./src/${name}.svg`;
 
     queue.push(
       axios
-        .get(url, { responseType: "stream" })
-        .then((file) => file.data.pipe(fs.createWriteStream(location)))
+        .get(url)
+        .then((resp) => {
+          const data = resp.data;
+
+          // calculate the hash
+          const hash = createHash("sha256");
+          hash.update(data);
+          const sha256 = hash.digest("base64");
+
+          //console.debug(`💾 '${name}' (${url}) ${sha256}`);
+
+          if (definitions[name] === sha256) {
+            // write to file
+            return fs.writeFile(location, data);
+          } else {
+            incorrectHashes[name] = sha256;
+            // don't crash the process on a failed hash, resolve and error later
+            return Promise.resolve();
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        })
     );
   }
 
-  return Promise.all(queue).then(() => components);
+  // wait for all the files to come back and be written to disk
+  await Promise.all(queue);
+
+  const hashEntries = Object.entries(incorrectHashes).sort((a, b) => {
+    if (a < b) {
+      return -1;
+    }
+
+    if (a > b) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  if (hashEntries.length) {
+    throw `Hash mismatch on ${hashEntries.length} files. Expected hash values:
+    ${hashEntries.reduce((p, [k, v]) => p + `"${k}": "${v}",\n`, "")}`;
+  }
+
+  return components;
 };

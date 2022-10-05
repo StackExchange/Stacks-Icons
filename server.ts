@@ -9,8 +9,12 @@ import packageJson from "./package.json";
 import cssIcons from "./src/cssIcons";
 import svgoConfig from "./src/svgo-config";
 import rollupTypescript from "@rollup/plugin-typescript";
+import * as dotenv from "dotenv";
 
 import { fetchFromFigma, FigmaComponent } from "./src/fetchFigmaComponents";
+
+// load environmental variables from the .env file
+dotenv.config();
 
 async function cleanBuildDirectoryAsync() {
   // Clear the existing SVGs in build/lib
@@ -19,6 +23,11 @@ async function cleanBuildDirectoryAsync() {
   // Clear the downloads from figma
   await del(path.join(__dirname, "/src/Icon"));
   await del(path.join(__dirname, "/src/Spot"));
+
+  // Recreate the empty build folder
+  await fs.mkdir(path.join(__dirname, "/build/"), {
+    recursive: true,
+  });
 }
 
 type OutputType = "Spot" | "Icon";
@@ -383,15 +392,16 @@ async function bundleCssIcons() {
     console.log(error);
   }
 
-  try {
-    // ensure the download directory is created
-    await fs.mkdir(path.join(__dirname, "/src/Icon"), { recursive: true });
-    await fs.mkdir(path.join(__dirname, "/src/Spot"), { recursive: true });
+  // ensure the download directory is created
+  await fs.mkdir(path.join(__dirname, "/src/Icon"), { recursive: true });
+  await fs.mkdir(path.join(__dirname, "/src/Spot"), { recursive: true });
 
+  try {
     const components = await fetchFromFigma();
     writeReadme(components);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return; //can't continue without the icons
   }
 
   try {

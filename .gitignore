@@ -12,3 +12,6 @@ build/**/*
 # files we download from figma in src/fetchFigmaComponents
 src/Icon
 src/Spot
+
+# don't check in environmental variables / secrets
+.env

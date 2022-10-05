@@ -5,7 +5,7 @@
 This repo provides authoring tools for building Stack Overflow’s [shared icon library](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM/Icons?node-id=0%3A1). Here’s our general workflow:
 
 1. Get a [Figma personal access token](https://www.figma.com/developers/api#access-tokens).
-3. Open this repo’s directory in Terminal, and type ` FIGMA_ACCESS_TOKEN=<TOKEN> npm start`.
+2. Open this repo’s directory in Terminal, and type ` FIGMA_ACCESS_TOKEN=<TOKEN> npm start`.
 
 This will download any components from the Figma file as SVGs and build optimized SVGs ([using SVGO](./src/svgo-congig.ts)) in the `build/lib` directory. Some manifest files are included in `build` as well.
 
@@ -36,10 +36,11 @@ In certain cases where adding the raw svg markup to your html would cause bloat 
 ```
 
 You can add support for more CSS icons my editing the `src/cssIcons.json` file. Supported formats:
-* the name of the icon as a string (e.g. `"Bold"`)
-* an object with the following properties:
-  * `name` - the name of the icon (e.g. `"Bold"`)
-  * `css` - arbitrary css to add to the icon class (e.g. `"width: 14px; height: 14px;"` )
+
+- the name of the icon as a string (e.g. `"Bold"`)
+- an object with the following properties:
+  - `name` - the name of the icon (e.g. `"Bold"`)
+  - `css` - arbitrary css to add to the icon class (e.g. `"width: 14px; height: 14px;"` )
 
 ## Using the front-end helper for prototyping
 
@@ -78,6 +79,20 @@ import Icons from "stacks-icons";
 console.log(Icons.FaceMindBlown);
 
 // Returns <svg>...</svg>
+```
+
+### Developing locally
+
+First, you'll need a [Figma personal access token](https://www.figma.com/developers/api#access-tokens). Once you have that, place it in a `.env` file in the root of the repo:
+
+```env
+FIGMA_ACCESS_TOKEN="your_access_token_here"
+```
+
+Run the build locally via:
+
+```sh
+npm run build
 ```
 
 ## Manifest
