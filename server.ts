@@ -1,15 +1,15 @@
+import rollupTypescript from "@rollup/plugin-typescript";
 import concat from "concat";
 import del from "del";
+import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import path from "path";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
 import packageJson from "./package.json";
-import cssIcons from "./src/cssIcons";
+import { cssIcons } from "./src/definitions";
 import svgoConfig from "./src/svgo-config";
-import rollupTypescript from "@rollup/plugin-typescript";
-import * as dotenv from "dotenv";
 
 import { fetchFromFigma, FigmaComponent } from "./src/fetchFigmaComponents";
 

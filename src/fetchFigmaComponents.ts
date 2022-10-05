@@ -1,7 +1,7 @@
 import axios from "axios";
 import fs from "fs/promises";
 import { createHash } from "node:crypto";
-import { definitions, FILE_KEY } from "./definitions";
+import { definitions, FIGMA_FILE_KEY } from "./definitions";
 
 // https://www.figma.com/developers/api#get-files-endpoint
 export interface FigmaComponent {
@@ -20,7 +20,7 @@ export const fetchFromFigma = async () => {
   });
 
   // Get the Stacks icon file
-  const stacksFile = await fetch.get(`/files/${FILE_KEY}/components`);
+  const stacksFile = await fetch.get(`/files/${FIGMA_FILE_KEY}/components`);
 
   // Full returned components list
   const components: FigmaComponent[] = stacksFile.data.meta.components;
@@ -46,7 +46,7 @@ export const fetchFromFigma = async () => {
   // Returns a object of urls
   // https://www.figma.com/developers/api#get-images-endpoint
   // { "images": { "NODE_ID": "AWS URL", ... } }
-  const urls = await fetch.get(`/images/${FILE_KEY}`, {
+  const urls = await fetch.get(`/images/${FIGMA_FILE_KEY}`, {
     params: { format: "svg", ids: componentIds.slice(0, -1) },
   });
 

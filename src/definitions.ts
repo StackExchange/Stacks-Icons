@@ -1,6 +1,40 @@
+/** Data for the icons we want to generate CSS icon variants for */
+export const cssIcons: (string | { name: string; css: string })[] = [
+  "Bold",
+  "Header",
+  "Italic",
+  "Code",
+  "Strikethrough",
+  "Link",
+  { name: "Quote", css: "width: 17px;" },
+  "Codeblock",
+  "Image",
+  "Table",
+  "OrderedList",
+  "UnorderedList",
+  "HorizontalRule",
+  "Undo",
+  "Refresh",
+  "Help",
+  "Play",
+  "Share",
+  { name: "PencilSm", css: "width: 14px;\n    height: 14px;" },
+  { name: "TrashSm", css: "width: 14px;\n    height: 14px;" },
+  { name: "Markdown", css: "width: 21px;" },
+  "Achievements",
+  "FaceMindBlown",
+  "Wave",
+  "Fire",
+  "Heart",
+  "Clap",
+  "FaceSmile",
+  "Tada",
+  "SmileyAdd",
+];
+
 // Derived from the file url of the Stacks icons:
 // https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM
-export const FILE_KEY = "NxAqQAi9i5XsrZSm1WYj6tsM";
+export const FIGMA_FILE_KEY = "NxAqQAi9i5XsrZSm1WYj6tsM";
 
 /*
  * If you want to add a new icon/spot into this library from Figma,
@@ -8,7 +42,7 @@ export const FILE_KEY = "NxAqQAi9i5XsrZSm1WYj6tsM";
  * If the hash does not match a downloaded file, the correct hash will be printed.
  */
 
-const iconDefinitions: Record<string, string> = {
+const figmaIconDefinitions: Record<string, string> = {
   "Icon/Accessibility": "ksqXzQjdToAghXkIQ75PE/8qRdUho8Wtux1FTo+mgug=",
   "Icon/Achievements": "F2wVcMWvjoqyKSOVULb+MwNg4MokkymkE1sfgp67s0c=",
   "Icon/AchievementsLg": "ItmSy5+QOlbo29cKcFdcFEyO3b7B1ZkJV86psSJarUk=",
@@ -333,7 +367,7 @@ const iconDefinitions: Record<string, string> = {
   "Icon/Yandex": "YA3MiSPQPDhcidp26Dchbqt+EmAE77CREi6gihQS68I=",
 };
 
-const spotDefinitions: Record<string, string> = {
+const figmaSpotDefinitions: Record<string, string> = {
   "Spot/Ads": "AEZZRK3MQhByGmxGa5k0BAnonlduH4SFhnxES4zZqUs=",
   "Spot/AdsLg": "Yr968TWcsVeUSkKBvwIE0rYMGWStbmGv25+zkuflng4=",
   "Spot/AdsXL": "rmx0B6BTh3TGahe1PpTtYAKRQcwr43GCO6kKEDoB+lA=",
@@ -551,6 +585,6 @@ const spotDefinitions: Record<string, string> = {
 };
 
 export const definitions = {
-  ...iconDefinitions,
-  ...spotDefinitions,
+  ...figmaIconDefinitions,
+  ...figmaSpotDefinitions,
 };
