@@ -95,4 +95,25 @@ Run the build locally via:
 npm run build
 ```
 
+### Adding/updating icons/spots from Figma
+
+In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `src/definitions.ts`:
+
+```ts
+const figmaIconDefinitions = {
+  // ...
+  "Icon/IconName": "",
+  // ...
+};
+```
+
+When adding new entries, please ensure that all entries are in alphabetical order for ease of reference. The initial value is ok to leave empty. Once you run the first build process, it'll throw an error like the following:
+
+> Hash mismatch on 1 files. Expected hash values:
+> "Icon/Accessibility": "ksqXzQjdToAghXkIQ75PE/8qRdUho8Wtux1FTo+mgug=",
+
+Take this hash value and use it as the value for the previously added entry. Re-run the build process and verify that your new icon is added correctly and has the correct contents.
+
+When updating an existing icon, just update the hash as explained in the previous section.
+
 ## Manifest
