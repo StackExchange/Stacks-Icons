@@ -233,7 +233,7 @@ function writeReadme(figmaComponents: FigmaComponent[]) {
 
 function writeManifests() {
   // Output the HTML manifest
-  concat(
+  const p1 = concat(
     [
       path.join(__dirname, "/build/icons.html"),
       path.join(__dirname, "/build/spots.html"),
@@ -243,7 +243,7 @@ function writeManifests() {
   );
 
   // Output the Readme
-  concat(
+  const p2 = concat(
     [
       path.join(__dirname, "/src/README-template.md"),
       path.join(__dirname, "/build/manifest.md"),
@@ -251,7 +251,7 @@ function writeManifests() {
     path.join(__dirname, "/README.md")
   );
 
-  concat(
+  const p3 = concat(
     [
       path.join(__dirname, "/src/js/global.d.ts"),
       path.join(__dirname, "/build/icons.d.ts"),
@@ -259,6 +259,8 @@ function writeManifests() {
     ],
     path.join(__dirname, "/build/index.d.ts")
   );
+
+  return Promise.all([p1, p2, p3]);
 }
 
 async function buildSvgSetAsync(buildPrefix: OutputType) {
@@ -386,46 +388,33 @@ async function bundleCssIcons() {
 }
 
 (async () => {
-  try {
-    await cleanBuildDirectoryAsync();
-  } catch (error) {
-    console.log(error);
+  if (!process.env["FIGMA_ACCESS_TOKEN"]) {
+    throw `Unable to fetch icons from Figma without an access token;
+Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
   }
+
+  await cleanBuildDirectoryAsync();
 
   // ensure the download directory is created
   await fs.mkdir(path.join(__dirname, "/src/Icon"), { recursive: true });
   await fs.mkdir(path.join(__dirname, "/src/Spot"), { recursive: true });
 
-  try {
-    const components = await fetchFromFigma();
-    writeReadme(components);
-  } catch (error) {
-    console.error(error);
-    return; //can't continue without the icons
-  }
+  const components = await fetchFromFigma();
+  writeReadme(components);
 
-  try {
-    let iconCount = await buildSvgSetAsync("Icon");
-    let spotCount = await buildSvgSetAsync("Spot");
+  let iconCount = await buildSvgSetAsync("Icon");
+  let spotCount = await buildSvgSetAsync("Spot");
 
-    console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`);
-  } catch (error) {
-    console.log(error);
-  }
+  console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`);
 
-  try {
-    await bundleHelperJsAsync();
-    await bundleCssIcons();
+  await bundleHelperJsAsync();
+  await bundleCssIcons();
 
-    console.log(`Successfully built helper JS and css`);
-  } catch (error) {
-    console.log(error);
-  }
+  console.log(`Successfully built helper JS and CSS`);
 
-  try {
-    await writeManifests();
-    console.log(`Successfully built index.html & readme.md`);
-  } catch (error) {
-    console.log(error);
-  }
-})();
+  await writeManifests();
+  console.log(`Successfully built index.html and README.md`);
+})().catch((e) => {
+  console.error("ERROR: " + e);
+  process.exit(1);
+});
