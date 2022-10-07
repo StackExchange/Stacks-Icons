@@ -25,8 +25,7 @@ export const fetchFromFigma = async () => {
   // Full returned components list
   const components: FigmaComponent[] = stacksFile.data.meta.components;
 
-  // "2:18,7938:0,...""
-  let componentIds = "";
+  // {"2:18": "Icon/Foo", "7938:0": "Spot/Bar", ... }
   // mapping of node_id to component name
   let names: Record<string, string> = {};
 
@@ -39,7 +38,6 @@ export const fetchFromFigma = async () => {
       continue;
     }
 
-    componentIds += nodeId + ",";
     names[nodeId] = component.name;
   }
 
@@ -47,7 +45,7 @@ export const fetchFromFigma = async () => {
   // https://www.figma.com/developers/api#get-images-endpoint
   // { "images": { "NODE_ID": "AWS URL", ... } }
   const urls = await fetch.get(`/images/${FIGMA_FILE_KEY}`, {
-    params: { format: "svg", ids: componentIds.slice(0, -1) },
+    params: { format: "svg", ids: Object.keys(names).join(",") },
   });
 
   let queue = [];
