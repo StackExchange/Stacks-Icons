@@ -11,7 +11,7 @@ import packageJson from "./package.json";
 import { cssIcons } from "./src/definitions";
 import svgoConfig from "./src/svgo-config";
 
-import { fetchFromFigma, FigmaComponent } from "./src/fetchFigmaComponents";
+import { fetchFromFigma, FigmaComponent } from "./src/fetch-figma-components";
 
 // load environmental variables from the .env file
 dotenv.config();
