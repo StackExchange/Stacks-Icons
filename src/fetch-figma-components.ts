@@ -20,6 +20,7 @@ export const fetchFromFigma = async () => {
   });
 
   // Get the Stacks icon file
+  console.log(`Fetching all components from Figma (${FIGMA_FILE_KEY})...`);
   const stacksFile = await fetch.get(`/files/${FIGMA_FILE_KEY}/components`);
 
   // Full returned components list
@@ -35,6 +36,7 @@ export const fetchFromFigma = async () => {
 
     // only fetch the images that are in the definitions file
     if (!(name in definitions)) {
+      console.warn(`WARNING: ${name} found in Figma, but not in definitions`);
       continue;
     }
 

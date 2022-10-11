@@ -69,7 +69,7 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/ArrowLeft": "0x4zMu1JwbuSkaHv1cTBe1SyHKh65W6Rvav37H6Epes=",
   "Icon/ArrowLeftAlt": "maPbQUXAPfNhZpQXl6q/W3jKYspyJd8RRoNwzhcEOfA=",
   "Icon/ArrowLeftAltSm": "0grxwDpqrJiv3GVSxB/wIlXv2e4OC0hPzJs2h+fwbb8=",
-  //"Icon/ArrowLeftSm": "qVWx7QWVcIyNc8VYI2gVR2hOaExjGD2a5+28wR7Z6uw=",
+  "Icon/ArrowLeftSm": "qVWx7QWVcIyNc8VYI2gVR2hOaExjGD2a5+28wR7Z6uw=",
   "Icon/ArrowRight": "lRuwL1SuXcXXT+ggzGvGH77Zi3AsndUaZGi0vYqR9qA=",
   "Icon/ArrowRightAlt": "Bw3wF3j//23voTqfO6qtbZlOCro3Of1NDdaHjOIIQtQ=",
   "Icon/ArrowRightAltSm": "LljrIAKhr7HBXyXIlhwDUKR8qILzW0HosECzCgbu6v4=",
@@ -132,7 +132,7 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/EyeOff": "ifxMY99K42bL1BO1b191DL1YRbj5PDp5NXnmvx0vr1o=",
   "Icon/EyeOffSm": "6zEXOvBQb9HZ5uYNH3Z8i2nMGrHuUbRMhAAFM+swbn8=",
   "Icon/EyeSm": "4HHULPaWcYecpIW4rajP1FgDfWc0B8z+jHBDHVsl+Aw=",
-  //"Icon/Eyes": "dxDlNk6CX2iW8IArRTI9rJhmBW6bsIHFYmOhM6Xruxw=",
+  "Icon/Eyes": "dxDlNk6CX2iW8IArRTI9rJhmBW6bsIHFYmOhM6Xruxw=",
   "Icon/FaceFrown": "Mfi94nqYiqof1lbcLsEpdM8fkIuFqPIagIwGP42g2rk=",
   "Icon/FaceJoy": "jugNubsekpB51KeOOpg8+B7F6FjrZu5FVAJm5bGi0OE=",
   "Icon/FaceMindBlown": "dyLhYyKziorz7zJeiyw85LPACNfATkBC1SD2+RbHK1Y=",
@@ -142,7 +142,7 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/FaceSmile": "0rK1apC3MNe7/s3dV3gA91BSD+6FC6Qw9BwDUkMEZtU=",
   "Icon/Facebook": "sBGHh6n/u7aKF2UJj0sHiecd1a1kWvmK9MRqJncADos=",
   "Icon/Female": "aHAouHjWB6TKEUA764ZbTBzPdUVTEIia/k3axwZOWL4=",
-  //"Icon/Figma": "MT/hFXE9xIaEAyTAZphz0r6Zx/580/I9Rmt6kRoI14Q=",
+  "Icon/Figma": "MT/hFXE9xIaEAyTAZphz0r6Zx/580/I9Rmt6kRoI14Q=",
   "Icon/Filter": "OrYpJGW/CaR+QaH4y176ssqKEelAG61xUuH9tL7rrRo=",
   "Icon/Fire": "8uc84dKc58W4lrg1w/f7Gcki6NL6MgvFgWKktzgRMp0=",
   "Icon/FireSm": "nWjNmRRsALwRwNeWv1dDmRsgNMjcCJ/Ervoj+6CqCFM=",
@@ -244,7 +244,7 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/Merge": "5xpK7jJNZD/hVQVJxShfX77OHmdCM0TXWmr2TLDq/1w=",
   "Icon/Message": "vExuJhZuapEx0DAG4D0Ydwb0FH4qM+zZgiDXudO9KiI=",
   "Icon/MessageCompose": "Aj0Bt+K1L1Pkt2SFeW2ZuhUBOG80ySTo96K4iq/BDgE=",
-  //"Icon/Meta": "HMEmrhID0lADo/m8yBzzzKOP7tMN+UbWh+hHtRI9Q38=",
+  //"Icon/Meta": "HMEmrhID0lADo/m8yBzzzKOP7tMN+UbWh+hHtRI9Q38=", // TODO EXTRA
   "Icon/Microsoft": "8HWnJlz/vM4svKPN/7UvvLRVGLpmFKDS704Hwan389k=",
   "Icon/MicrosoftTeams": "31pOHmUUyQL2XHzKgcCysG/uqscxQtRyk0QzUVE+Cp4=",
   "Icon/Migrate": "d7VY13m9PnvRMooOB46TLH0BTiFXYumq8Ny9FirmFj8=",
@@ -270,9 +270,9 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/PeopleSm": "kTB0HtYRMhpbX8tEwmcHqipptvSu4evayTd4VX/3zDg=",
   "Icon/Person": "uzv1b60rDWZfvM9fk0PBmS0Bx1PKwxmJTq/T/ypvFP8=",
   "Icon/Phone": "XOflOD6eQrhFJpfo7znkbs9N+9TzQZgheuZ8vaf+HXQ=",
-  "Icon/Placeholder": "", // TODO MISSING
-  "Icon/PlaceholderLg": "", // TODO MISSING
-  "Icon/PlaceholderSm": "", // TODO MISSING
+  "Icon/Placeholder": "BKt5bgWn5WYiV+xFX3wnCHiYF3sisNNUWO1HxDxi2XI=",
+  "Icon/PlaceholderLg": "2/kfg8fyNkVcW1oH6+AgX2WPVaQ24k+0/iJmRAgAVBU=",
+  "Icon/PlaceholderSm": "w4DQh1mDKQI6qy2vNfOhfzBY2u4BTFhamWDaYx1OCWE=",
   "Icon/Play": "15vT3LB0tthcwLSf44+np4oRyrfMHUUT1zHVvstOFKo=",
   "Icon/Plus": "eDi5Qcxpxe6omY6os4ErYaRGff6716fTTJazbB24nFk=",
   "Icon/PlusOne": "G7xz69JpP5VrvJBXNkZz/035iJNSFfkeql5sTkZNuHY=",
@@ -401,9 +401,9 @@ const figmaSpotDefinitions: Record<string, string> = {
   "Spot/BellLg": "3fpgBiViL4JZsSXcidIskR3WgNX5OgUJ4Rv9RNz3Aeo=",
   "Spot/BellXL": "dXBvw/pctH8/c44YEvXncjNtYdXbtCs4m5KkN8X8gas=",
   "Spot/Bookmark": "mpKxHLlo/Mc4tRrnqCE45WxOt7853QoSgXdmtu33Q20=",
-  "Spot/BookmarkAdd": "", // TODO MISSING
-  "Spot/BookmarkAddLg": "", // TODO MISSING
-  "Spot/BookmarkAddXL": "", // TODO MISSING
+  "Spot/BookmarkAdd": "0XsHeYDrELhUSZlwDF8v89wtcRuXjKoPSTmj15J3Hqk=",
+  "Spot/BookmarkAddLg": "O/G8PT4hcquRSuCiGEjIyejR2YT6223ifuXC/7i5XVc=",
+  "Spot/BookmarkAddXL": "uw7/GWJu/x1AWKzvhQuSIoqHFsMLdfRb1fND2hK15SA=",
   "Spot/BookmarkLg": "IqRqIw7I8VDsS4HKMFj7EYcr6kLTS5qcOn6tly1IvB8=",
   "Spot/BookmarkXL": "wvN6TJAhVLmXidTfcDqmsKi8E0gFWkQaBYEQfUKf0Gs=",
   "Spot/Bullhorn": "XYk2xi6mkY1Bm3afbWzRtQARx5SGrbDUQp+HyGMr+Vs=",
@@ -519,9 +519,9 @@ const figmaSpotDefinitions: Record<string, string> = {
   "Spot/PersonVerified": "TrncHYflH6bw0RHL3M4QhMI/FLr4BSPxp3bkAh8IHOg=",
   "Spot/PersonVerifiedLg": "bpmWXLwOeV2Lu94CybUVFww+qJr2XKbBs2zncWYhWf8=",
   "Spot/PersonVerifiedXL": "1wYFvc5BB10bro9283pgBlf82FuQwynHzixx3reJr7M=",
-  "Spot/Placeholder": "", // TODO MISSING
-  "Spot/PlaceholderLg": "", // TODO MISSING
-  "Spot/PlaceholderXL": "", // TODO MISSING
+  "Spot/Placeholder": "2mc3MumSqct6MpTZqwD5kKrHi7zEsuv2JWTywr4TdR0=",
+  "Spot/PlaceholderLg": "qbtk0ZKXUM8GKWMb8ou9WpTWwdfWMd5jnddue2Ws81Q=",
+  "Spot/PlaceholderXL": "+aIn6bdl5Kn0SaGWHdOEGYaI0Vlv3vhS1eFXU5KgDsk=",
   "Spot/Play": "CM/JF8+WY3Yl1MQNZH3bfC3cwhXrkdcO4BqDDfXu4A0=",
   "Spot/PlayLg": "zoupQ3G6nNepGDMjZepZzzO00Ti4lwk2IGigJRVWjJE=",
   "Spot/PlayXL": "8rCcGckzVMPik4tqbmmrpwm7ZcGWr1YUbS5wEl6rOp8=",
@@ -546,9 +546,6 @@ const figmaSpotDefinitions: Record<string, string> = {
   "Spot/Rocket": "qgyffr3loB80q/5sUFLJkGeIUa8Q56IMRlqbdGz4dwM=",
   "Spot/RocketLg": "PHQkNgFSzyGioHh6qPKLdfVhPQ0HAoadoCFio6oOUio=",
   "Spot/RocketXL": "ozO4Idh2a0TcbSLEfEK4SMZe/djFygEw7BS9Xc+3fJY=",
-  //"Spot/Saves": "0XsHeYDrELhUSZlwDF8v89wtcRuXjKoPSTmj15J3Hqk=",
-  //"Spot/SavesLg": "O/G8PT4hcquRSuCiGEjIyejR2YT6223ifuXC/7i5XVc=",
-  //"Spot/SavesXL": "uw7/GWJu/x1AWKzvhQuSIoqHFsMLdfRb1fND2hK15SA=",
   "Spot/School": "Eerzrhqn1YYO43Sw1bFLGdDu5Iel0hnnW9vOgXfG90c=",
   "Spot/SchoolLg": "o2ee6ROXA4pUzK+hBHuS/IlqTWbZ6pq2kTQ/vkTbklc=",
   "Spot/SchoolXL": "/0DBfaHjxm2XUKgRI3TUlrTIJH0mOfdWkVbSsSwRNSw=",

@@ -17,8 +17,8 @@ import { fetchFromFigma, FigmaComponent } from "./src/fetch-figma-components";
 dotenv.config();
 
 async function cleanBuildDirectoryAsync() {
-  // Clear the existing SVGs in build/lib
-  await del(path.join(__dirname, "/build/**"));
+  // Clear the existing built files
+  await del(path.join(__dirname, "/build/"));
 
   // Clear the downloads from figma
   await del(path.join(__dirname, "/src/Icon"));
