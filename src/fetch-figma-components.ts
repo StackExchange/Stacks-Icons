@@ -43,6 +43,15 @@ export const fetchFromFigma = async () => {
     names[nodeId] = component.name;
   }
 
+  // double check that all definition entries were found in Figma
+  const allRequestedDefs = Object.keys(definitions);
+  const fetchedComponents = Object.values(names);
+  for (const def of allRequestedDefs) {
+    if (!fetchedComponents.includes(def)) {
+      console.warn(`WARNING: ${def} found in definitions, but not in Figma`);
+    }
+  }
+
   // Returns a object of urls
   // https://www.figma.com/developers/api#get-images-endpoint
   // { "images": { "NODE_ID": "AWS URL", ... } }
