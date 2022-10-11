@@ -68,7 +68,7 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/ArrowDownSm": "8K62gN+4kGlCWO0erVUIS6n0wLA15UC115nzXwILhdU=",
   "Icon/ArrowLeft": "0x4zMu1JwbuSkaHv1cTBe1SyHKh65W6Rvav37H6Epes=",
   "Icon/ArrowLeftAlt": "maPbQUXAPfNhZpQXl6q/W3jKYspyJd8RRoNwzhcEOfA=",
-  "Icon/ArrowLeftAltSm": "0grxwDpqrJiv3GVSxB/wIlXv2e4OC0hPzJs2h+fwbb8=",
+  //"Icon/ArrowLeftAltSm": "0grxwDpqrJiv3GVSxB/wIlXv2e4OC0hPzJs2h+fwbb8=", // TODO EXTRA
   "Icon/ArrowLeftSm": "qVWx7QWVcIyNc8VYI2gVR2hOaExjGD2a5+28wR7Z6uw=",
   "Icon/ArrowRight": "lRuwL1SuXcXXT+ggzGvGH77Zi3AsndUaZGi0vYqR9qA=",
   "Icon/ArrowRightAlt": "Bw3wF3j//23voTqfO6qtbZlOCro3Of1NDdaHjOIIQtQ=",
@@ -235,8 +235,8 @@ const figmaIconDefinitions: Record<string, string> = {
   "Icon/LogoWordmarkMd": "7F7hzfcDcUpUtThjmmPHI6Kz0w3VV3uFmeiXiLMcrqk=",
   "Icon/LogoWordmarkSm": "gpbTp3DghxzHaCbJUwDo1iTez7NaHnAN0a1PaTIt6mk=",
   "Icon/Mail": "X65AF65vZ05uWkritOCRsl9fgYjjPqOB7dK/9EyoMf0=",
-  "Icon/MailOpen": "", // TODO MISSING
-  "Icon/MailOpenSm": "", // TODO MISSING
+  "Icon/MailOpen": "oJzz0m2UPOHxl+n8JIAs60EnTv/ysV9kWPZcPyL13PE=",
+  "Icon/MailOpenSm": "YyESVEjuTqd3NUI7lBJHw0LEGcSMWNfMwliJc00ez+M=",
   "Icon/MailSm": "dI3HGJ3sJKRz6quN4VUEvvapMEW/ZdI6jQS1ZkS6VAA=",
   "Icon/Markdown": "IIIKeolHRkcIe6yb62bPvdIWZiIE3f9lsA25QQNU3Bg=",
   "Icon/MarkdownPreview": "Dd4+T1OCD+vzeODYrOrMg34g1mvmm/secUVAta8OmHA=",
