@@ -3,27 +3,28 @@ name: New icon
 about: Adding a new icon to Stacks-Icons
 ---
 
-> Find and replace `\[ICON_NAME\]` with the name of your icon
+> Find and replace `ICON_NAME` with the name of your icon(s)
 
-# New \[ICON_NAME\] icon
+# New ICON_NAME icon(s)
 
-I'm adding a new icon to Stacks-Icons named \[ICON_NAME\]. I've checked all of the following items necessary for merging this PR:
+I'm adding a new icon to Stacks-Icons named **ICON_NAME**. I've checked all of the following items necessary for merging this PR:
 
+- [ ] all icons have been added to the source [Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM)
 - Styles
   - [ ] all icons match the existing style conventions
   - [ ] all icons are aligned _exactly_ to the pixel grid to prevent blurriness
   - [ ] all icons are in monochrome black/gray _or_ in their native colors
   - [ ] all sizes for this icon have a matching color scheme
 - Regular sized icon **required**
-  - [ ] my file is named `\[ICON_NAME\].svg`
+  - [ ] my Figma component is named `Icon/ICON_NAME`
   - [ ] the icon has a height and width of 18x18 pixels
 - Large icon
-  - [ ] my file is named `\[ICON_NAME\]Lg.svg`
+  - [ ] my Figma component is named `Icon/ICON_NAMELg`
   - [ ] the icon has a height and width of 36x36 pixels
 - Small icon
-  - [ ] my file is named `\[ICON_NAME\]Sm.svg`
+  - [ ] my Figma component is named `Icon/ICON_NAMESm`
   - [ ] the icon has a height and width of 14x14 pixels
 - Logos
-  - [ ] my file is named `Logo\[ICON_NAME\].svg`
-  - [ ] if my file is the glyph only, it is named `Logo\[ICON_NAME\]Glyph.svg`
+  - [ ] my Figma component is named `Icon/LogoICON_NAME`
+  - [ ] if my icon is the glyph only, it is named `Icon/LogoIcon/ICON_NAMEGlyph`
   - [ ] I have done my best to match the sizes of existing logos as much as possible
