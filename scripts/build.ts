@@ -9,7 +9,6 @@ import { rollup } from "rollup";
 import { optimize } from "svgo";
 import packageJson from "../package.json";
 import { cssIcons } from "./definitions";
-import svgoConfig from "./svgo-config";
 import { fetchFromFigma, FigmaComponent } from "./fetch-figma-components";
 import { Paths } from "./paths";
 
@@ -50,7 +49,33 @@ async function processSvgFilesAsync(type: OutputType) {
   let processed = await Promise.all(readPromises);
 
   // Optimize them with SVGO
-  const optimizePromises = processed.map((i) => optimize(i, svgoConfig));
+  const optimizePromises = processed.map((i) =>
+    optimize(i, {
+      multipass: true,
+      floatPrecision: 2,
+      plugins: [
+        {
+          name: "preset-default",
+          params: {
+            overrides: {
+              removeViewBox: false,
+              mergePaths: {
+                force: true,
+                noSpaceAfterFlags: true,
+              },
+            },
+          },
+        },
+        "removeXMLNS",
+        {
+          name: "removeAttrs",
+          params: {
+            attrs: "(fill-rule|clip-rule)",
+          },
+        },
+      ],
+    })
+  );
   const optimized = await Promise.all(optimizePromises);
 
   // Get the data from the SVGO object
