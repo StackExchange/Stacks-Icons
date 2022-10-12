@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "start": "npm run build",
-    "build": "ts-node --esm ./scripts/build.ts",
+    "build": "ts-node ./scripts/build.ts",
     "build:nuget": "cd nuget && dotnet pack",
     "prepublishOnly": "npm start",
     "publish:nuget": "echo 'Not implemented'"
