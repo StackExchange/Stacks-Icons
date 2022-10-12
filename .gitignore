@@ -7,7 +7,8 @@
 ._*
 
 node_modules
-build/**/*
+build/
+preview/
 
 # files we download from figma in src/fetchFigmaComponents
 src/Icon

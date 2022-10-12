@@ -4,14 +4,14 @@ import del from "del";
 import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import { Paths } from "./paths";
+import { basename } from "path";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
 import packageJson from "../package.json";
 import { cssIcons } from "./definitions";
 import svgoConfig from "./svgo-config";
 import { fetchFromFigma, FigmaComponent } from "./fetch-figma-components";
-import { basename } from "path";
+import { Paths } from "./paths";
 
 // load environmental variables from the .env file
 dotenv.config();
@@ -21,13 +21,15 @@ const path = new Paths();
 async function cleanBuildDirectoryAsync() {
   // Clear the existing built files
   await del(path.build());
+  await del(path.preview());
 
-  // Clear the downloads from figma
+  // Clear the downloads from Figma
   await del(path.src("Icon"));
   await del(path.src("Spot"));
 
-  // Recreate the empty src and build folders
+  // Recreate the empty build folders
   await fs.mkdir(path.build());
+  await fs.mkdir(path.preview());
 }
 
 type OutputType = "Spot" | "Icon";
@@ -182,7 +184,7 @@ function writeJsModule(iconsObj: Record<string, string>, type: OutputType) {
 
 function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
   // Output the HTML manifest
-  const htmlFile = path.build(type.toLowerCase() + "s.html");
+  const htmlFile = path.preview(type.toLowerCase() + "s.html");
   let htmlOutput = `<h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">${type}s Preview</h2>\n<div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">\n`;
 
   for (let [key, value] of Object.entries(iconsObj)) {
@@ -218,11 +220,11 @@ function writeManifests() {
   // Output the HTML manifest
   const p1 = concat(
     [
-      path.build("icons.html"),
-      path.build("spots.html"),
-      path.build("cssIcons.html"),
+      path.preview("icons.html"),
+      path.preview("spots.html"),
+      path.preview("cssIcons.html"),
     ],
-    path.build("index.html")
+    path.preview("index.html")
   );
 
   // Output the Readme
@@ -357,7 +359,7 @@ async function bundleCssIcons() {
     ${iconHtml}
   </div>`;
 
-  await fs.writeFile(path.build("cssIcons.html"), iconHtml, "utf8"); // TODO
+  await fs.writeFile(path.preview("cssIcons.html"), iconHtml, "utf8"); // TODO
 }
 
 (async () => {
