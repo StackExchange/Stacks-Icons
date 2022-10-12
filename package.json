@@ -4,6 +4,7 @@
   "version": "4.0.0",
   "repository": "https://github.com/StackExchange/Stacks-Icons",
   "license": "MIT",
+  "type": "module",
   "main": "build/index.umd.js",
   "module": "build/index.esm.js",
   "types": "build/index.d.ts",
@@ -23,7 +24,7 @@
   ],
   "scripts": {
     "start": "npm run build",
-    "build": "ts-node ./scripts/build.ts",
+    "build": "ts-node --esm ./scripts/build.ts",
     "prepublishOnly": "npm start"
   },
   "devDependencies": {
@@ -32,7 +33,7 @@
     "axios": "^0.27.2",
     "commander": "^9.4.1",
     "concat": "^1.0.3",
-    "del": "^6.1.1",
+    "del": "^7.0.0",
     "dotenv": "^16.0.3",
     "mini-svg-data-uri": "^1.4.4",
     "rollup": "^2.79.1",

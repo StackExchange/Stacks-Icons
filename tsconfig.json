@@ -26,8 +26,6 @@
   },
   "exclude": ["build/**/*"],
   "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
+    "esm": true
   }
 }

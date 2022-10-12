@@ -1,8 +1,8 @@
 import axios from "axios";
 import fs from "fs/promises";
 import { createHash } from "node:crypto";
-import { Paths } from "./paths";
-import { definitions, FIGMA_FILE_KEY } from "./definitions";
+import { Paths } from "./paths.js";
+import { definitions, FIGMA_FILE_KEY } from "./definitions.js";
 
 const path = new Paths();
 

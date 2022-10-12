@@ -1,4 +1,5 @@
 import path from "path";
+import { fileURLToPath } from "url";
 
 export class Paths {
   private paths: {
@@ -10,7 +11,10 @@ export class Paths {
 
   constructor() {
     // ensure we get the right root directory, no matter the cwd this is run from
-    const root = path.resolve(__dirname, "..");
+    const root = path.resolve(
+      path.dirname(fileURLToPath(import.meta.url)),
+      ".."
+    );
     this.paths = {
       build: path.resolve(root, "build"),
       preview: path.resolve(root, "preview"),

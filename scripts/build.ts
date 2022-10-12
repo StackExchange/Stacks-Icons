@@ -1,17 +1,17 @@
 import rollupTypescript from "@rollup/plugin-typescript";
 import { program } from "commander";
 import concat from "concat";
-import del from "del";
+import { deleteAsync } from "del";
 import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import { basename } from "path";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
-import packageJson from "../package.json";
-import { cssIcons } from "./definitions";
-import { fetchFromFigma } from "./fetch-figma-components";
-import { Paths } from "./paths";
+import packageJson from "../package.json" assert { type: "json" };
+import { cssIcons } from "./definitions.js";
+import { fetchFromFigma } from "./fetch-figma-components.js";
+import { Paths } from "./paths.js";
 
 // load environmental variables from the .env file
 dotenv.config();
@@ -28,13 +28,13 @@ const path = new Paths();
 
 async function cleanBuildDirectoryAsync() {
   // Clear the existing built files
-  await del(path.build());
-  await del(path.preview());
+  await deleteAsync(path.build());
+  await deleteAsync(path.preview());
 
   // Clear the downloads from Figma
   if (!options.cached) {
-    await del(path.src("Icon"));
-    await del(path.src("Spot"));
+    await deleteAsync(path.src("Icon"));
+    await deleteAsync(path.src("Spot"));
   }
 
   // Recreate the empty build folders
