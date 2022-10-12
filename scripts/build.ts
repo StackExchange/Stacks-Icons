@@ -4,64 +4,46 @@ import del from "del";
 import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import path from "path";
+import { Paths } from "./paths";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
-import packageJson from "./package.json";
-import { cssIcons } from "./scripts/definitions";
-import svgoConfig from "./scripts/svgo-config";
-
-import {
-  fetchFromFigma,
-  FigmaComponent,
-} from "./scripts/fetch-figma-components";
+import packageJson from "../package.json";
+import { cssIcons } from "./definitions";
+import svgoConfig from "./svgo-config";
+import { fetchFromFigma, FigmaComponent } from "./fetch-figma-components";
+import { basename } from "path";
 
 // load environmental variables from the .env file
 dotenv.config();
 
+const path = new Paths();
+
 async function cleanBuildDirectoryAsync() {
   // Clear the existing built files
-  await del(path.join(__dirname, "/build/"));
+  await del(path.build());
 
   // Clear the downloads from figma
-  await del(path.join(__dirname, "/src/Icon"));
-  await del(path.join(__dirname, "/src/Spot"));
+  await del(path.src("Icon"));
+  await del(path.src("Spot"));
 
-  // Recreate the empty build folder
-  await fs.mkdir(path.join(__dirname, "/build/Icon"), {
-    recursive: true,
-  });
-  await fs.mkdir(path.join(__dirname, "/build/Spot"), {
-    recursive: true,
-  });
+  // Recreate the empty src and build folders
+  await fs.mkdir(path.build());
 }
 
 type OutputType = "Spot" | "Icon";
 
 /** Optimizes svg files using svgo then writes them to build/lib */
-async function processSvgFilesAsync(
-  srcPath: string,
-  destPath: string,
-  type: OutputType
-) {
-  // File format
+async function processSvgFilesAsync(type: OutputType) {
   const ext = ".svg";
-
   // Read the source directory of SVGs
-  let icons = await fs.readdir(srcPath);
+  let icons = await fs.readdir(path.src(type));
 
-  // We only want .svg, ignore the rest
-  icons = icons.filter((i) => path.extname(i).toLowerCase() === ext);
-
-  // Remove .svg from name
-  icons = icons.map((i) => path.basename(i, ext));
-
-  // Sort alphabetically
-  icons = icons.sort();
+  // Get the name without the extension and sort alphabetically
+  icons = icons.map((i) => basename(i, ext)).sort();
 
   // Array of promises which do the fetching of the files
   const readPromises = icons.map((i) =>
-    fs.readFile(path.resolve(srcPath, i + ext), "utf8")
+    fs.readFile(path.src(type, i + ext), "utf8")
   );
   let processed = await Promise.all(readPromises);
 
@@ -108,7 +90,7 @@ async function processSvgFilesAsync(
   );
 
   // ensure the directory is created
-  await fs.mkdir(path.join(__dirname, "/build/lib/" + type), {
+  await fs.mkdir(path.build("lib", type), {
     recursive: true,
   });
 
@@ -123,7 +105,11 @@ async function processSvgFilesAsync(
     iconsObj[iconName] = svgStr;
 
     // Save each svg
-    fs.writeFile(path.resolve(destPath, icons[idx] + ext), svgStr, "utf8");
+    fs.writeFile(
+      path.build(path.build("lib", type), icons[idx] + ext),
+      svgStr,
+      "utf8"
+    );
   });
 
   return { icons, iconsObj };
@@ -131,7 +117,7 @@ async function processSvgFilesAsync(
 
 function writeRazor(icons: string[], type: OutputType) {
   // Output the Razor helper
-  const csFile = path.join(__dirname, "/build/Helper" + type + "s.cs");
+  const csFile = path.build("Helper" + type + "s.cs");
   let imagePath = "";
 
   if (type === "Spot") {
@@ -149,7 +135,7 @@ function writeRazor(icons: string[], type: OutputType) {
 
 function writeEnums(icons: string[], type: OutputType) {
   // Output enums file
-  const enumsFile = path.join(__dirname, "/build/" + type + "s.cs");
+  const enumsFile = path.build(type + "s.cs");
   let enumsOutput = "public enum Icons\n{\n";
   enumsOutput += icons.map((i) => `    ${i},`).join("\n");
   enumsOutput += "\n}";
@@ -159,10 +145,7 @@ function writeEnums(icons: string[], type: OutputType) {
 
 function writeJson(iconsObj: Record<string, string>, type: OutputType) {
   // Output the JSON helper
-  const jsonFile = path.join(
-    __dirname,
-    "/build/" + type.toLowerCase() + "s.json"
-  );
+  const jsonFile = path.build(type.toLowerCase() + "s.json");
   const jsonOutput = JSON.stringify(iconsObj, null, 2);
 
   return fs.writeFile(jsonFile, jsonOutput, "utf8");
@@ -170,13 +153,10 @@ function writeJson(iconsObj: Record<string, string>, type: OutputType) {
 
 function writeJsModule(iconsObj: Record<string, string>, type: OutputType) {
   // Output the js helper
-  const modFile = path.join(__dirname, "/build/" + type.toLowerCase() + "s.js");
+  const modFile = path.build(type.toLowerCase() + "s.js");
 
   // output the TypeScript definitions
-  const dtsFile = path.join(
-    __dirname,
-    "/build/" + type.toLowerCase() + "s.d.ts"
-  );
+  const dtsFile = path.build(type.toLowerCase() + "s.d.ts");
 
   let jsOutput = "";
   let dtsOutput = "";
@@ -202,10 +182,7 @@ function writeJsModule(iconsObj: Record<string, string>, type: OutputType) {
 
 function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
   // Output the HTML manifest
-  const htmlFile = path.join(
-    __dirname,
-    "/build/" + type.toLowerCase() + "s.html"
-  );
+  const htmlFile = path.build(type.toLowerCase() + "s.html");
   let htmlOutput = `<h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">${type}s Preview</h2>\n<div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">\n`;
 
   for (let [key, value] of Object.entries(iconsObj)) {
@@ -219,7 +196,7 @@ function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
 
 function writeReadme(figmaComponents: FigmaComponent[]) {
   // Output the Readme manifest
-  const mdFile = path.join(__dirname, "/build/manifest.md");
+  const mdFile = path.build("manifest.md");
 
   let mdOutput = `| Preview | Name | Created | Updated |\n`;
   mdOutput += `| --- | --- | --- | --- |\n`;
@@ -241,43 +218,33 @@ function writeManifests() {
   // Output the HTML manifest
   const p1 = concat(
     [
-      path.join(__dirname, "/build/icons.html"),
-      path.join(__dirname, "/build/spots.html"),
-      path.join(__dirname, "/build/cssIcons.html"),
+      path.build("icons.html"),
+      path.build("spots.html"),
+      path.build("cssIcons.html"),
     ],
-    path.join(__dirname, "/build/index.html")
+    path.build("index.html")
   );
 
   // Output the Readme
   const p2 = concat(
-    [
-      path.join(__dirname, "/src/README-template.md"),
-      path.join(__dirname, "/build/manifest.md"),
-    ],
-    path.join(__dirname, "/README.md")
+    [path.src("README-template.md"), path.build("manifest.md")],
+    path.root("README.md")
   );
 
   const p3 = concat(
     [
-      path.join(__dirname, "/src/js/global.d.ts"),
-      path.join(__dirname, "/build/icons.d.ts"),
-      path.join(__dirname, "/build/spots.d.ts"),
+      path.src("js/global.d.ts"),
+      path.build("icons.d.ts"),
+      path.build("spots.d.ts"),
     ],
-    path.join(__dirname, "/build/index.d.ts")
+    path.build("index.d.ts")
   );
 
   return Promise.all([p1, p2, p3]);
 }
 
 async function buildSvgSetAsync(buildPrefix: OutputType) {
-  // Import/export paths
-  const srcIconsPath = path.join(__dirname, "/src/" + buildPrefix);
-  const destIconsPath = path.join(__dirname, "/build/lib/" + buildPrefix);
-  let { icons, iconsObj } = await processSvgFilesAsync(
-    srcIconsPath,
-    destIconsPath,
-    buildPrefix
-  );
+  let { icons, iconsObj } = await processSvgFilesAsync(buildPrefix);
 
   await Promise.all([
     writeRazor(icons, buildPrefix),
@@ -299,12 +266,11 @@ async function bundleHelperJsAsync() {
   try {
     // create the browser bundle
     bundle = await rollup({
-      input: path.join(__dirname, "/src/js/browser.ts"),
+      input: path.src("js/browser.ts"),
       plugins: [plugin],
-      context: __dirname,
     });
     await bundle.write({
-      file: path.join(__dirname, "/build/index.umd.js"),
+      file: path.build("index.umd.js"),
       format: "umd",
       name: "StacksIcons",
     });
@@ -312,12 +278,11 @@ async function bundleHelperJsAsync() {
     // create the es6 bundle
     // create the browser bundle
     bundle = await rollup({
-      input: path.join(__dirname, "/src/js/index.ts"),
+      input: path.src("js/index.ts"),
       plugins: [plugin],
-      context: __dirname,
     });
     await bundle.write({
-      file: path.join(__dirname, "/build/index.esm.js"),
+      file: path.build("index.esm.js"),
       format: "esm",
       name: "StacksIcons",
     });
@@ -338,7 +303,7 @@ async function bundleCssIcons() {
     .sort((a, b) => (a.name > b.name ? 1 : -1));
   const allIconSvgStrings = await Promise.all(
     iconData.map(async (i) =>
-      fs.readFile(path.resolve("./src/Icon/", i.name + ".svg"), "utf8")
+      fs.readFile(path.src("Icon", i.name + ".svg"), "utf8")
     )
   );
 
@@ -370,9 +335,9 @@ async function bundleCssIcons() {
     .join("\n\n");
 
   // read in the base css file, add our icons and write to build/
-  var cssFile = await fs.readFile(path.resolve("./src/icons.css"), "utf8");
+  var cssFile = await fs.readFile(path.src("icons.css"), "utf8"); // TODO
   cssFile += "\n\n" + iconCss;
-  await fs.writeFile(path.resolve("./build/icons.css"), cssFile, "utf8");
+  await fs.writeFile(path.build("icons.css"), cssFile, "utf8"); // TODO
 
   // create the preview html file now
   let iconHtml = iconData
@@ -392,7 +357,7 @@ async function bundleCssIcons() {
     ${iconHtml}
   </div>`;
 
-  await fs.writeFile(path.resolve("./build/cssIcons.html"), iconHtml, "utf8");
+  await fs.writeFile(path.build("cssIcons.html"), iconHtml, "utf8"); // TODO
 }
 
 (async () => {
@@ -404,8 +369,8 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
   await cleanBuildDirectoryAsync();
 
   // ensure the download directory is created
-  await fs.mkdir(path.join(__dirname, "/src/Icon"), { recursive: true });
-  await fs.mkdir(path.join(__dirname, "/src/Spot"), { recursive: true });
+  await fs.mkdir(path.src("Icon"), { recursive: true });
+  await fs.mkdir(path.src("Spot"), { recursive: true });
 
   const components = await fetchFromFigma();
   writeReadme(components);
@@ -422,7 +387,7 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
 
   await writeManifests();
   console.log(`Successfully built index.html and README.md`);
-})().catch((e) => {
+})().catch((e: Error) => {
   console.error("ERROR: " + e);
   process.exit(1);
 });

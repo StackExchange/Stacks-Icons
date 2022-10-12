@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "start": "npm run build",
-    "build": "ts-node ./server.ts",
+    "build": "ts-node ./scripts/build.ts",
     "prepublishOnly": "npm start"
   },
   "devDependencies": {

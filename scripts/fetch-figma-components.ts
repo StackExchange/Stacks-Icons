@@ -1,8 +1,10 @@
 import axios from "axios";
 import fs from "fs/promises";
 import { createHash } from "node:crypto";
-import path from "path";
+import { Paths } from "./paths";
 import { definitions, FIGMA_FILE_KEY } from "./definitions";
+
+const path = new Paths();
 
 // https://www.figma.com/developers/api#get-files-endpoint
 export interface FigmaComponent {
@@ -77,7 +79,7 @@ export const fetchFromFigma = async () => {
       continue;
     }
 
-    const location = path.join(__dirname, `../src/${name}.svg`);
+    const location = path.src(`${name}.svg`);
 
     queue.push(
       axios
