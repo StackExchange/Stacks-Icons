@@ -1,18 +1,33 @@
+import rollupTypescript from "@rollup/plugin-typescript";
 import concat from "concat";
 import del from "del";
+import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import path from "path";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
 import packageJson from "./package.json";
-import cssIcons from "./src/cssIcons";
+import { cssIcons } from "./src/definitions";
 import svgoConfig from "./src/svgo-config";
-import rollupTypescript from "@rollup/plugin-typescript";
+
+import { fetchFromFigma, FigmaComponent } from "./src/fetch-figma-components";
+
+// load environmental variables from the .env file
+dotenv.config();
 
 async function cleanBuildDirectoryAsync() {
-  // Clear the existing SVGs in build/lib
-  await del(path.join(__dirname, "/build/**"));
+  // Clear the existing built files
+  await del(path.join(__dirname, "/build/"));
+
+  // Clear the downloads from figma
+  await del(path.join(__dirname, "/src/Icon"));
+  await del(path.join(__dirname, "/src/Spot"));
+
+  // Recreate the empty build folder
+  await fs.mkdir(path.join(__dirname, "/build/"), {
+    recursive: true,
+  });
 }
 
 type OutputType = "Spot" | "Icon";
@@ -196,18 +211,47 @@ function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
   return fs.writeFile(htmlFile, htmlOutput, "utf8");
 }
 
-function writeIndex() {
+function writeReadme(figmaComponents: FigmaComponent[]) {
+  // Output the Readme manifest
+  const mdFile = path.join(__dirname, "/build/manifest.md");
+
+  let mdOutput = `| Preview | Name | Created | Updated |\n`;
+  mdOutput += `| --- | --- | --- | --- |\n`;
+
+  figmaComponents
+    .sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    })
+    .forEach((c) => {
+      mdOutput += `| <img src="${c.thumbnail_url}" style="max-width:100%" /> | ${c.name} | ${c.created_at} | ${c.updated_at} |\n`;
+    });
+
+  return fs.writeFile(mdFile, mdOutput, "utf8");
+}
+
+function writeManifests() {
   // Output the HTML manifest
-  const htmlFile = path.join(__dirname, "/build/index.html");
-  const iconsFile = path.join(__dirname, "/build/icons.html");
-  const spotsFile = path.join(__dirname, "/build/spots.html");
-  const cssIconsFile = path.join(__dirname, "/build/cssIcons.html");
+  const p1 = concat(
+    [
+      path.join(__dirname, "/build/icons.html"),
+      path.join(__dirname, "/build/spots.html"),
+      path.join(__dirname, "/build/cssIcons.html"),
+    ],
+    path.join(__dirname, "/build/index.html")
+  );
 
-  const inputPathList = [iconsFile, spotsFile, cssIconsFile];
+  // Output the Readme
+  const p2 = concat(
+    [
+      path.join(__dirname, "/src/README-template.md"),
+      path.join(__dirname, "/build/manifest.md"),
+    ],
+    path.join(__dirname, "/README.md")
+  );
 
-  concat(inputPathList, htmlFile);
-
-  concat(
+  const p3 = concat(
     [
       path.join(__dirname, "/src/js/global.d.ts"),
       path.join(__dirname, "/build/icons.d.ts"),
@@ -215,6 +259,8 @@ function writeIndex() {
     ],
     path.join(__dirname, "/build/index.d.ts")
   );
+
+  return Promise.all([p1, p2, p3]);
 }
 
 async function buildSvgSetAsync(buildPrefix: OutputType) {
@@ -342,34 +388,33 @@ async function bundleCssIcons() {
 }
 
 (async () => {
-  try {
-    await cleanBuildDirectoryAsync();
-  } catch (error) {
-    console.log(error);
+  if (!process.env["FIGMA_ACCESS_TOKEN"]) {
+    throw `Unable to fetch icons from Figma without an access token;
+Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
   }
 
-  try {
-    let iconCount = await buildSvgSetAsync("Icon");
-    let spotCount = await buildSvgSetAsync("Spot");
+  await cleanBuildDirectoryAsync();
 
-    console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`);
-  } catch (error) {
-    console.log(error);
-  }
+  // ensure the download directory is created
+  await fs.mkdir(path.join(__dirname, "/src/Icon"), { recursive: true });
+  await fs.mkdir(path.join(__dirname, "/src/Spot"), { recursive: true });
 
-  try {
-    await bundleHelperJsAsync();
-    await bundleCssIcons();
+  const components = await fetchFromFigma();
+  writeReadme(components);
 
-    console.log(`Successfully built helper JS and css`);
-  } catch (error) {
-    console.log(error);
-  }
+  let iconCount = await buildSvgSetAsync("Icon");
+  let spotCount = await buildSvgSetAsync("Spot");
 
-  try {
-    await writeIndex();
-    console.log(`Successfully built html index`);
-  } catch (error) {
-    console.log(error);
-  }
-})();
+  console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`);
+
+  await bundleHelperJsAsync();
+  await bundleCssIcons();
+
+  console.log(`Successfully built helper JS and CSS`);
+
+  await writeManifests();
+  console.log(`Successfully built index.html and README.md`);
+})().catch((e) => {
+  console.error("ERROR: " + e);
+  process.exit(1);
+});
