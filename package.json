@@ -30,6 +30,7 @@
     "@rollup/plugin-typescript": "^8.5.0",
     "@types/svgo": "^2.6.4",
     "axios": "^0.27.2",
+    "commander": "^9.4.1",
     "concat": "^1.0.3",
     "del": "^6.1.1",
     "dotenv": "^16.0.3",

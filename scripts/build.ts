@@ -1,4 +1,5 @@
 import rollupTypescript from "@rollup/plugin-typescript";
+import { program } from "commander";
 import concat from "concat";
 import del from "del";
 import * as dotenv from "dotenv";
@@ -15,6 +16,14 @@ import { Paths } from "./paths";
 // load environmental variables from the .env file
 dotenv.config();
 
+// check cli options
+program
+  .usage("[OPTIONS]...")
+  .option("-c, --cached", "Use already downloaded images if they exist")
+  .parse(process.argv);
+
+const options = program.opts<{ cached: boolean }>();
+
 const path = new Paths();
 
 async function cleanBuildDirectoryAsync() {
@@ -23,8 +32,10 @@ async function cleanBuildDirectoryAsync() {
   await del(path.preview());
 
   // Clear the downloads from Figma
-  await del(path.src("Icon"));
-  await del(path.src("Spot"));
+  if (!options.cached) {
+    await del(path.src("Icon"));
+    await del(path.src("Spot"));
+  }
 
   // Recreate the empty build folders
   await fs.mkdir(path.build());
@@ -382,7 +393,13 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
   await fs.mkdir(path.src("Icon"), { recursive: true });
   await fs.mkdir(path.src("Spot"), { recursive: true });
 
-  await fetchFromFigma();
+  const hasCachedIcons =
+    (await fs.stat(path.src("Icon")))?.isDirectory() || false;
+  if (!options.cached && hasCachedIcons) {
+    await fetchFromFigma();
+  } else {
+    console.log("Skipping fetching from Figma...");
+  }
 
   const { obj: iconsObj, count: iconsCount } = await buildSvgSetAsync("Icon");
   const { obj: spotsObj, count: spotsCount } = await buildSvgSetAsync("Spot");
