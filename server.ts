@@ -8,10 +8,13 @@ import path from "path";
 import { rollup } from "rollup";
 import { optimize } from "svgo";
 import packageJson from "./package.json";
-import { cssIcons } from "./src/definitions";
-import svgoConfig from "./src/svgo-config";
+import { cssIcons } from "./scripts/definitions";
+import svgoConfig from "./scripts/svgo-config";
 
-import { fetchFromFigma, FigmaComponent } from "./src/fetch-figma-components";
+import {
+  fetchFromFigma,
+  FigmaComponent,
+} from "./scripts/fetch-figma-components";
 
 // load environmental variables from the .env file
 dotenv.config();
@@ -25,7 +28,10 @@ async function cleanBuildDirectoryAsync() {
   await del(path.join(__dirname, "/src/Spot"));
 
   // Recreate the empty build folder
-  await fs.mkdir(path.join(__dirname, "/build/"), {
+  await fs.mkdir(path.join(__dirname, "/build/Icon"), {
+    recursive: true,
+  });
+  await fs.mkdir(path.join(__dirname, "/build/Spot"), {
     recursive: true,
   });
 }
@@ -293,11 +299,12 @@ async function bundleHelperJsAsync() {
   try {
     // create the browser bundle
     bundle = await rollup({
-      input: "./src/js/browser.ts",
+      input: path.join(__dirname, "/src/js/browser.ts"),
       plugins: [plugin],
+      context: __dirname,
     });
     await bundle.write({
-      file: "./build/index.umd.js",
+      file: path.join(__dirname, "/build/index.umd.js"),
       format: "umd",
       name: "StacksIcons",
     });
@@ -305,11 +312,12 @@ async function bundleHelperJsAsync() {
     // create the es6 bundle
     // create the browser bundle
     bundle = await rollup({
-      input: "./src/js/index.ts",
+      input: path.join(__dirname, "/src/js/index.ts"),
       plugins: [plugin],
+      context: __dirname,
     });
     await bundle.write({
-      file: "./build/index.esm.js",
+      file: path.join(__dirname, "/build/index.esm.js"),
       format: "esm",
       name: "StacksIcons",
     });
