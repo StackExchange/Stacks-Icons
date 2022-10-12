@@ -9,7 +9,7 @@ import { rollup } from "rollup";
 import { optimize } from "svgo";
 import packageJson from "../package.json";
 import { cssIcons } from "./definitions";
-import { fetchFromFigma, FigmaComponent } from "./fetch-figma-components";
+import { fetchFromFigma } from "./fetch-figma-components";
 import { Paths } from "./paths";
 
 // load environmental variables from the .env file
@@ -207,58 +207,56 @@ function writeJsModule(iconsObj: Record<string, string>, type: OutputType) {
   ]);
 }
 
-function writeHTML(iconsObj: Record<string, string>, type: OutputType) {
-  // Output the HTML manifest
-  const htmlFile = path.preview(type.toLowerCase() + "s.html");
-  let htmlOutput = `<h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">${type}s Preview</h2>\n<div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">\n`;
-
-  for (let [key, value] of Object.entries(iconsObj)) {
-    htmlOutput += `  <div>${key}<br><br>${value}</div>\n`;
-  }
-
-  htmlOutput += "</div>\n";
-
-  return fs.writeFile(htmlFile, htmlOutput, "utf8");
+function buildSvgManifestHtml(iconsObj: Record<string, string>) {
+  return Object.entries(iconsObj)
+    .map(
+      ([key, value]) =>
+        `<div class="ta-center">
+          <span class="fc-light">${key}</span>
+          <div class="mt12">${value.replace(`class="`, `class="native `)}</div>
+        </div>`
+    )
+    .join("\n");
 }
 
-function writeReadme(figmaComponents: FigmaComponent[]) {
-  // Output the Readme manifest
-  const mdFile = path.build("manifest.md");
-
-  let mdOutput = `| Preview | Name | Created | Updated |\n`;
-  mdOutput += `| --- | --- | --- | --- |\n`;
-
-  figmaComponents
-    .sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
+function buildCssManifestHtml(
+  iconsObj: {
+    name: string;
+    css: string | null;
+  }[]
+) {
+  return iconsObj
+    .map((i) => {
+      return `<div>
+  ${i.name}
+  <br/>
+  <span class="svg-icon-bg icon${i.name}"></span>
+  <span class="svg-icon-bg icon${i.name} native"></span>
+  </div>`;
     })
-    .forEach((c) => {
-      mdOutput += `| <img src="${c.thumbnail_url}" style="max-width:100%" /> | ${c.name} | ${c.created_at} | ${c.updated_at} |\n`;
-    });
-
-  return fs.writeFile(mdFile, mdOutput, "utf8");
+    .join("\n\n");
 }
 
-function writeManifests() {
+async function writeManifests(
+  icons: Record<string, string>,
+  spots: Record<string, string>,
+  cssIconsObj: {
+    name: string;
+    css: string | null;
+  }[]
+) {
   // Output the HTML manifest
-  const p1 = concat(
-    [
-      path.preview("icons.html"),
-      path.preview("spots.html"),
-      path.preview("cssIcons.html"),
-    ],
-    path.preview("index.html")
-  );
+  let builtCss = await fs.readFile(path.build("icons.css"), "utf8");
+  let htmlOut = await fs.readFile(path.src("index.html"), "utf8");
+  htmlOut = htmlOut
+    .replace("{ICONS_MANIFEST}", buildSvgManifestHtml(icons))
+    .replace("{SPOTS_MANIFEST}", buildSvgManifestHtml(spots))
+    .replace("{CSS_MANIFEST}", buildCssManifestHtml(cssIconsObj))
+    .replace("{CSS_STYLES}", `<style>${builtCss}</style>`);
+  const p1 = fs.writeFile(path.preview("index.html"), htmlOut, "utf8");
 
-  // Output the Readme
+  // output the TS types
   const p2 = concat(
-    [path.src("README-template.md"), path.build("manifest.md")],
-    path.root("README.md")
-  );
-
-  const p3 = concat(
     [
       path.src("js/global.d.ts"),
       path.build("icons.d.ts"),
@@ -267,7 +265,7 @@ function writeManifests() {
     path.build("index.d.ts")
   );
 
-  return Promise.all([p1, p2, p3]);
+  return Promise.all([p1, p2]);
 }
 
 async function buildSvgSetAsync(buildPrefix: OutputType) {
@@ -278,10 +276,9 @@ async function buildSvgSetAsync(buildPrefix: OutputType) {
     writeEnums(icons, buildPrefix),
     writeJson(iconsObj, buildPrefix),
     writeJsModule(iconsObj, buildPrefix),
-    writeHTML(iconsObj, buildPrefix),
   ]);
 
-  return icons.length;
+  return { obj: iconsObj, count: icons.length };
 }
 
 async function bundleHelperJsAsync() {
@@ -325,9 +322,13 @@ async function bundleHelperJsAsync() {
 }
 
 async function bundleCssIcons() {
-  const iconData = cssIcons
+  const iconData: {
+    name: string;
+    css: string | null;
+  }[] = cssIcons
     .map((i) => (typeof i === "string" ? { name: i, css: null } : i))
     .sort((a, b) => (a.name > b.name ? 1 : -1));
+
   const allIconSvgStrings = await Promise.all(
     iconData.map(async (i) =>
       fs.readFile(path.src("Icon", i.name + ".svg"), "utf8")
@@ -366,25 +367,7 @@ async function bundleCssIcons() {
   cssFile += "\n\n" + iconCss;
   await fs.writeFile(path.build("icons.css"), cssFile, "utf8"); // TODO
 
-  // create the preview html file now
-  let iconHtml = iconData
-    .map((i) => {
-      return `<div>
-    ${i.name}
-    <br/>
-    <span class="svg-icon-bg icon${i.name}"></span>
-    <span class="svg-icon-bg icon${i.name} native"></span>
-    </div>`;
-    })
-    .join("\n\n");
-
-  iconHtml = `<link rel="stylesheet" href="./icons.css" />
-  <h2 style="font-family: arial, sans-serif; font-size: 24px; text-align: center; margin-top: 64px;">CSS Icons Preview</h2>
-  <div style="padding: 32px; display:grid; gap:32px; text-align: center; color: #666; font-family: arial, sans-serif; font-size: 12px; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));">
-    ${iconHtml}
-  </div>`;
-
-  await fs.writeFile(path.preview("cssIcons.html"), iconHtml, "utf8"); // TODO
+  return iconData;
 }
 
 (async () => {
@@ -399,21 +382,20 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
   await fs.mkdir(path.src("Icon"), { recursive: true });
   await fs.mkdir(path.src("Spot"), { recursive: true });
 
-  const components = await fetchFromFigma();
-  writeReadme(components);
+  await fetchFromFigma();
 
-  let iconCount = await buildSvgSetAsync("Icon");
-  let spotCount = await buildSvgSetAsync("Spot");
+  const { obj: iconsObj, count: iconsCount } = await buildSvgSetAsync("Icon");
+  const { obj: spotsObj, count: spotsCount } = await buildSvgSetAsync("Spot");
 
-  console.log(`Successfully built ${iconCount} icons and ${spotCount} spots`);
+  console.log(`Successfully built ${iconsCount} icons and ${spotsCount} spots`);
 
   await bundleHelperJsAsync();
-  await bundleCssIcons();
+  const cssIconsObj = await bundleCssIcons();
 
   console.log(`Successfully built helper JS and CSS`);
 
-  await writeManifests();
-  console.log(`Successfully built index.html and README.md`);
+  await writeManifests(iconsObj, spotsObj, cssIconsObj);
+  console.log(`Successfully built index.html`);
 })().catch((e: Error) => {
   console.error("ERROR: " + e);
   process.exit(1);
