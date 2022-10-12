@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import { createHash } from "node:crypto";
 import { Paths } from "./paths.js";
 import { definitions, FIGMA_FILE_KEY } from "./definitions.js";
+import { warn, error, info } from "./utils.js";
 
 const path = new Paths();
 
@@ -23,7 +24,7 @@ export const fetchFromFigma = async () => {
   });
 
   // Get the Stacks icon file
-  console.log(`Fetching all components from Figma (${FIGMA_FILE_KEY})...`);
+  info(`Fetching all components from Figma (${FIGMA_FILE_KEY})...`);
   const stacksFile = await fetch.get(`/files/${FIGMA_FILE_KEY}/components`);
 
   // Full returned components list
@@ -39,7 +40,7 @@ export const fetchFromFigma = async () => {
 
     // only fetch the images that are in the definitions file
     if (!(name in definitions)) {
-      console.warn(`WARNING: ${name} found in Figma, but not in definitions`);
+      warn(`${name} found in Figma, but not in definitions`);
       continue;
     }
 
@@ -51,7 +52,7 @@ export const fetchFromFigma = async () => {
   const fetchedComponents = Object.values(names);
   for (const def of allRequestedDefs) {
     if (!fetchedComponents.includes(def)) {
-      console.warn(`WARNING: ${def} found in definitions, but not in Figma`);
+      warn(`${def} found in definitions, but not in Figma`);
     }
   }
 
@@ -65,7 +66,7 @@ export const fetchFromFigma = async () => {
   let queue = [];
   const incorrectHashes: Record<string, string> = {};
   const images = Object.entries(urls.data.images as Record<string, string>);
-  console.log(`Attempting to fetch ${images.length} files from Figma...`);
+  info(`Attempting to fetch ${images.length} files from Figma...`);
 
   // Loop over the object of images
   for (const entry of images) {
@@ -73,9 +74,7 @@ export const fetchFromFigma = async () => {
     const name = names[node_id!];
 
     if (!name || !url) {
-      console.error(
-        `Unable to find name or url: name: "${name}", url: "${url}"`
-      );
+      error(`Unable to find name or url: name: "${name}", url: "${url}"`);
       continue;
     }
 
@@ -92,7 +91,7 @@ export const fetchFromFigma = async () => {
           hash.update(data);
           const sha256 = hash.digest("base64");
 
-          //console.debug(`💾 '${name}' (${url}) ${sha256}`);
+          //debug(`💾 '${name}' (${url}) ${sha256}`);
 
           if (definitions[name] === sha256) {
             // write to file
@@ -104,7 +103,7 @@ export const fetchFromFigma = async () => {
           }
         })
         .catch((err) => {
-          console.error(err);
+          error(err);
         })
     );
   }

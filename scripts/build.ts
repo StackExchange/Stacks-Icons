@@ -12,6 +12,7 @@ import packageJson from "../package.json" assert { type: "json" };
 import { cssIcons } from "./definitions.js";
 import { fetchFromFigma } from "./fetch-figma-components.js";
 import { Paths } from "./paths.js";
+import { error, info, success } from "./utils.js";
 
 // load environmental variables from the .env file
 dotenv.config();
@@ -92,7 +93,7 @@ async function processSvgFilesAsync(type: OutputType) {
   // Get the data from the SVGO object
   processed = optimized.map((i) => {
     if (i.error) {
-      console.error(i.error);
+      error(i.error);
     }
 
     if ("data" in i && i.data) {
@@ -321,9 +322,9 @@ async function bundleHelperJsAsync() {
       format: "esm",
       name: "StacksIcons",
     });
-  } catch (error) {
+  } catch (e) {
     // do some error reporting
-    console.error(error);
+    error(e);
   }
 
   if (bundle) {
@@ -398,22 +399,22 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
   if (!options.cached && hasCachedIcons) {
     await fetchFromFigma();
   } else {
-    console.log("Skipping fetching from Figma...");
+    info("Skipping fetching from Figma...");
   }
 
   const { obj: iconsObj, count: iconsCount } = await buildSvgSetAsync("Icon");
   const { obj: spotsObj, count: spotsCount } = await buildSvgSetAsync("Spot");
 
-  console.log(`Successfully built ${iconsCount} icons and ${spotsCount} spots`);
+  success(`Successfully built ${iconsCount} icons and ${spotsCount} spots`);
 
   await bundleHelperJsAsync();
   const cssIconsObj = await bundleCssIcons();
 
-  console.log(`Successfully built helper JS and CSS`);
+  success(`Successfully built helper JS and CSS`);
 
   await writeManifests(iconsObj, spotsObj, cssIconsObj);
-  console.log(`Successfully built index.html`);
-})().catch((e: Error) => {
-  console.error("ERROR: " + e);
+  success(`Successfully built index.html`);
+})().catch((e) => {
+  error(e);
   process.exit(1);
 });
