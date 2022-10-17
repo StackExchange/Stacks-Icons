@@ -30,7 +30,7 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.1",
     "@types/svgo": "^2.6.4",
-    "axios": "^1.1.2",
+    "axios": "^1.1.3",
     "chalk": "^5.1.2",
     "commander": "^9.4.1",
     "concat": "^1.0.3",
