@@ -60,53 +60,46 @@ async function processSvgFilesAsync(type: OutputType) {
   );
   let processed = await Promise.all(readPromises);
 
+  const optimizedImages: string[] = [];
+
   // Optimize them with SVGO
-  const optimizePromises = processed.map((i) =>
-    optimize(i, {
-      multipass: true,
-      floatPrecision: 2,
-      plugins: [
-        {
-          name: "preset-default",
-          params: {
-            overrides: {
-              removeViewBox: false,
-              mergePaths: {
-                force: true,
-                noSpaceAfterFlags: true,
+  processed.forEach((i) => {
+    try {
+      const optimized = optimize(i, {
+        multipass: true,
+        floatPrecision: 2,
+        plugins: [
+          {
+            name: "preset-default",
+            params: {
+              overrides: {
+                removeViewBox: false,
+                mergePaths: {
+                  force: true,
+                  noSpaceAfterFlags: true,
+                },
               },
             },
           },
-        },
-        "removeXMLNS",
-        {
-          name: "removeAttrs",
-          params: {
-            attrs: "(fill-rule|clip-rule)",
+          "removeXMLNS",
+          {
+            name: "removeAttrs",
+            params: {
+              attrs: "(fill-rule|clip-rule)",
+            },
           },
-        },
-      ],
-    })
-  );
-  const optimized = await Promise.all(optimizePromises);
-
-  // Get the data from the SVGO object
-  processed = optimized.map((i) => {
-    if (i.error) {
-      error(i.error);
+        ],
+      });
+      optimizedImages.push(optimized.data);
+    } catch (e) {
+      error(e);
     }
-
-    if ("data" in i && i.data) {
-      return i.data;
-    }
-
-    return "";
   });
 
   var typeClass = type.toLowerCase();
 
   // Do our custom tweaks to the output
-  processed = processed.map(
+  processed = optimizedImages.map(
     (i, idx) =>
       i
         .replace(
