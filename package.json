@@ -28,7 +28,7 @@
     "prepublishOnly": "npm start"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^9.0.2",
+    "@rollup/plugin-typescript": "^10.0.1",
     "axios": "^1.1.3",
     "chalk": "^5.1.2",
     "commander": "^9.4.1",
