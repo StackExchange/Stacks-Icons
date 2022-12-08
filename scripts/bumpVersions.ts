@@ -21,7 +21,7 @@ const execAsync = promisify(exec);
 
   await execAsync("git add " + path);
 
-  success(`Wrote version ${version} to csproj`);
+  success(`Wrote version ${version} to csproj and staged the changes`);
 })().catch((e) => {
   error(e);
   process.exit(1);
