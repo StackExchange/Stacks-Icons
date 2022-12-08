@@ -1,20 +1,53 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿#nullable enable
+using Microsoft.AspNetCore.Html;
 using System;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
+
 namespace StackExchange.StacksIcons;
+
+internal static class EmbeddedResourceQuery
+{
+    private static readonly Assembly Assembly;
+    private static readonly string AssemblyName;
+
+    static EmbeddedResourceQuery()
+    {
+        Assembly = typeof(Svg).Assembly;
+        AssemblyName = Assembly.GetName().Name!;
+    }
+
+    public static string? GetSvg(string name, bool isSpot)
+    {
+        var path = isSpot ? "Spot" : "Icon";
+        var filename = $"{AssemblyName}.{path}.{name}.svg";
+        var stream = Assembly.GetManifestResourceStream(filename);
+
+        if (stream is null)
+        {
+            return null;
+        }
+
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
+    }
+}
 
 public static partial class Svg
 {
+    public static readonly SvgImage Empty = new(string.Empty);
+
     public static partial class Spot
     {
+        /// <summary>
         /// For spots, we intentionally want to bypass the size check on these rarely used items to make maintenance easier.
         /// </summary>
-        private static SvgImage GetImage([CallerMemberName] string fileName = null, string folder = null) =>
-            Svg.GetImage(fileName, folder, bypassSizeCheck: true);
+        internal static SvgImage GetImage([CallerMemberName] string? fileName = null) =>
+            Svg.GetImage(fileName, isSpot: true, bypassSizeCheck: true);
     }
 
     // public static SvgImage GetLocalizedAnswerSvg() =>
@@ -40,7 +73,7 @@ public static partial class Svg
     //     };
 
 #if ENTERPRISE
-        private const int MaxReasonableSize = 6000;
+    private const int MaxReasonableSize = 6000;
 #else
     private const int MaxReasonableSize = 4500;
 #endif
@@ -53,7 +86,7 @@ public static partial class Svg
     /// of static initializers (because the files have to be in the same order every time). The JS uses this value as a cache breaker when
     /// downloading any SVG icon.
     /// </summary>
-    public static string CombinedCacheBreaker { get; private set; }
+    public static string CombinedCacheBreaker { get; private set; } = "TODO";
 
     /// <summary>
     /// Gets an <see cref="SvgImage"/> for caching and reuse.
@@ -62,37 +95,33 @@ public static partial class Svg
     /// <param name="folder">The folder, if not the root, that this image is in.</param>
     /// <param name="bypassSizeCheck">Whether to allow bypassing the size check, for things we know not to repeat in a page (stil shouldn't be huge).</param>
     /// <returns>The <see cref="SvgImage"/> to cache.</returns>
-    internal static SvgImage GetImage([CallerMemberName] string fileName = null, string folder = null, bool bypassSizeCheck = false)
+    internal static SvgImage GetImage([CallerMemberName] string? fileName = null, bool isSpot = false, bool bypassSizeCheck = false)
     {
-        string path = "Unset";
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return Empty;
+        }
+
         try
         {
-            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var basePath = Path.Combine(assemblyDirectory, "lib");
+            var imageString = EmbeddedResourceQuery.GetSvg(fileName!, isSpot);
 
-            // @Svg.Achievements.With("iconThing")
-            // <svg aria-hidden="true" class="svg-icon iconLogoGlyph" width="25" height="
-            // <svg aria-hidden="true" class="svg-icon iconLogoGlyph iconThing" width="25" height="
-            if (!string.IsNullOrEmpty(folder))
+            if (imageString is null)
             {
-                fileName = folder + "/" + fileName;
+                throw new Exception("TODO SOMETHING MORE SPECIFIC");
             }
-
-            path = $"{basePath}/{fileName}.svg";
-            var imageString = File.ReadAllText(path);
-
+#if DEBUG
             // Okay so now we have the svg asset loaded into the string,
             // if we're on DEBUG let's do some gut checking on the .svg itself.
             // This way we throw in dev.
-#if DEBUG
             if (imageString.Length > MaxReasonableSize && !bypassSizeCheck)
             {
-                throw new Exception($"{path} is larger than the maximum allowed SVG icon size: {MaxReasonableSize} bytes.");
+                throw new Exception($"{fileName} is larger than the maximum allowed SVG icon size: {MaxReasonableSize} bytes.");
             }
 
             if (imageString.Contains("<!--"))
             {
-                throw new Exception($"{path} contains <!-- --> style comments. Please ensure this file is minified properly.");
+                throw new Exception($"{fileName} contains <!-- --> style comments. Please ensure this file is minified properly.");
             }
 #endif
             //TODO
@@ -101,15 +130,13 @@ public static partial class Svg
         }
         catch (Exception ex)
         {
+#if DEBUG
             // If the file wasn't able to be loaded at all, we should just throw.
             // This throw should never happen on prod since people should be checking after they add a new SVG
             // and the entry for it in this file, but you know, just in case.
-#if DEBUG
-            // A nice little error message for the person who's using this to see.
-            throw new Exception($"Unable to open {fileName}.svg (full path: '{path}'). Check that the file is in the correct path the name matches what's listed in Svg.cs", ex);
+            throw new Exception($"Unable to open {fileName}.svg (isSpot: {isSpot})", ex);
 #else
-                        Env.LogException(ex);
-                        return new SvgImage("");
+            return Empty;
 #endif
         }
 
@@ -137,7 +164,7 @@ public class SvgImage : HtmlString
     /// <param name="cssClass">The CSS class to append.</param>
     /// <param name="title">The title tag to insert.</param>
     /// <returns>The complete SVG for render, including the added class.</returns>
-    public HtmlString With(string cssClass = null, string title = null)
+    public HtmlString With(string? cssClass = null, string? title = null)
     {
         if (string.IsNullOrEmpty(cssClass) && string.IsNullOrEmpty(title))
         {
@@ -145,15 +172,15 @@ public class SvgImage : HtmlString
         }
 
         var key = (cssClass, title);
-        if (cache.TryGetValue(key, out var val))
+        if (cache.TryGetValue(key!, out var val))
         {
             return val;
         }
 
         var result = _original;
-        result = AppendCssClass(result, cssClass);
-        result = AppendTitle(result, title);
-        cache.TryAdd(key, new HtmlString(result));
+        result = AppendCssClass(result, cssClass!);
+        result = AppendTitle(result, title!);
+        cache.TryAdd(key!, new HtmlString(result));
 
         return new HtmlString(result);
     }

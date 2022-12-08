@@ -16,6 +16,8 @@ src/Spot
 
 # don't check in environmental variables / secrets
 .env
-nuget/obj
-nuget/bin
-nuget/generated
+
+# don't check in any c# build data
+nuget/**/obj
+nuget/**/bin
+.vs
