@@ -1,41 +1,10 @@
-﻿#nullable enable
-using Microsoft.AspNetCore.Html;
+﻿using Microsoft.AspNetCore.Html;
 using System;
 using System.Collections.Concurrent;
-using System.IO;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace StackExchange.StacksIcons;
-
-internal static class EmbeddedResourceQuery
-{
-    private static readonly Assembly Assembly;
-    private static readonly string AssemblyName;
-
-    static EmbeddedResourceQuery()
-    {
-        Assembly = typeof(Svg).Assembly;
-        AssemblyName = Assembly.GetName().Name!;
-    }
-
-    public static string? GetSvg(string name, bool isSpot)
-    {
-        var path = isSpot ? "Spot" : "Icon";
-        var filename = $"{AssemblyName}.{path}.{name}.svg";
-        var stream = Assembly.GetManifestResourceStream(filename);
-
-        if (stream is null)
-        {
-            return null;
-        }
-
-        using var reader = new StreamReader(stream);
-        return reader.ReadToEnd();
-    }
-}
 
 public static partial class Svg
 {
@@ -49,28 +18,6 @@ public static partial class Svg
         internal static SvgImage GetImage([CallerMemberName] string? fileName = null) =>
             Svg.GetImage(fileName, isSpot: true, bypassSizeCheck: true);
     }
-
-    // public static SvgImage GetLocalizedAnswerSvg() =>
-    //     (KnownLCID)Current.MoonSpeakCulture.GetCurrentCulture().LCID switch
-    //     {
-    //         KnownLCID.BrazilianPortuguese => Svg.AnswerPt,
-    //         KnownLCID.Russian => Svg.AnswerRu,
-    //         KnownLCID.Spanish => Svg.AnswerEs,
-    //         // Note: Japanese gets served the English version of the SVG since we don't
-    //         // have a translation that fits into the bubble
-    //         _ => Svg.Answer
-    //     };
-
-    // public static SvgImage GetLocalizedQuestionSvg() =>
-    //     (KnownLCID)Current.MoonSpeakCulture.GetCurrentCulture().LCID switch
-    //     {
-    //         KnownLCID.BrazilianPortuguese => Svg.QuestionPt,
-    //         KnownLCID.Russian => Svg.QuestionRu,
-    //         KnownLCID.Spanish => Svg.QuestionEs,
-    //         // Note: Japanese gets served the English version of the SVG since we don't
-    //         // have a translation that fits into the bubble
-    //         _ => Svg.Question
-    //     };
 
 #if ENTERPRISE
     private const int MaxReasonableSize = 6000;
@@ -86,7 +33,7 @@ public static partial class Svg
     /// of static initializers (because the files have to be in the same order every time). The JS uses this value as a cache breaker when
     /// downloading any SVG icon.
     /// </summary>
-    public static string CombinedCacheBreaker { get; private set; } = "TODO";
+    public static string CombinedCacheBreaker { get; private set; } = string.Empty;
 
     /// <summary>
     /// Gets an <see cref="SvgImage"/> for caching and reuse.
@@ -104,7 +51,7 @@ public static partial class Svg
 
         try
         {
-            var imageString = EmbeddedResourceQuery.GetSvg(fileName!, isSpot);
+            var imageString = Helpers.GetSvg(fileName!, isSpot);
 
             if (imageString is null)
             {
@@ -124,8 +71,7 @@ public static partial class Svg
                 throw new Exception($"{fileName} contains <!-- --> style comments. Please ensure this file is minified properly.");
             }
 #endif
-            //TODO
-            //CombinedCacheBreaker = ((CombinedCacheBreaker ?? "") + imageString).ToSha256Hash().Substring(0, 12);
+            CombinedCacheBreaker = Helpers.ToSha256Hash(CombinedCacheBreaker + imageString).Substring(0, 12);
             return new SvgImage(imageString);
         }
         catch (Exception ex)
@@ -139,8 +85,6 @@ public static partial class Svg
             return Empty;
 #endif
         }
-
-
     }
 }
 

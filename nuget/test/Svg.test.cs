@@ -1,4 +1,4 @@
-namespace nuget.test;
+namespace StackExchange.StacksIcons.Test;
 
 public class SvgTest
 {
@@ -9,5 +9,11 @@ public class SvgTest
         var spot = Svg.Spot.Ads;
         Assert.False(string.IsNullOrWhiteSpace(icon.Value));
         Assert.False(string.IsNullOrWhiteSpace(spot.Value));
+    }
+
+    [Fact]
+    public void CombinedCacheBreaker()
+    {
+        Assert.False(string.IsNullOrEmpty(Svg.CombinedCacheBreaker));
     }
 }
