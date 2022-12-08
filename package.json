@@ -27,7 +27,8 @@
     "build": "ts-node ./scripts/build.ts",
     "build:nuget": "cd nuget && dotnet pack",
     "prepublishOnly": "npm start",
-    "publish:nuget": "echo 'Not implemented'"
+    "publish:nuget": "echo 'Not implemented'",
+    "version": "ts-node ./scripts/bumpVersions.ts"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
