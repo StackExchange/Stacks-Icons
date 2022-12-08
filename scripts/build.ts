@@ -151,9 +151,13 @@ function writeCSharp(icons: string[], type: OutputType) {
   // Output the Razor helper
   const csFile = path.build(type + "s.g.cs");
   const isSpot = type === "Spot";
-
   const iconsOutput = icons
-    .map((i) => `    public static SvgImage ${i} { get; } = GetImage();`)
+    .map(
+      (i) =>
+        `    public static SvgImage ${i} { get; } = GetImage(${
+          i.startsWith("Logo") ? "bypassSizeCheck: true" : ""
+        });`
+    )
     .join("\n");
 
   let csOutput = `public static partial class ${isSpot ? "Spot" : "Svg"}
