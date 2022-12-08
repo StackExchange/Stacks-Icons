@@ -8,24 +8,16 @@ namespace StackExchange.StacksIcons;
 
 public static partial class Svg
 {
+    private const int MaxReasonableSize = 4500;
     public static readonly SvgImage Empty = new(string.Empty);
 
     public static partial class Spot
     {
-        /// <summary>
-        /// For spots, we intentionally want to bypass the size check on these rarely used items to make maintenance easier.
-        /// </summary>
+        /// <inheritdoc cref="Svg.GetImage(string?, bool, bool)"/>
         internal static SvgImage GetImage([CallerMemberName] string? fileName = null) =>
+            // For spots, we intentionally want to bypass the size check on these rarely used items to make maintenance easier.
             Svg.GetImage(fileName, isSpot: true, bypassSizeCheck: true);
     }
-
-#if ENTERPRISE
-    private const int MaxReasonableSize = 6000;
-#else
-    private const int MaxReasonableSize = 4500;
-#endif
-
-    public const string PathInsideContents = "Img/stacks-icons";
 
     /// <summary>
     /// A hash that changes when any of the icons change or one gets added, removed, etc. Calculated in GetImage() by replacing this
@@ -39,7 +31,7 @@ public static partial class Svg
     /// Gets an <see cref="SvgImage"/> for caching and reuse.
     /// </summary>
     /// <param name="fileName">The filename to grab, defaults to the caller's name via <see cref="CallerMemberNameAttribute"/>.</param>
-    /// <param name="folder">The folder, if not the root, that this image is in.</param>
+    /// <param name="isSpot">Whether the image is a Spot or not.</param>
     /// <param name="bypassSizeCheck">Whether to allow bypassing the size check, for things we know not to repeat in a page (stil shouldn't be huge).</param>
     /// <returns>The <see cref="SvgImage"/> to cache.</returns>
     internal static SvgImage GetImage([CallerMemberName] string? fileName = null, bool isSpot = false, bool bypassSizeCheck = false)
@@ -52,15 +44,15 @@ public static partial class Svg
         try
         {
             var imageString = Helpers.GetSvg(fileName!, isSpot);
-
-            if (imageString is null)
-            {
-                throw new Exception("TODO SOMETHING MORE SPECIFIC");
-            }
 #if DEBUG
             // Okay so now we have the svg asset loaded into the string,
             // if we're on DEBUG let's do some gut checking on the .svg itself.
             // This way we throw in dev.
+            if (imageString is null)
+            {
+                throw new Exception($"Unable to find {fileName} in embedded resources.");
+            }
+
             if (imageString.Length > MaxReasonableSize && !bypassSizeCheck)
             {
                 throw new Exception($"{fileName} is larger than the maximum allowed SVG icon size: {MaxReasonableSize} bytes.");
@@ -88,6 +80,9 @@ public static partial class Svg
     }
 }
 
+/// <summary>
+/// Describes an svg image string that is sanitized for use in Html
+/// </summary>
 public class SvgImage : HtmlString
 {
     private readonly string _original;
@@ -96,9 +91,9 @@ public class SvgImage : HtmlString
     private static readonly Regex AriaHiddenPattern = new("aria-hidden=\"true\"", RegexOptions.IgnoreCase);
     private static readonly Regex SvgOpenTagPattern = new("<svg[^>]*>", RegexOptions.IgnoreCase);
 
-    public SvgImage(string rawData) : base(rawData)
+    public SvgImage(string? rawData) : base(rawData)
     {
-        _original = rawData;
+        _original = rawData ?? string.Empty;
     }
 
     /// <summary>
@@ -129,29 +124,39 @@ public class SvgImage : HtmlString
         return new HtmlString(result);
     }
 
-    private static string AppendTitle(string val, string title)
+    /// <summary>
+    /// Adds a &lt;title&gt; element to the svg
+    /// </summary>
+    /// <param name="svg">The entire svg string</param>
+    /// <param name="title">The title text to add</param>
+    private static string AppendTitle(string svg, string title)
     {
         if (string.IsNullOrEmpty(title))
         {
-            return val;
+            return svg;
         }
 
-        val = AriaHiddenPattern.Replace(val, string.Empty, count: 1);
-        return SvgOpenTagPattern.Replace(val, "$0" + $"<title>{title}</title>", count: 1);
+        svg = AriaHiddenPattern.Replace(svg, string.Empty, count: 1);
+        return SvgOpenTagPattern.Replace(svg, "$0" + $"<title>{title}</title>", count: 1);
     }
 
-    private static string AppendCssClass(string val, string cssClass)
+    /// <summary>
+    /// Adds css classes to the svg element
+    /// </summary>
+    /// <param name="svg">The entire svg string</param>
+    /// <param name="cssClass">The css class string to add to the existing svg classes</param>
+    private static string AppendCssClass(string svg, string cssClass)
     {
         if (string.IsNullOrEmpty(cssClass))
         {
-            return val;
+            return svg;
         }
 
         const string search = @"class=""";
 
         // get the first index of `class="` so we can inject our custom classes into it
-        var index = val.IndexOf(search, StringComparison.OrdinalIgnoreCase);
+        var index = svg.IndexOf(search, StringComparison.OrdinalIgnoreCase);
 
-        return index > -1 ? val.Insert(index + search.Length, cssClass + " ") : val;
+        return index > -1 ? svg.Insert(index + search.Length, cssClass + " ") : svg;
     }
 }

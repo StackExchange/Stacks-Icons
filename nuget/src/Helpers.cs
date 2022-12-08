@@ -16,7 +16,7 @@ internal static class Helpers
         AssemblyName = Assembly.GetName().Name!;
     }
 
-    public static string? GetSvg(string name, bool isSpot)
+    internal static string? GetSvg(string name, bool isSpot)
     {
         var path = isSpot ? "Spot" : "Icon";
         var filename = $"{AssemblyName}.{path}.{name}.svg";
