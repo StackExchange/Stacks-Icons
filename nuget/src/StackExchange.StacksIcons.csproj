@@ -14,7 +14,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\..\build\Icons.g.cs" Link="Icons.g.cs" />
+		<Compile Include="..\..\build\Spots.g.cs" Link="Spots.g.cs" />
 		<EmbeddedResource Include="..\..\build\lib\*\*.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	</ItemGroup>
 
 	<ItemGroup>

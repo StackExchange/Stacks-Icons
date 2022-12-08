@@ -147,46 +147,39 @@ async function processSvgFilesAsync(type: OutputType) {
   return { icons, iconsObj };
 }
 
-function writeRazor(icons: string[], type: OutputType) {
+function writeCSharp(icons: string[], type: OutputType) {
   // Output the Razor helper
-  const csFile = path.root(
-    "nuget/generated/Helper" + type + "s.g.cs"
-  );
-  let imagePath = "";
+  const csFile = path.build(type + "s.g.cs");
   const isSpot = type === "Spot";
 
-  if (isSpot) {
-    imagePath = 'folder: "../stacks-spots"';
-  }
-
   const iconsOutput = icons
-    .map(
-      (i) =>
-        `    public static SvgImage ${i} { get; } = GetImage(${imagePath});`
-    )
+    .map((i) => `    public static SvgImage ${i} { get; } = GetImage();`)
     .join("\n");
 
-  const csOutput = `namespace StackExchange.StacksIcons;
-${isSpot ? "public static partial class Svg {" : ""}
-public static partial class ${isSpot ? "Spot" : "Svg"}
+  let csOutput = `public static partial class ${isSpot ? "Spot" : "Svg"}
 {
 ${iconsOutput}
-}
-${isSpot ? "}" : ""}`;
+}`;
 
-  return fs.writeFile(csFile, csOutput, "utf8");
-}
+  // wrap the spots in the SVG class and indent each line (so it looks pretty <3)
+  if (isSpot) {
+    csOutput = `public static partial class Svg
+{
+    ${csOutput.replace(/\n/g, "\n    ")}
+}`;
+  }
 
-function writeEnums(icons: string[], type: OutputType) {
   // Output enums file
-  const enumsFile = path.root("nuget/generated/" + type + "s.g.cs");
-  const enumsOutput = `namespace StackExchange.StacksIcons;
+  csOutput += `
 public enum Stacks${type}
 {
 ${icons.map((i) => `    ${i},`).join("\n")}
 }`;
 
-  return fs.writeFile(enumsFile, enumsOutput, "utf8");
+  // add in the namespace at the top
+  csOutput = `namespace StackExchange.StacksIcons;\n` + csOutput;
+
+  return fs.writeFile(csFile, csOutput, "utf8");
 }
 
 function writeJson(iconsObj: Record<string, string>, type: OutputType) {
@@ -291,8 +284,7 @@ async function buildSvgSetAsync(buildPrefix: OutputType) {
   let { icons, iconsObj } = await processSvgFilesAsync(buildPrefix);
 
   await Promise.all([
-    writeRazor(icons, buildPrefix),
-    writeEnums(icons, buildPrefix),
+    writeCSharp(icons, buildPrefix),
     writeJson(iconsObj, buildPrefix),
     writeJsModule(iconsObj, buildPrefix),
   ]);

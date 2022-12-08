@@ -3,14 +3,7 @@ namespace nuget.test;
 public class SvgTest
 {
     [Fact]
-    public void StaticCompiles()
-    {
-        // TODO
-        Assert.True(true);
-    }
-
-    [Fact]
-    public void FindsIcon()
+    public void FindsEmbeddedResources()
     {
         var icon = Svg.Accessibility;
         var spot = Svg.Spot.Ads;
