@@ -151,7 +151,7 @@ function writeCSharp(icons: string[], type: OutputType) {
   // Output the Razor helper
   const csFile = path.build(type + "s.g.cs");
   const isSpot = type === "Spot";
-  const iconsOutput = icons
+  let iconsOutput = icons
     .map(
       (i) =>
         `    public static SvgImage ${i} { get; } = GetImage(${
@@ -159,6 +159,18 @@ function writeCSharp(icons: string[], type: OutputType) {
         });`
     )
     .join("\n");
+
+  // add in the lookup dictionary
+  iconsOutput += `
+    public static readonly ImmutableDictionary<Stacks${type}, SvgImage> Lookup = new Dictionary<Stacks${type}, SvgImage>
+    {
+${icons
+  .map(
+    (i) => `        [Stacks${type}.${i}] = Svg${isSpot ? ".Spot" : ""}.${i},`
+  )
+  .join("\n")}
+    }.ToImmutableDictionary();
+`;
 
   let csOutput = `public static partial class ${isSpot ? "Spot" : "Svg"}
 {
@@ -173,15 +185,18 @@ ${iconsOutput}
 }`;
   }
 
-  // Output enums file
+  // add in the enums
   csOutput += `
 public enum Stacks${type}
 {
 ${icons.map((i) => `    ${i},`).join("\n")}
 }`;
 
-  // add in the namespace at the top
-  csOutput = `namespace StackExchange.StacksIcons;\n` + csOutput;
+  // add in the namespace and usings at the top
+  csOutput = `using System.Collections.Generic;
+using System.Collections.Immutable;
+namespace StackExchange.StacksIcons;
+${csOutput}`;
 
   return fs.writeFile(csFile, csOutput, "utf8");
 }
