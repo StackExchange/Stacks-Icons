@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
-    "axios": "^1.1.3",
+    "axios": "^1.2.1",
     "chalk": "^5.1.2",
     "commander": "^9.4.1",
     "concat": "^1.0.3",
