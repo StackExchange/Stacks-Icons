@@ -8,7 +8,7 @@ const execAsync = promisify(exec);
 
 (async () => {
   const version = packageJson.version;
-  const path = "nuget/src/StackExchange.StacksIcons.csproj";
+  const path = "csharp/src/StackExchange.StacksIcons.csproj";
 
   var file = await readFile(path, "utf-8");
 

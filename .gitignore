@@ -18,6 +18,6 @@ src/Spot
 .env
 
 # don't check in any c# build data
-nuget/**/obj
-nuget/**/bin
+csharp/**/obj
+csharp/**/bin
 .vs
