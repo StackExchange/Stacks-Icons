@@ -95,6 +95,8 @@ Run the build locally via:
 npm run build
 ```
 
+In order to run the dotnet package's tests locally, you'll need to have first run the general build script above, as the dotnet solution pulls the generated csharp files from the build directory.
+
 ### Adding/updating icons/spots from Figma
 
 In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `src/definitions.ts`:
