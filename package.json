@@ -28,6 +28,7 @@
     "build:nuget": "cd csharp && dotnet pack",
     "prepublishOnly": "npm start",
     "publish:nuget": "echo 'Not implemented'",
+    "test:nuget": "dotnet test .\\csharp\\test",
     "version": "ts-node ./scripts/bumpVersions.ts"
   },
   "devDependencies": {
