@@ -25,10 +25,10 @@
   "scripts": {
     "start": "npm run build",
     "build": "ts-node ./scripts/build.ts",
-    "build:nuget": "cd csharp && dotnet pack",
+    "build:nuget": "cd dotnet && dotnet pack",
     "prepublishOnly": "npm start",
     "publish:nuget": "echo 'Not implemented'",
-    "test:nuget": "dotnet test .\\csharp\\test",
+    "test:nuget": "dotnet test .\\dotnet\\test",
     "version": "ts-node ./scripts/bumpVersions.ts"
   },
   "devDependencies": {
