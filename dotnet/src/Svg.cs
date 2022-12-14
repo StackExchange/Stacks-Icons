@@ -20,14 +20,6 @@ public static partial class Svg
     }
 
     /// <summary>
-    /// A hash that changes when any of the icons change or one gets added, removed, etc. Calculated in GetImage() by replacing this
-    /// value with a hash of the old value combined with the file contents. Thus relies on the fact that C# guarantees in-order execution
-    /// of static initializers (because the files have to be in the same order every time). The JS uses this value as a cache breaker when
-    /// downloading any SVG icon.
-    /// </summary>
-    public static string CombinedCacheBreaker { get; private set; } = string.Empty;
-
-    /// <summary>
     /// Gets an <see cref="SvgImage"/> for caching and reuse.
     /// </summary>
     /// <param name="fileName">The filename to grab, defaults to the caller's name via <see cref="CallerMemberNameAttribute"/>.</param>
@@ -63,7 +55,6 @@ public static partial class Svg
                 throw new Exception($"{fileName} contains <!-- --> style comments. Please ensure this file is minified properly.");
             }
 #endif
-            CombinedCacheBreaker = Helpers.ToSha256Hash(CombinedCacheBreaker + imageString).Substring(0, 12);
             return new SvgImage(imageString);
         }
         catch (Exception ex)

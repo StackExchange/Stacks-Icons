@@ -10,10 +10,4 @@ public class SvgTest
         Assert.False(string.IsNullOrWhiteSpace(icon.Value));
         Assert.False(string.IsNullOrWhiteSpace(spot.Value));
     }
-
-    [Fact]
-    public void CombinedCacheBreaker()
-    {
-        Assert.False(string.IsNullOrEmpty(Svg.CombinedCacheBreaker));
-    }
 }

@@ -30,19 +30,4 @@ internal static class Helpers
         using var reader = new StreamReader(stream);
         return reader.ReadToEnd();
     }
-
-    internal static string ToSha256Hash(string s)
-    {
-        using var mySHA256 = SHA256.Create();
-        var bytes = mySHA256.ComputeHash(Encoding.UTF8.GetBytes(s));
-
-        var str = new StringBuilder();
-
-        foreach (var b in bytes)
-        {
-            str.Append(b.ToString("X2"));
-        }
-
-        return str.ToString();
-    }
 }
