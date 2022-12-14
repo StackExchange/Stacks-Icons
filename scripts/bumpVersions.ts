@@ -10,7 +10,7 @@ const execAsync = promisify(exec);
   const version = packageJson.version;
   const path = "dotnet/src/StackExchange.StacksIcons.csproj";
 
-  var file = await readFile(path, "utf-8");
+  let file = await readFile(path, "utf-8");
 
   file = file.replace(
     /<Version>([\d.]+?)<\/Version>/,
