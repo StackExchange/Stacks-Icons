@@ -29,7 +29,7 @@
     "prepublishOnly": "npm start",
     "publish:nuget": "echo 'Not implemented'",
     "test:nuget": "dotnet test .\\dotnet\\test",
-    "version": "ts-node ./scripts/bumpVersions.ts"
+    "version": "ts-node ./scripts/sync-dotnet-version.ts"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",
