@@ -32,7 +32,7 @@ public static partial class Svg
     /// </summary>
     /// <param name="fileName">The filename to grab, defaults to the caller's name via <see cref="CallerMemberNameAttribute"/>.</param>
     /// <param name="isSpot">Whether the image is a Spot or not.</param>
-    /// <param name="bypassSizeCheck">Whether to allow bypassing the size check, for things we know not to repeat in a page (stil shouldn't be huge).</param>
+    /// <param name="bypassSizeCheck">Whether to allow bypassing the size check, for things we know not to repeat in a page (still shouldn't be huge).</param>
     /// <returns>The <see cref="SvgImage"/> to cache.</returns>
     internal static SvgImage GetImage([CallerMemberName] string? fileName = null, bool isSpot = false, bool bypassSizeCheck = false)
     {

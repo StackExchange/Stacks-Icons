@@ -95,7 +95,7 @@ Run the build locally via:
 npm run build
 ```
 
-In order to run the dotnet package's tests locally, you'll need to have first run the general build script above, as the dotnet solution pulls the generated csharp files from the build directory.
+In order to run the dotnet package's tests locally, you'll need to first run the general build script above, as the dotnet solution pulls the generated csharp files from the build directory.
 
 ### Adding/updating icons/spots from Figma
 
