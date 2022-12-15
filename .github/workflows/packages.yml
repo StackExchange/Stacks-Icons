@@ -2,7 +2,6 @@ name: Publish packages
 
 on:
   push:
-    branches: ["production"]
     tags:
       - "v*" # only run when a new package version is tagged
 
@@ -12,9 +11,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
       - name: Install .NET SDK
         uses: actions/setup-dotnet@v1
+
+      - name: Node Build
+        run: npm run build
+
       - name: .NET Build
         run: npm run pack:nuget
+
       - name: Push package to nuget
         run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}
