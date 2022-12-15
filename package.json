@@ -25,11 +25,11 @@
   "scripts": {
     "start": "npm run build",
     "build": "ts-node ./scripts/build.ts",
-    "build:nuget": "cd dotnet && dotnet pack -c Release",
     "prepublishOnly": "npm start",
-    "publish:nuget": "echo 'Not implemented'",
-    "test:nuget": "dotnet test .\\dotnet\\test",
-    "version": "ts-node ./scripts/sync-dotnet-version.ts"
+    "version": "ts-node ./scripts/sync-dotnet-version.ts",
+    "build:nuget": "cd dotnet && dotnet build -c Release",
+    "pack:nuget": "cd dotnet && dotnet pack -c Release",
+    "test:nuget": "dotnet test ./dotnet/test"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",

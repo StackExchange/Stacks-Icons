@@ -1,0 +1,19 @@
+name: Build and test dotnet
+
+on:
+  push:
+    branches: ["production"]
+    paths: ["dotnet/**"] # only run if there were changes in the dotnet folder
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v1
+      - name: .NET Build
+        run: npm run build:nuget
+      - name: .NET Test
+        run: dotnet run test:nuget

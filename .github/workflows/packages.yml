@@ -1,0 +1,20 @@
+name: Publish packages
+
+on:
+  push:
+    branches: ["production"]
+    tags:
+      - "v*" # only run when a new package version is tagged
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v1
+      - name: .NET Build
+        run: npm run pack:nuget
+      - name: Push package to nuget
+        run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}
