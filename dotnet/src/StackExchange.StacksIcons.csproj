@@ -6,10 +6,23 @@
 		<AssemblyName>StackExchange.StacksIcons</AssemblyName>
 		<PackageId>StackExchange.StacksIcons</PackageId>
 		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Description>Stack Overflow's shared icon set</Description>
+		<PackageProjectUrl>https://github.com/StackExchange/Stacks-Icons</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/StackExchange/Stacks-Icons.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <Optimize>True</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 		<None Remove="..\..\build\lib\*\*.svg" />
 	</ItemGroup>
 

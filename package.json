@@ -25,7 +25,7 @@
   "scripts": {
     "start": "npm run build",
     "build": "ts-node ./scripts/build.ts",
-    "build:nuget": "cd dotnet && dotnet pack",
+    "build:nuget": "cd dotnet && dotnet pack -c Release",
     "prepublishOnly": "npm start",
     "publish:nuget": "echo 'Not implemented'",
     "test:nuget": "dotnet test .\\dotnet\\test",
