@@ -16,3 +16,8 @@ src/Spot
 
 # don't check in environmental variables / secrets
 .env
+
+# don't check in any c# build data
+dotnet/**/obj
+dotnet/**/bin
+.vs

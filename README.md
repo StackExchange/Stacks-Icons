@@ -95,6 +95,8 @@ Run the build locally via:
 npm run build
 ```
 
+In order to run the dotnet package's tests locally, you'll need to first run the general build script above, as the dotnet solution pulls the generated csharp files from the build directory.
+
 ### Adding/updating icons/spots from Figma
 
 In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `src/definitions.ts`:
@@ -119,3 +121,38 @@ When updating an existing icon, just update the hash as explained in the previou
 ## Manifest
 
 See <https://icons.stackoverflow.design/> for an up-to-date list of all icons and spots.
+
+## Use in dotnet
+
+Stacks-Icons also provides a NuGet package that targets `netstandard2.0`.
+
+```sh
+dotnet add package StackExchange.StacksIcons
+```
+
+This package provides an SVG helper for use in Razor and other contexts:
+
+```cshtml
+@using StackExchange.StacksIcons
+
+<div>
+  // icons and spots return an `HtmlString` for safe use in Razor
+  @Svg.Accessibility
+  @Svg.Spot.Wave
+
+  // the `With` method can take css classes and title text to add to the svg
+  @Svg.AlertCircle.With(cssClass: "fc-danger", title: "foo")
+</div>
+```
+
+Enum definitions and lookup dictionaries for all icons/spots are also provided:
+
+```cs
+using StackExchange.StacksIcons;
+
+StacksIcon iconName = StacksIcon.Accessibility;
+HtmlString icon = Svg.Lookup[iconName]; // icon is now set to the value in Svg.Accessibility
+
+StacksSpot spotName = StacksSpot.Wave;
+HtmlString spot = Svg.Spot.Lookup[spotName]; // spot is now set to the value in Svg.Spot.Wave
+```

@@ -147,32 +147,58 @@ async function processSvgFilesAsync(type: OutputType) {
   return { icons, iconsObj };
 }
 
-function writeRazor(icons: string[], type: OutputType) {
+function writeCSharp(icons: string[], type: OutputType) {
   // Output the Razor helper
-  const csFile = path.build("Helper" + type + "s.cs");
-  let imagePath = "";
-
-  if (type === "Spot") {
-    imagePath = 'folder: "../stacks-spots"';
-  }
-
-  const csOutput = icons
+  const csFile = path.build(type + "s.g.cs");
+  const isSpot = type === "Spot";
+  let iconsOutput = icons
     .map(
-      (i) => `public static SvgImage ${i} { get; } = GetImage(${imagePath});`
+      (i) =>
+        `    public static SvgImage ${i} { get; } = GetImage(${
+          i.startsWith("Logo") ? "bypassSizeCheck: true" : ""
+        });`
     )
     .join("\n");
 
+  // add in the lookup dictionary
+  iconsOutput += `
+    public static readonly ImmutableDictionary<Stacks${type}, SvgImage> Lookup = new Dictionary<Stacks${type}, SvgImage>
+    {
+${icons
+  .map(
+    (i) => `        [Stacks${type}.${i}] = Svg${isSpot ? ".Spot" : ""}.${i},`
+  )
+  .join("\n")}
+    }.ToImmutableDictionary();
+`;
+
+  let csOutput = `public static partial class ${isSpot ? "Spot" : "Svg"}
+{
+${iconsOutput}
+}`;
+
+  // wrap the spots in the SVG class and indent each line (so it looks pretty <3)
+  if (isSpot) {
+    csOutput = `public static partial class Svg
+{
+    ${csOutput.replace(/\n/g, "\n    ")}
+}`;
+  }
+
+  // add in the enums
+  csOutput += `
+public enum Stacks${type}
+{
+${icons.map((i) => `    ${i},`).join("\n")}
+}`;
+
+  // add in the namespace and usings at the top
+  csOutput = `using System.Collections.Generic;
+using System.Collections.Immutable;
+namespace StackExchange.StacksIcons;
+${csOutput}`;
+
   return fs.writeFile(csFile, csOutput, "utf8");
-}
-
-function writeEnums(icons: string[], type: OutputType) {
-  // Output enums file
-  const enumsFile = path.build(type + "s.cs");
-  let enumsOutput = "public enum Icons\n{\n";
-  enumsOutput += icons.map((i) => `    ${i},`).join("\n");
-  enumsOutput += "\n}";
-
-  return fs.writeFile(enumsFile, enumsOutput, "utf8");
 }
 
 function writeJson(iconsObj: Record<string, string>, type: OutputType) {
@@ -277,8 +303,7 @@ async function buildSvgSetAsync(buildPrefix: OutputType) {
   let { icons, iconsObj } = await processSvgFilesAsync(buildPrefix);
 
   await Promise.all([
-    writeRazor(icons, buildPrefix),
-    writeEnums(icons, buildPrefix),
+    writeCSharp(icons, buildPrefix),
     writeJson(iconsObj, buildPrefix),
     writeJsModule(iconsObj, buildPrefix),
   ]);

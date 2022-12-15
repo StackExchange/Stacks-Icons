@@ -31,10 +31,6 @@ export class Paths {
     return path.resolve(this.paths.preview, ...paths);
   }
 
-  root(...paths: string[]) {
-    return path.resolve(this.paths.root, ...paths);
-  }
-
   src(...paths: string[]) {
     return path.resolve(this.paths.src, ...paths);
   }
