@@ -35,3 +35,5 @@ export class Paths {
     return path.resolve(this.paths.src, ...paths);
   }
 }
+
+export const paths = new Paths();

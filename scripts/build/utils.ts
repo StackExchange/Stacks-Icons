@@ -1,5 +1,7 @@
 import chalk from "chalk";
 
+export type OutputType = "Spot" | "Icon";
+
 function log(message: string, prefix?: string) {
   message = message.replace(/(\d+)/g, (d) => chalk.bold(d));
   console.log(prefix, message);
