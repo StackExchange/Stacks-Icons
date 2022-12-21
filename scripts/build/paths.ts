@@ -1,7 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-export class Paths {
+class Paths {
   private paths: {
     build: string;
     preview: string;

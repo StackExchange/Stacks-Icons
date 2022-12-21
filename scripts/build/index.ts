@@ -2,14 +2,13 @@ import { program } from "commander";
 import { deleteAsync } from "del";
 import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
-import { fetchFromFigma } from "./fetch-figma-components.js";
 import { paths } from "./paths.js";
 import { error, info, OutputType, success } from "./utils.js";
 import { writeCSharp } from "./write-csharp.js";
 import { bundleCssIcons } from "./write-css.js";
 import { bundleHelperJsAsync, writeJsModule, writeJson } from "./write-js.js";
 import { writeManifests } from "./write-manifests.js";
-import { processSvgFilesAsync } from "./write-svg.js";
+import { fetchFromFigma, processSvgFilesAsync } from "./write-svg.js";
 
 // load environmental variables from the .env file
 dotenv.config();
