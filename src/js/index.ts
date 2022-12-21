@@ -1,5 +1,5 @@
 // @ts-expect-error
-export * from "../../build/icons";
+export * from "../../dist/icons";
 // @ts-expect-error
-export * from "../../build/spots";
+export * from "../../dist/spots";
 export * from "./helpers";

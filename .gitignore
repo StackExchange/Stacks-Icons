@@ -7,7 +7,7 @@
 ._*
 
 node_modules
-build/
+dist/
 preview/
 
 # files we download from figma in src/fetchFigmaComponents

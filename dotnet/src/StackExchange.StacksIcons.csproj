@@ -23,13 +23,13 @@
 
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="\" />
-		<None Remove="..\..\build\lib\*\*.svg" />
+		<None Remove="..\..\dist\lib\*\*.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\build\Icons.g.cs" Link="Icons.g.cs" />
-		<Compile Include="..\..\build\Spots.g.cs" Link="Spots.g.cs" />
-		<EmbeddedResource Include="..\..\build\lib\*\*.svg" />
+		<Compile Include="..\..\dist\Icons.g.cs" Link="Icons.g.cs" />
+		<Compile Include="..\..\dist\Spots.g.cs" Link="Spots.g.cs" />
+		<EmbeddedResource Include="..\..\dist\lib\*\*.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

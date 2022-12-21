@@ -1,7 +1,7 @@
 // @ts-expect-error
-import * as Icons from "../../build/icons.js";
+import * as Icons from "../../dist/icons.js";
 // @ts-expect-error
-import * as Spots from "../../build/spots.js";
+import * as Spots from "../../dist/spots.js";
 import { browserHelper } from "./helpers";
 
 export { Icons, Spots, browserHelper };

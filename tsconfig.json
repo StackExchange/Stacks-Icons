@@ -24,7 +24,7 @@
     "declaration": true,
     "noEmitOnError": true
   },
-  "exclude": ["build/**/*"],
+  "exclude": ["dist/**/*"],
   "ts-node": {
     "esm": true
   }
