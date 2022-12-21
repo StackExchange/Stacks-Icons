@@ -7,6 +7,9 @@ import { definitions, FIGMA_FILE_KEY } from "../definitions.js";
 import { paths } from "./paths.js";
 import { error, info, OutputType, warn } from "./utils.js";
 
+/** The upper limit to an icon's svg size in bytes */
+const MAX_ICON_SIZE_B = 4500;
+
 // https://www.figma.com/developers/api#get-files-endpoint
 export interface FigmaComponent {
   name: string;
@@ -214,7 +217,7 @@ export async function processSvgFilesAsync(type: OutputType) {
 
   // Make an object of our icons { IconName: '<svg>' }
   let iconsObj: Record<string, string> = {};
-  processed.forEach((svgStr, idx) => {
+  const promises = processed.map(async (svgStr, idx) => {
     const iconName = icons[idx];
     if (!iconName) {
       return;
@@ -222,13 +225,28 @@ export async function processSvgFilesAsync(type: OutputType) {
 
     iconsObj[iconName] = svgStr;
 
+    const path = paths.build(paths.build("lib", type), icons[idx] + ext);
+
     // Save each svg
-    fs.writeFile(
-      paths.build(paths.build("lib", type), icons[idx] + ext),
-      svgStr,
-      "utf8"
-    );
+    await fs.writeFile(path, svgStr, "utf8");
+
+    // only check the file size for icons
+    if (type === "Icon") {
+      const stat = await fs.stat(path);
+
+      if (stat.size > MAX_ICON_SIZE_B) {
+        throw `File too large: ${path}; ${stat.size} B > ${MAX_ICON_SIZE_B} B`;
+      }
+    }
   });
+
+  const failed = (await Promise.allSettled(promises))
+    .map((r) => (r.status === "rejected" ? r.reason : null))
+    .filter((r) => !!r);
+
+  if (failed.length) {
+    throw failed.join("\n");
+  }
 
   return { icons, iconsObj };
 }
