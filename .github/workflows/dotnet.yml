@@ -35,4 +35,4 @@ jobs:
         run: npm run build:nuget
 
       - name: .NET Test
-        run: dotnet run test:nuget
+        run: npm run test:nuget
