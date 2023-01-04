@@ -10,6 +10,7 @@ about: Adding a new icon to Stacks-Icons
 I'm adding a new icon to Stacks-Icons named **ICON_NAME**. I've checked all of the following items necessary for merging this PR:
 
 - [ ] all icons have been added to the source [Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM)
+- [ ] icons do not contain any logos or other trademarked content
 - Styles
   - [ ] all icons match the existing style conventions
   - [ ] all icons are aligned _exactly_ to the pixel grid to prevent blurriness
@@ -24,7 +25,3 @@ I'm adding a new icon to Stacks-Icons named **ICON_NAME**. I've checked all of t
 - Small icon
   - [ ] my Figma component is named `Icon/ICON_NAMESm`
   - [ ] the icon has a height and width of 14x14 pixels
-- Logos
-  - [ ] my Figma component is named `Icon/LogoICON_NAME`
-  - [ ] if my icon is the glyph only, it is named `Icon/LogoIcon/ICON_NAMEGlyph`
-  - [ ] I have done my best to match the sizes of existing logos as much as possible
