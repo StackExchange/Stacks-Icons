@@ -7,12 +7,7 @@ export function writeCSharp(icons: string[], type: OutputType) {
   const csFile = paths.build(type + "s.g.cs");
   const isSpot = type === "Spot";
   let iconsOutput = icons
-    .map(
-      (i) =>
-        `    public static SvgImage ${i} { get; } = GetImage(${
-          i.startsWith("Logo") ? "bypassSizeCheck: true" : ""
-        });`
-    )
+    .map((i) => `    public static SvgImage ${i} { get; } = GetImage();`)
     .join("\n");
 
   // add in the lookup dictionary

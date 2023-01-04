@@ -16,7 +16,7 @@ public static partial class Svg
         /// <inheritdoc cref="Svg.GetImage(string?, bool, bool)"/>
         internal static SvgImage GetImage([CallerMemberName] string? fileName = null) =>
             // For spots, we intentionally want to bypass the size check on these rarely used items to make maintenance easier.
-            Svg.GetImage(fileName, isSpot: true, bypassSizeCheck: true);
+            Svg.GetImage(fileName, isSpot: true);
     }
 
     /// <summary>
@@ -24,9 +24,8 @@ public static partial class Svg
     /// </summary>
     /// <param name="fileName">The filename to grab, defaults to the caller's name via <see cref="CallerMemberNameAttribute"/>.</param>
     /// <param name="isSpot">Whether the image is a Spot or not.</param>
-    /// <param name="bypassSizeCheck">Whether to allow bypassing the size check, for things we know not to repeat in a page (still shouldn't be huge).</param>
     /// <returns>The <see cref="SvgImage"/> to cache.</returns>
-    internal static SvgImage GetImage([CallerMemberName] string? fileName = null, bool isSpot = false, bool bypassSizeCheck = false)
+    internal static SvgImage GetImage([CallerMemberName] string? fileName = null, bool isSpot = false)
     {
         if (string.IsNullOrEmpty(fileName))
         {
@@ -37,37 +36,26 @@ public static partial class Svg
         {
             var imageString = Helpers.GetSvg(fileName!, isSpot);
 #if DEBUG
-            // Okay so now we have the svg asset loaded into the string,
-            // if we're on DEBUG let's do some gut checking on the .svg itself.
-            // This way we throw in dev.
+            // Throw in dev if there was an issue loading the image
             if (imageString is null)
             {
                 throw new Exception($"Unable to find {fileName} in embedded resources.");
             }
-
-            if (imageString.Length > MaxReasonableSize && !bypassSizeCheck)
-            {
-                throw new Exception($"{fileName} is larger than the maximum allowed SVG icon size: {MaxReasonableSize} bytes.");
-            }
-
-            if (imageString.Contains("<!--"))
-            {
-                throw new Exception($"{fileName} contains <!-- --> style comments. Please ensure this file is minified properly.");
-            }
 #endif
             return new SvgImage(imageString);
         }
+#if DEBUG
+        // in dev, throw if there are any exceptions; on prod just return an empty icon so we don't crash the app startup
         catch (Exception ex)
         {
-#if DEBUG
-            // If the file wasn't able to be loaded at all, we should just throw.
-            // This throw should never happen on prod since people should be checking after they add a new SVG
-            // and the entry for it in this file, but you know, just in case.
             throw new Exception($"Unable to open {fileName}.svg (isSpot: {isSpot})", ex);
-#else
-            return Empty;
-#endif
         }
+#else
+        catch
+        {
+            return Empty;
+        }
+#endif
     }
 }
 
