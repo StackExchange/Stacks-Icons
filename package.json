@@ -27,8 +27,8 @@
     "build": "ts-node ./scripts/build/index.ts",
     "prepublishOnly": "npm start",
     "version": "ts-node ./scripts/sync-dotnet-version.ts",
-    "build:nuget": "cd dotnet && dotnet build -c Release",
-    "pack:nuget": "cd dotnet && dotnet pack -c Release",
+    "build:nuget": "dotnet build -c Release ./dotnet",
+    "pack:nuget": "dotnet pack -c Release ./dotnet",
     "test:nuget": "dotnet test ./dotnet/test"
   },
   "devDependencies": {
