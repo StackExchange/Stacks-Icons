@@ -29,7 +29,7 @@
     "version": "ts-node ./scripts/sync-dotnet-version.ts",
     "build:nuget": "dotnet build -c Release ./dotnet",
     "pack:nuget": "dotnet pack -c Release ./dotnet",
-    "test:nuget": "dotnet test ./dotnet/test"
+    "test:nuget": "dotnet test ./dotnet"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",
