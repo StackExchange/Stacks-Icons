@@ -20,6 +20,9 @@ jobs:
       - name: Install .NET SDK
         uses: actions/setup-dotnet@v1
 
+      - name: Install npm dependencies
+        run: npm ci
+
       - name: Node Build
         run: npm run build
 
