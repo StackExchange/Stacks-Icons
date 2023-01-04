@@ -25,6 +25,8 @@ jobs:
         run: npm ci
 
       - name: Node Build
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: npm run build
 
       - name: .NET Build
