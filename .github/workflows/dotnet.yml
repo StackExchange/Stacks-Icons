@@ -4,6 +4,7 @@ on:
   push:
     branches: ["production"]
     paths: ["dotnet/**"] # only run if there were changes in the dotnet folder
+  workflow_dispatch:
 
 jobs:
   build-ubuntu:
