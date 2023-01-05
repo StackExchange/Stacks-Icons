@@ -58,7 +58,7 @@ export async function bundleHelperJsAsync() {
       plugins: [plugin],
     });
     await bundle.write({
-      file: paths.build("index.umd.js"),
+      file: paths.build("index.umd.cjs"),
       format: "umd",
       name: "StacksIcons",
     });
