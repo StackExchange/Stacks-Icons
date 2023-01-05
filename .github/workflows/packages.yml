@@ -31,6 +31,11 @@ jobs:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
         run: npm run build
 
+      - name: Push package to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
+
       - name: .NET Build
         run: npm run pack:nuget
 
