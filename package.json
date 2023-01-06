@@ -16,12 +16,15 @@
     "./icons": "./dist/icons.js",
     "./spots": "./dist/spots.js",
     "./src/Icon/*": "./src/Icon/*",
-    "./src/Spot/*": "./src/Spot/*"
+    "./src/Spot/*": "./src/Spot/*",
+    "./dist/Icon/*": "./dist/lib/Icon/*",
+    "./dist/Spot/*": "./dist/lib/Spot/*"
   },
   "files": [
     "dist/**/*",
     "src/**/*"
   ],
+  "sideEffects": false,
   "scripts": {
     "start": "npm run build",
     "build": "ts-node ./scripts/build/index.ts",
