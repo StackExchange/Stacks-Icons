@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stacks-Icons manifest</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stacks-Icons manifest</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@stackoverflow/stacks/dist/css/stacks.min.css"
+        />
+        {CSS_STYLES}
+        <style>
+            .svg-icon:not(.native) *,
+            .svg-spot:not(.native) * {
+                fill: unset;
+            }
+        </style>
+    </head>
 
-    <link rel="stylesheet" href="https://unpkg.com/@stackoverflow/stacks/dist/css/stacks.min.css">
-    {CSS_STYLES}
-    <style>
-        .svg-icon:not(.native) *,
-        .svg-spot:not(.native) * {
-            fill: unset;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="d-flex fd-column g32 p32">
-        <h2 class="fs-headline1 ta-center mt64 mb0">Icons</h2>
-        <div class="d-grid grid__5 g32">
-            {ICONS_MANIFEST}
+    <body>
+        <div class="d-flex fd-column g32 p32">
+            <h2 class="fs-headline1 ta-center mt64 mb0">Icons</h2>
+            <div class="d-grid grid__5 g32">{ICONS_MANIFEST}</div>
+            <h2 class="fs-headline1 ta-center mt64 mb0">Spots</h2>
+            <div class="d-grid grid__5 g32">{SPOTS_MANIFEST}</div>
+            <h2 class="fs-headline1 ta-center mt64 mb0">CSS Icons</h2>
+            <div class="d-grid grid__6 g32 ta-center fc-light">
+                {CSS_MANIFEST}
+            </div>
         </div>
-        <h2 class="fs-headline1 ta-center mt64 mb0">Spots</h2>
-        <div class="d-grid grid__5 g32">
-            {SPOTS_MANIFEST}
-        </div>
-        <h2 class="fs-headline1 ta-center mt64 mb0">CSS Icons</h2>
-        <div class="d-grid grid__6 g32 ta-center fc-light">
-            {CSS_MANIFEST}
-        </div>
-    </div>
-</body>
-
+    </body>
 </html>

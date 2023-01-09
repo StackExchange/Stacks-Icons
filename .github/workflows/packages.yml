@@ -1,39 +1,39 @@
 name: Publish packages
 
 on:
-  push:
-    tags:
-      - "v*" # only run when a new package version is tagged
-  workflow_dispatch:
+    push:
+        tags:
+            - "v*" # only run when a new package version is tagged
+    workflow_dispatch:
 
 jobs:
-  build-ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    build-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "lts/*"
 
-      - name: Install .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: "6.0.x" # latest LTS build
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: "6.0.x" # latest LTS build
 
-      - name: Install npm dependencies
-        run: npm ci
+            - name: Install npm dependencies
+              run: npm ci
 
-      - name: Build and push package to npm
-        env:
-          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
-        run: npm publish
+            - name: Build and push package to npm
+              env:
+                  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
+              run: npm publish
 
-      - name: .NET Build
-        run: npm run pack:nuget
+            - name: .NET Build
+              run: npm run pack:nuget
 
-      - name: Push package to nuget
-        run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}
+            - name: Push package to nuget
+              run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}

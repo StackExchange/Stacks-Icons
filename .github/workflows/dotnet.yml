@@ -1,38 +1,38 @@
 name: Build and test dotnet
 
 on:
-  push:
-    branches: ["production"]
-    paths: ["dotnet/**"] # only run if there were changes in the dotnet folder
-  workflow_dispatch:
+    push:
+        branches: ["production"]
+        paths: ["dotnet/**"] # only run if there were changes in the dotnet folder
+    workflow_dispatch:
 
 jobs:
-  build-ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    build-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "lts/*"
 
-      - name: Install .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: "6.0.x" # latest LTS build
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: "6.0.x" # latest LTS build
 
-      - name: Install npm dependencies
-        run: npm ci
+            - name: Install npm dependencies
+              run: npm ci
 
-      - name: Node Build
-        env:
-          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
-        run: npm run build
+            - name: Node Build
+              env:
+                  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+              run: npm run build
 
-      - name: .NET Build
-        run: npm run build:nuget
+            - name: .NET Build
+              run: npm run build:nuget
 
-      - name: .NET Test
-        run: npm run test:nuget
+            - name: .NET Test
+              run: npm run test:nuget

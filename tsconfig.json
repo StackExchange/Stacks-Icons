@@ -1,31 +1,26 @@
 {
-  "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "importsNotUsedAsValues": "error",
-    "checkJs": true,
-    "outDir": "./tmp",
-    "resolveJsonModule": true,
-    "declaration": true,
-    "noEmitOnError": true
-  },
-  "exclude": ["dist/**/*"],
-  "ts-node": {
-    "esm": true
-  }
+    "extends": "@stackoverflow/tsconfig/tsconfig.json",
+    "compilerOptions": {
+        "sourceMap": false,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowUnusedLabels": false,
+        "allowUnreachableCode": false,
+        "exactOptionalPropertyTypes": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importsNotUsedAsValues": "error",
+        "checkJs": true,
+        "outDir": "./tmp",
+        "noEmitOnError": true
+    },
+    "exclude": ["dist/**/*", "./*.cjs"],
+    "ts-node": {
+        "esm": true
+    }
 }

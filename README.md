@@ -37,10 +37,10 @@ In certain cases where adding the raw svg markup to your html would cause bloat 
 
 You can add support for more CSS icons my editing the `src/cssIcons.json` file. Supported formats:
 
-- the name of the icon as a string (e.g. `"Bold"`)
-- an object with the following properties:
-  - `name` - the name of the icon (e.g. `"Bold"`)
-  - `css` - arbitrary css to add to the icon class (e.g. `"width: 14px; height: 14px;"` )
+-   the name of the icon as a string (e.g. `"Bold"`)
+-   an object with the following properties:
+    -   `name` - the name of the icon (e.g. `"Bold"`)
+    -   `css` - arbitrary css to add to the icon class (e.g. `"width: 14px; height: 14px;"` )
 
 ## Using the front-end helper for prototyping
 
@@ -103,9 +103,9 @@ In order to ensure that any new icons/spots in Figma are pulled into this repo, 
 
 ```ts
 const figmaIconDefinitions = {
-  // ...
-  "Icon/IconName": "",
-  // ...
+    // ...
+    "Icon/IconName": "",
+    // ...
 };
 ```
 

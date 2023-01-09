@@ -7,22 +7,22 @@ import { readFile, writeFile } from "fs/promises";
 const execAsync = promisify(exec);
 
 (async () => {
-  const version = packageJson.version;
-  const path = "dotnet/src/StackExchange.StacksIcons.csproj";
+    const version = packageJson.version;
+    const path = "dotnet/src/StackExchange.StacksIcons.csproj";
 
-  let file = await readFile(path, "utf-8");
+    let file = await readFile(path, "utf-8");
 
-  file = file.replace(
-    /<Version>([\d.]+?)<\/Version>/,
-    `<Version>${version}</Version>`
-  );
+    file = file.replace(
+        /<Version>([\d.]+?)<\/Version>/,
+        `<Version>${version}</Version>`
+    );
 
-  await writeFile(path, file, "utf-8");
+    await writeFile(path, file, "utf-8");
 
-  await execAsync("git add " + path);
+    await execAsync("git add " + path);
 
-  success(`Wrote version ${version} to csproj and staged the changes`);
+    success(`Wrote version ${version} to csproj and staged the changes`);
 })().catch((e) => {
-  error(e);
-  process.exit(1);
+    error(e);
+    process.exit(1);
 });

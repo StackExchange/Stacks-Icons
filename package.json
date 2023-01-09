@@ -1,52 +1,63 @@
 {
-  "name": "@stackoverflow/stacks-icons",
-  "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
-  "version": "5.0.2",
-  "repository": "https://github.com/StackExchange/Stacks-Icons",
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/index.umd.cjs",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.umd.cjs",
-      "default": "./dist/index.esm.js"
+    "name": "@stackoverflow/stacks-icons",
+    "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
+    "version": "5.0.2",
+    "repository": "https://github.com/StackExchange/Stacks-Icons",
+    "license": "MIT",
+    "type": "module",
+    "main": "dist/index.umd.cjs",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.umd.cjs",
+            "default": "./dist/index.esm.js"
+        },
+        "./icons": "./dist/icons.js",
+        "./spots": "./dist/spots.js",
+        "./src/Icon/*": "./src/Icon/*",
+        "./src/Spot/*": "./src/Spot/*",
+        "./dist/Icon/*": "./dist/lib/Icon/*",
+        "./dist/Spot/*": "./dist/lib/Spot/*"
     },
-    "./icons": "./dist/icons.js",
-    "./spots": "./dist/spots.js",
-    "./src/Icon/*": "./src/Icon/*",
-    "./src/Spot/*": "./src/Spot/*",
-    "./dist/Icon/*": "./dist/lib/Icon/*",
-    "./dist/Spot/*": "./dist/lib/Spot/*"
-  },
-  "files": [
-    "dist/**/*",
-    "src/**/*"
-  ],
-  "sideEffects": false,
-  "scripts": {
-    "start": "npm run build",
-    "build": "ts-node ./scripts/build/index.ts",
-    "prepublishOnly": "npm start",
-    "version": "ts-node ./scripts/sync-dotnet-version.ts",
-    "build:nuget": "dotnet build -c Release ./dotnet",
-    "pack:nuget": "dotnet pack -c Release ./dotnet",
-    "test:nuget": "dotnet test ./dotnet"
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^10.0.1",
-    "axios": "^1.2.2",
-    "chalk": "^5.2.0",
-    "commander": "^9.4.1",
-    "concat": "^1.0.3",
-    "del": "^7.0.0",
-    "dotenv": "^16.0.3",
-    "mini-svg-data-uri": "^1.4.4",
-    "rollup": "^3.9.1",
-    "svgo": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.4.1",
-    "typescript": "^4.9.4"
-  }
+    "files": [
+        "dist/**/*",
+        "src/**/*"
+    ],
+    "sideEffects": false,
+    "eslintConfig": {
+        "extends": [
+            "./.eslintrc.js"
+        ]
+    },
+    "prettier": "@stackoverflow/prettier-config",
+    "scripts": {
+        "start": "npm run build",
+        "build": "ts-node ./scripts/build/index.ts",
+        "prepublishOnly": "npm start",
+        "version": "ts-node ./scripts/sync-dotnet-version.ts",
+        "build:nuget": "dotnet build -c Release ./dotnet",
+        "pack:nuget": "dotnet pack -c Release ./dotnet",
+        "test:nuget": "dotnet test ./dotnet",
+        "lint:eslint": "eslint .",
+        "lint:prettier": "prettier --check . --end-of-line auto"
+    },
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^10.0.1",
+        "@stackoverflow/eslint-config": "^1.0.0",
+        "@stackoverflow/prettier-config": "^1.0.0",
+        "@stackoverflow/tsconfig": "^1.0.0",
+        "axios": "^1.2.2",
+        "chalk": "^5.2.0",
+        "commander": "^9.4.1",
+        "concat": "^1.0.3",
+        "del": "^7.0.0",
+        "dotenv": "^16.0.3",
+        "mini-svg-data-uri": "^1.4.4",
+        "rollup": "^3.9.1",
+        "svgo": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "tslib": "^2.4.1",
+        "typescript": "^4.9.4"
+    }
 }
