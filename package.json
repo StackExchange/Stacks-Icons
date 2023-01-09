@@ -43,13 +43,13 @@
         "lint:prettier": "prettier --check . --end-of-line auto"
     },
     "devDependencies": {
-        "@rollup/plugin-typescript": "^10.0.1",
+        "@rollup/plugin-typescript": "^11.0.0",
         "@stackoverflow/eslint-config": "^1.0.0",
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
         "axios": "^1.2.2",
         "chalk": "^5.2.0",
-        "commander": "^9.4.1",
+        "commander": "^9.5.0",
         "concat": "^1.0.3",
         "del": "^7.0.0",
         "dotenv": "^16.0.3",
