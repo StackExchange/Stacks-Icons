@@ -18,7 +18,8 @@
         "./src/Icon/*": "./src/Icon/*",
         "./src/Spot/*": "./src/Spot/*",
         "./dist/Icon/*": "./dist/lib/Icon/*",
-        "./dist/Spot/*": "./dist/lib/Spot/*"
+        "./dist/Spot/*": "./dist/lib/Spot/*",
+        "./dist/icons.css": "./dist/icons.css"
     },
     "files": [
         "dist/**/*",
