@@ -108,7 +108,7 @@ npm run test:nuget
 
 ### Adding/updating icons/spots from Figma
 
-In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `src/definitions.ts`:
+In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `scripts/definitions.ts`:
 
 ```ts
 const figmaIconDefinitions = {
