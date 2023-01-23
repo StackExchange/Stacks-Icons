@@ -17,9 +17,10 @@ dotenv.config();
 program
     .usage("[OPTIONS]...")
     .option("-c, --cached", "Use already downloaded images if they exist")
+    .option("-i, --ignore", "Ignore all hash mismatches")
     .parse(process.argv);
 
-const options = program.opts<{ cached: boolean }>();
+const options = program.opts<{ cached: boolean; ignore: boolean }>();
 
 async function cleanBuildDirectoryAsync() {
     // Clear the existing built files
@@ -63,8 +64,8 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
 
     const hasCachedIcons =
         (await fs.stat(paths.src("Icon")))?.isDirectory() || false;
-    if (!options.cached && hasCachedIcons) {
-        await fetchFromFigma();
+    if (!options.cached || !hasCachedIcons) {
+        await fetchFromFigma(options.ignore);
     } else {
         info("Skipping fetching from Figma...");
     }

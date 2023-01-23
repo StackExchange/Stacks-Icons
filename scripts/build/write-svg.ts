@@ -19,7 +19,7 @@ export interface FigmaComponent {
     updated_at: string;
 }
 
-export const fetchFromFigma = async () => {
+export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // https://www.figma.com/developers/api
     const fetch = axios.create({
         baseURL: "https://api.figma.com/v1",
@@ -136,10 +136,16 @@ export const fetchFromFigma = async () => {
     });
 
     if (hashEntries.length) {
-        throw `Hash mismatch on ${
+        const mismatchError = `Hash mismatch on ${
             hashEntries.length
         } files. Expected hash values:
-    ${hashEntries.reduce((p, [k, v]) => p + `"${k}": "${v}",\n`, "")}`;
+${hashEntries.reduce((p, [k, v]) => p + `"${k}": "${v}",\n`, "")}`;
+
+        if (ignoreHashMismatch) {
+            error(mismatchError);
+        } else {
+            throw mismatchError;
+        }
     }
 
     return components;
