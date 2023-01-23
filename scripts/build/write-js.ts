@@ -58,13 +58,23 @@ export async function bundleHelperJsAsync() {
             plugins: [plugin],
         });
         await bundle.write({
+            file: paths.build("browser.umd.js"),
+            format: "umd",
+            name: "StacksIcons",
+        });
+
+        // create the require bundle
+        bundle = await rollup({
+            input: paths.src("js/require.ts"),
+            plugins: [plugin],
+        });
+        await bundle.write({
             file: paths.build("index.umd.cjs"),
             format: "umd",
             name: "StacksIcons",
         });
 
         // create the es6 bundle
-        // create the browser bundle
         bundle = await rollup({
             input: paths.src("js/index.ts"),
             plugins: [plugin],
