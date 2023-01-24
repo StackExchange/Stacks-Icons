@@ -106,7 +106,9 @@ or run the unit tests with:
 npm run test:nuget
 ```
 
-### Adding/updating icons/spots from Figma
+### Adding or updating icons/spots
+
+All icons and spots are pulled directly from Figma via their API. The _only_ way to add or update icons is by directly modifying the [source Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM) and then publishing a new component release from within Figma.
 
 In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `scripts/definitions.ts`:
 
