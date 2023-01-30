@@ -47,7 +47,7 @@ async function buildSvgSetAsync(buildPrefix: OutputType) {
         writeJsModule(iconsObj, buildPrefix),
     ]);
 
-    return { obj: iconsObj, count: icons.length };
+    return { count: icons.length, obj: iconsObj };
 }
 
 (async () => {

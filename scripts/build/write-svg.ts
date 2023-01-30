@@ -172,18 +172,18 @@ export async function processSvgFilesAsync(type: OutputType) {
     processed.forEach((i) => {
         try {
             const optimized = optimize(i, {
-                multipass: true,
                 floatPrecision: 2,
+                multipass: true,
                 plugins: [
                     {
                         name: "preset-default",
                         params: {
                             overrides: {
-                                removeViewBox: false,
                                 mergePaths: {
                                     force: true,
                                     noSpaceAfterFlags: true,
                                 },
+                                removeViewBox: false,
                             },
                         },
                     },

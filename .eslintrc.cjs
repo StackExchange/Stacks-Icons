@@ -15,5 +15,6 @@ module.exports = {
         "no-process-env": 0,
         "no-process-exit": 0,
         "no-console": 0,
+        "sort-keys": 2,
     },
 };
