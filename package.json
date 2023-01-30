@@ -35,6 +35,7 @@
     "scripts": {
         "start": "npm run build",
         "build": "ts-node ./scripts/build/index.ts",
+        "preview": "http-server ./preview -o",
         "prepublishOnly": "npm start",
         "version": "ts-node ./scripts/sync-dotnet-version.ts",
         "build:nuget": "dotnet build -c Release ./dotnet",
@@ -54,6 +55,7 @@
         "concat": "^1.0.3",
         "del": "^7.0.0",
         "dotenv": "^16.0.3",
+        "http-server": "^14.1.1",
         "mini-svg-data-uri": "^1.4.4",
         "rollup": "^3.9.1",
         "svgo": "^3.0.2",
