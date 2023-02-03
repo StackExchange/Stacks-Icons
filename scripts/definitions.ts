@@ -5,6 +5,7 @@ export const cssIcons: { [name: string]: { css?: string } } = {
     Clap: {},
     Code: {},
     Codeblock: {},
+    CodeblockAlt: {},
     FaceMindBlown: {},
     FaceSmile: {},
     Fire: {},
