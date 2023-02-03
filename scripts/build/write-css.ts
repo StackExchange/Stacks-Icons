@@ -7,9 +7,10 @@ export async function bundleCssIcons() {
     const iconData: {
         name: string;
         css: string | null;
-    }[] = cssIcons
-        .map((i) => (typeof i === "string" ? { css: null, name: i } : i))
-        .sort((a, b) => (a.name > b.name ? 1 : -1));
+    }[] = Object.entries(cssIcons).map(([name, value]) => ({
+        css: value.css ?? null,
+        name,
+    }));
 
     const allIconSvgStrings = await Promise.all(
         iconData.map(async (i) =>
