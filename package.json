@@ -49,7 +49,7 @@
         "@stackoverflow/eslint-config": "^1.0.0",
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
-        "axios": "^1.2.2",
+        "axios": "^1.3.2",
         "chalk": "^5.2.0",
         "commander": "^9.5.0",
         "concat": "^1.0.3",
