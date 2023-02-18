@@ -61,7 +61,7 @@ See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 > **Note**
 > This method is not intended to be used in production
 
-If you include the `index.js` within your prototype’s `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons"></script>`) you can render Stacks Icons in the browser using only the following format:
+If you include the `browser.umd.js` within your prototype’s `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons/dist/browser.umd.js"></script>`) you can render Stacks Icons in the browser using only the following format:
 
 ```html
 <svg data-icon="IconFaceMindBlown" class="native"></svg>
