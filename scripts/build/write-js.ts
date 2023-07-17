@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 import { rollup } from "rollup";
 import packageJson from "../../package.json" assert { type: "json" };
 import { paths } from "./paths.js";
-import { error, OutputType } from "./utils.js";
+import { error, type OutputType } from "./utils.js";
 
 export function writeJson(iconsObj: Record<string, string>, type: OutputType) {
     // Output the JSON helper

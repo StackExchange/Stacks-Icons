@@ -14,7 +14,7 @@
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "importsNotUsedAsValues": "error",
+        "verbatimModuleSyntax": true,
         "checkJs": true,
         "outDir": "./tmp",
         "noEmitOnError": true

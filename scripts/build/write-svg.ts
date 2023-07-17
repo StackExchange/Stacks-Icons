@@ -5,7 +5,7 @@ import { basename } from "path";
 import { optimize } from "svgo";
 import { definitions, FIGMA_FILE_KEY } from "../definitions.js";
 import { paths } from "./paths.js";
-import { error, info, OutputType, warn } from "./utils.js";
+import { error, info, warn, type OutputType } from "./utils.js";
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;

@@ -3,7 +3,7 @@ import { deleteAsync } from "del";
 import * as dotenv from "dotenv";
 import { promises as fs } from "fs";
 import { paths } from "./paths.js";
-import { error, info, OutputType, success } from "./utils.js";
+import { error, info, success, type OutputType } from "./utils.js";
 import { writeCSharp } from "./write-csharp.js";
 import { bundleCssIcons } from "./write-css.js";
 import { bundleHelperJsAsync, writeJsModule, writeJson } from "./write-js.js";
