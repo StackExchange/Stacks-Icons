@@ -118,6 +118,7 @@ const figmaIconDefinitions: Record<string, string> = {
     "Icon/Collection": "bbDzoykX+jFvLG0TLIs4KsSl7hF/O1o3AUAFO2x0O7s=",
     "Icon/Columns": "42rPrmlgW08fRG3flovN/blC5sXTcGoGS+3pOyQ7TnQ=",
     "Icon/Computer": "897nuZa7X+QOUsZxv7kcqIa0LYTviECKLsY8G1WPo/E=",
+    "Icon/Confluence": "mZBfFYuKcL+TCpmUvPChHeEwbCbSDnpw0JpPgcfb1/M=",
     "Icon/Copy": "x+mWKzk+e4gUtZ7KC9/hJY141yhwZS0geUT2+sBpmL4=",
     "Icon/CreditCard": "40SXJcJTmlgM/mhelK51cLZxaK639Y7tDKlgccF1lBk=",
     "Icon/Crosshairs": "Qz1MSCEj9zf2qnQl2Gv2PBOQfgv5UFVc9/Nz3728U8A=",
