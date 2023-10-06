@@ -219,10 +219,10 @@ export async function processSvgFilesAsync(type: OutputType) {
             ) // Add classes and aria-attributes since our source files don't have them
             .replace(/fill="#000"/gi, "") // Remove any fills so paths are colored by the parents' color
             .replace(/fill="none"/gi, "") // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
-            .replace(/fill="#222426"/gi, 'fill="var(--black-800)"') // Replace hardcoded hex value with appropriate CSS variables
+            .replace(/fill="#222426"/gi, 'fill="var(--black-600)"') // Replace hardcoded hex value with appropriate CSS variables
             .replace(/fill="#fff"/gi, 'fill="var(--white)"')
-            .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-500)"')
-            .replace(/fill="#1A1104"/gi, 'fill="var(--black-900)"')
+            .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-400)"')
+            .replace(/fill="#1A1104"/gi, 'fill="var(--black-600)"')
             .replace(
                 /linearGradient id="(.*?)/gi,
                 `linearGradient id="${icon}$1`
