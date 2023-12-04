@@ -136,7 +136,7 @@ In order to publish a new release to npm and NuGet, you just need to tag a new r
 ```sh
 npm version [major|minor|patch]
 # for prerelase candidates instead use:
-# npm version prerelease --preid rc 
+# npm version prerelease --preid rc
 git push --follow-tags
 ```
 

@@ -1,6 +1,9 @@
 {
-    "extends": "@stackoverflow/tsconfig/tsconfig.json",
     "compilerOptions": {
+        "target": "esnext",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "resolveJsonModule": true,
         "sourceMap": false,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
@@ -14,13 +17,12 @@
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "verbatimModuleSyntax": true,
         "checkJs": true,
         "outDir": "./tmp",
         "noEmitOnError": true
     },
     "exclude": ["dist/**/*", "./*.cjs"],
     "ts-node": {
-        "esm": true
+        "experimentalSpecifierResolution": "node"
     }
 }

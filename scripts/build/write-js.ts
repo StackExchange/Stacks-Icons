@@ -47,6 +47,8 @@ export function writeJsModule(
 
 export async function bundleHelperJsAsync() {
     let bundle;
+    // @ts-expect-error https://github.com/rollup/plugins/issues/1541
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const plugin = rollupTypescript({
         include: "**/src/js/*.ts",
     });

@@ -34,15 +34,15 @@
     "prettier": "@stackoverflow/prettier-config",
     "scripts": {
         "start": "npm run build",
-        "build": "ts-node ./scripts/build/index.ts",
+        "build": "node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
         "preview": "http-server ./preview -o",
         "prepublishOnly": "npm start",
-        "version": "ts-node ./scripts/sync-dotnet-version.ts",
+        "version": "node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
+        "lint": "prettier --check . --end-of-line auto && eslint .",
+        "format": "prettier --write . --end-of-line auto",
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
-        "test:nuget": "dotnet test ./dotnet",
-        "lint:eslint": "eslint .",
-        "lint:prettier": "prettier --check . --end-of-line auto"
+        "test:nuget": "dotnet test ./dotnet"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.5",
@@ -57,8 +57,8 @@
         "dotenv": "^16.3.1",
         "http-server": "^14.1.1",
         "mini-svg-data-uri": "^1.4.4",
-        "rollup": "^4.6.0",
-        "svgo": "^3.0.4",
+        "rollup": "^4.6.1",
+        "svgo": "^3.0.5",
         "ts-node": "^10.9.1",
         "tslib": "^2.6.2",
         "typescript": "^5.3.2"

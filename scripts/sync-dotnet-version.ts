@@ -8,14 +8,14 @@ const execAsync = promisify(exec);
 
 (async () => {
     const version = packageJson.version;
-        const path = "dotnet/src/StackExchange.StacksIcons.csproj";
+    const path = "dotnet/src/StackExchange.StacksIcons.csproj";
 
-        let file = await readFile(path, "utf-8");
+    let file = await readFile(path, "utf-8");
 
-        file = file.replace(
-            /<Version>.*<\/Version>/,
-            `<Version>${version}</Version>`
-        );
+    file = file.replace(
+        /<Version>.*<\/Version>/,
+        `<Version>${version}</Version>`
+    );
 
     await writeFile(path, file, "utf-8");
 
