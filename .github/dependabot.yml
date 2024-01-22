@@ -4,9 +4,7 @@ updates:
       directory: "/"
       schedule:
           interval: "weekly"
-      versioning-strategy: increase
     - package-ecosystem: "nuget"
-      directory: "/dotnet"
+      directory: "/dotnet/"
       schedule:
           interval: "weekly"
-      versioning-strategy: increase
