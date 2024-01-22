@@ -54,7 +54,7 @@
         "commander": "^11.1.0",
         "concat": "^1.0.3",
         "del": "^7.1.0",
-        "dotenv": "^16.3.1",
+        "dotenv": "^16.3.2",
         "http-server": "^14.1.1",
         "mini-svg-data-uri": "^1.4.4",
         "rollup": "^4.9.4",
