@@ -21,6 +21,7 @@
     mask: var(--bg-icon) no-repeat center;
     -webkit-mask-size: contain;
     mask-size: contain;
+    forced-color-adjust: none;
 }
 
 /* in order to support "native" coloring of an icon, */
