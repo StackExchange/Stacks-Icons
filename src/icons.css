@@ -21,7 +21,12 @@
     mask: var(--bg-icon) no-repeat center;
     -webkit-mask-size: contain;
     mask-size: contain;
-    forced-color-adjust: none;
+}
+
+@media (forced-colors: active) {
+    .svg-icon-bg::after {
+        background-color: CanvasText;
+    }
 }
 
 /* in order to support "native" coloring of an icon, */
