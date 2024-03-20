@@ -51,5 +51,8 @@ jobs:
               with:
                   dotnet-version: "8.0.x" # latest LTS build
 
+            - name: .NET Build
+              run: npm run build:nuget
+              
             - name: .NET test
               run: npm run test:nuget
