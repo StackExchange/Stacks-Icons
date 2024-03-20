@@ -31,15 +31,14 @@
             "./.eslintrc.js"
         ]
     },
-    "prettier": "@stackoverflow/prettier-config",
     "scripts": {
         "start": "npm run build",
         "build": "node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
         "preview": "http-server ./preview -o",
         "prepublishOnly": "npm start",
         "version": "node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
-        "lint": "prettier --check . --end-of-line auto && eslint .",
-        "format": "prettier --write . --end-of-line auto",
+        "lint": "prettier --check . && eslint .",
+        "format": "prettier --write .",
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
         "test:nuget": "dotnet test ./dotnet"

@@ -1,17 +1,18 @@
-name: Build and test dotnet
+name: CI
 
 on:
     push:
-        branches: ["production"]
-        paths: ["dotnet/**"] # only run if there were changes in the dotnet folder
+        branches: [production]
+    pull_request:
+        branches: [production]
     workflow_dispatch:
 
 jobs:
-    build-ubuntu:
+    build:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Setup node
               uses: actions/setup-node@v3
@@ -21,7 +22,7 @@ jobs:
             - name: Install .NET SDK
               uses: actions/setup-dotnet@v3
               with:
-                  dotnet-version: "6.0.x" # latest LTS build
+                  dotnet-version: "8.0.x" # latest LTS build
 
             - name: Install npm dependencies
               run: npm ci
@@ -34,5 +35,21 @@ jobs:
             - name: .NET Build
               run: npm run build:nuget
 
-            - name: .NET Test
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "lts/*"
+
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: "8.0.x" # latest LTS build
+
+            - name: .NET test
               run: npm run test:nuget
