@@ -37,6 +37,6 @@ jobs:
 
             - name: .NET Build
               run: npm run build:nuget
-            
+
             - name: .NET test
               run: npm run test:nuget
