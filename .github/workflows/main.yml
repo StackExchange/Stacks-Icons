@@ -32,6 +32,9 @@ jobs:
                   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
               run: npm run build
 
+            - name: Run linters
+              run: npm run lint
+
             - name: .NET Build
               run: npm run build:nuget
             
