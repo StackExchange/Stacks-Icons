@@ -41,7 +41,8 @@
         "format": "prettier --write .",
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
-        "test:nuget": "dotnet test ./dotnet"
+        "test:nuget": "dotnet test ./dotnet",
+        "dummy": "echo 'this is just some dummy junk to test github actions'"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.6",
