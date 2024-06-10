@@ -8,7 +8,6 @@ namespace StackExchange.StacksIcons;
 
 public static partial class Svg
 {
-    private const int MaxReasonableSize = 4500;
     public static readonly SvgImage Empty = new(string.Empty);
 
     public static partial class Spot
