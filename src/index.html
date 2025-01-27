@@ -16,31 +16,10 @@
             .svg-spot:not(.native) * {
                 fill: unset;
             }
-            body.js-highlight-currentcolor [fill="currentColor"] {
-                fill: magenta;
-            }
         </style>
     </head>
 
     <body>
-        <label
-            for="toggle-currentcolor"
-            class="ps-fixed b12 r12 bg-black-600 bar-pill fs-body1 ta-right p6 d-flex ai-center c-pointer us-none"
-        >
-            <div
-                class="w16 h16 d-block bar-circle mx4"
-                style="background: magenta"
-            ></div>
-            <div class="s-label fc-white mr4">
-                Show <code>currentColor</code>
-            </div>
-            <input
-                class="s-toggle-switch"
-                id="toggle-currentcolor"
-                type="checkbox"
-            />
-        </label>
-
         <div class="d-flex fd-column g32 p32">
             <h2 class="fs-headline1 ta-center mt64 mb0">Icons</h2>
             <div class="d-grid grid__5 g32">{ICONS_MANIFEST}</div>
@@ -51,13 +30,5 @@
                 {CSS_MANIFEST}
             </div>
         </div>
-
-        <script>
-            document
-                .getElementById("toggle-currentcolor")
-                .addEventListener("change", () => {
-                    document.body.classList.toggle("js-highlight-currentcolor");
-                });
-        </script>
     </body>
 </html>
