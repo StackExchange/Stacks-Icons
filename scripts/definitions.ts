@@ -98,6 +98,7 @@ const figmaIconDefinitions: Record<string, string> = {
     "Icon/BriefcaseSm": "NAHXUsamr3wVRUrASOnKBZ1LZ8QHpZcOGclpsaiqYaM=",
     "Icon/Bullhorn": "WO2uXq9jZx2+HDDA2ILNQO8yZdQw68OXH35/A8bPuQY=",
     "Icon/BullhornSm": "3YSKsRsJ/FFDGQn2tZt6q4kFSdYBifs/+aquYoZGGMs=",
+    "Icon/CCPA": "GigI93Mp7E1On4j7MZXCq5iqqzixPvGuuwUgEwuvkVM=",
     "Icon/Cake": "iYIfKEYP/olo2bpGFLUhd5TjT8DhUn2yCgGPl9ECqsU=",
     "Icon/Calendar": "Kn31rA7RvKTzXMnCctrlpfdb4191w422Odr7f+2V0xE=",
     "Icon/Chair": "RRaj9eCq1qMReJAQLECMMlSVhsoQivK1lANZUbkSfMk=",
