@@ -67,7 +67,11 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     const urls = await fetch.get<{ images: Record<string, string> }>(
         `/images/${FIGMA_FILE_KEY}`,
         {
-            params: { format: "svg", ids: Object.keys(names).join(",") },
+            params: {
+                format: "svg",
+                ids: Object.keys(names).join(","),
+                svg_include_id: true,
+            },
         }
     );
 
@@ -179,6 +183,10 @@ export async function processSvgFilesAsync(type: OutputType) {
                         name: "preset-default",
                         params: {
                             overrides: {
+                                cleanupIds: {
+                                    preserve: ["currentColor"],
+                                    remove: true,
+                                },
                                 mergePaths: {
                                     force: true,
                                     noSpaceAfterFlags: true,
