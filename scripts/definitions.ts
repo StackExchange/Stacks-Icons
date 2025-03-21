@@ -183,6 +183,7 @@ const figmaIconDefinitions: Record<string, string> = {
     "Icon/Handshake": "QRUTOpC4ruagkjLtoR6NlzZXH1lM/IHIuxjQt+QT27I=",
     "Icon/Header": "3fhEPDpbXV2w0VbkKa251C2CcqJunBL2brKFz8uX6RE=",
     "Icon/Health": "6NLCc6Qrewi5i4pgv+y7ZEgofsqVZhbB8KcDk8y91m8=",
+    "Icon/Headset": "NoD+IDWhXhky6G+bcpVdzYzhu9XJWnqCpSKsQrq0fWk=",
     "Icon/Heart": "EHGVS1+BA4Qw0sUFPVEN50CLoZv35K+QFbVN03wUKDE=",
     "Icon/Help": "Vhlk2MbUzWg8YLm/EIS6Qm1wFIHySF6iMbJ9JiCD01U=",
     "Icon/HelpSm": "bnr2mng5nujLuOV1eVPgNxRuAb/TGyG7cOOJN7IDknQ=",
