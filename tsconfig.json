@@ -18,8 +18,10 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "checkJs": true,
-        "outDir": "./tmp",
-        "noEmitOnError": true
+        "noEmit": true,
+        "noEmitOnError": true,
+        "rootDir": "./",
+        "lib": ["ES2020", "DOM"]
     },
     "exclude": ["dist/**/*", "./*.cjs"],
     "ts-node": {
