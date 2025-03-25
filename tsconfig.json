@@ -21,10 +21,7 @@
         "noEmit": true,
         "noEmitOnError": true,
         "rootDir": "./",
-        "lib": ["ES2020", "DOM"],
-        "paths": {
-            "@stackoverflow/stacks-icons/*": ["./src/js/*", "./dist/*"]
-        }
+        "lib": ["ES2020", "DOM"]
     },
     "exclude": ["dist/**/*", "./*.cjs"],
     "ts-node": {
