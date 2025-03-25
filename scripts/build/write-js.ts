@@ -1,7 +1,7 @@
 import rollupTypescript from "@rollup/plugin-typescript";
 import { promises as fs } from "fs";
 import { rollup } from "rollup";
-import packageJson from "../../package.json" assert { type: "json" };
+import packageJson from "../../package.json" with { type: "json" };
 import { paths } from "./paths.js";
 import { error, type OutputType } from "./utils.js";
 
