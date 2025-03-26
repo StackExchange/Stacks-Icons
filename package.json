@@ -33,10 +33,10 @@
     },
     "scripts": {
         "start": "npm run build",
-        "build": "tsc --noEmit && node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
+        "build": "tsc && node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
         "preview": "http-server ./preview -o",
         "prepublishOnly": "npm start",
-        "version": "tsc --noEmit && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
+        "version": "tsc && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
         "lint": "prettier --check . && eslint .",
         "format": "prettier --write .",
         "build:nuget": "dotnet build -c Release ./dotnet",

@@ -19,7 +19,6 @@
         "noUnusedParameters": true,
         "checkJs": true,
         "noEmit": true,
-        "noEmitOnError": true,
         "rootDir": "./",
         "lib": ["ES2020", "DOM"]
     },
