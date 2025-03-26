@@ -19,8 +19,8 @@ module.exports = {
         "@typescript-eslint/ban-ts-comment": [
             "error",
             {
-                "ts-ignore": "allow-with-description"
-            }
-        ]
+                "ts-ignore": "allow-with-description",
+            },
+        ],
     },
 };
