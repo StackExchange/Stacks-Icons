@@ -16,5 +16,11 @@ module.exports = {
         "no-process-exit": 0,
         "no-console": 0,
         "sort-keys": 2,
+        "@typescript-eslint/ban-ts-comment": [
+            "error",
+            {
+                "ts-ignore": "allow-with-description"
+            }
+        ]
     },
 };
