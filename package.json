@@ -33,10 +33,10 @@
     },
     "scripts": {
         "start": "npm run build",
-        "build": "node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
+        "build": "tsc && node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
         "preview": "http-server ./preview -o",
         "prepublishOnly": "npm start",
-        "version": "node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
+        "version": "tsc && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
         "lint": "prettier --check . && eslint .",
         "format": "prettier --write .",
         "build:nuget": "dotnet build -c Release ./dotnet",
@@ -44,22 +44,22 @@
         "test:nuget": "dotnet test ./dotnet"
     },
     "devDependencies": {
-        "@rollup/plugin-typescript": "^11.1.6",
+        "@rollup/plugin-typescript": "^12.1.2",
         "@stackoverflow/eslint-config": "^1.0.0",
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
-        "axios": "^1.7.2",
-        "chalk": "^5.3.0",
-        "commander": "^12.1.0",
-        "concat": "^1.0.3",
-        "del": "^7.1.0",
-        "dotenv": "^16.4.5",
+        "axios": "^1.8.4",
+        "chalk": "^5.4.1",
+        "commander": "^13.1.0",
+        "del": "^8.0.0",
+        "dotenv": "^16.4.7",
         "http-server": "^14.1.1",
         "mini-svg-data-uri": "^1.4.4",
-        "rollup": "^4.18.0",
+        "prettier": "^3.5.3",
+        "rollup": "^4.37.0",
         "svgo": "^3.3.2",
         "ts-node": "^10.9.2",
-        "tslib": "^2.6.3",
-        "typescript": "^5.4.5"
+        "tslib": "^2.8.1",
+        "typescript": "^5.8.2"
     }
 }

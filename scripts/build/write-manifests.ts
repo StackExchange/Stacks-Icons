@@ -1,4 +1,3 @@
-import concat from "concat";
 import { promises as fs } from "fs";
 import { paths } from "./paths.js";
 
@@ -54,13 +53,18 @@ export async function writeManifests(
     const p1 = fs.writeFile(paths.preview("index.html"), htmlOut, "utf8");
 
     // output the TS types
-    const p2 = concat(
-        [
-            paths.src("js/global.d.ts"),
-            paths.build("icons.d.ts"),
-            paths.build("spots.d.ts"),
-        ],
-        paths.build("index.d.ts")
+    const p2 = await fs.writeFile(
+        paths.build("index.d.ts"),
+        (
+            await Promise.all(
+                [
+                    paths.src("js/global.d.ts"),
+                    paths.build("icons.d.ts"),
+                    paths.build("spots.d.ts"),
+                ].map((f) => fs.readFile(f, "utf8"))
+            )
+        ).join("\n\n"),
+        "utf8"
     );
 
     return Promise.all([p1, p2]);

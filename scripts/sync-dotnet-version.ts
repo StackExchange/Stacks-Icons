@@ -1,7 +1,7 @@
 import { promisify } from "util";
 import { exec } from "child_process";
 import { error, success } from "./build/utils.js";
-import packageJson from "../package.json" assert { type: "json" };
+import packageJson from "../package.json" with { type: "json" };
 import { readFile, writeFile } from "fs/promises";
 
 const execAsync = promisify(exec);
