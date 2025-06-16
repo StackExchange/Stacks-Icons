@@ -54,6 +54,7 @@ const figmaIconDefinitions: Record<string, string> = {
     "Icon/AlertCircleSm": "EFrrfqa8eo1HZZu2i3XximWkuFxWY0JQPQCgX4ubsv4=",
     "Icon/AlertSm": "lwch36qiYIp1d6CTOhM1h8pT31/LtAQskwEZUAfr1dE=",
     "Icon/Answer": "WiN2WQ5QKzvRp++EgF0bZbyaJnVHtIbT0upDqixyRNo=",
+    "Icon/AnswerAI": "2Li9lbSd2rnXPId4J26zQXKBk/TezbW4bYXSxG8QfPw=",
     "Icon/AnswerEs": "V60xMQPAFVfbqxncrFlBOy8Q9rIcI3cQwryXfDdXJds=",
     "Icon/AnswerPt": "V60xMQPAFVfbqxncrFlBOy8Q9rIcI3cQwryXfDdXJds=",
     "Icon/AnswerRu": "ir0zZpKV7PnSm+CtI+GsAh/zbI7OGxbC6nyjhl5xmp8=",
