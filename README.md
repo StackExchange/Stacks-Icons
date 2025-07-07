@@ -110,6 +110,19 @@ npm run test:nuget
 
 All icons and spots are pulled directly from Figma via their API. The _only_ way to add or update icons is by directly modifying the [source Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM) and then publishing a new component release from within Figma.
 
+#### Publishing an icon
+
+In order to expose a new icon to this repository, you'll need to convert it into a component then publish it by following these steps:
+
+1. Open the [source Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM)
+2. Navigate to the newly added icon. Note the absense of the segmented diamond icon next to the icon name.
+3. Right click on the icon to open the context menu and select "Create component"
+4. Right click on the icon again to reopen the context menu and select "Main Component > Publish selected components"
+5. Within the "Publish libray" modal, select the icon(s) you'd like to publish
+6. Click "Publish"
+
+#### Adding a published icon to this library
+
 In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `scripts/definitions.ts`:
 
 ```ts

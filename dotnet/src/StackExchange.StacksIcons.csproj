@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-		<Version>6.4.0</Version>
+		<Version>6.6.1</Version>
 		<AssemblyName>StackExchange.StacksIcons</AssemblyName>
 		<PackageId>StackExchange.StacksIcons</PackageId>
 		<Nullable>enable</Nullable>
@@ -41,6 +41,6 @@
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+		<PackageReference Include="System.Collections.Immutable" Version="9.0.6" />
 	</ItemGroup>
 </Project>
