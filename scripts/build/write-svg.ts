@@ -183,7 +183,6 @@ export async function processSvgFilesAsync(type: OutputType) {
                                     force: true,
                                     noSpaceAfterFlags: true,
                                 },
-                                removeViewBox: false,
                             },
                         },
                     },
