@@ -34,6 +34,7 @@ export const cssIcons: { [name: string]: { css?: string } } = {
     Wave: {},
 };
 
+// TODO: The new Spots and Icons will be housed on a separate figma file with similar structure to this one
 // Derived from the file url of the Stacks icons:
 // https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM
 export const FIGMA_FILE_KEY = "NxAqQAi9i5XsrZSm1WYj6tsM";
