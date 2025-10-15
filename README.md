@@ -159,12 +159,12 @@ Afterwards, make sure you mark a new [GitHub Release](https://github.com/StackEx
 
 This project follows [SemVer](https://semver.org/). Versions including breaking changes to the visual api (e.g. icon drastically changes design or is removed) or code api should be marked `major`. Versions including new features (such as a new or updated icon) should be marked `minor`. Everything else is a `patch` release.
 
-
 # License
 
-The Stack Overflow name, logo, and some design elements are protected as part of our brand identity.
-Please don’t use these in ways that could imply endorsement or affiliation.
+© Copyright 2025 Stack Exchange, Inc.
 
-The code and other icons are licensed under the [Apache 2.0 License](./LICENSE.md).
+Unless otherwise stated, the contents of this folder are licensed under the [Apache License, Version 2.0](./LICENSE.md)
 
-© 2025 Stack Exchange, Inc.
+Unless required by applicable law or agreed to in writing, software distributed under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+The Stack Overflow name and logo, and associated brand elements, are the protected property of Stack Exchange, Inc. Acceptable use of Stack Overflow trademarks is governed by: https://policies.stackoverflow.co/company/trademark-guidance/. All other use of Stack Overflow trademarks is prohibited without prior written authorization, including without limitation, any use suggesting unauthorized endorsement by or affiliation with Stack Overflow. 
