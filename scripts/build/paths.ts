@@ -5,7 +5,6 @@ class Paths {
     private paths: {
         build: string;
         preview: string;
-        root: string;
         src: string;
     };
 
