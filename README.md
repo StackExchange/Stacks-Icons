@@ -14,17 +14,17 @@ Using the library by `import`ing a subpath (e.g. `/icons`) will allow for tree-s
 
 ```js
 // es6 / module syntax
-import { IconFaceMindBlown } from "@stackoverflow/stacks-icons/icons";
+import { IconAnswer20Duotone } from "@stackoverflow/stacks-icons/icons";
 import { SpotWave } from "@stackoverflow/stacks-icons/spots";
 
 // both icons and spots are unescaped html strings
-console.log(IconFaceMindBlown); // "<svg>...</svg>"
+console.log(IconAnswer20Duotone); // "<svg>...</svg>"
 
 // require() syntax
 const { Icons, Spots } = require("@stackoverflow/stacks-icons");
 
 // `Icons` and `Spots` are objects mapped by <icon name, html string>
-console.log(Icons); // { "IconAccessibility": "<svg>...</svg>", ... }
+console.log(Icons); // { "IconAnswer20Duotone": "<svg>...</svg>", ... }
 ```
 
 ### Using the CSS icons
@@ -39,20 +39,20 @@ In certain cases where adding the raw svg markup to your html would cause bloat 
 />
 
 <!-- add the "svg-icon-bg" class in addition the desired "iconNAME" class -->
-<span class="svg-icon-bg iconBold"></span>
+<span class="svg-icon-bg iconAnswer20Duotone"></span>
 
 <!-- the icon's color matches the "currentColor", so changing the "color" property will change the icon color -->
-<span class="svg-icon-bg iconFire" style="color: red;"></span>
+<span class="svg-icon-bg iconAnswer20Duotone" style="color: red;"></span>
 
 <!-- add the "native" class to get native styles; these do not respect "currentColor" changes -->
-<span class="svg-icon-bg iconFaceMindBlown native"></span>
+<span class="svg-icon-bg iconAnswer20Duotone native"></span>
 ```
 
-For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [scripts/definitions.ts](scripts/definitions.ts).
+For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [config.yaml](config.yaml).
 
 ### Use in dotnet
 
-Stacks-Icons also provides a NuGet package that targets `netstandard2.0`.
+Stacks-Icons also provides a NuGet package that targets `net6.0;net8.0`.
 
 See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 
@@ -64,7 +64,7 @@ See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 If you include the `browser.umd.js` within your prototype’s `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons/dist/browser.umd.js"></script>`) you can render Stacks Icons in the browser using only the following format:
 
 ```html
-<svg data-icon="IconFaceMindBlown" class="native"></svg>
+<svg data-icon="IconAnswer20Duotone" class="native"></svg>
 <svg data-spot="SpotSearch"></svg>
 ```
 
@@ -90,6 +90,12 @@ Run the build:
 npm run build
 ```
 
+Preview the icons
+
+```sh
+npm run preview
+```
+
 ### Developing the dotnet library
 
 You'll need to first run the general package build as outlined above, as the dotnet solution pulls the generated csharp files from the build directory.
@@ -108,13 +114,13 @@ npm run test:nuget
 
 ### Adding or updating icons/spots
 
-All icons and spots are pulled directly from Figma via their API. The _only_ way to add or update icons is by directly modifying the [source Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM) and then publishing a new component release from within Figma.
+All icons and spots are pulled directly from Figma via their API. The _only_ way to add or update icons is by directly modifying the [source Figma file](https://www.figma.com/file/Z5yoO4WH58QDHvmxwMWhr0) and then publishing a new component release from within Figma.
 
 #### Publishing an icon
 
 In order to expose a new icon to this repository, you'll need to convert it into a component then publish it by following these steps:
 
-1. Open the [source Figma file](https://www.figma.com/file/NxAqQAi9i5XsrZSm1WYj6tsM)
+1. Open the [source Figma file](https://www.figma.com/file/Z5yoO4WH58QDHvmxwMWhr0)
 2. Navigate to the newly added icon. Note the absense of the segmented diamond icon next to the icon name.
 3. Right click on the icon to open the context menu and select "Create component"
 4. Right click on the icon again to reopen the context menu and select "Main Component > Publish selected components"
@@ -123,24 +129,37 @@ In order to expose a new icon to this repository, you'll need to convert it into
 
 #### Adding a published icon to this library
 
-In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `scripts/definitions.ts`:
+In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `config.yaml`:
 
-```ts
-const figmaIconDefinitions = {
-    // ...
-    "Icon/IconName": "",
-    // ...
-};
+```yaml
+definitions:
+    Icon/IconName:
+        20:
+            Duotone: ""
+            Fill: ""
+            Outline: ""
+        24:
+            Duotone: ""
+            Fill: ""
+            Outline: ""
+        32:
+            Duotone: ""
+            Fill: ""
+            Outline: ""
+        64:
+            Duotone: ""
+            Fill: ""
+            Outline: ""
 ```
 
-When adding new entries, please ensure that _all entries are in alphabetical order_ for ease of reference. The initial value is ok to leave empty. Once you run the first build process, it'll throw an error like the following:
+When adding new entries, please ensure that _all entries are in alphabetical order_ for ease of reference. Icons can have multiple sizes (`20`, `24`, `32`, `64`) and variants (`Duotone`, `Fill`, `Outline`) as defined in the Figma component. The initial hash values can be left empty. Once you run the first build process, it'll throw an error like the following:
 
-> Hash mismatch on 1 files. Expected hash values:
-> "Icon/Accessibility": "ksqXzQjdToAghXkIQ75PE/8qRdUho8Wtux1FTo+mgug=",
+> ERROR Hash mismatch on 1 files. Expected hash values:
+> "Icon/Answer20Duotone": "AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=",
 
-Take this hash value and use it as the value for the previously added entry. Re-run the build process and verify that your new icon is added correctly and has the correct contents.
+Take these hash values and use them as the values for the previously added entries. Re-run the build process and verify that your new icon is added correctly and has the correct contents.
 
-When updating an existing icon, just update the hash as explained in the previous section.
+When updating an existing icon, just update the corresponding hash value(s) for the size(s) and variant(s) that changed.
 
 ## Publishing a new release
 
@@ -158,3 +177,13 @@ From there, our GitHub [packages action](.github/workflows/packages.yml) will bu
 Afterwards, make sure you mark a new [GitHub Release](https://github.com/StackExchange/Stacks-Icons/releases/new) based on what has changed.
 
 This project follows [SemVer](https://semver.org/). Versions including breaking changes to the visual api (e.g. icon drastically changes design or is removed) or code api should be marked `major`. Versions including new features (such as a new or updated icon) should be marked `minor`. Everything else is a `patch` release.
+
+# License
+
+© Copyright 2025 Stack Exchange, Inc.
+
+Unless otherwise stated, the contents of this folder are licensed under the [Apache License, Version 2.0](./LICENSE.md)
+
+Unless required by applicable law or agreed to in writing, software distributed under the Apache License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+The Stack Overflow name and logo, and associated brand elements, are the protected property of Stack Exchange, Inc. Acceptable use of Stack Overflow trademarks is governed by: https://policies.stackoverflow.co/company/trademark-guidance/. All other use of Stack Overflow trademarks is prohibited without prior written authorization, including without limitation, any use suggesting unauthorized endorsement by or affiliation with Stack Overflow.
