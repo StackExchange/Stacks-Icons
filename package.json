@@ -34,7 +34,7 @@
     "scripts": {
         "start": "npm run build",
         "build": "tsc && node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
-        "preview": "http-server ./preview -o",
+        "preview": "http-server ./preview -o -c-1",
         "prepublishOnly": "npm start",
         "version": "tsc && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
         "lint": "prettier --check . && eslint .",
