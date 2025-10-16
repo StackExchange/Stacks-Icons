@@ -24,25 +24,23 @@ export function error(...args: unknown[]) {
 }
 
 interface Definitions {
-  [iconName: string]:
-    | string
-    | Record<string, Record<string, string>>;
+    [iconName: string]: string | Record<string, Record<string, string>>;
 }
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {
-  const out: Record<string, string> = {};
+    const out: Record<string, string> = {};
 
-  for (const [iconName, iconValue] of Object.entries(defs)) {
-    if (typeof iconValue === "string") {
-      out[iconName] = iconValue;
-    } else {
-      for (const [size, variants] of Object.entries(iconValue)) {
-        for (const [variant, hash] of Object.entries(variants)) {
-          out[`${iconName}${size}${variant}`] = hash;
+    for (const [iconName, iconValue] of Object.entries(defs)) {
+        if (typeof iconValue === "string") {
+            out[iconName] = iconValue;
+        } else {
+            for (const [size, variants] of Object.entries(iconValue)) {
+                for (const [variant, hash] of Object.entries(variants)) {
+                    out[`${iconName}${size}${variant}`] = hash;
+                }
+            }
         }
-      }
     }
-  }
 
-  return out;
+    return out;
 }

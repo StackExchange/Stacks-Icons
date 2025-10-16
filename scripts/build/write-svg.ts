@@ -25,7 +25,9 @@ export interface FigmaComponent {
 
 export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     if (!process.env["FIGMA_ACCESS_TOKEN"] || !process.env["FIGMA_FILE_KEY"]) {
-        throw new Error('Please check for env variables for FIGMA_ACCESS_TOKEN and FIGMA_FILE_KEY.');
+        throw new Error(
+            "Please check for env variables for FIGMA_ACCESS_TOKEN and FIGMA_FILE_KEY."
+        );
     }
 
     // https://www.figma.com/developers/api
@@ -35,10 +37,12 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     });
 
     // Get the Stacks icon file
-    info(`Fetching all components from Figma (https://figma.com/design/${process.env['FIGMA_FILE_KEY']})...`);
+    info(
+        `Fetching all components from Figma ("https://figma.com/design/${process.env["FIGMA_FILE_KEY"]}")...`
+    );
     const stacksFile = await fetch.get<{
         meta: { components: FigmaComponent[] };
-    }>(`/files/${process.env['FIGMA_FILE_KEY']}/components`);
+    }>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
 
     // Full returned components list
     const components = stacksFile.data.meta.components;
@@ -50,22 +54,23 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     for (const component of components) {
         // Look for components with variants first, group them under the container name
         const nodeId = component.node_id;
-        let name = component.name
+        let name = component.name;
 
         // For variants, loop through all of them to create seperate assets
         if (component.containing_frame?.name) {
             const componentName = component.containing_frame.name;
             const variantName = component.name // Format will be Property=Value, ...
-                .split(',') // split by commas ['Prop=Val', ...]
-                .map(i =>  
-                    i
-                        .split('=')[1] // split by = and take the right side as Figma UI does
-                        ?.replace(/\s+/g, '')  // trim any whitespace
-                        .trim() || ''
-                ) 
-                .join('');
+                .split(",") // split by commas ['Prop=Val', ...]
+                .map(
+                    (i) =>
+                        i
+                            .split("=")[1] // split by = and take the right side as Figma UI does
+                            ?.replace(/\s+/g, "") // trim any whitespace
+                            .trim() || ""
+                )
+                .join("");
 
-            name = `${componentName}${variantName}`
+            name = `${componentName}${variantName}`;
         }
 
         // only fetch the images that are in the definitions file
@@ -80,7 +85,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // double check that all definition entries were found in Figma
     const allRequestedDefs = Object.keys(definitions);
     const fetchedComponents = Object.values(names);
-    
+
     for (const def of allRequestedDefs) {
         if (!fetchedComponents.includes(def)) {
             warn(`"${def}" found in definitions, but not in Figma`);
@@ -91,7 +96,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // https://www.figma.com/developers/api#get-images-endpoint
     // { "images": { "NODE_ID": "AWS URL", ... } }
     const urls = await fetch.get<{ images: Record<string, string> }>(
-        `/images/${process.env['FIGMA_FILE_KEY']}`,
+        `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
             params: { format: "svg", ids: Object.keys(names).join(",") },
         }
