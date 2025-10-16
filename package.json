@@ -3,7 +3,7 @@
     "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
     "version": "7.0.0-beta.0",
     "repository": "https://github.com/StackExchange/Stacks-Icons",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "type": "module",
     "main": "dist/index.umd.cjs",
     "module": "dist/index.esm.js",

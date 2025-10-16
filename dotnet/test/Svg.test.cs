@@ -5,8 +5,8 @@ public class SvgTest
     [Fact]
     public void FindsEmbeddedResources()
     {
-        var icon = Svg.Accessibility;
-        var spot = Svg.Spot.Ads;
+        var icon = Svg.Answer20Duotone;
+        var spot = Svg.Spot.Test;
         Assert.False(string.IsNullOrWhiteSpace(icon.Value));
         Assert.False(string.IsNullOrWhiteSpace(spot.Value));
     }
