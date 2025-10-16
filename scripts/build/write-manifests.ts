@@ -13,7 +13,6 @@ function buildCssManifestHtml(
   ${i.name}
   <br/>
   <span class="svg-icon-bg icon${i.name}"></span>
-  <span class="svg-icon-bg icon${i.name} native"></span>
   </div>`;
         })
         .join("\n\n");

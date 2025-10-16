@@ -48,7 +48,7 @@ In certain cases where adding the raw svg markup to your html would cause bloat 
 <span class="svg-icon-bg iconAnswer20Duotone native"></span>
 ```
 
-For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [scripts/definitions.ts](scripts/definitions.ts).
+For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [config.yaml](config.yaml).
 
 ### Use in dotnet
 

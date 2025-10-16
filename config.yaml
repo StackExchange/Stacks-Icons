@@ -1,6 +1,5 @@
 definitions:
-    Spot/Test: "cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os="
-
+    ### ICONS ###
     Icon/Answer:
         20:
             Duotone: AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=
@@ -216,9 +215,15 @@ definitions:
             Duotone: MslHanJcpkRde/1hfmGbPhhPCXjH6IQNllrpkr4Hgro=
             Fill: abn5C6hg5eHYNd8XbWTYn4zgLEmtWVNBjPFfsKd5hR0=
             Outline: lYtBSefxloDWSh4qDtGBhnZQf3Xn64dQ8xgLjhpdFtw=
-# to-do: update CSS icon workflow
-# cssIcons:
-#   TrashSm:
-#     css: |
-#       width: 14px;
-#       height: 14px;
+
+    ### SPOTS ###
+    Spot/Test: "cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os="
+    # TODO: add more spots here
+
+### CSS ICONS ###
+cssIcons:
+    Answer20Duotone:
+        css: |
+            width: 20px;
+            height: 20px;
+    # TODO: add more icons to be added to the css bundle here
