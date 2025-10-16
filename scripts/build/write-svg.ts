@@ -24,9 +24,9 @@ export interface FigmaComponent {
 }
 
 export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
-    if (!process.env["FIGMA_ACCESS_TOKEN"] || !process.env["FIGMA_FILE_KEY"]) {
+    if (!process.env["FIGMA_ACCESS_TOKEN"]) {
         throw new Error(
-            "Please check for env variables for FIGMA_ACCESS_TOKEN and FIGMA_FILE_KEY."
+            "Please check env. variable FIGMA_ACCESS_TOKEN is set."
         );
     }
 
