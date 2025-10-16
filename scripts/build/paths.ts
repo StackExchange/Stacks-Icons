@@ -16,7 +16,7 @@ class Paths {
             "../.."
         );
         this.paths = {
-            build: path.resolve(root, process.env["ASSET_OUTPUT_DIR"] || "dir"),
+            build: path.resolve(root, process.env["ASSET_OUTPUT_DIR"] || "dist"),
             preview: path.resolve(root, "preview"),
             root,
             src: path.resolve(root, "src"),
