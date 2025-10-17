@@ -1,0 +1,35 @@
+.svg-icon,
+.svg-spot {
+  vertical-align: bottom; /* Make SVG play nicely while inline with text by default */
+}
+
+.svg-icon:not(.native) *,
+.svg-spot:not(.native) * {
+  /* Targets all sub-elements so we can deliver SVG with full color if we'd like. */
+  fill: currentColor;
+}
+
+/* Dynamic sizing utility classes for icons */
+.svg-icon.s20,
+.svg-icon-bg.s20 {
+    height: 20px;
+    width: 20px;
+}
+
+.svg-icon.s24,
+.svg-icon-bg.s24 {
+    height: 24px;
+    width: 24px;
+}
+
+.svg-icon.s32,
+.svg-icon-bg.s32 {
+    height: 32px;
+    width: 32px;
+}
+
+.svg-icon.s64,
+.svg-icon-bg.s64 {
+    height: 64px;
+    width: 64px;
+}

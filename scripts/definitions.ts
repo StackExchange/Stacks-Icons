@@ -5,13 +5,10 @@ import { readFile } from "fs/promises";
 
 export interface Config {
     definitions: Record<
-        string, // icon name
-        Record<
-            string, // size
-            Record<string, string> // variant → hash
-        >
+        string, // icon name (e.g., "Icon/Answer" or "Spot/Test")
+        string | Record<string, string> // hash for spots, or variant → hash for icons
     >;
-    cssIcons: Record<string, { css: string }>;
+    cssIcons: string[];
 }
 
 const configPath = path.resolve(

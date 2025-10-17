@@ -14,41 +14,88 @@ Using the library by `import`ing a subpath (e.g. `/icons`) will allow for tree-s
 
 ```js
 // es6 / module syntax
-import { IconAnswer20Duotone } from "@stackoverflow/stacks-icons/icons";
+import { IconAnswerDuotone } from "@stackoverflow/stacks-icons/icons";
 import { SpotWave } from "@stackoverflow/stacks-icons/spots";
 
 // both icons and spots are unescaped html strings
-console.log(IconAnswer20Duotone); // "<svg>...</svg>"
+// icons default to 24px size
+console.log(IconAnswerDuotone); // "<svg>...</svg>"
 
 // require() syntax
 const { Icons, Spots } = require("@stackoverflow/stacks-icons");
 
 // `Icons` and `Spots` are objects mapped by <icon name, html string>
-console.log(Icons); // { "IconAnswer20Duotone": "<svg>...</svg>", ... }
+console.log(Icons); // { "IconAnswerDuotone": "<svg>...</svg>", ... }
 ```
 
-### Using the CSS icons
+### Dynamic Icon Sizing with Utility Classes
 
-In certain cases where adding the raw svg markup to your html would cause bloat or if you need your markup to be more portable, consider using CSS icons. Note: Not all icons are available as CSS icons.
+Icons default to 24px, but you can dynamically resize them using size utility classes. These classes work with both regular SVG icons and CSS background icons.
+
+**Available size classes:** `s20`, `s24`, `s32`, `s64`
+
+To use size utilities, you must include the core CSS file:
 
 ```html
-<!-- include the required css file -->
+<!-- Required: Import the core CSS for size utility classes -->
 <link
     rel="stylesheet"
-    href="/path/to/@stackoverflow/stacks-icons/dist/icons.css"
+    href="/path/to/@stackoverflow/stacks-icons/dist/icons.core.css"
 />
-
-<!-- add the "svg-icon-bg" class in addition the desired "iconNAME" class -->
-<span class="svg-icon-bg iconAnswer20Duotone"></span>
-
-<!-- the icon's color matches the "currentColor", so changing the "color" property will change the icon color -->
-<span class="svg-icon-bg iconAnswer20Duotone" style="color: red;"></span>
-
-<!-- add the "native" class to get native styles; these do not respect "currentColor" changes -->
-<span class="svg-icon-bg iconAnswer20Duotone native"></span>
 ```
 
-For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [config.yaml](config.yaml).
+Then apply size classes to your icons:
+
+```html
+<!-- Regular SVG icons with size classes -->
+<svg class="svg-icon iconAnswerDuotone s20"></svg>
+<svg class="svg-icon iconAnswerDuotone s24"></svg>
+<svg class="svg-icon iconAnswerDuotone s32"></svg>
+<svg class="svg-icon iconAnswerDuotone s64"></svg>
+
+<!-- Works with CSS background icons too (when combined with icons.backgrounds.css) -->
+<span class="svg-icon-bg iconAnswerDuotone s20"></span>
+<span class="svg-icon-bg iconAnswerDuotone s32"></span>
+```
+
+### Use icons as CSS background images
+
+In certain cases where adding the raw SVG markup to your HTML would cause bloat or if you need your markup to be more portable, consider using the CSS background icons bundle. Note: Not all icons are available in this bundle.
+
+To use CSS background icons, include both CSS files:
+
+```html
+<!-- Required for size utilities and base icon styles -->
+<link
+    rel="stylesheet"
+    href="/path/to/@stackoverflow/stacks-icons/dist/icons.core.css"
+/>
+<!-- Required for CSS background icons -->
+<link
+    rel="stylesheet"
+    href="/path/to/@stackoverflow/stacks-icons/dist/icons.backgrounds.css"
+/>
+```
+
+Then use the icons:
+
+```html
+<!-- add the "svg-icon-bg" class in addition to the desired "iconNAME" class (defaults to 24px) -->
+<span class="svg-icon-bg iconAnswerDuotone"></span>
+
+<!-- use size utility classes to change the icon size (see "Dynamic Icon Sizing" section) -->
+<span class="svg-icon-bg iconAnswerDuotone s20"></span>
+<span class="svg-icon-bg iconAnswerDuotone s32"></span>
+<span class="svg-icon-bg iconAnswerDuotone s64"></span>
+
+<!-- the icon's color matches "currentColor", so changing the "color" property changes the icon color -->
+<span class="svg-icon-bg iconAnswerDuotone" style="color: red;"></span>
+
+<!-- add the "native" class to get native styles; these do not respect "currentColor" changes -->
+<span class="svg-icon-bg iconAnswerDuotone native"></span>
+```
+
+For performance / file size reasons, not all icons are available as CSS background icons. You can add support for more by editing the `cssIcons` array in [config.yaml](config.yaml).
 
 ### Use in dotnet
 
@@ -61,10 +108,10 @@ See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 > **Note**
 > This method is not intended to be used in production
 
-If you include the `browser.umd.js` within your prototype’s `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons/dist/browser.umd.js"></script>`) you can render Stacks Icons in the browser using only the following format:
+If you include the `browser.umd.js` within your prototype's `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons/dist/browser.umd.js"></script>`) you can render Stacks Icons in the browser using only the following format:
 
 ```html
-<svg data-icon="IconAnswer20Duotone" class="native"></svg>
+<svg data-icon="IconAnswerDuotone" class="native"></svg>
 <svg data-spot="SpotSearch"></svg>
 ```
 
@@ -134,32 +181,23 @@ In order to ensure that any new icons/spots in Figma are pulled into this repo, 
 ```yaml
 definitions:
     Icon/IconName:
-        20:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
-        24:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
-        32:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
-        64:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
+        Duotone: ""
+        Fill: ""
+        Outline: ""
 ```
 
-When adding new entries, please ensure that _all entries are in alphabetical order_ for ease of reference. Icons can have multiple sizes (`20`, `24`, `32`, `64`) and variants (`Duotone`, `Fill`, `Outline`) as defined in the Figma component. The initial hash values can be left empty. Once you run the first build process, it'll throw an error like the following:
+When adding new entries, please ensure that _all entries are in alphabetical order_ for ease of reference. Icons use the 24px size from Figma by default and support variants (`Duotone`, `Fill`, `Outline`) as defined in the Figma component. The initial hash values can be left empty. Once you run the first build process, it'll throw an error like the following:
 
 > ERROR Hash mismatch on 1 files. Expected hash values:
-> "Icon/Answer20Duotone": "AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=",
+> "Icon/Answer24Duotone": "AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=",
 
-Take these hash values and use them as the values for the previously added entries. Re-run the build process and verify that your new icon is added correctly and has the correct contents.
+Take these hash values and use them as the values for the previously added entries. Re-run the build process and verify that your new icon is added correctly and has the correct contents. The build system will automatically fetch the 24px variant from Figma and generate icons without the size in their names (e.g., `IconAnswerDuotone` instead of `IconAnswer24Duotone`).
 
-When updating an existing icon, just update the corresponding hash value(s) for the size(s) and variant(s) that changed.
+When updating an existing icon, just update the corresponding hash value(s) for the variant(s) that changed.
+
+#### Size Variants
+
+Icons are generated at the default 24px size from Figma. Size utility classes (`s20`, `s24`, `s32`, `s64`) are provided in `icons.core.css` to allow users to dynamically resize icons without generating multiple variants. See the "Dynamic Icon Sizing" section above for usage details.
 
 ## Publishing a new release
 

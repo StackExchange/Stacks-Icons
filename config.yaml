@@ -1,220 +1,64 @@
 definitions:
     ### ICONS ###
     Icon/Answer:
-        20:
-            Duotone: AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=
-            Fill: 3G3JqJfGbgDxdgWHFtEMkxjJdmGfI0Uton+UZAL5lvQ=
-            Outline: Tka2S/Y2Ep2mZvRl1CXDktI8moCo6TfpnetwiK+EZdU=
-        24:
-            Duotone: NVZeOE+pZmlpk4Kqg9000Bx12jqubZ/OemO6G0SmV9s=
-            Fill: sBneAgahZ0JtbIW+b1r0XOZ2Wk68wjmfCN1uaEnz0nQ=
-            Outline: /IlrLWBhKHpOxW2OtCQFVcDuSgkbsRn+EUJrzmdrswA=
-        32:
-            Duotone: foiD6eG9WhxUnjvrYzI/NTxFyn+2E7+OsdpbxTc/fzI=
-            Fill: 4v6RqqVUNUjnTBnue8IohwCT3/PgiHx2BJ8Gghza2lg=
-            Outline: 1uz9szQFpT8fnkpKcvaNdo8kQmPDCxhovZFw45BpO6Q=
-        64:
-            Duotone: 31WFN4WJyg0vbX9XTY1PkFrJa70CKQWRr5A27MAIUKo=
-            Fill: i/woP6j7VKcDNh00FHK/9N/aMcCbtSXiFHWrlYZplx0=
-            Outline: ARuvUA6OsWTXMuayer1OgC+ZS9XKZgy5E492Fuh7JuI=
+        Duotone: NVZeOE+pZmlpk4Kqg9000Bx12jqubZ/OemO6G0SmV9s=
+        Fill: sBneAgahZ0JtbIW+b1r0XOZ2Wk68wjmfCN1uaEnz0nQ=
+        Outline: /IlrLWBhKHpOxW2OtCQFVcDuSgkbsRn+EUJrzmdrswA=
 
     Icon/Answers:
-        20:
-            Duotone: Sjf2fOvyyW1sj/CdbxtI9MehbfFNp7oONvkJzKqALKA=
-            Fill: gUtZy5FfaTv2KIe8U1Tbecd50cSQ6o8qlIYZy9Y4T0U=
-            Outline: ghkBC72aal00aaQZJ7YDA3woQEACFvlngFCnqk30yts=
-        24:
-            Duotone: Q+v4OaOKcy4BKD7cjwKlZZArCYLCesVtzlqiRmoGZPU=
-            Fill: E2Mwc+cndp4dljwZYp6p/CqMG5IpifltqCokpr4Xzpk=
-            Outline: M3lN8KicgTPhbYHPVSUcbbj0sj46E7Q44m76UGQXJmA=
-        32:
-            Duotone: tsO+roOLwOnasObKlD9WE8IpRJ9KkEkzIkWPrEu+SV8=
-            Fill: EWwX98n1cxTVB051sLB4UZR0v7MDTn+qO3RVhNTHAgE=
-            Outline: +d0T7ipGvnGm3OEYDbalVHs5+8flAL3sqv7uE3BSyME=
-        64:
-            Duotone: 6Aw6k3Y0W+Zwn0rRfGfY43gTo4RuaO6/sYFn6XJT75s=
-            Fill: t/OXL6TyummU46xGKof8Tam2nhOi6zEY8QzH5w5f7ts=
-            Outline: x5h/RcQYkcGpA+blBRcGPBPeGpBBzGjC4Tqb+ATxTKs=
+        Duotone: Q+v4OaOKcy4BKD7cjwKlZZArCYLCesVtzlqiRmoGZPU=
+        Fill: E2Mwc+cndp4dljwZYp6p/CqMG5IpifltqCokpr4Xzpk=
+        Outline: M3lN8KicgTPhbYHPVSUcbbj0sj46E7Q44m76UGQXJmA=
 
     Icon/Bookmark:
-        20:
-            Duotone: 7htnZaFVOLEFec3/O9hzxYvbWtlC89bVOcb16kW6obw=
-            Fill: SoilsBkrXfPids6Tnfbl5fNPCBVU/SzX6ZOol1ti54U=
-            Outline: +AXI3/LDPgztq/O1tlzxPbewDJLC5e+AkHY0r5a50hs=
-        24:
-            Duotone: hpoEVxztik1spoPUdDp36dvA176gJD4yvprmg1eb4Mo=
-            Fill: Np1iIwSM10MXui1Kbne327zPpJ8ZkWJMHkoZVwy1pdM=
-            Outline: 4/0Vmtx64WKAzp9VWaSePPPjcsz+FSYiA59gAhmVJLA=
-        32:
-            Duotone: XykKZPkEiP+OnY8ihIA6EiFDEjfgThl9jMX/5vm6J1w=
-            Fill: 8GNSX0OVG/fPCl5QQFtBZxU0qkcr2hoGAcop9m5DB9Q=
-            Outline: n3cvReuZl91YH/urtQmsxq2MpAp3LC+TcyN9fRyDgeo=
-        64:
-            Duotone: l6uiXLpbouUm0+gfiAxgjqLlLN06nbQWIWEJsIZAwGM=
-            Fill: MfQOfhuvXSRf0dytf55rVppzBP/h+KIlTghNEJMzpm0=
-            Outline: Ovc4Rh5Rxyp2nMA1puMiQhLcIGiv1l9V+WltelCbbIw=
+        Duotone: hpoEVxztik1spoPUdDp36dvA176gJD4yvprmg1eb4Mo=
+        Fill: Np1iIwSM10MXui1Kbne327zPpJ8ZkWJMHkoZVwy1pdM=
+        Outline: 4/0Vmtx64WKAzp9VWaSePPPjcsz+FSYiA59gAhmVJLA=
 
     Icon/Chat:
-        20:
-            Duotone: 17Tq/Br3Hbwu1BpI997wExTPsX0jjtEfoGv2fY09/j4=
-            Fill: mykTtej4DI78wNP2RxJsqiRFaLprEK69nJJG5gBtEMk=
-            Outline: VZeGXLbI41AkFC/NFlIljNQBtPP4dsCNa5gVz2yu0Zw=
-        24:
-            Duotone: /twTJJBOPj7Bnnq5UDoRqcJLK4DedvCXPStqWe8eaCE=
-            Fill: JWhyKoEFW86+Bsd3XetlhQnl/zhCNgantleVwaF9jvA=
-            Outline: Z4Aqp4Tzor/yh2lJ3keipoSjzjyUgoxlUyYzotHeiSs=
-        32:
-            Duotone: 6qySu0WknQrpqHEXELLbHSJlp8F+Bg+jK7W1jwp0X90=
-            Fill: 6jymH1WIlYTX84N0e0DRAwB0LdJGpWONfddj2iJU9h0=
-            Outline: EJlA8+Uno5LgvpzMjuas8bECOdKFjfewUcGl0jSHlnM=
-        64:
-            Duotone: pXaGVNh07tEGdV8bB8WEuHpQ3Kd+gV79lfQCxas8+Ew=
-            Fill: IALEY2NWEPc81lF3yvPCHTcEpI9k1PHcyKF6yMRa2D8=
-            Outline: GbOgeBXSHBfhkRYqhdhMj3JtjRkDyOJitBul7WoUVTo=
+        Duotone: /twTJJBOPj7Bnnq5UDoRqcJLK4DedvCXPStqWe8eaCE=
+        Fill: JWhyKoEFW86+Bsd3XetlhQnl/zhCNgantleVwaF9jvA=
+        Outline: Z4Aqp4Tzor/yh2lJ3keipoSjzjyUgoxlUyYzotHeiSs=
 
     Icon/Document:
-        20:
-            Duotone: "ZDkny5pAaf3s6uAuvtW0xTcGTRMFt0qHusqY+j6Kdhc="
-            Fill: "tYmTyi2pC1roEjP6XO/qHm//CB7DlHtI1ssoK55G6pQ="
-            Outline: "GIPPJZVRMCi7LHbHcjq48sTK8T8jvEi1Tu2LytNuCEk="
-        24:
-            Duotone: "sqCOw2/jRsgthCC0BF6OJ5ocQMon1PfCn5onSi1lPec="
-            Fill: "sqCOw2/jRsgthCC0BF6OJ5ocQMon1PfCn5onSi1lPec="
-            Outline: "7Pb1TvYRzbV2wqtFSrQIw0aqGFh7QstFaeuHBf3DQZk="
-        32:
-            Duotone: "bxpDMAljGKNDaaIQvVtNwnGvxBZiAt+9/nIT0tEb0M0="
-            Fill: "Ljbr0YvrXbggfd/Ol/lHTQ0zLNkGNta+OfNwjOYaTtI="
-            Outline: "m/76aRpyzERAO9412uOxc4aYUN98uvTLcmqK6+0wnXQ="
-        64:
-            Duotone: "L8y3Uq9e6vdJY1TAHTlgoy/qS/KaldOgzARbrQx0tOI="
-            Fill: "VI4XjNYtNAyfKz5UuM3c5+s1zc+vSIlTtR65ExWDR2g="
-            Outline: "l511R1nh7zS9AHB/FXHQ1NIB1wSsMvCZj645LS0P6GI="
+        Duotone: "sqCOw2/jRsgthCC0BF6OJ5ocQMon1PfCn5onSi1lPec="
+        Fill: "sqCOw2/jRsgthCC0BF6OJ5ocQMon1PfCn5onSi1lPec="
+        Outline: "7Pb1TvYRzbV2wqtFSrQIw0aqGFh7QstFaeuHBf3DQZk="
 
     Icon/Downvote:
-        20:
-            Duotone: yMY81gkFoTvSYCm0BGPBZHgjhrOjQANAj+Sfb1EdOlQ=
-            Fill: nOnVH1vUn8zVjmg8BWd68WK5BedTOcWvo0Uo3OETteM=
-            Outline: m/OsUqAEX5B7ROu0ILneCRp3mb6ETN7WP1hR0VJ1Dn0=
-        24:
-            Duotone: MgDMMPkhN117RowLFRgPK5iBV36eir2VkL1XSjEim2o=
-            Fill: rYGF3edaX/Pr92i8nCSsJCUV9s6q+tpBmIVDRMsaP+Q=
-            Outline: WttPSUqHXdrTqo00F0gmpYUlKWgJQw+5HoS0M5K88Nk=
-        32:
-            Duotone: L6m69wikVLoQKaRqjgIRSC5Vaw5zPrv5Ad/gmmZgDRQ=
-            Fill: JlOrF8rFwmq2R4pCucsiwGEpo2CEA6qM3uA6Y0s94FU=
-            Outline: aLLdCa2PY8YkccrJbjekbbibaruu+loQP9G3WbQcYTs=
-        64:
-            Duotone: Lt1Gf+5CzJF3pdhmZbVnu0eFxrCKT5YbwA1Z5QVwhmE=
-            Fill: 4B9PYIzLagRA6vto78bb8bLRR7NFAAfEYM/rt23iM7M=
-            Outline: knofxIuMYhmdymG6C/IL2tuonImlybdmg1m2w/0dykU=
+        Duotone: MgDMMPkhN117RowLFRgPK5iBV36eir2VkL1XSjEim2o=
+        Fill: rYGF3edaX/Pr92i8nCSsJCUV9s6q+tpBmIVDRMsaP+Q=
+        Outline: WttPSUqHXdrTqo00F0gmpYUlKWgJQw+5HoS0M5K88Nk=
 
     Icon/Home:
-        20:
-            Duotone: "IsuGYnZ329Mg1MNX2LJZvU99+aIyxXgzu2+u8t6bJBQ="
-            Fill: "Gppd5eUt1tuEUnIbxhRISj+Dh0E3av0J0egRmnfy/yw="
-            Outline: "PoAKhksimke9mURtwprpur5c1Pdg3DX/JSoQkhpAZoo="
-        24:
-            Duotone: "C/RxPHvaTJn7IDpdBKUevqmKd+l1c+TeWP8qrIge5KI="
-            Fill: "0QGIG8t77JXJMaycDkwScjTorLKekviMETFQJjwkR+M="
-            Outline: "55XLf0sI9KjeXEceqbdqwSOYWoR7KpMPfP47mCzBNdI="
-        32:
-            Duotone: "oQ0lb3e72lBQLP+m78za1DF6uTrlDSuQZ+Iw7UOscgM="
-            Fill: "8/TQs0jCz/ay/qPj0sOl1m9oNieCJWPG7x7Rrgoo3mU="
-            Outline: "rlQ+Rb69EU+6Xar/hBag/cs/H2SNZsIQ2x6L2U0cg20="
-        64:
-            Duotone: "kng6W7XhrIiVLFSaVUaDEJ71TPZcKBRuRf0aXj1B44w="
-            Fill: "C1QKOWzEYHTzV9En2nViRw8eY/x6/iuKcNkPe1ngxOI="
-            Outline: "8tg9GfEF8WY98Z7MrLiBp70tTsZeL9PyxxnoUndD/gI="
+        Duotone: "C/RxPHvaTJn7IDpdBKUevqmKd+l1c+TeWP8qrIge5KI="
+        Fill: "0QGIG8t77JXJMaycDkwScjTorLKekviMETFQJjwkR+M="
+        Outline: "55XLf0sI9KjeXEceqbdqwSOYWoR7KpMPfP47mCzBNdI="
 
     Icon/Question:
-        20:
-            Duotone: a3F6CA+0wh8zso2zpLc2cR2j7dxgTIfRTamptjGLNoA=
-            Fill: MxkrhSkfEU3t2XD9BUGRPwY9SRntZh3AyGUPEEmvAys=
-            Outline: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
-        24:
-            Duotone: YaWL55DfVKxx1raeY7aGOH1b2YOFmvOR+uFIHDlkdAY=
-            Fill: kJbP8ttjkDDvdyW9SEpevA+ZFcopzph+8uiUFcBRnYo=
-            Outline: k5BlX0M0jZTz0UJif35AM5ZQAo7jtHVHSOI7b/zw2jM=
-        32:
-            Duotone: jXhso1kTL1uRCHwHh2FR68NVvGL8U13VKujuRLBDZ+k=
-            Fill: nX2mcv7np2ACigIN3tnR/kuB8VE9Ha0XYyCaMNL9pms=
-            Outline: 3pqy1Sh3kcSmmwEIkD/rmCGOuKpt7zPTk1/CmXdBgOY=
-        64:
-            Duotone: jCx7Va5WGbylgwf6X0E9ATh4DaS4fTVG07+tJBNxtRM=
-            Fill: qqyjf8XvpzSIQXb7KeRq7oFEXf2u6MMZOLiU68rcajU=
-            Outline: TRgo7VKPHVZSOTEBePkHHuKjDJiE0js9H2IyO6ozgrE=
+        Duotone: YaWL55DfVKxx1raeY7aGOH1b2YOFmvOR+uFIHDlkdAY=
+        Fill: kJbP8ttjkDDvdyW9SEpevA+ZFcopzph+8uiUFcBRnYo=
+        Outline: k5BlX0M0jZTz0UJif35AM5ZQAo7jtHVHSOI7b/zw2jM=
 
     Icon/Questions:
-        20:
-            Duotone: 6ld3CPrbQTIyMAzLKDAmk2snA5ttRiCCw3Y6ZpUETio=
-            Fill: wC6gwZsYgsVZR3myjuEDwar3Uoj0/0l6TSvVQhV64OQ=
-            Outline: K2v6gQ4LybbU57O43TRiDCQ0vjTS1yYb3pVpdbOuGzI=
-        24:
-            Duotone: jaqXedMGV7xx3zR9AXjuHquiZ4sri/zkZcA7kks+PVU=
-            Fill: P+rQ6uNbMMZsEy36R3iTzUYELVvTjUoF6FUgHR9obnE=
-            Outline: KfbXukyfZ/c+1TRkPdpCWm2ApNverRkb6gugb6BUgss=
-        32:
-            Duotone: nqSAYV96WfJ6U6JD+f7qkfhxnc7R5knsutpB131hmrQ=
-            Fill: eGcDWYGFmxwoEolGfQC053D867WRnm0s2H/R53gYLjs=
-            Outline: 9TEt/M++GduYu0G37517p/iFLmexiXpTuBZ6QSMA+R0=
-        64:
-            Duotone: 8cV6smRonENtnArj0OutUG0ol/D3Yzr6DKYdYbb9+uY=
-            Fill: /bJXjh7VqPESScQJPa8KSCUczSF1GJIGhTLAZCdctEs=
-            Outline: +U8DWWQzJ0eZd980ccKNpjjo/JO9WQ6chtRj7y7w4jI=
+        Duotone: jaqXedMGV7xx3zR9AXjuHquiZ4sri/zkZcA7kks+PVU=
+        Fill: P+rQ6uNbMMZsEy36R3iTzUYELVvTjUoF6FUgHR9obnE=
+        Outline: KfbXukyfZ/c+1TRkPdpCWm2ApNverRkb6gugb6BUgss=
 
     Icon/Tag:
-        20:
-            Duotone: MCN3Mj32LufequfU8ooQpdqsoGJ0UFM6FmP5vG+U2ag=
-            Fill: z/MxNQ3RNBYOHnfxDb5dZI8FEoLxKbVskW+nkjdiF6Y=
-            Outline: T1klaa7Zj1zxk797T2n0RafV3ukYhe7+Cn1xSv2HrjQ=
-        24:
-            Duotone: 2o8fahsbwPK59oKyZoePiEZ2MUYakMfMDsRSf6u+8cE=
-            Fill: iis0D4LnOzJlxAoKPpaxlQPitrMatsRL6RFjBxOV6Zg=
-            Outline: rvgD+Pg6trm1QUfJo0abYrx+2LUTtIfbugB9Tzurfg8=
-        32:
-            Duotone: EygC+1YOWV3jix2swROF6Vjbp3oJF1HUftP/yUXXVHA=
-            Fill: dkqO+4lmMakiSdxHg3NV7Na1sqoK6ybgS1qlviFgqLs=
-            Outline: GsPfdqPTNyTp9EmB1t+LaycmTxe4R0CmH1QxN5IEZgc=
-        64:
-            Duotone: 3APSQfUIGg5xI6f4U5zrCR0sUZ17KDRhB/MQOmAyR1o=
-            Fill: /USyZi95/qLszxE7HhVnCxO4YPHrcOlackVQRyHCkfs=
-            Outline: 0qdmVhcUEy4Fe4ZtWf3bBbDWzrO5HpC4Vy3v7gJmZD4=
+        Duotone: 2o8fahsbwPK59oKyZoePiEZ2MUYakMfMDsRSf6u+8cE=
+        Fill: iis0D4LnOzJlxAoKPpaxlQPitrMatsRL6RFjBxOV6Zg=
+        Outline: rvgD+Pg6trm1QUfJo0abYrx+2LUTtIfbugB9Tzurfg8=
 
     Icon/Tags:
-        20:
-            Duotone: wmT4WxoHlsP/7mWCU3l2F4Vc4pTl9NwXfCaT9sYB/DQ=
-            Fill: QCAsIE79DiZ++SeFcgIS3rM7nSa8J0kk+M3LWJHVck4=
-            Outline: f2A++4TNcT5Q+gu+++yVqfgTQrWZe68TGDCb1C8dNwc=
-        24:
-            Duotone: Q3ZtkzEuz3+XSsc22KhiYrq8rCSUwRo3DsNplImSZbY=
-            Fill: ZhD0n/LOISY+ckVQS8rA2T8Cix1BO+CFh5TMKddUapM=
-            Outline: V7D24XI43t8n7rKKlg013n8xVXJBfJJUm0K2kGLfPps=
-        32:
-            Duotone: qz2FAcdev5s102BlJ5frXsvmISMROB70cZLMcjZQW3w=
-            Fill: chjzRyobHnSctnxZDjIQhGu76/PJw345FlSRsMV+EDE=
-            Outline: Nqo5Wjc65G3SRK0iHM2TPjJ2HxNPEx7+r7djsjRgSa0=
-        64:
-            Duotone: qefrbU1QtqvqcZ09YXPqSu801tDV7KpZ7gqHchlGsuY=
-            Fill: U4PO6GXQd/7XavoRdHbIaMYjmaCsZ3WBRhxHV1RKIJ4=
-            Outline: qlMDapOEsgJETJ/2jE/s0cFg8ioC3Pfx9eA/Abp2Nkw=
+        Duotone: Q3ZtkzEuz3+XSsc22KhiYrq8rCSUwRo3DsNplImSZbY=
+        Fill: ZhD0n/LOISY+ckVQS8rA2T8Cix1BO+CFh5TMKddUapM=
+        Outline: V7D24XI43t8n7rKKlg013n8xVXJBfJJUm0K2kGLfPps=
 
     Icon/Upvote:
-        20:
-            Duotone: 933TBCkeBPjg+Z9d7pbpS/Ou9GYrMtErO2dowgpqZM4=
-            Fill: csCqiXxjdGbMFrBQeO8VY6SgupICAK09MIxuUb8Nck4=
-            Outline: jOOd+XI8vy9cJNqbXSL9MXPadQyem6fUqvXyJNwWvaM=
-        24:
-            Duotone: 9mJxF+YBKMYLEG6XdFJ17qBNOmQRfe+XozPf9f3AU9o=
-            Fill: WJCrS4gF8StMJEbebW5kgYS74N+jvllrO2TbtDHwE3U=
-            Outline: CQWVcxmsphMOjeEXJymcT7jR5X03aeCZxS29pI9pJbA=
-        32:
-            Duotone: EKaeKy1r1uDuAo+ZG6gupUfff2XDIBftmBWywmHHZ68=
-            Fill: dmXZ8ESMXFIpOsYh2L6YjlKiEDon+8LTwKqB14MuLcU=
-            Outline: xy5IHpcbeG1LMkgps9j6dMD9oJlP5xGyPjWzUdDEZ2c=
-        64:
-            Duotone: MslHanJcpkRde/1hfmGbPhhPCXjH6IQNllrpkr4Hgro=
-            Fill: abn5C6hg5eHYNd8XbWTYn4zgLEmtWVNBjPFfsKd5hR0=
-            Outline: lYtBSefxloDWSh4qDtGBhnZQf3Xn64dQ8xgLjhpdFtw=
+        Duotone: 9mJxF+YBKMYLEG6XdFJ17qBNOmQRfe+XozPf9f3AU9o=
+        Fill: WJCrS4gF8StMJEbebW5kgYS74N+jvllrO2TbtDHwE3U=
+        Outline: CQWVcxmsphMOjeEXJymcT7jR5X03aeCZxS29pI9pJbA=
 
     ### SPOTS ###
     Spot/Test: "cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os="
@@ -222,8 +66,5 @@ definitions:
 
 ### CSS ICONS ###
 cssIcons:
-    Answer20Duotone:
-        css: |
-            width: 20px;
-            height: 20px;
+    - AnswerDuotone
     # TODO: add more icons to be added to the css bundle here

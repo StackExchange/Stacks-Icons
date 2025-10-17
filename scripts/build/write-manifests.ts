@@ -4,7 +4,6 @@ import { paths } from "./paths.js";
 function buildCssManifestHtml(
     iconsObj: {
         name: string;
-        css: string | null;
     }[]
 ) {
     return iconsObj
@@ -38,17 +37,26 @@ export async function writeManifests(
     spots: Record<string, string>,
     cssIconsObj: {
         name: string;
-        css: string | null;
     }[]
 ) {
     // Output the HTML manifest
-    const builtCss = await fs.readFile(paths.build("icons.css"), "utf8");
+    const builtIconsCoreCss = await fs.readFile(
+        paths.build("icons.core.css"),
+        "utf8"
+    );
+    const builtIconsBackgroundCss = await fs.readFile(
+        paths.build("icons.backgrounds.css"),
+        "utf8"
+    );
     let htmlOut = await fs.readFile(paths.src("index.html"), "utf8");
     htmlOut = htmlOut
         .replace("{ICONS_MANIFEST}", buildSvgManifestHtml(icons))
         .replace("{SPOTS_MANIFEST}", buildSvgManifestHtml(spots))
         .replace("{CSS_MANIFEST}", buildCssManifestHtml(cssIconsObj))
-        .replace("{CSS_STYLES}", `<style>${builtCss}</style>`);
+        .replace(
+            "{CSS_STYLES}",
+            `<style>${builtIconsCoreCss}\n${builtIconsBackgroundCss}</style>`
+        );
     const p1 = fs.writeFile(paths.preview("index.html"), htmlOut, "utf8");
 
     // output the TS types

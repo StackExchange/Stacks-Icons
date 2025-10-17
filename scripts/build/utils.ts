@@ -24,23 +24,43 @@ export function error(...args: unknown[]) {
 }
 
 interface Definitions {
-    [iconName: string]: string | Record<string, Record<string, string>>;
+    [iconName: string]: string | Record<string, string>;
 }
+
+const DEFAULT_SIZE = "24";
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {
     const out: Record<string, string> = {};
 
     for (const [iconName, iconValue] of Object.entries(defs)) {
         if (typeof iconValue === "string") {
+            // Spots are just strings (e.g., "Spot/Test": "hash")
             out[iconName] = iconValue;
         } else {
-            for (const [size, variants] of Object.entries(iconValue)) {
-                for (const [variant, hash] of Object.entries(variants)) {
-                    out[`${iconName}${size}${variant}`] = hash;
-                }
+            // Icons now have structure: "Icon/Answer": { "Duotone": "hash", "Fill": "hash", ... }
+            // We need to map this to Figma component names which include size
+            // e.g., "Icon/Answer24Duotone" for Figma lookup
+            for (const [variant, hash] of Object.entries(iconValue)) {
+                out[`${iconName}${DEFAULT_SIZE}${variant}`] = hash;
             }
         }
     }
 
     return out;
+}
+
+/**
+ * Strips the default size from icon names for the final export
+ * e.g., "Answer24Duotone" -> "AnswerDuotone"
+ * Spots are not affected
+ */
+export function stripDefaultSize(name: string, type: OutputType): string {
+    if (type === "Icon") {
+        // Match pattern like "Answer24Duotone" and strip the "24"
+        return name.replace(
+            new RegExp(`${DEFAULT_SIZE}(?=Duotone|Fill|Outline)`),
+            ""
+        );
+    }
+    return name;
 }

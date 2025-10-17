@@ -5,7 +5,13 @@ import { basename } from "path";
 import { optimize } from "svgo";
 import { definitions } from "../definitions.js";
 import { paths } from "./paths.js";
-import { error, info, warn, type OutputType } from "./utils.js";
+import {
+    error,
+    info,
+    warn,
+    stripDefaultSize,
+    type OutputType,
+} from "./utils.js";
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;
@@ -75,7 +81,17 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
 
         // only fetch the images that are in the definitions file
         if (!(name in definitions)) {
-            warn(`"${name}" found in Figma, but not in definitions`);
+            // For Icons: only warn about missing 24px variants (our default size)
+            // Skip warnings for other sizes (20, 32, 64) since we use CSS utilities for sizing
+            // For Spots: always warn since they don't have size variants
+            const isSpot = name.startsWith("Spot/");
+            const is24pxIcon =
+                name.startsWith("Icon/") &&
+                name.match(/24(Duotone|Fill|Outline)$/);
+
+            if (isSpot || is24pxIcon) {
+                warn(`"${name}" found in Figma, but not in config.yaml`);
+            }
             continue;
         }
 
@@ -237,11 +253,14 @@ export async function processSvgFilesAsync(type: OutputType) {
 
     // Do our custom tweaks to the output
     processed = optimizedImages.map((i, idx) => {
-        const icon = icons[idx];
+        const originalIcon = icons[idx];
 
-        if (!icon) {
+        if (!originalIcon) {
             return i;
         }
+
+        // Strip default size from icon names for class names
+        const icon = stripDefaultSize(originalIcon, type);
 
         return i
             .replace(
@@ -271,11 +290,13 @@ export async function processSvgFilesAsync(type: OutputType) {
     // Make an object of our icons { IconName: '<svg>' }
     const iconsObj: Record<string, string> = {};
     const promises = processed.map(async (svgStr, idx) => {
-        const iconName = icons[idx];
-        if (!iconName) {
+        const originalIconName = icons[idx];
+        if (!originalIconName) {
             return;
         }
 
+        // Strip default size from icon names (e.g., "Answer24Duotone" -> "AnswerDuotone")
+        const iconName = stripDefaultSize(originalIconName, type);
         iconsObj[iconName] = svgStr;
 
         const path = paths.build(paths.build("lib", type), iconName + ext);
