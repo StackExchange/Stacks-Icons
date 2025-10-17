@@ -1,12 +1,12 @@
 .svg-icon,
 .svg-spot {
-  vertical-align: bottom; /* Make SVG play nicely while inline with text by default */
+    vertical-align: bottom; /* Make SVG play nicely while inline with text by default */
 }
 
 .svg-icon:not(.native) *,
 .svg-spot:not(.native) * {
-  /* Targets all sub-elements so we can deliver SVG with full color if we'd like. */
-  fill: currentColor;
+    /* Targets all sub-elements so we can deliver SVG with full color if we'd like. */
+    fill: currentColor;
 }
 
 /* Dynamic sizing utility classes for icons */
