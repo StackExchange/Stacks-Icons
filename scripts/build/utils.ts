@@ -23,8 +23,24 @@ export function error(...args: unknown[]) {
     console.error(chalk.red.bold("ERROR"), chalk.red(...args));
 }
 
-interface Definitions {
-    [iconName: string]: string | Record<string, Record<string, string>>;
+export interface Definitions {
+    [iconName: string]:| string | Record<string, string>;
+}
+
+// Helper for dealing with Figma component variants
+// Expects something like "Size=20, Style=Fill"
+export function flattenFigmaComponentVarientName(name: string): string {
+    return name // Format will be Property=Value, ...
+        .split(",") // split by commas ['Prop=Val', ...]
+        .map(
+            (i) =>
+                i
+                    .split("=")[1] // split by = and take the right side as Figma UI does
+                    ?.replace(/\s+/g, "") // trim any whitespace
+                    .trim() || ""
+        )
+        .join("")
+        .replace(/Default/g, "") // any values using default are flattened
 }
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {
@@ -34,11 +50,11 @@ export function flattenDefinitions(defs: Definitions): Record<string, string> {
         if (typeof iconValue === "string") {
             out[iconName] = iconValue;
         } else {
-            for (const [size, variants] of Object.entries(iconValue)) {
-                for (const [variant, hash] of Object.entries(variants)) {
-                    out[`${iconName}${size}${variant}`] = hash;
-                }
+            for (const [variant, hash] of Object.entries(iconValue)) {
+                const flattened = flattenFigmaComponentVarientName(variant);
+                out[iconName + flattened] = hash;
             }
+
         }
     }
 

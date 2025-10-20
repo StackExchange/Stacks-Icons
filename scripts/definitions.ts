@@ -1,16 +1,10 @@
 import path from "path";
 import YAML from "yaml";
-import { flattenDefinitions } from "./build/utils.js";
+import { flattenDefinitions, type Definitions } from "./build/utils.js";
 import { readFile } from "fs/promises";
 
 export interface Config {
-    definitions: Record<
-        string, // icon name
-        Record<
-            string, // size
-            Record<string, string> // variant → hash
-        >
-    >;
+    definitions: Definitions;
     cssIcons: Record<string, { css: string }>;
 }
 

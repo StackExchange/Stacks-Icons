@@ -5,7 +5,7 @@ import { basename } from "path";
 import { optimize } from "svgo";
 import { definitions } from "../definitions.js";
 import { paths } from "./paths.js";
-import { error, info, warn, type OutputType } from "./utils.js";
+import { error, info, warn, flattenFigmaComponentVarientName, type OutputType } from "./utils.js";
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;
@@ -59,23 +59,14 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         // For variants, loop through all of them to create seperate assets
         if (component.containing_frame?.name) {
             const componentName = component.containing_frame.name;
-            const variantName = component.name // Format will be Property=Value, ...
-                .split(",") // split by commas ['Prop=Val', ...]
-                .map(
-                    (i) =>
-                        i
-                            .split("=")[1] // split by = and take the right side as Figma UI does
-                            ?.replace(/\s+/g, "") // trim any whitespace
-                            .trim() || ""
-                )
-                .join("");
+            const variantName = flattenFigmaComponentVarientName(component.name)
 
             name = `${componentName}${variantName}`;
         }
 
         // only fetch the images that are in the definitions file
         if (!(name in definitions)) {
-            warn(`"${name}" found in Figma, but not in definitions`);
+            info(`"${name}" found in Figma, but not in definitions`);
             continue;
         }
 
