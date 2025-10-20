@@ -161,7 +161,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         const mismatchError = `Hash mismatch on ${
             hashEntries.length
         } files. Expected hash values:
-${hashEntries.reduce((p, [k, v]) => p + `"${k}": "${v}",\n`, "")}`;
+${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
 
         if (ignoreHashMismatch) {
             error(mismatchError);
