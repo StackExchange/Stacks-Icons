@@ -14,13 +14,13 @@ definitions:
         Size=Default, Style=Default: Z4Aqp4Tzor/yh2lJ3keipoSjzjyUgoxlUyYzotHeiSs=
 
     Icon/Document:
-        Size=Default, Style=Default: "7Pb1TvYRzbV2wqtFSrQIw0aqGFh7QstFaeuHBf3DQZk="
+        Size=Default, Style=Default: 7Pb1TvYRzbV2wqtFSrQIw0aqGFh7QstFaeuHBf3DQZk=
 
     Icon/Downvote:
         Size=Default, Style=Default: /OfUswkQOjHqmT/tPFbJxXrvkHwXk1M+WzSIV0LtwqU=
 
     Icon/Home:
-        Size=Default, Style=Default: "55XLf0sI9KjeXEceqbdqwSOYWoR7KpMPfP47mCzBNdI="
+        Size=Default, Style=Default: 55XLf0sI9KjeXEceqbdqwSOYWoR7KpMPfP47mCzBNdI=
 
     Icon/Question:
         Size=Default, Style=Default: k5BlX0M0jZTz0UJif35AM5ZQAo7jtHVHSOI7b/zw2jM=
@@ -38,7 +38,7 @@ definitions:
         Size=Default, Style=Default: CQWVcxmsphMOjeEXJymcT7jR5X03aeCZxS29pI9pJbA=
 
     ### SPOTS ###
-    Spot/Test: "cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os="
+    Spot/Test: cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os=
     # TODO: add more spots here
 
 ### CSS ICONS ###
