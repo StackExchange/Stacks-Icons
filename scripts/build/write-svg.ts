@@ -9,7 +9,7 @@ import {
     error,
     info,
     warn,
-    flattenFigmaComponentVarientName,
+    flattenFigmaComponentVariantName,
     type OutputType,
 } from "./utils.js";
 
@@ -65,7 +65,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         // For variants, loop through all of them to create seperate assets
         if (component.containing_frame?.name) {
             const componentName = component.containing_frame.name;
-            const variantName = flattenFigmaComponentVarientName(
+            const variantName = flattenFigmaComponentVariantName(
                 component.name
             );
 

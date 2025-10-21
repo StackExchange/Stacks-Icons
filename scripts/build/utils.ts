@@ -29,7 +29,7 @@ export interface Definitions {
 
 // Helper for dealing with Figma component variants
 // Expects something like "Size=20, Style=Fill"
-export function flattenFigmaComponentVarientName(name: string): string {
+export function flattenFigmaComponentVariantName(name: string): string {
     return name // Format will be Property=Value, ...
         .split(",") // split by commas ['Prop=Val', ...]
         .map(
@@ -51,7 +51,7 @@ export function flattenDefinitions(defs: Definitions): Record<string, string> {
             out[iconName] = iconValue;
         } else {
             for (const [variant, hash] of Object.entries(iconValue)) {
-                const flattened = flattenFigmaComponentVarientName(variant);
+                const flattened = flattenFigmaComponentVariantName(variant);
                 out[iconName + flattened] = hash;
             }
         }
