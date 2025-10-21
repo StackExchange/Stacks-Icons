@@ -54,7 +54,6 @@ export function flattenDefinitions(defs: Definitions): Record<string, string> {
                 const flattened = flattenFigmaComponentVarientName(variant);
                 out[iconName + flattened] = hash;
             }
-
         }
     }
 
