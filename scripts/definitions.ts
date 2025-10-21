@@ -349,6 +349,7 @@ const figmaIconDefinitions: Record<string, string> = {
     "Icon/ThumbsUp": "hyp0S0WkjHqPS61Tf/42iU4ew8/I0jhkiegu4Xo3b9c=",
     "Icon/ThumbsUpOutline": "sUZt89eVqeY3a0YUkM6JddSnprqfwN5y+fkpicdgO7g=",
     "Icon/Tool": "ngSH3scirAKlUHgyB3X01mbCEBQpG8lVP897R0lWkfg=",
+    "Icon/ToolSm": "JDctV4AgWSsFiWK1fTzCpLGZglKECMj5l1xa211xxfQ=",
     "Icon/Trash": "txJgftW3R+xNXgxVrQT14Q7rA5tgH61Mh54HpbaG7WI=",
     "Icon/TrashSm": "PdtlESke3CnF75tI/WoOeG0Ghwpqw522u5niE8fgPNo=",
     "Icon/TrendingDown": "4YFAJQZPq5iqsFzCOn7s2R3nSAKkiZIlNdVHvZZxxwo=",
