@@ -24,7 +24,7 @@ export function error(...args: unknown[]) {
 }
 
 export interface Definitions {
-    [iconName: string]:| string | Record<string, string>;
+    [iconName: string]: string | Record<string, string>;
 }
 
 // Helper for dealing with Figma component variants
@@ -40,7 +40,7 @@ export function flattenFigmaComponentVarientName(name: string): string {
                     .trim() || ""
         )
         .join("")
-        .replace(/Default/g, "") // any values using default are flattened
+        .replace(/Default/g, ""); // any values using default are flattened
 }
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {
