@@ -14,8 +14,9 @@ const configPath = path.resolve(
 );
 
 const configFile = await readFile(configPath, "utf-8");
-const config = YAML.parse(configFile) as Config;
 
-export const cssIcons = config.cssIcons || {};
+export const configRaw = YAML.parse(configFile) as Config;
 
-export const definitions = flattenDefinitions(config.definitions);
+export const cssIcons = configRaw.cssIcons || {};
+
+export const definitions = flattenDefinitions(configRaw.definitions);
