@@ -1,50 +1,114 @@
-definitions:
-    ### ICONS ###
-    Icon/Answer:
-        Size=Default, Style=Default: /IlrLWBhKHpOxW2OtCQFVcDuSgkbsRn+EUJrzmdrswA=
-        Size=32, Style=Fill: 4v6RqqVUNUjnTBnue8IohwCT3/PgiHx2BJ8Gghza2lg=
-
-    Icon/Answers:
-        Size=Default, Style=Default: M3lN8KicgTPhbYHPVSUcbbj0sj46E7Q44m76UGQXJmA=
-
-    Icon/Bookmark:
-        Size=Default, Style=Default: 4/0Vmtx64WKAzp9VWaSePPPjcsz+FSYiA59gAhmVJLA=
-
-    Icon/Chat:
-        Size=Default, Style=Default: Z4Aqp4Tzor/yh2lJ3keipoSjzjyUgoxlUyYzotHeiSs=
-
-    Icon/Document:
-        Size=Default, Style=Default: 7Pb1TvYRzbV2wqtFSrQIw0aqGFh7QstFaeuHBf3DQZk=
-
-    Icon/Downvote:
-        Size=Default, Style=Default: /OfUswkQOjHqmT/tPFbJxXrvkHwXk1M+WzSIV0LtwqU=
-
-    Icon/Home:
-        Size=Default, Style=Default: 55XLf0sI9KjeXEceqbdqwSOYWoR7KpMPfP47mCzBNdI=
-
-    Icon/Question:
-        Size=Default, Style=Default: k5BlX0M0jZTz0UJif35AM5ZQAo7jtHVHSOI7b/zw2jM=
-
-    Icon/Questions:
-        Size=Default, Style=Default: KfbXukyfZ/c+1TRkPdpCWm2ApNverRkb6gugb6BUgss=
-
-    Icon/Tag:
-        Size=Default, Style=Default: rvgD+Pg6trm1QUfJo0abYrx+2LUTtIfbugB9Tzurfg8=
-
-    Icon/Tags:
-        Size=Default, Style=Default: V7D24XI43t8n7rKKlg013n8xVXJBfJJUm0K2kGLfPps=
-
-    Icon/Upvote:
-        Size=Default, Style=Default: CQWVcxmsphMOjeEXJymcT7jR5X03aeCZxS29pI9pJbA=
-
-    ### SPOTS ###
-    Spot/Test: cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os=
-    # TODO: add more spots here
-
 ### CSS ICONS ###
 cssIcons:
     Answer:
         css: |
             width: 20px;
             height: 20px;
-    # TODO: add more icons to be added to the css bundle here
+        # TODO: add more icons to be added to the css bundle here
+definitions:
+    ### ICONS ###
+    Icon/Answer:
+        Size=Default, Style=Default: Tka2S/Y2Ep2mZvRl1CXDktI8moCo6TfpnetwiK+EZdU=
+        Size=Default, Style=Fill: 3G3JqJfGbgDxdgWHFtEMkxjJdmGfI0Uton+UZAL5lvQ=
+    Icon/Answers:
+        Size=Default, Style=Default: ghkBC72aal00aaQZJ7YDA3woQEACFvlngFCnqk30yts=
+        Size=Default, Style=Fill: gUtZy5FfaTv2KIe8U1Tbecd50cSQ6o8qlIYZy9Y4T0U=
+    Icon/ArrowBottom:
+        Size=Default, Style=Default: coXzVGYCBzkTNNaUWJH4NUVz4/DpTSAO+/BMOKqjytw=
+    Icon/ArrowLeft:
+        Size=Default, Style=Default: lJ/dusbuhFzN7Cv/8CiQvjqMJ4i4baxkxYnRBo7Qbc0=
+    Icon/ArrowRight:
+        Size=Default, Style=Default: 7+7cORBbVMC4QAh8QQ7YuNjy9J53GQrJXL8/zNlO5bM=
+    Icon/ArrowUp:
+        Size=Default, Style=Default: PAEq06HrHwmRpjn2r/VRln2mRtqL28U+6IFfLC/DY88=
+    Icon/Awards:
+        Size=Default, Style=Default: v+2A3J1etrBr9XTqNbQbn+I5/201OAwTRiJTTPAMQ3I=
+        Size=Default, Style=Fill: 5pEjI4b1QSKOmDDEWqfu8YOTFH3FheCtaQttxbVVkJo=
+    Icon/Bell:
+        Size=Default, Style=Default: r09v7rhoycyL/NvCOSeIJFl/0rwc2mzJvbKpv8ZJXFM=
+        Size=Default, Style=Fill: ZYWRbdnFjhhfPfhG4HOD/CUWKLLN6zrS1aJvX4sqDcc=
+    Icon/Bookmark:
+        Size=Default, Style=Default: +AXI3/LDPgztq/O1tlzxPbewDJLC5e+AkHY0r5a50hs=
+        Size=Default, Style=Fill: SoilsBkrXfPids6Tnfbl5fNPCBVU/SzX6ZOol1ti54U=
+    Icon/Challenge:
+        Size=Default, Style=Default: kG3FDOFEQDLmVvnwRmrTf1pYmwOy2FYfdnbEUIP7id0=
+        Size=Default, Style=Fill: GageAeDddJSbouE06Xk2hHhrCMX5BwKmDUR7jxTJkkY=
+    Icon/Chat:
+        Size=Default, Style=Default: UZmhVqgTlqIMTIvKybeETNDkiaep4fk3yffgDe1Z7EQ=
+        Size=Default, Style=Fill: mykTtej4DI78wNP2RxJsqiRFaLprEK69nJJG5gBtEMk=
+    Icon/ChevronBottom:
+        Size=Default, Style=Default: hgC3wVuvo7pS8ireO0975RvQgDwPJ5uYj45sZoqLS+I=
+    Icon/ChevronLeft:
+        Size=Default, Style=Default: e+FK+EeAtZTY6wtZ5IS2WsUzeRq89lMZ5mFJulgzkI8=
+    Icon/ChevronRight:
+        Size=Default, Style=Default: RTcj+ktyxhGGhTzyodroDnya/aNOVbPebZTb2UnCjB4=
+    Icon/ChevronUp:
+        Size=Default, Style=Default: 6HSrg5trhBY70XhYLZyr1HCT+lOw7qsLzD4CbkqkZm4=
+    Icon/Communities:
+        Size=Default, Style=Default: WYsmC7r1uaByLeE7Fe0M/JiaJ/J2kFx9wodtOuHcuaY=
+        Size=Default, Style=Fill: 2fELsCJIS7B7KedTN12OZh0fRxP/HZTqeCKmgEDoV1Y=
+    Icon/Companies:
+        Size=Default, Style=Default: F1u/wDLHPBlhJy+0OVOLEDlumvYjJJ2bqV24JPByMaQ=
+        Size=Default, Style=Fill: GXotL9LfCMvihXA/cydC9B/kj0dTDaXxGwRZbYXkHuk=
+    Icon/Cross:
+        Size=Default, Style=Default: ycef9Ez0L8HNf2DKMuCmVkjst+rv6c/76jKTd/nMdew=
+    Icon/Document:
+        Size=Default, Style=Default: G4FDvCrT7bv1T8tPFwSIAoiFn64SOcGYKxkZk6/cbIE=
+        Size=Default, Style=Fill: tYmTyi2pC1roEjP6XO/qHm//CB7DlHtI1ssoK55G6pQ=
+    Icon/Downvote:
+        Size=Default, Style=Default: 2fzieA4oRep+Mat9+m9r+0xt9j7N7eObUXxC/JWWZEA=
+        Size=Default, Style=Fill: JDB6uLbbq62FIWvOO4kYneQFfzp0MD/B4fVbDi0WeVw=
+    Icon/Flag:
+        Size=Default, Style=Default: VfMyEb3mO3w3SeAp0sJ97ROSLN4daHfESvt0jfRS2ck=
+        Size=Default, Style=Fill: 0xduBLtkjETTAxpCLBgrOuEm9lVJjJDlRP2zPalr5iE=
+    Icon/Help:
+        Size=Default, Style=Default: 2U95Q8KwatUR6bk8cAiooB9waCqSs4e6ttWzS+GfkpM=
+        Size=Default, Style=Fill: nBt2DDvfSoHjD1NJjJjMWRxfIku73N0gaQ11N7pEgss=
+    Icon/Home:
+        Size=Default, Style=Default: PoAKhksimke9mURtwprpur5c1Pdg3DX/JSoQkhpAZoo=
+        Size=Default, Style=Fill: Gppd5eUt1tuEUnIbxhRISj+Dh0E3av0J0egRmnfy/yw=
+    Icon/Inbox:
+        Size=Default, Style=Default: qBx3mL4ty0hIzkEpSaFqrQK9ase5DcjmNg1xOGuPl1M=
+        Size=Default, Style=Fill: nEh51bcWsYKvmXcWfvqTGll7UOwJdyDqKjSwKT8XO2I=
+    Icon/Jobs:
+        Size=Default, Style=Default: ixFJPBGrlypFsCfFb+kmRIR2A/97Py92Lk1/48MCpl4=
+        Size=Default, Style=Fill: 56taEheo4mFgkqo0s3fiEo6dGycjNWybjoYuMjfoxOM=
+    Icon/Meta:
+        Size=Default, Style=Default: aTSbEN8e0F7CiqBBXF31o6FVhi9mwLw4IqFIHejG6jQ=
+        Size=Default, Style=Fill: kI6AKct33hBs3ARS42poi1Moio1Go4t9xAvDlAy8fX8=
+    Icon/Moderator:
+        Size=Default, Style=Default: 1hktkzNJPw7bDnhHzNf78FSwySD+ZJaGzMdZ6AqTMhs=
+        Size=Default, Style=Fill: c769+y8j2WkjlnTsDSC8yhvLmioTQRV1vs+DLjmFSfA=
+    Icon/Plus:
+        Size=Default, Style=Default: LcnWxFYBuwca1rFC5YzROiVmtTVIBPxXfi73PLxoTp0=
+    Icon/Question:
+        Size=Default, Style=Default: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
+        Size=Default, Style=Fill: MxkrhSkfEU3t2XD9BUGRPwY9SRntZh3AyGUPEEmvAys=
+    Icon/Questions:
+        Size=Default, Style=Default: rNkLDYVuqUVw/T1Ki1z9C3Rk5ww9LOKyiFMuirednHg=
+        Size=Default, Style=Fill: SRqL3BBwI4quz/wNah8BvVditzcxAmxzkqjA/+W+Tm0=
+    Icon/Search:
+        Size=Default, Style=Default: 5tiLt2lGLoDXt/SzUCrvY364PCMpnGWJocLMS4fTvV4=
+        Size=Default, Style=Fill: duJJyHlojXunPqpJTroKthlZBk8UwofChzM1QMUzCU4=
+    Icon/Settings:
+        Size=Default, Style=Default: hXy6zBrXAilwe7PsNqFKPDaag94SCcWhapIiQVLxCQQ=
+        Size=Default, Style=Fill: Tfi98jkq7WrjXlqTtPgYaSiXPXJ1VwXzvXpGuU2GWjM=
+    Icon/Tag:
+        Size=Default, Style=Default: T1klaa7Zj1zxk797T2n0RafV3ukYhe7+Cn1xSv2HrjQ=
+        Size=Default, Style=Fill: z/MxNQ3RNBYOHnfxDb5dZI8FEoLxKbVskW+nkjdiF6Y=
+    Icon/Tags:
+        Size=Default, Style=Default: sbXMzg3JFcnAliwj2hdi4sLXe6Jq8iiPAXk0SuaIkpc=
+        Size=Default, Style=Fill: QCAsIE79DiZ++SeFcgIS3rM7nSa8J0kk+M3LWJHVck4=
+    Icon/TrendDown:
+        Size=Default, Style=Default: daagT7L/UF794p+C2+B/X6LTypAggeTatsb85r6mgXA=
+    Icon/TrendUp:
+        Size=Default, Style=Default: eM1sIQVpOBwgxp4zjh7x6uaMEENho5o3T6mMQqL7/cA=
+    Icon/Upvote:
+        Size=Default, Style=Default: B1kMREGxvjd2HO7xOH9u1rxGzxZsly5jlETcDU93tHs=
+        Size=Default, Style=Fill: dbuluBxCsqn3keaKcPzuea9e+UO5ETFwPvLlSmJw9Gg=
+    Icon/Users:
+        Size=Default, Style=Default: QBy3YTRKyYWHRW4tH1Koi5HSb5mjtGDWTBGd4fz4EoU=
+        Size=Default, Style=Fill: POtFlcnQ4rgUU13x/M+2EcDkNF+s6Ikte6akpXrnUGo=
+    ### SPOTS ###
+    Spot/Test: cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os=
+    # TODO: add more spots here
