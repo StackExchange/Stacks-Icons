@@ -8,20 +8,16 @@ cssIcons:
 definitions:
     ### ICONS ###
     Icon/Answer:
-        Size=Default, Style=Default: Tka2S/Y2Ep2mZvRl1CXDktI8moCo6TfpnetwiK+EZdU=
-        Size=Default, Style=Fill: 3G3JqJfGbgDxdgWHFtEMkxjJdmGfI0Uton+UZAL5lvQ=
-    Icon/Answers:
-        Size=Default, Style=Default: ghkBC72aal00aaQZJ7YDA3woQEACFvlngFCnqk30yts=
-        Size=Default, Style=Fill: gUtZy5FfaTv2KIe8U1Tbecd50cSQ6o8qlIYZy9Y4T0U=
-    Icon/ArrowBottom:
-        Size=Default, Style=Default: coXzVGYCBzkTNNaUWJH4NUVz4/DpTSAO+/BMOKqjytw=
-    Icon/ArrowLeft:
-        Size=Default, Style=Default: lJ/dusbuhFzN7Cv/8CiQvjqMJ4i4baxkxYnRBo7Qbc0=
-    Icon/ArrowRight:
-        Size=Default, Style=Default: 7+7cORBbVMC4QAh8QQ7YuNjy9J53GQrJXL8/zNlO5bM=
-    Icon/ArrowUp:
-        Size=Default, Style=Default: PAEq06HrHwmRpjn2r/VRln2mRtqL28U+6IFfLC/DY88=
-    Icon/Awards:
+        Size=Default, Style=Default, Multiple=False: UhYGuawhIoWxhzQLOu2XCwpBCK8a7p381CWsz/NYaDQ=
+        Size=Default, Style=Default, Multiple=True: d4gX3H3Sj6dEjtafRAkzrV3FDIshS/FKs2RXdQm5v98=
+        Size=Default, Style=Fill, Multiple=False: ZSxm1d0ZixiMrUd53pIsNhbZI6tUJK0o+1T8VtGP8rQ=
+        Size=Default, Style=Fill, Multiple=True: gt10o2xtz6vsbE+Y/HfNU3BEnpVs/J+4EA9OAPHF//s=
+    Icon/Arrow:
+        Size=Default, Style=Default, Direction=Down: coXzVGYCBzkTNNaUWJH4NUVz4/DpTSAO+/BMOKqjytw=
+        Size=Default, Style=Default, Direction=Left: lJ/dusbuhFzN7Cv/8CiQvjqMJ4i4baxkxYnRBo7Qbc0=
+        Size=Default, Style=Default, Direction=Right: 7+7cORBbVMC4QAh8QQ7YuNjy9J53GQrJXL8/zNlO5bM=
+        Size=Default, Style=Default, Direction=Up: PAEq06HrHwmRpjn2r/VRln2mRtqL28U+6IFfLC/DY88=
+    Icon/Award:
         Size=Default, Style=Default: v+2A3J1etrBr9XTqNbQbn+I5/201OAwTRiJTTPAMQ3I=
         Size=Default, Style=Fill: 5pEjI4b1QSKOmDDEWqfu8YOTFH3FheCtaQttxbVVkJo=
     Icon/Bell:
@@ -36,28 +32,22 @@ definitions:
     Icon/Chat:
         Size=Default, Style=Default: UZmhVqgTlqIMTIvKybeETNDkiaep4fk3yffgDe1Z7EQ=
         Size=Default, Style=Fill: mykTtej4DI78wNP2RxJsqiRFaLprEK69nJJG5gBtEMk=
-    Icon/ChevronBottom:
-        Size=Default, Style=Default: hgC3wVuvo7pS8ireO0975RvQgDwPJ5uYj45sZoqLS+I=
-    Icon/ChevronLeft:
-        Size=Default, Style=Default: e+FK+EeAtZTY6wtZ5IS2WsUzeRq89lMZ5mFJulgzkI8=
-    Icon/ChevronRight:
-        Size=Default, Style=Default: RTcj+ktyxhGGhTzyodroDnya/aNOVbPebZTb2UnCjB4=
-    Icon/ChevronUp:
-        Size=Default, Style=Default: 6HSrg5trhBY70XhYLZyr1HCT+lOw7qsLzD4CbkqkZm4=
-    Icon/Communities:
+    Icon/Chevron:
+        Size=Default, Style=Default, Direction=Down: hgC3wVuvo7pS8ireO0975RvQgDwPJ5uYj45sZoqLS+I=
+        Size=Default, Style=Default, Direction=Left: e+FK+EeAtZTY6wtZ5IS2WsUzeRq89lMZ5mFJulgzkI8=
+        Size=Default, Style=Default, Direction=Right: RTcj+ktyxhGGhTzyodroDnya/aNOVbPebZTb2UnCjB4=
+        Size=Default, Style=Default, Direction=Up: 6HSrg5trhBY70XhYLZyr1HCT+lOw7qsLzD4CbkqkZm4=
+    Icon/Community:
         Size=Default, Style=Default: WYsmC7r1uaByLeE7Fe0M/JiaJ/J2kFx9wodtOuHcuaY=
         Size=Default, Style=Fill: 2fELsCJIS7B7KedTN12OZh0fRxP/HZTqeCKmgEDoV1Y=
-    Icon/Companies:
+    Icon/Company:
         Size=Default, Style=Default: F1u/wDLHPBlhJy+0OVOLEDlumvYjJJ2bqV24JPByMaQ=
         Size=Default, Style=Fill: GXotL9LfCMvihXA/cydC9B/kj0dTDaXxGwRZbYXkHuk=
     Icon/Cross:
-        Size=Default, Style=Default: ycef9Ez0L8HNf2DKMuCmVkjst+rv6c/76jKTd/nMdew=
+        Size=Default, Style=Default: oO1a2hCd/XuxAxpZXC+2EXJUAUWKpmv3AwCbkMBdUpQ=
     Icon/Document:
         Size=Default, Style=Default: G4FDvCrT7bv1T8tPFwSIAoiFn64SOcGYKxkZk6/cbIE=
         Size=Default, Style=Fill: tYmTyi2pC1roEjP6XO/qHm//CB7DlHtI1ssoK55G6pQ=
-    Icon/Downvote:
-        Size=Default, Style=Default: 2fzieA4oRep+Mat9+m9r+0xt9j7N7eObUXxC/JWWZEA=
-        Size=Default, Style=Fill: JDB6uLbbq62FIWvOO4kYneQFfzp0MD/B4fVbDi0WeVw=
     Icon/Flag:
         Size=Default, Style=Default: VfMyEb3mO3w3SeAp0sJ97ROSLN4daHfESvt0jfRS2ck=
         Size=Default, Style=Fill: 0xduBLtkjETTAxpCLBgrOuEm9lVJjJDlRP2zPalr5iE=
@@ -77,16 +67,15 @@ definitions:
         Size=Default, Style=Default: aTSbEN8e0F7CiqBBXF31o6FVhi9mwLw4IqFIHejG6jQ=
         Size=Default, Style=Fill: kI6AKct33hBs3ARS42poi1Moio1Go4t9xAvDlAy8fX8=
     Icon/Moderator:
-        Size=Default, Style=Default: 1hktkzNJPw7bDnhHzNf78FSwySD+ZJaGzMdZ6AqTMhs=
-        Size=Default, Style=Fill: c769+y8j2WkjlnTsDSC8yhvLmioTQRV1vs+DLjmFSfA=
+        Size=Default, Style=Default: RtVP3xGnTfC6Nidv0Kns6KmC24OEHOUgDunT5MjbyUM=
+        Size=Default, Style=Fill: OmPJ9H/nSSjaqAR1BPkixIvW+1FCrcYBA1oTbZiwhU8=
     Icon/Plus:
         Size=Default, Style=Default: LcnWxFYBuwca1rFC5YzROiVmtTVIBPxXfi73PLxoTp0=
     Icon/Question:
-        Size=Default, Style=Default: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
-        Size=Default, Style=Fill: MxkrhSkfEU3t2XD9BUGRPwY9SRntZh3AyGUPEEmvAys=
-    Icon/Questions:
-        Size=Default, Style=Default: rNkLDYVuqUVw/T1Ki1z9C3Rk5ww9LOKyiFMuirednHg=
-        Size=Default, Style=Fill: SRqL3BBwI4quz/wNah8BvVditzcxAmxzkqjA/+W+Tm0=
+        Size=Default, Style=Default, Multiple=False: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
+        Size=Default, Style=Default, Multiple=True: WTXl6gJ3T+ywl7y/5Pg57ifioeLBhVRydbTW+SnUyxw=
+        Size=Default, Style=Fill, Multiple=False: MxkrhSkfEU3t2XD9BUGRPwY9SRntZh3AyGUPEEmvAys=
+        Size=Default, Style=Fill, Multiple=True: SRqL3BBwI4quz/wNah8BvVditzcxAmxzkqjA/+W+Tm0=
     Icon/Search:
         Size=Default, Style=Default: 5tiLt2lGLoDXt/SzUCrvY364PCMpnGWJocLMS4fTvV4=
         Size=Default, Style=Fill: duJJyHlojXunPqpJTroKthlZBk8UwofChzM1QMUzCU4=
@@ -94,21 +83,23 @@ definitions:
         Size=Default, Style=Default: hXy6zBrXAilwe7PsNqFKPDaag94SCcWhapIiQVLxCQQ=
         Size=Default, Style=Fill: Tfi98jkq7WrjXlqTtPgYaSiXPXJ1VwXzvXpGuU2GWjM=
     Icon/Tag:
-        Size=Default, Style=Default: T1klaa7Zj1zxk797T2n0RafV3ukYhe7+Cn1xSv2HrjQ=
-        Size=Default, Style=Fill: z/MxNQ3RNBYOHnfxDb5dZI8FEoLxKbVskW+nkjdiF6Y=
-    Icon/Tags:
-        Size=Default, Style=Default: sbXMzg3JFcnAliwj2hdi4sLXe6Jq8iiPAXk0SuaIkpc=
-        Size=Default, Style=Fill: QCAsIE79DiZ++SeFcgIS3rM7nSa8J0kk+M3LWJHVck4=
-    Icon/TrendDown:
-        Size=Default, Style=Default: daagT7L/UF794p+C2+B/X6LTypAggeTatsb85r6mgXA=
-    Icon/TrendUp:
-        Size=Default, Style=Default: eM1sIQVpOBwgxp4zjh7x6uaMEENho5o3T6mMQqL7/cA=
-    Icon/Upvote:
-        Size=Default, Style=Default: B1kMREGxvjd2HO7xOH9u1rxGzxZsly5jlETcDU93tHs=
-        Size=Default, Style=Fill: dbuluBxCsqn3keaKcPzuea9e+UO5ETFwPvLlSmJw9Gg=
-    Icon/Users:
-        Size=Default, Style=Default: QBy3YTRKyYWHRW4tH1Koi5HSb5mjtGDWTBGd4fz4EoU=
-        Size=Default, Style=Fill: POtFlcnQ4rgUU13x/M+2EcDkNF+s6Ikte6akpXrnUGo=
+        Size=Default, Style=Default, Multiple=False: T1klaa7Zj1zxk797T2n0RafV3ukYhe7+Cn1xSv2HrjQ=
+        Size=Default, Style=Fill, Multiple=False: z/MxNQ3RNBYOHnfxDb5dZI8FEoLxKbVskW+nkjdiF6Y=
+        Size=Default, Style=Default, Multiple=True: f2A++4TNcT5Q+gu+++yVqfgTQrWZe68TGDCb1C8dNwc=
+        Size=Default, Style=Fill, Multiple=True: 1FG5l+DlJbDUzYVFwjboijl1nQ2tAWh/JVL259Z9a+U=
+    Icon/Trend:
+        Size=Default, Style=Default, Direction=Down: daagT7L/UF794p+C2+B/X6LTypAggeTatsb85r6mgXA=
+        Size=Default, Style=Default, Direction=Up: eM1sIQVpOBwgxp4zjh7x6uaMEENho5o3T6mMQqL7/cA=
+    Icon/User:
+        Size=Default, Style=Default, Multiple=False: WPgFC7g+cZmTOW/3GY818hRdXDXbzvBUofCt33ZOPpI=
+        Size=Default, Style=Default, Multiple=True: p+qDm8bRgfhZyP+A0C4Dqei/Yk6UhXnXfy14Igza0M8=
+        Size=Default, Style=Fill, Multiple=False: D4hdwZDRpdVaomKZSOs77Pkh411K6KcXoUlPKLI77gc=
+        Size=Default, Style=Fill, Multiple=True: 7e3obtp30vjZIrDFw6KtcJSt0bg5pVQvJAlr5lypv3c=
+    Icon/Vote:
+        Size=Default, Direction=Down, Style=Default: 9CQL3/zOyLED5v92OSAAni27V02+KhfoNNR/BwHSmiM=
+        Size=Default, Direction=Up, Style=Default: B1kMREGxvjd2HO7xOH9u1rxGzxZsly5jlETcDU93tHs=
+        Size=Default, Direction=Down, Style=Fill: JDB6uLbbq62FIWvOO4kYneQFfzp0MD/B4fVbDi0WeVw=
+        Size=Default, Direction=Up, Style=Fill: dbuluBxCsqn3keaKcPzuea9e+UO5ETFwPvLlSmJw9Gg=
     ### SPOTS ###
     Spot/Test: cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os=
     # TODO: add more spots here
