@@ -46,6 +46,8 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     info(
         `Fetching all components from Figma ("https://figma.com/design/${process.env["FIGMA_FILE_KEY"]}")...`
     );
+
+    // https://developers.figma.com/docs/rest-api/component-endpoints/#http-endpoint-1
     const stacksFile = await fetch.get<{
         meta: { components: FigmaComponent[] };
     }>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
