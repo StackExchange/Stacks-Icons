@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import { paths } from "./paths.js";
 import { configRaw } from "../definitions.js";
-import { flattenFigmaComponentVariantName } from "./utils.js"
+import { flattenFigmaComponentVariantName } from "./utils.js";
 
 function buildCssManifestHtml(
     iconsObj: {
@@ -23,7 +23,9 @@ function buildCssManifestHtml(
 function buildIconManifestHtml(iconsObj: any) {
     const grouped: any = {};
 
-    for (const [figmaKey, variants] of Object.entries((configRaw.definitions))) {
+    for (const [figmaKey, variants] of Object.entries(
+        configRaw.definitions as any
+    )) {
         if (!figmaKey.startsWith("Icon/")) continue;
 
         const baseName = String(figmaKey).replace(/^Icon\//, "");
@@ -31,12 +33,19 @@ function buildIconManifestHtml(iconsObj: any) {
         if (!grouped[baseName]) grouped[baseName] = {};
 
         for (const [variantKey] of Object.entries(variants as any)) {
-            const flatName = flattenFigmaComponentVariantName(String(variantKey));
+            const flatName = flattenFigmaComponentVariantName(
+                String(variantKey)
+            );
             const iconName = baseName + (flatName ? flatName : "");
             const svg = (iconsObj as any)[iconName];
 
             if (svg) {
-                grouped[baseName][baseName + flatName] = String(svg);
+                grouped[baseName][iconName] = {
+                    svg: String(svg),
+                    variantKey,
+                    flatName: flatName || "Default",
+                    iconName,
+                };
             }
         }
     }
@@ -44,18 +53,23 @@ function buildIconManifestHtml(iconsObj: any) {
     const html = Object.entries(grouped as any)
         .map(([baseName, variants]: any) => {
             const variantsHtml = Object.entries(variants as any)
-                .map(([variantName, svg]: any) => {
+                .map(([iconName, props]: any) => {
                     return `
-                        <div class="icon-variant bb bc-black-200 py4">
-                            <span class="fs-fine ff-mono fc-light pb12">${variantName}</span>
-                            <div class="icon-preview">${String(svg)}</div>
+                        <div class="icon-variant bb bc-black-200 py4"
+                             data-base="${baseName}"
+                             data-icon="${iconName}"
+                             data-variant="${props.flatName}">
+                            <div class="fs-fine ff-mono fc-light pb2" title="${props.variantKey}">
+                                ${iconName}
+                            </div>
+                            <div class="icon-preview">${String(props.svg)}</div>
                         </div>
                     `;
                 })
                 .join("\n");
 
             return `
-                <div class="icon-group">
+                <div class="icon-group" data-base="${baseName}">
                     <h3 class="icon-title bb bc-black-500 pb8">${baseName}</h3>
                     <div class="icon-grid">${variantsHtml}</div>
                 </div>

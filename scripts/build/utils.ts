@@ -47,7 +47,7 @@ export function flattenFigmaComponentVariantName(name: string): string {
             // Otherwise use the value, as before
             return val;
         })
-        .join("")
+        .join("");
 }
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {

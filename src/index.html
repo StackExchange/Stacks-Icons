@@ -24,8 +24,8 @@
 
     <body>
         <div class="mx-auto pb64 sm:pb16 px32 sm:px16 pt32 sm:pt16">
-            <div class="d-flex ai-center bb bc-black-300 pb8 mb64 sm:mb32">
-                 <h2 class="fs-headline1">
+            <div class="d-flex ai-center bb bc-black-300 pb32 mb64 sm:mb32">
+                <h2 class="fs-headline1 mb0">
                     Icons
                     <span class="s-badge s-badge__new lh-lg">Beta</span>
                 </h2>
@@ -35,13 +35,17 @@
                 >
                     <div class="d-flex ai-center g8">
                         <label class="s-label" for="toggle-currentcolor">
-                             <span
-                                class="w8 h8 d-inline-block bar-circle mr4 va-middle"
+                            <span
+                                class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
                                 style="background: magenta"
-                             ></span>
+                            ></span>
                             Override fill
                         </label>
-                        <input class="s-toggle-switch" id="toggle-currentcolor" type="checkbox">
+                        <input
+                            class="s-toggle-switch"
+                            id="toggle-currentcolor"
+                            type="checkbox"
+                        />
                     </div>
                 </label>
             </div>
@@ -70,7 +74,7 @@
                 {CSS_MANIFEST}
             </div>
         </div>
-        
+
         <script>
             document
                 .getElementById("toggle-currentcolor")
