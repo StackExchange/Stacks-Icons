@@ -35,10 +35,6 @@ interface IconsObject {
     [iconName: string]: string;
 }
 
-// interface FigmaDefinitions {
-//     [key: string]: Record<string, string>;
-// }
-
 function buildIconManifestHtml(iconsObj: IconsObject): string {
     const grouped: GroupedIcons = {};
 
@@ -71,10 +67,7 @@ function buildIconManifestHtml(iconsObj: IconsObject): string {
                 .map(([iconName, props]) => {
                     const { svg, variantKey, flatName } = props;
                     return `
-                        <div class="icon-variant bb bc-black-200 py4"
-                             data-base="${baseName}"
-                             data-icon="${iconName}"
-                             data-variant="${flatName}">
+                        <div class="icon-variant bb bc-black-200 py4" data-base="${baseName}" data-icon="${iconName}" data-variant="${flatName}">
                             <div class="fs-fine ff-mono fc-light pb2" title="${variantKey}">
                                 ${iconName}
                             </div>
