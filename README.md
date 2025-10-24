@@ -116,6 +116,15 @@ npm run test:nuget
 
 All icons and spots are pulled directly from Figma via their API. The _only_ way to add or update icons is by directly modifying the [source Figma file](https://www.figma.com/file/Z5yoO4WH58QDHvmxwMWhr0) and then publishing a new component release from within Figma.
 
+### Sorting the config.yaml
+
+To maintain readability you can format and sort the config yaml by using the command.
+
+```sh
+brew install yq # if you haven't already installed it
+npm run format:config
+```
+
 #### Publishing an icon
 
 In order to expose a new icon to this repository, you'll need to convert it into a component then publish it by following these steps:
