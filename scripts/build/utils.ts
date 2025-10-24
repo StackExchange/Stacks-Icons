@@ -28,19 +28,26 @@ export interface Definitions {
 }
 
 // Helper for dealing with Figma component variants
-// Expects something like "Size=20, Style=Fill"
+// Expects something like "Size=20, Style=Fill" or "Prop=True"
 export function flattenFigmaComponentVariantName(name: string): string {
-    return name // Format will be Property=Value, ...
+    return name
         .split(",") // split by commas ['Prop=Val', ...]
-        .map(
-            (i) =>
-                i
-                    .split("=")[1] // split by = and take the right side as Figma UI does
-                    ?.replace(/\s+/g, "") // trim any whitespace
-                    .trim() || ""
-        )
+        .map((pair) => {
+            const [prop, valRaw] = pair.split("=").map((s) => s.trim());
+            const val = String(valRaw ?? "").replace(/\s+/g, "");
+
+            // Skip "Default" values or False props
+            if (val === "Default" || val === "" || val === "False") return "";
+
+            // If it is a faux boolean, use that prop in the name
+            if (val === "True") {
+                return prop;
+            }
+
+            // Otherwise use the value, as before
+            return val;
+        })
         .join("")
-        .replace(/Default/g, ""); // any values using default are flattened
 }
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {
