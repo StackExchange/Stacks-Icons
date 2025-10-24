@@ -20,49 +20,65 @@ function buildCssManifestHtml(
         .join("\n\n");
 }
 
-function buildIconManifestHtml(iconsObj: any) {
-    const grouped: any = {};
+interface IconEntry {
+    svg: string;
+    variantKey: string;
+    flatName: string;
+    iconName: string;
+}
 
-    for (const [figmaKey, variants] of Object.entries(
-        configRaw.definitions as any
-    )) {
+interface GroupedIcons {
+    [baseName: string]: Record<string, IconEntry>;
+}
+
+interface IconsObject {
+    [iconName: string]: string;
+}
+
+// interface FigmaDefinitions {
+//     [key: string]: Record<string, string>;
+// }
+
+function buildIconManifestHtml(iconsObj: IconsObject): string {
+    const grouped: GroupedIcons = {};
+
+    for (const [figmaKey, variants] of Object.entries(configRaw.definitions)) {
         if (!figmaKey.startsWith("Icon/")) continue;
 
-        const baseName = String(figmaKey).replace(/^Icon\//, "");
+        const baseName = figmaKey.replace(/^Icon\//, "");
 
         if (!grouped[baseName]) grouped[baseName] = {};
 
-        for (const [variantKey] of Object.entries(variants as any)) {
-            const flatName = flattenFigmaComponentVariantName(
-                String(variantKey)
-            );
+        for (const [variantKey] of Object.entries(variants)) {
+            const flatName = flattenFigmaComponentVariantName(variantKey);
             const iconName = baseName + (flatName ? flatName : "");
-            const svg = (iconsObj as any)[iconName];
+            const svg = iconsObj[iconName];
 
             if (svg) {
                 grouped[baseName][iconName] = {
-                    svg: String(svg),
-                    variantKey,
-                    flatName: flatName || "Default",
+                    flatName,
                     iconName,
+                    svg,
+                    variantKey,
                 };
             }
         }
     }
 
-    const html = Object.entries(grouped as any)
-        .map(([baseName, variants]: any) => {
-            const variantsHtml = Object.entries(variants as any)
-                .map(([iconName, props]: any) => {
+    const html = Object.entries(grouped)
+        .map(([baseName, variants]) => {
+            const variantsHtml = Object.entries(variants)
+                .map(([iconName, props]) => {
+                    const { svg, variantKey, flatName } = props;
                     return `
                         <div class="icon-variant bb bc-black-200 py4"
                              data-base="${baseName}"
                              data-icon="${iconName}"
-                             data-variant="${props.flatName}">
-                            <div class="fs-fine ff-mono fc-light pb2" title="${props.variantKey}">
+                             data-variant="${flatName}">
+                            <div class="fs-fine ff-mono fc-light pb2" title="${variantKey}">
                                 ${iconName}
                             </div>
-                            <div class="icon-preview">${String(props.svg)}</div>
+                            <div class="icon-preview">${svg}</div>
                         </div>
                     `;
                 })
