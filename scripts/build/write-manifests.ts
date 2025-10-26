@@ -23,7 +23,6 @@ function buildCssManifestHtml(
 interface IconEntry {
     svg: string;
     variantKey: string;
-    flatName: string;
     iconName: string;
 }
 
@@ -52,7 +51,6 @@ function buildIconManifestHtml(iconsObj: IconsObject): string {
 
             if (svg) {
                 grouped[baseName][iconName] = {
-                    flatName,
                     iconName,
                     svg,
                     variantKey,
@@ -65,9 +63,9 @@ function buildIconManifestHtml(iconsObj: IconsObject): string {
         .map(([baseName, variants]) => {
             const variantsHtml = Object.entries(variants)
                 .map(([iconName, props]) => {
-                    const { svg, variantKey, flatName } = props;
+                    const { svg, variantKey } = props;
                     return `
-                        <div class="icon-variant bb bc-black-200 py4" data-base="${baseName}" data-icon="${iconName}" data-variant="${flatName}">
+                        <div class="icon-variant bb bc-black-200 py4"data-variant="${variantKey}">
                             <div class="fs-fine ff-mono fc-light pb2" title="${variantKey}">
                                 ${iconName}
                             </div>
