@@ -61,10 +61,10 @@ definitions:
     Icon/Cross:
         Size=Default, Style=Default: uku27vCVvTj1PL6ThHT0WswCVFJloTT8Y4KYJlq7ENM=
     Icon/Document:
-        Size=Default, Style=Default, Stacked=False: AIbPzwa31i5WJvdNhL2E39Ggjr60ROBYy9kws71CMSU=
-        Size=Default, Style=Default, Stacked=True: ScQhDqNAhBwNuhRFlbpdf3YrWflcMpsr3Sl8Wd5hz2U=
-        Size=Default, Style=Fill, Stacked=False: 52u0TZ4/BxAFi2DC1xpmd1e7IrWLxqlrGznDVaWG1GY=
-        Size=Default, Style=Fill, Stacked=True: jXLhAgkyY0nQYiwKScGPVXIkUyeO69tZDOhld8eE5ZE=
+        Size=Default, Stack=False, Style=Default: AIbPzwa31i5WJvdNhL2E39Ggjr60ROBYy9kws71CMSU=
+        Size=Default, Stack=False, Style=Fill: 52u0TZ4/BxAFi2DC1xpmd1e7IrWLxqlrGznDVaWG1GY=
+        Size=Default, Stack=True, Style=Default: ScQhDqNAhBwNuhRFlbpdf3YrWflcMpsr3Sl8Wd5hz2U=
+        Size=Default, Stack=True, Style=Fill: jXLhAgkyY0nQYiwKScGPVXIkUyeO69tZDOhld8eE5ZE=
     Icon/Flag:
         Size=Default, Style=Default: VfMyEb3mO3w3SeAp0sJ97ROSLN4daHfESvt0jfRS2ck=
         Size=Default, Style=Fill: 0xduBLtkjETTAxpCLBgrOuEm9lVJjJDlRP2zPalr5iE=
@@ -89,14 +89,14 @@ definitions:
         Size=Default, Style=Default: aTSbEN8e0F7CiqBBXF31o6FVhi9mwLw4IqFIHejG6jQ=
         Size=Default, Style=Fill: kI6AKct33hBs3ARS42poi1Moio1Go4t9xAvDlAy8fX8=
     Icon/Mod:
-        Size=Default, Type=Dashboard, Stack=False, Style=Default: lie1yOeXyQufTW7Dp2+566Oio6ewO+grg8rZX7GPeIc=
-        Size=Default, Type=Dashboard, Stack=False, Style=Fill: F0USYKs6fWU7fWueg47zbq4WfTQk0w2YIh7YyGNGobU=
-        Size=Default, Type=Default, Stack=False, Style=Default: TCCdy4xLkntnYPyQ7vYN/m+FjY3R0LUDS+gL/bbXDsc=
-        Size=Default, Type=Default, Stack=False, Style=Fill: OmPJ9H/nSSjaqAR1BPkixIvW+1FCrcYBA1oTbZiwhU8=
-        Size=Default, Type=Default, Stack=True, Style=Default: mqKD3dIepZ++JUhRGLFvXvtt9mIjdDBTIM1y7ueoy9g=
-        Size=Default, Type=Default, Stack=True, Style=Fill: cKDxmI60wYhDu4Wx5x4Y8Fn/iBodkUnbyip8JalI/Qs=
-        Size=Default, Type=Review, Stack=True, Style=Default: w+VXthlcUkZ4u9Sm7sNqvSx8M3QSOWNWq18lm6XUSuc=
-        Size=Default, Type=Review, Stack=True, Style=Fill: 7EJsTGm8ptZsCwnCiFiKl6uqPUeePdIXVIJfSLc3wjI=
+        Size=Default, Stack=False, Type=Dashboard, Style=Default: lie1yOeXyQufTW7Dp2+566Oio6ewO+grg8rZX7GPeIc=
+        Size=Default, Stack=False, Type=Dashboard, Style=Fill: F0USYKs6fWU7fWueg47zbq4WfTQk0w2YIh7YyGNGobU=
+        Size=Default, Stack=False, Type=Default, Style=Default: TCCdy4xLkntnYPyQ7vYN/m+FjY3R0LUDS+gL/bbXDsc=
+        Size=Default, Stack=False, Type=Default, Style=Fill: OmPJ9H/nSSjaqAR1BPkixIvW+1FCrcYBA1oTbZiwhU8=
+        Size=Default, Stack=True, Type=Default, Style=Default: mqKD3dIepZ++JUhRGLFvXvtt9mIjdDBTIM1y7ueoy9g=
+        Size=Default, Stack=True, Type=Default, Style=Fill: cKDxmI60wYhDu4Wx5x4Y8Fn/iBodkUnbyip8JalI/Qs=
+        Size=Default, Stack=True, Type=Review, Style=Default: w+VXthlcUkZ4u9Sm7sNqvSx8M3QSOWNWq18lm6XUSuc=
+        Size=Default, Stack=True, Type=Review, Style=Fill: 7EJsTGm8ptZsCwnCiFiKl6uqPUeePdIXVIJfSLc3wjI=
     Icon/Notification:
         Size=Default, Style=Default, Off=False: 73Eeld6BvW1KAunQqGvIXiskd3RSAxdpjfNXMVYnMVk=
         Size=Default, Style=Default, Off=True: FBP4Iw0+8H5OzDj7m6Bax/8BpQHRoup5fKgkxfrZH1k=
