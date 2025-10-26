@@ -12,11 +12,11 @@
         />
         {CSS_STYLES}
         <style>
-            .svg-icon:not(.native) *,
-            .svg-spot:not(.native) * {
+            body.js-unnative .svg-icon,
+            body.js-unnative .svg-svg {
                 fill: unset;
             }
-            body.js-highlight-currentcolor .icon-preview .svg-icon {
+            body.js-currentcolor .svg-icon {
                 fill: magenta;
             }
         </style>
@@ -30,8 +30,24 @@
                     <span class="s-badge s-badge__new lh-lg">Beta</span>
                 </h2>
                 <label
-                    for="toggle-currentcolor"
+                    for="toggle-native"
                     class="ml-auto d-flex ai-center"
+                >
+                    <div class="d-flex ai-center g8">
+                        <label class="s-label" for="toggle-native">
+                           Force native
+                        </label>
+                        <input
+                            class="s-toggle-switch"
+                            id="toggle-native"
+                            type="checkbox"
+                            checked="checked"
+                        />
+                    </div>
+                </label>
+                <label
+                    for="toggle-currentcolor"
+                    class="ml8 d-flex ai-center"
                 >
                     <div class="d-flex ai-center g8">
                         <label class="s-label" for="toggle-currentcolor">
@@ -79,7 +95,13 @@
             document
                 .getElementById("toggle-currentcolor")
                 .addEventListener("change", () => {
-                    document.body.classList.toggle("js-highlight-currentcolor");
+                    document.body.classList.toggle("js-currentcolor");
+                });
+
+            document
+                .getElementById("toggle-native")
+                .addEventListener("change", () => {
+                    document.body.classList.toggle("js-unnative");
                 });
         </script>
     </body>

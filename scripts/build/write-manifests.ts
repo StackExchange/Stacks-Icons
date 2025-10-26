@@ -90,13 +90,10 @@ function buildIconManifestHtml(iconsObj: IconsObject): string {
 export function buildSpotManifestHtml(iconsObj: Record<string, string>) {
     return Object.entries(iconsObj)
         .map(
-            ([key, value]) =>
+            ([iconName, svg]) =>
                 `<div class="ta-center">
-            <span class="fc-light">${key}</span>
-            <div class="mt12">${value.replace(
-                `class="`,
-                `class="native `
-            )}</div>
+            <span class="fc-light">${iconName}</span>
+            <div class="mt12">${svg}</div>
           </div>`
         )
         .join("\n");
