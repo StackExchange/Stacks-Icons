@@ -12,8 +12,8 @@
         />
         {CSS_STYLES}
         <style>
-            body.js-unnative .svg-icon,
-            body.js-unnative .svg-svg {
+            body.js-unnative .svg-icon *,
+            body.js-unnative .svg-svg * {
                 fill: unset;
             }
             body.js-currentcolor .svg-icon {
@@ -23,54 +23,55 @@
     </head>
 
     <body>
-        <div class="mx-auto pb64 sm:pb16 px32 sm:px16 pt32 sm:pt16">
-            <div class="d-flex ai-center bb bc-black-300 pb32 mb64 sm:mb32">
-                <h2 class="fs-headline1 mb0">
-                    Icons
-                    <span class="s-badge s-badge__new lh-lg">Beta</span>
-                </h2>
-                <label
-                    for="toggle-native"
-                    class="ml-auto d-flex ai-center"
+        <div class="mx-auto pb64 sm:pb16 px32 sm:px16 pt12 sm:pt0">
+            <div class="ps-relative">
+                <div class="ps-sticky t0 bg-white d-flex ai-center bb bc-black-300 py24 mb64 sm:mb32">
+                    <h2 class="fs-headline1 mb0">
+                        Icons
+                        <span class="s-badge s-badge__new lh-lg">Beta</span>
+                    </h2>
+                    <label
+                        for="toggle-native"
+                        class="ml-auto d-flex ai-center"
+                    >
+                        <div class="d-flex ai-center g8">
+                            <label class="s-label" for="toggle-native">
+                            Override native
+                            </label>
+                            <input
+                                class="s-toggle-switch"
+                                id="toggle-native"
+                                type="checkbox"
+                            />
+                        </div>
+                    </label>
+                    <label
+                        for="toggle-currentcolor"
+                        class="ml8 d-flex ai-center"
+                    >
+                        <div class="d-flex ai-center g8">
+                            <label class="s-label" for="toggle-currentcolor">
+                                <span
+                                    class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
+                                    style="background: magenta"
+                                ></span>
+                                Override fill
+                            </label>
+                            <input
+                                class="s-toggle-switch"
+                                id="toggle-currentcolor"
+                                type="checkbox"
+                            />
+                        </div>
+                    </label>
+                </div>
+                <div
+                    class="d-grid grid__6 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 mt32 sm:mt16"
                 >
-                    <div class="d-flex ai-center g8">
-                        <label class="s-label" for="toggle-native">
-                           Force native
-                        </label>
-                        <input
-                            class="s-toggle-switch"
-                            id="toggle-native"
-                            type="checkbox"
-                            checked="checked"
-                        />
-                    </div>
-                </label>
-                <label
-                    for="toggle-currentcolor"
-                    class="ml8 d-flex ai-center"
-                >
-                    <div class="d-flex ai-center g8">
-                        <label class="s-label" for="toggle-currentcolor">
-                            <span
-                                class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
-                                style="background: magenta"
-                            ></span>
-                            Override fill
-                        </label>
-                        <input
-                            class="s-toggle-switch"
-                            id="toggle-currentcolor"
-                            type="checkbox"
-                        />
-                    </div>
-                </label>
+                    {ICONS_MANIFEST}
+                </div>
             </div>
 
-            <div
-                class="d-grid grid__6 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 mt32 sm:mt16"
-            >
-                {ICONS_MANIFEST}
-            </div>
             <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">
                 Spots
                 <span class="s-badge s-badge__new lh-lg">Beta</span>

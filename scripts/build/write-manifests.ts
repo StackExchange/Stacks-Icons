@@ -69,7 +69,10 @@ function buildIconManifestHtml(iconsObj: IconsObject): string {
                             <div class="fs-fine ff-mono fc-light pb2" title="${variantKey}">
                                 ${iconName}
                             </div>
-                            <div class="icon-preview">${svg}</div>
+                            <div class="icon-preview">${svg.replace(
+                                `class="`,
+                                `class="native `
+                            )}</div>
                         </div>
                     `;
                 })
@@ -93,7 +96,10 @@ export function buildSpotManifestHtml(iconsObj: Record<string, string>) {
             ([iconName, svg]) =>
                 `<div class="ta-center">
             <span class="fc-light">${iconName}</span>
-            <div class="mt12">${svg}</div>
+            <div class="mt12">${svg.replace(
+                `class="`,
+                `class="native `
+            )}</div>
           </div>`
         )
         .join("\n");
