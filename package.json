@@ -50,7 +50,7 @@
         "@stackoverflow/tsconfig": "^1.0.0",
         "axios": "^1.8.4",
         "chalk": "^5.4.1",
-        "commander": "^13.1.0",
+        "commander": "^14.0.2",
         "del": "^8.0.0",
         "dotenv": "^17.0.1",
         "http-server": "^14.1.1",
