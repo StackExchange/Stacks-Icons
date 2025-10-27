@@ -106,6 +106,9 @@ definitions:
         Size=Default, Off=True, Style=Fill: FyYuve71a/2cQpmyEC66fjafZ3j1aNhn00Se1wTq63s=
     Icon/Plus:
         Size=Default, Style=Default: lw8/tZNKmMuQAe3F9I3XHD78DN3+flIhX2Hwc9TRzHQ=
+    Icon/QandA:
+        Size=Default, Style=Default: jytWoWKab4USAdof2e0XPju/eHGDZXB9BYqgTxYiYjU=
+        Size=Default, Style=Fill: IfacDbLJgpevPsrkB8QcBFMrXyhlGyeGjWxzPY+jBmU=
     Icon/Question:
         Size=Default, Stack=False, Style=Default: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
         Size=Default, Stack=False, Style=Fill: D3ZDd/OCRtsEZQmdvEr9M0Bsi5KiGfGU9QH3hjYNnaI=
@@ -118,10 +121,11 @@ definitions:
         Service=CCPA: Rdmbj7wOepT0DQ/Xt+/yT28321ua+Qmbe7Rl05fupbo=
         Service=Facebook: T1gYN/7ZA2ikxTLeqQQd7Bf08BwEQLJAHCt7phd5fbo=
         Service=GitHub: lePvVBW8ryn65VsQC0m2FE3K0S5+ZeFjRMt25gVJQ/w=
+        Service=Google: DEiGws6/awSIS5AYBSlttnUnuG2P5T5mvIUrfC9sHWI=
         Service=Instagram: 5iumIoct37WKO2RnXuAmjZL+0itOxXV9yE3SnmohBmk=
         Service=LinkedIn: 6U5pTyELv2eqPhWaKJ3WcOXWn/f5zqFQu0BbcnB4b4E=
         Service=Threads: emzQrEwRIX5dBGsGLypua0MigZOjWxvFWTPplkuBT80=
-        Service=X: fGISwtaROFU9RdbkrV4EKt/kXfGQpzCzlRruB27z9d4=
+        Service=X: 9VNZLtwu2CJT2O8WQMFKsrWm2Qw6t8ADv3cm+/uDym4=
         Service=YouTube: RlmgHwiijjX7uuwo0EziJDaCtCsVeWu8G66Pou2x/iE=
     Icon/Settings:
         Size=Default, Style=Default: aob4/1El7/PtbpvOxojM5mTlfi4V5auhGRCcloGDgtY=
