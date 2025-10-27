@@ -14,17 +14,17 @@ Using the library by `import`ing a subpath (e.g. `/icons`) will allow for tree-s
 
 ```js
 // es6 / module syntax
-import { IconAnswer20Duotone } from "@stackoverflow/stacks-icons/icons";
+import { IconAnswer } from "@stackoverflow/stacks-icons/icons";
 import { SpotWave } from "@stackoverflow/stacks-icons/spots";
 
 // both icons and spots are unescaped html strings
-console.log(IconAnswer20Duotone); // "<svg>...</svg>"
+console.log(IconAnswer); // "<svg>...</svg>"
 
 // require() syntax
 const { Icons, Spots } = require("@stackoverflow/stacks-icons");
 
 // `Icons` and `Spots` are objects mapped by <icon name, html string>
-console.log(Icons); // { "IconAnswer20Duotone": "<svg>...</svg>", ... }
+console.log(Icons); // { "IconAnswer": "<svg>...</svg>", ... }
 ```
 
 ### Using the CSS icons
@@ -39,13 +39,13 @@ In certain cases where adding the raw svg markup to your html would cause bloat 
 />
 
 <!-- add the "svg-icon-bg" class in addition the desired "iconNAME" class -->
-<span class="svg-icon-bg iconAnswer20Duotone"></span>
+<span class="svg-icon-bg iconAnswer"></span>
 
 <!-- the icon's color matches the "currentColor", so changing the "color" property will change the icon color -->
-<span class="svg-icon-bg iconAnswer20Duotone" style="color: red;"></span>
+<span class="svg-icon-bg iconAnswer" style="color: red;"></span>
 
 <!-- add the "native" class to get native styles; these do not respect "currentColor" changes -->
-<span class="svg-icon-bg iconAnswer20Duotone native"></span>
+<span class="svg-icon-bg iconAnswer native"></span>
 ```
 
 For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [config.yaml](config.yaml).
@@ -64,7 +64,7 @@ See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 If you include the `browser.umd.js` within your prototype’s `body` element (`<script src="https://unpkg.com/@stackoverflow/stacks-icons/dist/browser.umd.js"></script>`) you can render Stacks Icons in the browser using only the following format:
 
 ```html
-<svg data-icon="IconAnswer20Duotone" class="native"></svg>
+<svg data-icon="IconAnswer" class="native"></svg>
 <svg data-spot="SpotSearch"></svg>
 ```
 
@@ -138,37 +138,41 @@ In order to expose a new icon to this repository, you'll need to convert it into
 
 #### Adding a published icon to this library
 
-In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `config.yaml`:
+In order to ensure that any new icons/spots in Figma are pulled into this repo, the definitions will need to be added to `config.yaml`. The structure uses Figma component properties as keys with their corresponding hash values:
 
 ```yaml
 definitions:
     Icon/IconName:
-        20:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
-        24:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
-        32:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
-        64:
-            Duotone: ""
-            Fill: ""
-            Outline: ""
+        Size=Default, Stack=False, Style=Default: ""
+        Size=Default, Stack=False, Style=Fill: ""
+        Size=Default, Stack=True, Style=Default: ""
+        Size=Default, Stack=True, Style=Fill: ""
 ```
 
-When adding new entries, please ensure that _all entries are in alphabetical order_ for ease of reference. Icons can have multiple sizes (`20`, `24`, `32`, `64`) and variants (`Duotone`, `Fill`, `Outline`) as defined in the Figma component. The initial hash values can be left empty. Once you run the first build process, it'll throw an error like the following:
+Icons can have various property combinations depending on their Figma component definition. Common properties include:
+- `Size=Default` (standard property for most icons)
+- `Stack=True|False` (whether the icon has a stacked variant)
+- `Style=Default|Fill` (visual style variant)
+- `Direction=Up|Down|Left|Right|UpLeft|UpRight|DownLeft|DownRight` (for directional icons like Arrow, Chevron, Vote, Trend)
+- `Box=True|False` (for boxed variants, e.g., some Arrow icons)
+- `Type=Default|Comment|Document|Dashboard|Review` (for icons with type variants like Compose, Mod)
+- `Off=True|False` (for toggle states, e.g., Flag, Notification)
+- `Open=True|False` (for open/closed states, e.g., Mail)
+- `Service=CCPA|Facebook|GitHub|Google|Instagram|LinkedIn|Threads|X|YouTube` (for service-specific icons)
+
+**Important:** When adding new entries, ensure that:
+1. The property order matches Figma's component definition (usually Size, then Boolean properties, then Style)
+2. All entries are in alphabetical order for ease of reference
+3. The initial hash values can be left empty (`""`)
+
+Once you run the first build process, it'll throw an error like the following:
 
 > ERROR Hash mismatch on 1 files. Expected hash values:
-> "Icon/Answer20Duotone": "AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=",
+> "Icon/Answer": { "Size=Default, Stack=False, Style=Default": "UhYGuawhIoWxhzQLOu2XCwpBCK8a7p381CWsz/NYaDQ=" }
 
 Take these hash values and use them as the values for the previously added entries. Re-run the build process and verify that your new icon is added correctly and has the correct contents.
 
-When updating an existing icon, just update the corresponding hash value(s) for the size(s) and variant(s) that changed.
+When updating an existing icon, just update the corresponding hash value(s) for the property combination(s) that changed.
 
 ## Publishing a new release
 
