@@ -96,10 +96,7 @@ export function buildSpotManifestHtml(iconsObj: Record<string, string>) {
             ([iconName, svg]) =>
                 `<div class="ta-center">
             <span class="fc-light">${iconName}</span>
-            <div class="mt12">${svg.replace(
-                `class="`,
-                `class="native `
-            )}</div>
+            <div class="mt12">${svg.replace(`class="`, `class="native `)}</div>
           </div>`
         )
         .join("\n");
