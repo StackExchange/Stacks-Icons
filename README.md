@@ -150,6 +150,7 @@ definitions:
 ```
 
 Icons can have various property combinations depending on their Figma component definition. Common properties include:
+
 - `Size=Default` (standard property for most icons)
 - `Stack=True|False` (whether the icon has a stacked variant)
 - `Style=Default|Fill` (visual style variant)
@@ -161,6 +162,7 @@ Icons can have various property combinations depending on their Figma component 
 - `Service=CCPA|Facebook|GitHub|Google|Instagram|LinkedIn|Threads|X|YouTube` (for service-specific icons)
 
 **Important:** When adding new entries, ensure that:
+
 1. The property order matches Figma's component definition (usually Size, then Boolean properties, then Style)
 2. All entries are in alphabetical order for ease of reference
 3. The initial hash values can be left empty (`""`)
