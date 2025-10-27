@@ -39,6 +39,7 @@
         "version": "tsc && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
         "lint": "prettier --check . && eslint .",
         "format": "prettier --write .",
+        "format:config": "yq eval 'sort_keys(..)' config.yaml -i --indent 4 --prettyPrint",
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
         "test:nuget": "dotnet test ./dotnet"

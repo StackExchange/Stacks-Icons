@@ -1,5 +1,7 @@
 import { promises as fs } from "fs";
 import { paths } from "./paths.js";
+import { configRaw } from "../definitions.js";
+import { flattenFigmaComponentVariantName } from "./utils.js";
 
 function buildCssManifestHtml(
     iconsObj: {
@@ -18,16 +20,83 @@ function buildCssManifestHtml(
         .join("\n\n");
 }
 
-export function buildSvgManifestHtml(iconsObj: Record<string, string>) {
+interface IconEntry {
+    svg: string;
+    variantKey: string;
+    iconName: string;
+}
+
+interface GroupedIcons {
+    [baseName: string]: Record<string, IconEntry>;
+}
+
+interface IconsObject {
+    [iconName: string]: string;
+}
+
+function buildIconManifestHtml(iconsObj: IconsObject): string {
+    const grouped: GroupedIcons = {};
+
+    for (const [figmaKey, variants] of Object.entries(configRaw.definitions)) {
+        if (!figmaKey.startsWith("Icon/")) continue;
+
+        const baseName = figmaKey.replace(/^Icon\//, "");
+
+        if (!grouped[baseName]) grouped[baseName] = {};
+
+        for (const [variantKey] of Object.entries(variants)) {
+            const flatName = flattenFigmaComponentVariantName(variantKey);
+            const iconName = baseName + (flatName ? flatName : "");
+            const svg = iconsObj[iconName];
+
+            if (svg) {
+                grouped[baseName][iconName] = {
+                    iconName,
+                    svg,
+                    variantKey,
+                };
+            }
+        }
+    }
+
+    const html = Object.entries(grouped)
+        .map(([baseName, variants]) => {
+            const variantsHtml = Object.entries(variants)
+                .map(([iconName, props]) => {
+                    const { svg, variantKey } = props;
+                    return `
+                        <div class="icon-variant bb bc-black-200 py4"data-variant="${variantKey}">
+                            <div class="fs-fine ff-mono fc-light pb2" title="${variantKey}">
+                                ${iconName}
+                            </div>
+                            <div class="icon-preview">${svg.replace(
+                                `class="`,
+                                `class="native `
+                            )}</div>
+                        </div>
+                    `;
+                })
+                .join("\n");
+
+            return `
+                <div class="icon-group" data-base="${baseName}">
+                    <h3 class="icon-title bb bc-black-500 pb8">${baseName}</h3>
+                    <div class="icon-grid">${variantsHtml}</div>
+                </div>
+            `;
+        })
+        .join("\n");
+
+    return html;
+}
+
+export function buildSpotManifestHtml(iconsObj: Record<string, string>) {
     return Object.entries(iconsObj)
         .map(
-            ([key, value]) =>
+            ([iconName, svg]) =>
                 `<div class="ta-center">
-            <span class="fc-light">${key}</span>
-            <div class="mt12">${value.replace(
-                `class="`,
-                `class="native `
-            )}</div>
+            <span class="fc-light">${iconName}</span>
+            <div class="mt12">${svg.replace(`class="`, `class="native `)}</div>
           </div>`
         )
         .join("\n");
@@ -45,8 +114,8 @@ export async function writeManifests(
     const builtCss = await fs.readFile(paths.build("icons.css"), "utf8");
     let htmlOut = await fs.readFile(paths.src("index.html"), "utf8");
     htmlOut = htmlOut
-        .replace("{ICONS_MANIFEST}", buildSvgManifestHtml(icons))
-        .replace("{SPOTS_MANIFEST}", buildSvgManifestHtml(spots))
+        .replace("{ICONS_MANIFEST}", buildIconManifestHtml(icons))
+        .replace("{SPOTS_MANIFEST}", buildSpotManifestHtml(spots))
         .replace("{CSS_MANIFEST}", buildCssManifestHtml(cssIconsObj))
         .replace("{CSS_STYLES}", `<style>${builtCss}</style>`);
     const p1 = fs.writeFile(paths.preview("index.html"), htmlOut, "utf8");

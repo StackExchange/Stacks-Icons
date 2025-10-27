@@ -1,16 +1,10 @@
 import path from "path";
 import YAML from "yaml";
-import { flattenDefinitions } from "./build/utils.js";
+import { flattenDefinitions, type Definitions } from "./build/utils.js";
 import { readFile } from "fs/promises";
 
 export interface Config {
-    definitions: Record<
-        string, // icon name
-        Record<
-            string, // size
-            Record<string, string> // variant → hash
-        >
-    >;
+    definitions: Definitions;
     cssIcons: Record<string, { css: string }>;
 }
 
@@ -20,8 +14,9 @@ const configPath = path.resolve(
 );
 
 const configFile = await readFile(configPath, "utf-8");
-const config = YAML.parse(configFile) as Config;
 
-export const cssIcons = config.cssIcons || {};
+export const configRaw = YAML.parse(configFile) as Config;
 
-export const definitions = flattenDefinitions(config.definitions);
+export const cssIcons = configRaw.cssIcons || {};
+
+export const definitions = flattenDefinitions(configRaw.definitions);

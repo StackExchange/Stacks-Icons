@@ -1,229 +1,153 @@
-definitions:
-    ### ICONS ###
-    Icon/Answer:
-        20:
-            Duotone: AM0aL4NcirBVfs9hgLaJ2/zdQ3iwVc8poVQU/CFlu3g=
-            Fill: 3G3JqJfGbgDxdgWHFtEMkxjJdmGfI0Uton+UZAL5lvQ=
-            Outline: Tka2S/Y2Ep2mZvRl1CXDktI8moCo6TfpnetwiK+EZdU=
-        24:
-            Duotone: NVZeOE+pZmlpk4Kqg9000Bx12jqubZ/OemO6G0SmV9s=
-            Fill: sBneAgahZ0JtbIW+b1r0XOZ2Wk68wjmfCN1uaEnz0nQ=
-            Outline: /IlrLWBhKHpOxW2OtCQFVcDuSgkbsRn+EUJrzmdrswA=
-        32:
-            Duotone: foiD6eG9WhxUnjvrYzI/NTxFyn+2E7+OsdpbxTc/fzI=
-            Fill: 4v6RqqVUNUjnTBnue8IohwCT3/PgiHx2BJ8Gghza2lg=
-            Outline: 1uz9szQFpT8fnkpKcvaNdo8kQmPDCxhovZFw45BpO6Q=
-        64:
-            Duotone: 31WFN4WJyg0vbX9XTY1PkFrJa70CKQWRr5A27MAIUKo=
-            Fill: i/woP6j7VKcDNh00FHK/9N/aMcCbtSXiFHWrlYZplx0=
-            Outline: ARuvUA6OsWTXMuayer1OgC+ZS9XKZgy5E492Fuh7JuI=
-
-    Icon/Answers:
-        20:
-            Duotone: Sjf2fOvyyW1sj/CdbxtI9MehbfFNp7oONvkJzKqALKA=
-            Fill: gUtZy5FfaTv2KIe8U1Tbecd50cSQ6o8qlIYZy9Y4T0U=
-            Outline: ghkBC72aal00aaQZJ7YDA3woQEACFvlngFCnqk30yts=
-        24:
-            Duotone: Q+v4OaOKcy4BKD7cjwKlZZArCYLCesVtzlqiRmoGZPU=
-            Fill: E2Mwc+cndp4dljwZYp6p/CqMG5IpifltqCokpr4Xzpk=
-            Outline: M3lN8KicgTPhbYHPVSUcbbj0sj46E7Q44m76UGQXJmA=
-        32:
-            Duotone: tsO+roOLwOnasObKlD9WE8IpRJ9KkEkzIkWPrEu+SV8=
-            Fill: EWwX98n1cxTVB051sLB4UZR0v7MDTn+qO3RVhNTHAgE=
-            Outline: +d0T7ipGvnGm3OEYDbalVHs5+8flAL3sqv7uE3BSyME=
-        64:
-            Duotone: 6Aw6k3Y0W+Zwn0rRfGfY43gTo4RuaO6/sYFn6XJT75s=
-            Fill: t/OXL6TyummU46xGKof8Tam2nhOi6zEY8QzH5w5f7ts=
-            Outline: x5h/RcQYkcGpA+blBRcGPBPeGpBBzGjC4Tqb+ATxTKs=
-
-    Icon/Bookmark:
-        20:
-            Duotone: 7htnZaFVOLEFec3/O9hzxYvbWtlC89bVOcb16kW6obw=
-            Fill: SoilsBkrXfPids6Tnfbl5fNPCBVU/SzX6ZOol1ti54U=
-            Outline: +AXI3/LDPgztq/O1tlzxPbewDJLC5e+AkHY0r5a50hs=
-        24:
-            Duotone: hpoEVxztik1spoPUdDp36dvA176gJD4yvprmg1eb4Mo=
-            Fill: Np1iIwSM10MXui1Kbne327zPpJ8ZkWJMHkoZVwy1pdM=
-            Outline: 4/0Vmtx64WKAzp9VWaSePPPjcsz+FSYiA59gAhmVJLA=
-        32:
-            Duotone: XykKZPkEiP+OnY8ihIA6EiFDEjfgThl9jMX/5vm6J1w=
-            Fill: 8GNSX0OVG/fPCl5QQFtBZxU0qkcr2hoGAcop9m5DB9Q=
-            Outline: n3cvReuZl91YH/urtQmsxq2MpAp3LC+TcyN9fRyDgeo=
-        64:
-            Duotone: l6uiXLpbouUm0+gfiAxgjqLlLN06nbQWIWEJsIZAwGM=
-            Fill: MfQOfhuvXSRf0dytf55rVppzBP/h+KIlTghNEJMzpm0=
-            Outline: Ovc4Rh5Rxyp2nMA1puMiQhLcIGiv1l9V+WltelCbbIw=
-
-    Icon/Chat:
-        20:
-            Duotone: 17Tq/Br3Hbwu1BpI997wExTPsX0jjtEfoGv2fY09/j4=
-            Fill: mykTtej4DI78wNP2RxJsqiRFaLprEK69nJJG5gBtEMk=
-            Outline: VZeGXLbI41AkFC/NFlIljNQBtPP4dsCNa5gVz2yu0Zw=
-        24:
-            Duotone: /twTJJBOPj7Bnnq5UDoRqcJLK4DedvCXPStqWe8eaCE=
-            Fill: JWhyKoEFW86+Bsd3XetlhQnl/zhCNgantleVwaF9jvA=
-            Outline: Z4Aqp4Tzor/yh2lJ3keipoSjzjyUgoxlUyYzotHeiSs=
-        32:
-            Duotone: 6qySu0WknQrpqHEXELLbHSJlp8F+Bg+jK7W1jwp0X90=
-            Fill: 6jymH1WIlYTX84N0e0DRAwB0LdJGpWONfddj2iJU9h0=
-            Outline: EJlA8+Uno5LgvpzMjuas8bECOdKFjfewUcGl0jSHlnM=
-        64:
-            Duotone: pXaGVNh07tEGdV8bB8WEuHpQ3Kd+gV79lfQCxas8+Ew=
-            Fill: IALEY2NWEPc81lF3yvPCHTcEpI9k1PHcyKF6yMRa2D8=
-            Outline: GbOgeBXSHBfhkRYqhdhMj3JtjRkDyOJitBul7WoUVTo=
-
-    Icon/Document:
-        20:
-            Duotone: "ZDkny5pAaf3s6uAuvtW0xTcGTRMFt0qHusqY+j6Kdhc="
-            Fill: "tYmTyi2pC1roEjP6XO/qHm//CB7DlHtI1ssoK55G6pQ="
-            Outline: "GIPPJZVRMCi7LHbHcjq48sTK8T8jvEi1Tu2LytNuCEk="
-        24:
-            Duotone: "sqCOw2/jRsgthCC0BF6OJ5ocQMon1PfCn5onSi1lPec="
-            Fill: "sqCOw2/jRsgthCC0BF6OJ5ocQMon1PfCn5onSi1lPec="
-            Outline: "7Pb1TvYRzbV2wqtFSrQIw0aqGFh7QstFaeuHBf3DQZk="
-        32:
-            Duotone: "bxpDMAljGKNDaaIQvVtNwnGvxBZiAt+9/nIT0tEb0M0="
-            Fill: "Ljbr0YvrXbggfd/Ol/lHTQ0zLNkGNta+OfNwjOYaTtI="
-            Outline: "m/76aRpyzERAO9412uOxc4aYUN98uvTLcmqK6+0wnXQ="
-        64:
-            Duotone: "L8y3Uq9e6vdJY1TAHTlgoy/qS/KaldOgzARbrQx0tOI="
-            Fill: "VI4XjNYtNAyfKz5UuM3c5+s1zc+vSIlTtR65ExWDR2g="
-            Outline: "l511R1nh7zS9AHB/FXHQ1NIB1wSsMvCZj645LS0P6GI="
-
-    Icon/Downvote:
-        20:
-            Duotone: yMY81gkFoTvSYCm0BGPBZHgjhrOjQANAj+Sfb1EdOlQ=
-            Fill: nOnVH1vUn8zVjmg8BWd68WK5BedTOcWvo0Uo3OETteM=
-            Outline: m/OsUqAEX5B7ROu0ILneCRp3mb6ETN7WP1hR0VJ1Dn0=
-        24:
-            Duotone: MgDMMPkhN117RowLFRgPK5iBV36eir2VkL1XSjEim2o=
-            Fill: rYGF3edaX/Pr92i8nCSsJCUV9s6q+tpBmIVDRMsaP+Q=
-            Outline: WttPSUqHXdrTqo00F0gmpYUlKWgJQw+5HoS0M5K88Nk=
-        32:
-            Duotone: L6m69wikVLoQKaRqjgIRSC5Vaw5zPrv5Ad/gmmZgDRQ=
-            Fill: JlOrF8rFwmq2R4pCucsiwGEpo2CEA6qM3uA6Y0s94FU=
-            Outline: aLLdCa2PY8YkccrJbjekbbibaruu+loQP9G3WbQcYTs=
-        64:
-            Duotone: Lt1Gf+5CzJF3pdhmZbVnu0eFxrCKT5YbwA1Z5QVwhmE=
-            Fill: 4B9PYIzLagRA6vto78bb8bLRR7NFAAfEYM/rt23iM7M=
-            Outline: knofxIuMYhmdymG6C/IL2tuonImlybdmg1m2w/0dykU=
-
-    Icon/Home:
-        20:
-            Duotone: "IsuGYnZ329Mg1MNX2LJZvU99+aIyxXgzu2+u8t6bJBQ="
-            Fill: "Gppd5eUt1tuEUnIbxhRISj+Dh0E3av0J0egRmnfy/yw="
-            Outline: "PoAKhksimke9mURtwprpur5c1Pdg3DX/JSoQkhpAZoo="
-        24:
-            Duotone: "C/RxPHvaTJn7IDpdBKUevqmKd+l1c+TeWP8qrIge5KI="
-            Fill: "0QGIG8t77JXJMaycDkwScjTorLKekviMETFQJjwkR+M="
-            Outline: "55XLf0sI9KjeXEceqbdqwSOYWoR7KpMPfP47mCzBNdI="
-        32:
-            Duotone: "oQ0lb3e72lBQLP+m78za1DF6uTrlDSuQZ+Iw7UOscgM="
-            Fill: "8/TQs0jCz/ay/qPj0sOl1m9oNieCJWPG7x7Rrgoo3mU="
-            Outline: "rlQ+Rb69EU+6Xar/hBag/cs/H2SNZsIQ2x6L2U0cg20="
-        64:
-            Duotone: "kng6W7XhrIiVLFSaVUaDEJ71TPZcKBRuRf0aXj1B44w="
-            Fill: "C1QKOWzEYHTzV9En2nViRw8eY/x6/iuKcNkPe1ngxOI="
-            Outline: "8tg9GfEF8WY98Z7MrLiBp70tTsZeL9PyxxnoUndD/gI="
-
-    Icon/Question:
-        20:
-            Duotone: a3F6CA+0wh8zso2zpLc2cR2j7dxgTIfRTamptjGLNoA=
-            Fill: MxkrhSkfEU3t2XD9BUGRPwY9SRntZh3AyGUPEEmvAys=
-            Outline: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
-        24:
-            Duotone: YaWL55DfVKxx1raeY7aGOH1b2YOFmvOR+uFIHDlkdAY=
-            Fill: kJbP8ttjkDDvdyW9SEpevA+ZFcopzph+8uiUFcBRnYo=
-            Outline: k5BlX0M0jZTz0UJif35AM5ZQAo7jtHVHSOI7b/zw2jM=
-        32:
-            Duotone: jXhso1kTL1uRCHwHh2FR68NVvGL8U13VKujuRLBDZ+k=
-            Fill: nX2mcv7np2ACigIN3tnR/kuB8VE9Ha0XYyCaMNL9pms=
-            Outline: 3pqy1Sh3kcSmmwEIkD/rmCGOuKpt7zPTk1/CmXdBgOY=
-        64:
-            Duotone: jCx7Va5WGbylgwf6X0E9ATh4DaS4fTVG07+tJBNxtRM=
-            Fill: qqyjf8XvpzSIQXb7KeRq7oFEXf2u6MMZOLiU68rcajU=
-            Outline: TRgo7VKPHVZSOTEBePkHHuKjDJiE0js9H2IyO6ozgrE=
-
-    Icon/Questions:
-        20:
-            Duotone: 6ld3CPrbQTIyMAzLKDAmk2snA5ttRiCCw3Y6ZpUETio=
-            Fill: wC6gwZsYgsVZR3myjuEDwar3Uoj0/0l6TSvVQhV64OQ=
-            Outline: K2v6gQ4LybbU57O43TRiDCQ0vjTS1yYb3pVpdbOuGzI=
-        24:
-            Duotone: jaqXedMGV7xx3zR9AXjuHquiZ4sri/zkZcA7kks+PVU=
-            Fill: P+rQ6uNbMMZsEy36R3iTzUYELVvTjUoF6FUgHR9obnE=
-            Outline: KfbXukyfZ/c+1TRkPdpCWm2ApNverRkb6gugb6BUgss=
-        32:
-            Duotone: nqSAYV96WfJ6U6JD+f7qkfhxnc7R5knsutpB131hmrQ=
-            Fill: eGcDWYGFmxwoEolGfQC053D867WRnm0s2H/R53gYLjs=
-            Outline: 9TEt/M++GduYu0G37517p/iFLmexiXpTuBZ6QSMA+R0=
-        64:
-            Duotone: 8cV6smRonENtnArj0OutUG0ol/D3Yzr6DKYdYbb9+uY=
-            Fill: /bJXjh7VqPESScQJPa8KSCUczSF1GJIGhTLAZCdctEs=
-            Outline: +U8DWWQzJ0eZd980ccKNpjjo/JO9WQ6chtRj7y7w4jI=
-
-    Icon/Tag:
-        20:
-            Duotone: MCN3Mj32LufequfU8ooQpdqsoGJ0UFM6FmP5vG+U2ag=
-            Fill: z/MxNQ3RNBYOHnfxDb5dZI8FEoLxKbVskW+nkjdiF6Y=
-            Outline: T1klaa7Zj1zxk797T2n0RafV3ukYhe7+Cn1xSv2HrjQ=
-        24:
-            Duotone: 2o8fahsbwPK59oKyZoePiEZ2MUYakMfMDsRSf6u+8cE=
-            Fill: iis0D4LnOzJlxAoKPpaxlQPitrMatsRL6RFjBxOV6Zg=
-            Outline: rvgD+Pg6trm1QUfJo0abYrx+2LUTtIfbugB9Tzurfg8=
-        32:
-            Duotone: EygC+1YOWV3jix2swROF6Vjbp3oJF1HUftP/yUXXVHA=
-            Fill: dkqO+4lmMakiSdxHg3NV7Na1sqoK6ybgS1qlviFgqLs=
-            Outline: GsPfdqPTNyTp9EmB1t+LaycmTxe4R0CmH1QxN5IEZgc=
-        64:
-            Duotone: 3APSQfUIGg5xI6f4U5zrCR0sUZ17KDRhB/MQOmAyR1o=
-            Fill: /USyZi95/qLszxE7HhVnCxO4YPHrcOlackVQRyHCkfs=
-            Outline: 0qdmVhcUEy4Fe4ZtWf3bBbDWzrO5HpC4Vy3v7gJmZD4=
-
-    Icon/Tags:
-        20:
-            Duotone: wmT4WxoHlsP/7mWCU3l2F4Vc4pTl9NwXfCaT9sYB/DQ=
-            Fill: QCAsIE79DiZ++SeFcgIS3rM7nSa8J0kk+M3LWJHVck4=
-            Outline: f2A++4TNcT5Q+gu+++yVqfgTQrWZe68TGDCb1C8dNwc=
-        24:
-            Duotone: Q3ZtkzEuz3+XSsc22KhiYrq8rCSUwRo3DsNplImSZbY=
-            Fill: ZhD0n/LOISY+ckVQS8rA2T8Cix1BO+CFh5TMKddUapM=
-            Outline: V7D24XI43t8n7rKKlg013n8xVXJBfJJUm0K2kGLfPps=
-        32:
-            Duotone: qz2FAcdev5s102BlJ5frXsvmISMROB70cZLMcjZQW3w=
-            Fill: chjzRyobHnSctnxZDjIQhGu76/PJw345FlSRsMV+EDE=
-            Outline: Nqo5Wjc65G3SRK0iHM2TPjJ2HxNPEx7+r7djsjRgSa0=
-        64:
-            Duotone: qefrbU1QtqvqcZ09YXPqSu801tDV7KpZ7gqHchlGsuY=
-            Fill: U4PO6GXQd/7XavoRdHbIaMYjmaCsZ3WBRhxHV1RKIJ4=
-            Outline: qlMDapOEsgJETJ/2jE/s0cFg8ioC3Pfx9eA/Abp2Nkw=
-
-    Icon/Upvote:
-        20:
-            Duotone: 933TBCkeBPjg+Z9d7pbpS/Ou9GYrMtErO2dowgpqZM4=
-            Fill: csCqiXxjdGbMFrBQeO8VY6SgupICAK09MIxuUb8Nck4=
-            Outline: jOOd+XI8vy9cJNqbXSL9MXPadQyem6fUqvXyJNwWvaM=
-        24:
-            Duotone: 9mJxF+YBKMYLEG6XdFJ17qBNOmQRfe+XozPf9f3AU9o=
-            Fill: WJCrS4gF8StMJEbebW5kgYS74N+jvllrO2TbtDHwE3U=
-            Outline: CQWVcxmsphMOjeEXJymcT7jR5X03aeCZxS29pI9pJbA=
-        32:
-            Duotone: EKaeKy1r1uDuAo+ZG6gupUfff2XDIBftmBWywmHHZ68=
-            Fill: dmXZ8ESMXFIpOsYh2L6YjlKiEDon+8LTwKqB14MuLcU=
-            Outline: xy5IHpcbeG1LMkgps9j6dMD9oJlP5xGyPjWzUdDEZ2c=
-        64:
-            Duotone: MslHanJcpkRde/1hfmGbPhhPCXjH6IQNllrpkr4Hgro=
-            Fill: abn5C6hg5eHYNd8XbWTYn4zgLEmtWVNBjPFfsKd5hR0=
-            Outline: lYtBSefxloDWSh4qDtGBhnZQf3Xn64dQ8xgLjhpdFtw=
-
-    ### SPOTS ###
-    Spot/Test: "cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os="
-    # TODO: add more spots here
-
-### CSS ICONS ###
+# MARK: CSS Icons
 cssIcons:
-    Answer20Duotone:
+    Answer:
         css: |
             width: 20px;
             height: 20px;
-    # TODO: add more icons to be added to the css bundle here
+        # TODO: add more icons to be added to the css bundle here
+definitions:
+    # MARK: Icons
+    # Ensure order here and from Figma is Size=Default, Boolean=[True|False], Style=Default
+    Icon/Answer:
+        Size=Default, Stack=False, Style=Default: UhYGuawhIoWxhzQLOu2XCwpBCK8a7p381CWsz/NYaDQ=
+        Size=Default, Stack=False, Style=Fill: 4SxmO+xwNb0RwVK1mYmODjbKIEG/5aI5SMT05KZbmck=
+        Size=Default, Stack=True, Style=Default: iJBgdNTZjmG49U+Wai/591GQbI9unytcKBcyc3hI7gg=
+        Size=Default, Stack=True, Style=Fill: R2fVfpRcAiIAZWVhIY22OVevHSdLbjr/kKDzWq1duHQ=
+    Icon/Arrow:
+        Size=Default, Direction=Down, Style=Default: coXzVGYCBzkTNNaUWJH4NUVz4/DpTSAO+/BMOKqjytw=
+        Size=Default, Direction=DownLeft, Box=False, Style=Default: Tim44ufb1/R6EuC/jv2kC1nJppewpnp0kqb3f8vhZaA=
+        Size=Default, Direction=DownLeft, Box=True, Style=Default: TUHeYu2AyVIeMGpZekMp3LfBYjR3jUCuSp1hwowCU9Y=
+        Size=Default, Direction=DownRight, Box=False, Style=Default: CxKLfYzpZ24TjtfMbAsaCQqymMQOfcRa5oE/3/BmWW0=
+        Size=Default, Direction=Left, Box=True, Style=Default: eKluR4dvjmTrhrcZMYNOpwqHP8aO0SLWm4YrTUUB1F0=
+        Size=Default, Direction=Left, Style=Default: lJ/dusbuhFzN7Cv/8CiQvjqMJ4i4baxkxYnRBo7Qbc0=
+        Size=Default, Direction=Right, Box=True, Style=Default: ZBva9TsDnHDyY2MupnQpr6HwVKrUjnlbTq7h75F1zNA=
+        Size=Default, Direction=Right, Style=Default: o1PANqxMKtPQVT4JgPQT+Xmh5dOCOLRLeHzBBVPKos0=
+        Size=Default, Direction=Up, Style=Default: PAEq06HrHwmRpjn2r/VRln2mRtqL28U+6IFfLC/DY88=
+        Size=Default, Direction=UpLeft, Box=False, Style=Default: 3OvarnGEy2Bsg4XFW8Kpm9a5u8rODHM8YDmPAxBcMnM=
+        Size=Default, Direction=UpRight, Box=False, Style=Default: KkZ3wmKvAxzvGIjFEo36cm/9iLCEH8sxSyaZvnUL0u0=
+        Size=Default, Direction=UpRight, Box=True, Style=Default: bivAAqku4yOPMOtQQO2RFqKGX4R/ZyeWEay7xuCk64Y=
+    Icon/Award:
+        Size=Default, Style=Default: v+2A3J1etrBr9XTqNbQbn+I5/201OAwTRiJTTPAMQ3I=
+        Size=Default, Style=Fill: X/UgKSKbmm84gueHG+Wny3Be3VAsT3UWkTwJsYg0BVw=
+    Icon/Bookmark:
+        Size=Default, Stack=False, Style=Default: pPAQtUNbfWM5TSQud3wOqBTU4if65RWO66UpE0/1tRI=
+        Size=Default, Stack=False, Style=Fill: 4ezFi+gqEM5bIxT9+TUzkI3FZDVV5RhPut9KF03Jdq4=
+        Size=Default, Stack=True, Style=Default: VMQv5qRC1BVe0MHZ9GF5G9JO2WSMlHuwQWdYNUBUrWA=
+        Size=Default, Stack=True, Style=Fill: vuPawxigVYjJtYZtYIuf4zWr35vzrZylj+Wlp6P/E2c=
+    Icon/Challenge:
+        Size=Default, Style=Default: kG3FDOFEQDLmVvnwRmrTf1pYmwOy2FYfdnbEUIP7id0=
+        Size=Default, Style=Fill: GageAeDddJSbouE06Xk2hHhrCMX5BwKmDUR7jxTJkkY=
+    Icon/Chat:
+        Size=Default, Style=Default: VZeGXLbI41AkFC/NFlIljNQBtPP4dsCNa5gVz2yu0Zw=
+        Size=Default, Style=Fill: mykTtej4DI78wNP2RxJsqiRFaLprEK69nJJG5gBtEMk=
+    Icon/Chevron:
+        Size=Default, Direction=Down, Style=Default: hgC3wVuvo7pS8ireO0975RvQgDwPJ5uYj45sZoqLS+I=
+        Size=Default, Direction=Left, Style=Default: e+FK+EeAtZTY6wtZ5IS2WsUzeRq89lMZ5mFJulgzkI8=
+        Size=Default, Direction=Right, Style=Default: RTcj+ktyxhGGhTzyodroDnya/aNOVbPebZTb2UnCjB4=
+        Size=Default, Direction=Up, Style=Default: 6HSrg5trhBY70XhYLZyr1HCT+lOw7qsLzD4CbkqkZm4=
+    Icon/Community:
+        Size=Default, Style=Default: qdcrUSCQn0MVM5fKVvLWGH1FnPlszJ0pcj9is1UfHy8=
+        Size=Default, Style=Fill: bFqAq08t76cCit336mS2U3bvCmpyUjlDN35k+jLvFFY=
+    Icon/Company:
+        Size=Default, Style=Default: q1wqop1+hqnlgaLsto6EabsKfLe1v3iI9Tr5Lsu79Qk=
+        Size=Default, Style=Fill: IDpo47bEbh8aNy2Mau10xc4NJTfwaFe6QswYSMSWfyw=
+    Icon/Compose:
+        Size=Default, Type=Comment, Style=Default: dzaowkPNkLgUDxR/MU4+TNlQO1lBlpYFRbRudiXqHUA=
+        Size=Default, Type=Comment, Style=Fill: 9oRZCJb2sHO5Hv0am6UtfMqo6ZcLgpadLntBRXLDh+Q=
+        Size=Default, Type=Default, Style=Default: x5UYSQi6ml7GVC+rC5FLpNEE3ICD2DkK+30J6D//WIE=
+        Size=Default, Type=Default, Style=Fill: lMuWBTnMtSg3KXpI7UmOQEvzS6IZmOfcgFCGTGSFYNk=
+        Size=Default, Type=Document, Style=Default: TQ7S8NbtbH33/z5Q1jhUywYHxdgqk0HCtc2V4Tocv0s=
+        Size=Default, Type=Document, Style=Fill: RRl5y4Ko0Vg/KHP+Hbiaay6dbNUyT72sCRR+1+H8XUg=
+    Icon/Cross:
+        Size=Default, Style=Default: uku27vCVvTj1PL6ThHT0WswCVFJloTT8Y4KYJlq7ENM=
+    Icon/Document:
+        Size=Default, Stack=False, Style=Default: AIbPzwa31i5WJvdNhL2E39Ggjr60ROBYy9kws71CMSU=
+        Size=Default, Stack=False, Style=Fill: 52u0TZ4/BxAFi2DC1xpmd1e7IrWLxqlrGznDVaWG1GY=
+        Size=Default, Stack=True, Style=Default: ScQhDqNAhBwNuhRFlbpdf3YrWflcMpsr3Sl8Wd5hz2U=
+        Size=Default, Stack=True, Style=Fill: jXLhAgkyY0nQYiwKScGPVXIkUyeO69tZDOhld8eE5ZE=
+    Icon/Flag:
+        Size=Default, Off=False, Style=Default: VfMyEb3mO3w3SeAp0sJ97ROSLN4daHfESvt0jfRS2ck=
+        Size=Default, Off=False, Style=Fill: 0xduBLtkjETTAxpCLBgrOuEm9lVJjJDlRP2zPalr5iE=
+        Size=Default, Off=True, Style=Default: KhQ6nQIar9Ho6tXFrWoSf32Zvv3kvxPQ4B/ikRcSq7g=
+        Size=Default, Off=True, Style=Fill: UHXQ1QaXsTRKytJtk1B2IG4yirGWbfCVZUQCvRnZ/8o=
+    Icon/Help:
+        Size=Default, Style=Default: 2U95Q8KwatUR6bk8cAiooB9waCqSs4e6ttWzS+GfkpM=
+        Size=Default, Style=Fill: nBt2DDvfSoHjD1NJjJjMWRxfIku73N0gaQ11N7pEgss=
+    Icon/Home:
+        Size=Default, Style=Default: PoAKhksimke9mURtwprpur5c1Pdg3DX/JSoQkhpAZoo=
+        Size=Default, Style=Fill: TO4C4SFGu3c8LlQoI8vb7aXjdyzXB7vybpHilm8fpo4=
+    Icon/Inbox:
+        Size=Default, Style=Default: OwT0V4gYYLd/Ok5MaA+XCMgVx/4uFQVji3KANO2Q7dM=
+        Size=Default, Style=Fill: HMc4gMSj0WpsydIY4i33bOnih9BSlKJsndICzIIgmmA=
+    Icon/Jobs:
+        Size=Default, Style=Default: ixFJPBGrlypFsCfFb+kmRIR2A/97Py92Lk1/48MCpl4=
+        Size=Default, Style=Fill: wUJcclwwXuaQny4EB94bVhjpgj7tsgjEuF6kPJtVaeo=
+    Icon/Mail:
+        Size=Default, Open=False, Style=Default: WhcAd1fvjy8ToE6IZHmpVfzsg6dnL6LREPgv7rFRJRY=
+        Size=Default, Open=False, Style=Fill: fvTjEXNozLXz3GaQfcCK+iFgBOO3aIMpBgsShXEFeaw=
+        Size=Default, Open=True, Style=Default: 9yaiPgJTnhAh3yAw8kD1uZF6bImqq/DF4opDR7xxE1g=
+        Size=Default, Open=True, Style=Fill: 3ydoxQ5/H4cJOHdbw82VA+Obm+eUDulE2eoKMm7YP+k=
+    Icon/Meta:
+        Size=Default, Style=Default: aTSbEN8e0F7CiqBBXF31o6FVhi9mwLw4IqFIHejG6jQ=
+        Size=Default, Style=Fill: kI6AKct33hBs3ARS42poi1Moio1Go4t9xAvDlAy8fX8=
+    Icon/Mod:
+        Size=Default, Type=Dashboard, Stack=False, Style=Default: lie1yOeXyQufTW7Dp2+566Oio6ewO+grg8rZX7GPeIc=
+        Size=Default, Type=Dashboard, Stack=False, Style=Fill: F0USYKs6fWU7fWueg47zbq4WfTQk0w2YIh7YyGNGobU=
+        Size=Default, Type=Default, Stack=False, Style=Default: TCCdy4xLkntnYPyQ7vYN/m+FjY3R0LUDS+gL/bbXDsc=
+        Size=Default, Type=Default, Stack=False, Style=Fill: OmPJ9H/nSSjaqAR1BPkixIvW+1FCrcYBA1oTbZiwhU8=
+        Size=Default, Type=Default, Stack=True, Style=Default: mqKD3dIepZ++JUhRGLFvXvtt9mIjdDBTIM1y7ueoy9g=
+        Size=Default, Type=Default, Stack=True, Style=Fill: cKDxmI60wYhDu4Wx5x4Y8Fn/iBodkUnbyip8JalI/Qs=
+        Size=Default, Type=Review, Stack=True, Style=Default: w+VXthlcUkZ4u9Sm7sNqvSx8M3QSOWNWq18lm6XUSuc=
+        Size=Default, Type=Review, Stack=True, Style=Fill: 7EJsTGm8ptZsCwnCiFiKl6uqPUeePdIXVIJfSLc3wjI=
+    Icon/Notification:
+        Size=Default, Off=False, Style=Default: 73Eeld6BvW1KAunQqGvIXiskd3RSAxdpjfNXMVYnMVk=
+        Size=Default, Off=False, Style=Fill: PxcDANrg8BTkRxye4DjITVSy/sE03PLKZ1SOsEwuGFM=
+        Size=Default, Off=True, Style=Default: FBP4Iw0+8H5OzDj7m6Bax/8BpQHRoup5fKgkxfrZH1k=
+        Size=Default, Off=True, Style=Fill: FyYuve71a/2cQpmyEC66fjafZ3j1aNhn00Se1wTq63s=
+    Icon/Plus:
+        Size=Default, Style=Default: lw8/tZNKmMuQAe3F9I3XHD78DN3+flIhX2Hwc9TRzHQ=
+    Icon/QandA:
+        Size=Default, Style=Default: jytWoWKab4USAdof2e0XPju/eHGDZXB9BYqgTxYiYjU=
+        Size=Default, Style=Fill: IfacDbLJgpevPsrkB8QcBFMrXyhlGyeGjWxzPY+jBmU=
+    Icon/Question:
+        Size=Default, Stack=False, Style=Default: uJkV1eH3NGwHaRBXUyGawMLauGBECQPD5nU9QbQwA88=
+        Size=Default, Stack=False, Style=Fill: D3ZDd/OCRtsEZQmdvEr9M0Bsi5KiGfGU9QH3hjYNnaI=
+        Size=Default, Stack=True, Style=Default: muKvkHoBhrGXTu8ym75UfRegrwmZh1Z2SV+jcNK+K/s=
+        Size=Default, Stack=True, Style=Fill: hPyKgQcgf29CFmNqIMVd24RV//HFuz1YYgnzzAI0d1w=
+    Icon/Search:
+        Size=Default, Style=Default: 5tiLt2lGLoDXt/SzUCrvY364PCMpnGWJocLMS4fTvV4=
+        Size=Default, Style=Fill: duJJyHlojXunPqpJTroKthlZBk8UwofChzM1QMUzCU4=
+    Icon/Service:
+        Service=CCPA: Rdmbj7wOepT0DQ/Xt+/yT28321ua+Qmbe7Rl05fupbo=
+        Service=Facebook: T1gYN/7ZA2ikxTLeqQQd7Bf08BwEQLJAHCt7phd5fbo=
+        Service=GitHub: lePvVBW8ryn65VsQC0m2FE3K0S5+ZeFjRMt25gVJQ/w=
+        Service=Google: DEiGws6/awSIS5AYBSlttnUnuG2P5T5mvIUrfC9sHWI=
+        Service=Instagram: 5iumIoct37WKO2RnXuAmjZL+0itOxXV9yE3SnmohBmk=
+        Service=LinkedIn: 6U5pTyELv2eqPhWaKJ3WcOXWn/f5zqFQu0BbcnB4b4E=
+        Service=Threads: emzQrEwRIX5dBGsGLypua0MigZOjWxvFWTPplkuBT80=
+        Service=X: 9VNZLtwu2CJT2O8WQMFKsrWm2Qw6t8ADv3cm+/uDym4=
+        Service=YouTube: RlmgHwiijjX7uuwo0EziJDaCtCsVeWu8G66Pou2x/iE=
+    Icon/Settings:
+        Size=Default, Style=Default: aob4/1El7/PtbpvOxojM5mTlfi4V5auhGRCcloGDgtY=
+        Size=Default, Style=Fill: 1SfkVGkvMeW+TjtfsBQD3mbzz7HdOhxdTcm4n2z2vDY=
+    Icon/Tag:
+        Size=Default, Stack=False, Style=Default: T1klaa7Zj1zxk797T2n0RafV3ukYhe7+Cn1xSv2HrjQ=
+        Size=Default, Stack=False, Style=Fill: a/pOL2qxTgzcDczIgBMIxwuN5nfrmOEp9BjXzyrtxDg=
+        Size=Default, Stack=True, Style=Default: f2A++4TNcT5Q+gu+++yVqfgTQrWZe68TGDCb1C8dNwc=
+        Size=Default, Stack=True, Style=Fill: 1FG5l+DlJbDUzYVFwjboijl1nQ2tAWh/JVL259Z9a+U=
+    Icon/Trend:
+        Size=Default, Direction=Down, Style=Default: daagT7L/UF794p+C2+B/X6LTypAggeTatsb85r6mgXA=
+        Size=Default, Direction=Up, Style=Default: eM1sIQVpOBwgxp4zjh7x6uaMEENho5o3T6mMQqL7/cA=
+    Icon/User:
+        Size=Default, Stack=False: WPgFC7g+cZmTOW/3GY818hRdXDXbzvBUofCt33ZOPpI=
+        Size=Default, Stack=False, Style=Fill: VudgYGOUTfVe/oAkL2bkC8zQmTKk2K8kaMR4IxYMDcA=
+        Size=Default, Stack=True, Style=Default: CyLH/BejIIzTnPsh72ZnlVBLiBGq6C/6W0BJKVxrBfM=
+        Size=Default, Stack=True, Style=Fill: 7e3obtp30vjZIrDFw6KtcJSt0bg5pVQvJAlr5lypv3c=
+    Icon/Vote:
+        Size=Default, Direction=Down, Style=Default: 9CQL3/zOyLED5v92OSAAni27V02+KhfoNNR/BwHSmiM=
+        Size=Default, Direction=Down, Style=Fill: JDB6uLbbq62FIWvOO4kYneQFfzp0MD/B4fVbDi0WeVw=
+        Size=Default, Direction=Up, Style=Default: B1kMREGxvjd2HO7xOH9u1rxGzxZsly5jlETcDU93tHs=
+        Size=Default, Direction=Up, Style=Fill: dbuluBxCsqn3keaKcPzuea9e+UO5ETFwPvLlSmJw9Gg=
+    # MARK: Spots
+    Spot/Test: cgbl8iMviW3pIYnKyf1+vyH7e1gsGMlwxzIdPCfD5os=
+    # TODO: add more spots here

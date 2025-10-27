@@ -23,8 +23,31 @@ export function error(...args: unknown[]) {
     console.error(chalk.red.bold("ERROR"), chalk.red(...args));
 }
 
-interface Definitions {
-    [iconName: string]: string | Record<string, Record<string, string>>;
+export interface Definitions {
+    [iconName: string]: string | Record<string, string>;
+}
+
+// Helper for dealing with Figma component variants
+// Expects something like "Size=20, Style=Fill" or "Prop=True"
+export function flattenFigmaComponentVariantName(name: string): string {
+    return name
+        .split(",") // split by commas ['Prop=Val', ...]
+        .map((pair) => {
+            const [prop, valRaw] = pair.split("=").map((s) => s.trim());
+            const val = String(valRaw ?? "").replace(/\s+/g, "");
+
+            // Skip "Default" values or False props
+            if (val === "Default" || val === "" || val === "False") return "";
+
+            // If it is a faux boolean, use that prop in the name
+            if (val === "True") {
+                return prop;
+            }
+
+            // Otherwise use the value, as before
+            return val;
+        })
+        .join("");
 }
 
 export function flattenDefinitions(defs: Definitions): Record<string, string> {
@@ -34,10 +57,9 @@ export function flattenDefinitions(defs: Definitions): Record<string, string> {
         if (typeof iconValue === "string") {
             out[iconName] = iconValue;
         } else {
-            for (const [size, variants] of Object.entries(iconValue)) {
-                for (const [variant, hash] of Object.entries(variants)) {
-                    out[`${iconName}${size}${variant}`] = hash;
-                }
+            for (const [variant, hash] of Object.entries(iconValue)) {
+                const flattened = flattenFigmaComponentVariantName(variant);
+                out[iconName + flattened] = hash;
             }
         }
     }
