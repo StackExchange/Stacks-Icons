@@ -9,5 +9,5 @@ updates:
       schedule:
           interval: "weekly"
       ignore:
-        - dependency-name: "System.Collections.Immutable"
-          update-types: ["version-update:semver-major"]
+          - dependency-name: "System.Collections.Immutable"
+            update-types: ["version-update:semver-major"]
