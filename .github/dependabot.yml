@@ -8,3 +8,6 @@ updates:
       directory: "/dotnet/"
       schedule:
           interval: "weekly"
+      ignore:
+          - dependency-name: "System.Collections.Immutable"
+            update-types: ["version-update:semver-major"]
