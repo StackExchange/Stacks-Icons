@@ -215,7 +215,6 @@ export async function processSvgFilesAsync(type: OutputType) {
                                     force: true,
                                     noSpaceAfterFlags: true,
                                 },
-                                removeViewBox: false,
                             },
                         },
                     },
@@ -226,6 +225,7 @@ export async function processSvgFilesAsync(type: OutputType) {
                             attrs: "(fill-rule|clip-rule)",
                         },
                     },
+                    "convertTransform",
                 ],
             });
             optimizedImages.push(optimized.data);
