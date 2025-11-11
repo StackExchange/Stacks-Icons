@@ -69,7 +69,7 @@ function buildIconManifestHtml(iconsObj: IconsObject): string {
                             <div class="fs-fine ff-mono fc-light pb2" title="${variantKey}">
                                 ${iconName}
                             </div>
-                            <div class="icon-preview">${svg.replace(
+                            <div class="icon-preview overflow-scroll">${svg.replace(
                                 `class="`,
                                 `class="native `
                             )}</div>
