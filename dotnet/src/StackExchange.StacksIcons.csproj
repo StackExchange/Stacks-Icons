@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-		<Version>6.7.2</Version>
+		<Version>6.8.0</Version>
 		<AssemblyName>StackExchange.StacksIcons</AssemblyName>
 		<PackageId>StackExchange.StacksIcons</PackageId>
 		<Nullable>enable</Nullable>
