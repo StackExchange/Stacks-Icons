@@ -217,7 +217,7 @@ definitions:
         Service=Confluence, Size=64: VZE1c/tAJ87NRU8/nlB+OL5muq1bli83o1IOGUx6JnQ=
         Service=Confluence, Size=Default: 7FCYdY+xxPWHfLIY93iMdKkIDhg1vaYXWLI1Mm0CNF8=
         Service=Facebook: ov3zQCN00RGebziefl7bABetrtkLZM5zNaAiDxEq2DQ=
-        Service=GitHub: lePvVBW8ryn65VsQC0m2FE3K0S5+ZeFjRMt25gVJQ/w=
+        Service=GitHub: 0FHpJemKSqeqCWxZ32HFc6HH7BxUQeFm4CrwC573EGw=
         Service=Google: oGulTXs27jK24bCjuXPfCe6aEVKrb3WYpFI7wcJVjwE=
         Service=GoogleDrive, Size=32: Co7g9KikGAQEg+f2ASzGpb7Sj8v6DCco4UaNd5Ho0NU=
         Service=GoogleDrive, Size=64: iZIcSVNUCyRUHSAkOVgaxYTk0q0AQAKAQC++/G8XcuQ=
@@ -235,13 +235,13 @@ definitions:
         Service=Microsoft, Size=Default: +CZxA43MN8ozSujtlKHA6/e77xAiLjj9jV9R0seuRRo=
         Service=MicrosoftTeams, Size=32: 91d0fMBx+chFC7H4rs1LLtQY5lZVuR+0j5EWSQeonbg=
         Service=MicrosoftTeams, Size=64: LKy0oZwUjwNTznLQm7a8ISUz/SoaGWmO43oUjp1rWQk=
-        Service=MicrosoftTeams, Size=Default: V4LYDi1ajiP7yS+Hl8lY/hMtLGkvGVmeINrg3KyMUEQ=
+        Service=MicrosoftTeams, Size=Default: n7ldYe7pcm5bxVSm4/jzzVFvRK0yUQ7WGztZT9fCCjE=
         Service=Moveworks, Size=32: 8zvPn2kwBLDAdJGRaAPO4CzkK6psWsfnx0Vzd0ltFa4=
         Service=Moveworks, Size=64: d/2O/QM7j86plk/Qot2mlxq6aDIhpppO+J+w34HY1Es=
         Service=Moveworks, Size=Default: hLu5GecjvEp3nj9zscN2l0tKLGj1QMQluPUIjcb/geQ=
-        Service=Okta, Size=32: XYlJebjx7x7TXCWXEPEfT9JksTt83NyTWDCiaMgTzPU=
-        Service=Okta, Size=64: SZjCTj8Xk7BI9NP1EGQtWJGj8ZKlPx9HApfhwJSYx/Q=
-        Service=Okta, Size=Default: Na+nfiayT8RkjCL+TwCOI1m4KG3RA3IgBwuM2qlsjS4=
+        Service=Okta, Size=32: G2ynBK8gQDP8iVTOvFmT2HSF7fBGesbMkD209I1cwaE=
+        Service=Okta, Size=64: XFSkDcFMV5mAW/zxl4ag28ejpecxDbl/WtNq85d4Gs8=
+        Service=Okta, Size=Default: 6MI2oOmDcq7owK0I4BEGxF4Ty+fwEKpnaoWTPQpXZ6E=
         Service=SCIM, Size=32: JezhexPjp5lPmEr1wXtsXOWs+LjGhomc366fdeDdApY=
         Service=SCIM, Size=64: 9Bjozk0X0vkoyNJ/m7cKba5xYHJrvJlrMAuN1Vh+QOo=
         Service=SCIM, Size=Default: ZCamhJVDklpwhxxsqO97BjM/wp4Xw2mbfCZDDcX/mQ4=
