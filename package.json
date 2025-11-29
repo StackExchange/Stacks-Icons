@@ -37,6 +37,7 @@
         "preview": "http-server ./preview -o -c-1",
         "prepublishOnly": "npm start",
         "version": "tsc && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
+        "sync:figma": "node --no-warnings --loader ts-node/esm ./scripts/sync-config.ts",
         "lint": "prettier --check . && eslint .",
         "format": "prettier --write .",
         "format:config": "yq eval 'sort_keys(..)' config.yaml -i --indent 4 --prettyPrint",

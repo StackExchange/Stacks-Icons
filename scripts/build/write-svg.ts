@@ -2,7 +2,7 @@ import axios from "axios";
 import fs from "fs/promises";
 import { createHash } from "node:crypto";
 import { basename } from "path";
-import { optimize } from "svgo";
+import { optimize, type XastElement, type PluginConfig } from "svgo";
 import { definitions } from "../definitions.js";
 import { paths } from "./paths.js";
 import {
@@ -10,6 +10,7 @@ import {
     info,
     warn,
     flattenFigmaComponentVariantName,
+    //stacksSvgoTransforms,
     type OutputType,
 } from "./utils.js";
 
@@ -99,7 +100,11 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     const urls = await fetch.get<{ images: Record<string, string> }>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
-            params: { format: "svg", ids: Object.keys(names).join(",") },
+            params: { 
+                format: "svg",
+                ids: Object.keys(names).join(","),
+                svg_include_id: true,
+            },
         }
     );
 
@@ -174,7 +179,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
 ${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
 
         if (ignoreHashMismatch) {
-            error(mismatchError);
+            info(mismatchError);
         } else {
             throw mismatchError;
         }
@@ -186,22 +191,157 @@ ${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
 /** Optimizes svg files using svgo then writes them to build/lib */
 export async function processSvgFilesAsync(type: OutputType) {
     const ext = ".svg";
-    // Read the source directory of SVGs
-    let icons = await fs.readdir(paths.src(type));
+    
+    // Read the source files then remove the extensions and sort alphabetically
+    let svgPaths = await fs.readdir(paths.src(type))
+    let svgNames = svgPaths.map((i) => basename(i, ext)).sort();
 
-    // Get the name without the extension and sort alphabetically
+    // Ensure the save directory is created
+    await fs.mkdir(paths.build("lib", type), {
+        recursive: true,
+    });
+
+    let svgPromises = svgPaths.map(async (i) => {
+        const name = basename(i, ext)
+        const outputPath = paths.build(paths.build("lib", type), name + ext)
+
+        let outputSvg = ''
+        let raw = await fs.readFile(paths.src(type, i), "utf8")
+        let css = ''
+
+        // Check to see if there is a .css file with the same name, load it if there is and embed it in the svg
+        try {
+            css = await fs.readFile(paths.src('animations', type + name + '.css'), 'utf8');
+            raw = raw.replace('</svg>', `<style>${css}</style></svg>`)
+        } catch (e: any) {
+            // Ignore if CSS doesn't exist
+            if (e.code !== 'ENOENT') throw e;
+        }
+
+        // Define SVGO plugins to run, the order is important
+        const plugins: PluginConfig[] = [
+            // With the figma setting svg_include_id sometimes there is a parent group with an id of the component name
+            {
+                name: "removeAttributesBySelector",
+                params: {
+                    selectors: [
+                        {
+                            selector: "svg > g",
+                            attributes: ["class"],
+                        },
+                    ],
+                },
+            },
+            css ? {
+                name: 'convertIdToClass',
+                fn: () => ({
+                    element: {
+                        enter: (node: XastElement) => {
+                            const idValue = node.attributes["id"];
+                            if (!idValue) return
+                            delete node.attributes["id"];
+
+                            node.attributes["class"] = node.attributes["class"]
+                                ? `${node.attributes["class"]} ${idValue}`
+                                : `${idValue}`;
+                        },
+                    },
+                })
+            } : undefined,
+            {
+                name: "preset-default",
+                params:{
+                    overrides: {
+                        convertShapeToPath: false,
+                        ...(css ? { 
+                            inlineStyles: false
+                        } : {}),
+                    },
+                },
+            },
+            {
+                name: "addClassesToSVGElement",
+                params: {
+                    classNames: [
+                        `svg-${type?.toLowerCase()}`,
+                        `${type}${name}`,
+                    ],
+                },
+            },
+            {
+                name: "addAttributesToSVGElement",
+                params: {
+                    attributes: [
+                        { "aria-hidden": "true" }
+                    ]
+                },
+            },
+            "removeXMLNS",
+            "removeXlink",
+        ].filter(Boolean) as PluginConfig[];
+
+        // Optimize it
+        try {
+            outputSvg = optimize(raw, {
+                floatPrecision: 2,
+                multipass: true,
+                plugins,
+            }).data;
+        } catch (e) {
+            error(e);
+        }
+        
+        // Save each svg
+        await fs.writeFile(outputPath, outputSvg, "utf8");
+
+        // only check the file size for icons
+        if (type === "Icon") {
+            const stat = await fs.stat(outputPath);
+
+            if (stat.size > MAX_ICON_SIZE_B) {
+                throw `File too large: ${outputPath}; ${stat.size} B > ${MAX_ICON_SIZE_B} B`;
+            }
+        }
+
+
+        return { [name]: outputSvg }
+    })
+
+    const svgs = await Promise.all(svgPromises);
+    const iconsObj: Record<string, string> = Object.assign({}, ...svgs);
+
+    return { svgNames, iconsObj };
+
+
+
+    //icons = icons.sort(i => i.name)
+
+
+    /*let icons = await fs.readdir(paths.src(type));
     icons = icons.map((i) => basename(i, ext)).sort();
 
-    // Array of promises which do the fetching of the files
-    const readPromises = icons.map((i) =>
-        fs.readFile(paths.src(type, i + ext), "utf8")
-    );
-    let processed = await Promise.all(readPromises);
+    let css = await fs.readdir(paths.src('animations'));
+    css = css.map((i) => basename(i, 'css')).sort();
 
-    const optimizedImages: string[] = [];
+    // Array of promises which do the fetching of the files
+    let rawSvgs = await Promise.all(
+        icons.map((i) =>
+            fs.readFile(paths.src(type, i + ext), "utf8")
+        )
+    );
+
+    let rawCSS = await Promise.all(
+        css.map((i) =>
+            fs.readFile(paths.src(type, i + 'css'), "utf8")
+        )
+    );
 
     // Optimize them with SVGO
-    processed.forEach((i) => {
+    const optimizedImages: string[] = [];
+
+    rawSvgs.forEach((i, idx) => {
+        const hasCSS: boolean = css[idx] ? true : false
+
         try {
             const optimized = optimize(i, {
                 floatPrecision: 2,
@@ -237,7 +377,7 @@ export async function processSvgFilesAsync(type: OutputType) {
     const typeClass = type.toLowerCase();
 
     // Do our custom tweaks to the output
-    processed = optimizedImages.map((i, idx) => {
+    rawSvgs = optimizedImages.map((i, idx) => {
         const icon = icons[idx];
 
         if (!icon) {
@@ -271,7 +411,7 @@ export async function processSvgFilesAsync(type: OutputType) {
 
     // Make an object of our icons { IconName: '<svg>' }
     const iconsObj: Record<string, string> = {};
-    const promises = processed.map(async (svgStr, idx) => {
+    const promises = rawSvgs.map(async (svgStr, idx) => {
         const iconName = icons[idx];
         if (!iconName) {
             return;
@@ -302,5 +442,5 @@ export async function processSvgFilesAsync(type: OutputType) {
         throw failed.join("\n");
     }
 
-    return { icons, iconsObj };
+    return { icons, iconsObj };*/
 }

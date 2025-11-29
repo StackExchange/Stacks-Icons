@@ -66,3 +66,73 @@ export function flattenDefinitions(defs: Definitions): Record<string, string> {
 
     return out;
 }
+
+// export function stacksSvgoTransforms(params: { name: string, type: string }): any {
+//     return {
+//     name: "stacks-svg-transforms",
+//     type: "full",
+//     fn: (ast: any) => {
+//       const fillMap: Record<string, string | null> = {
+//         "#000": null,
+//         "none": null,
+//         "#222426": "var(--black-600)",
+//         "#fff": "var(--white)",
+//         "#ffffff": "var(--white)",
+//         "#6a7e7c": "var(--black-400)",
+//         "#1a1104": "var(--black-600)",
+//       };
+
+//       const walk = (node: any) => {
+//         // Handle fills
+//         if (node.attributes?.fill) {
+//           const fill = node.attributes.fill.toLowerCase();
+
+//           if (fillMap.hasOwnProperty(fill)) {
+//             const replacement = fillMap[fill];
+
+//             if (replacement === null) delete node.attributes.fill;
+
+//             else node.attributes.fill = replacement;
+//           }
+//         }
+
+//         // Convert IDs to classes (incase in prod we have the same svg embedded more than once)
+//         if (node.attributes?.id) {
+//           const idValue = node.attributes.id;
+
+//           delete node.attributes.id;
+
+//           node.attributes.class = node.attributes.class
+//             ? `${node.attributes.class} ${idValue}`
+//             : `${idValue}`;
+//         }
+
+//         // Update url(#id) references to match prefixed class IDs
+//         /*if (node.attributes) {
+//           for (const key of Object.keys(node.attributes)) {
+//             const attr = node.attributes[key];
+
+//             if (typeof attr === "string") {
+//               node.attributes[key] = attr.replace(
+//                 /url\(#(.*?)\)/g,
+//                 (_, idRef) => `url(#${prefix}${idRef})`
+//               );
+//             }
+//           }
+//         }*/
+
+//         // 5Namespace gradient IDs
+//         /*if (node.attributes?.id && node.name?.includes("Gradient")) {
+//           node.attributes.id = `${prefix}${node.attributes.id}`;
+//         }*/
+
+//         // recurse
+//         node.children?.forEach(walk);
+//       };
+
+//       ast.children.forEach(walk);
+
+//       return ast;
+//     },
+//   };
+// }
