@@ -2,18 +2,18 @@ import axios from "axios";
 import fs from "fs/promises";
 import { createHash } from "node:crypto";
 import { basename } from "path";
-import { optimize, type XastElement, type PluginConfig } from "svgo";
-import { definitions } from "../definitions.js";
+import { optimize } from "svgo";
+import { definitions } from "../config.js";
 import { paths } from "./paths.js";
 import {
     error,
     info,
     warn,
     flattenFigmaComponentVariantName,
-    //stacksSvgoTransforms,
     type OutputType,
+    svgoPlugins,
 } from "./utils.js";
-import { GetFileComponentsResponse, type GetImagesResponse, type PublishedComponent } from '@figma/rest-api-spec'
+import { type GetFileComponentsResponse, type GetImagesResponse } from '@figma/rest-api-spec'
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;
@@ -208,81 +208,12 @@ export async function processSvgFilesAsync(type: OutputType) {
             if (e.code !== 'ENOENT') throw e;
         }
 
-        // Define SVGO plugins to run, the order is important
-        const plugins: PluginConfig[] = [
-            // With the figma setting svg_include_id sometimes there is a parent group with an id of the component name
-            {
-                name: "removeAttributesBySelector",
-                params: {
-                    selectors: [
-                        {
-                            selector: "svg > g",
-                            attributes: ["class"],
-                        },
-                    ],
-                },
-            },
-            // For animations we want to covert layer ID names defined in Figma to classes so they can be reused
-            css ? {
-                name: 'convertIdToClass',
-                fn: () => ({
-                    element: {
-                        enter: (node: XastElement) => {
-                            const idValue = node.attributes["id"];
-                            if (!idValue) return
-                            delete node.attributes["id"];
-
-                            node.attributes["class"] = node.attributes["class"]
-                                ? `${node.attributes["class"]} ${idValue}`
-                                : `${idValue}`;
-                        },
-                    },
-                })
-            } : undefined,
-            {
-                name: "preset-default",
-                params:{
-                    overrides: {
-                        convertShapeToPath: false,
-                        ...(css ? { 
-                            inlineStyles: false,
-                        } : {}),
-                    },
-                },
-            },
-            {
-                name: "removeUselessStrokeAndFill",
-                params: {
-                    removeNone: true,
-                },
-            },
-            {
-                name: "addClassesToSVGElement",
-                params: {
-                    classNames: [
-                        `svg-${type?.toLowerCase()}`,
-                        `${type}${name}`,
-                    ],
-                },
-            },
-            {
-                name: "addAttributesToSVGElement",
-                params: {
-                    attributes: [
-                        { "aria-hidden": "true" }
-                    ]
-                },
-            },
-            "removeXMLNS",
-            "removeXlink",
-        ].filter(Boolean) as PluginConfig[];
-
         // Optimize it
         try {
             outputSvg = optimize(raw, {
                 floatPrecision: 2,
                 multipass: true,
-                plugins,
+                plugins: svgoPlugins(type, name, css ? true : false),
             }).data;
         } catch (e) {
             error(e);

@@ -1,14 +1,13 @@
 import * as dotenv from "dotenv";
 import axios from "axios";
 import { createHash } from "node:crypto";
-import YAML, { Document } from "yaml";
+import YAML from "yaml";
 import { readFile, writeFile } from "fs/promises";
 import {
     error,
     success,
     info,
     warn,
-    flattenFigmaComponentVariantName,
 } from "./build/utils.js";
 import { GetImagesResponse, type GetFileComponentsResponse } from "@figma/rest-api-spec";
 
@@ -36,10 +35,11 @@ async function syncConfigFromFigma() {
         );
     }
 
-    // Read existing config to preserve everything
+    // Read existing config - this is the master source
     const configPath = "./config.yaml";
     const existingConfigRaw = await readFile(configPath, "utf-8");
-    const existingConfig = YAML.parse(existingConfigRaw) as Config;
+    const doc = YAML.parseDocument(existingConfigRaw);
+    const existingConfig = doc.toJSON() as Config;
 
     info("Loaded existing config.yaml");
 
@@ -59,40 +59,70 @@ async function syncConfigFromFigma() {
     const components = stacksFile.data.meta.components;
     info(`Found ${components.length} components in Figma`);
 
-    // Build a map of what exists in Figma
-    interface FigmaEntry {
+    // Build a map of Figma components by name for lookup
+    interface FigmaComponent {
         nodeId: string;
         componentName: string;
         variantName: string | null;
-        flattenedName: string; // Full name as it appears in definitions
     }
 
-    const figmaComponents: FigmaEntry[] = [];
+    const figmaByName = new Map<string, FigmaComponent>();
 
     for (const component of components) {
         const nodeId = component.node_id;
         let componentName = component.name;
         let variantName: string | null = null;
-        let flattenedName = componentName;
 
         // Check if this is a variant within a component set
         if (component.containing_frame?.name) {
             componentName = component.containing_frame.name;
             variantName = component.name;
-            const flattened = flattenFigmaComponentVariantName(variantName);
-            flattenedName = `${componentName}${flattened}`;
         }
 
-        figmaComponents.push({
+        const key = variantName
+            ? `${componentName}::${variantName}`
+            : componentName;
+
+        figmaByName.set(key, {
             nodeId,
             componentName,
             variantName,
-            flattenedName,
         });
     }
 
-    // Fetch SVGs and calculate hashes only for missing components
-    const nodeIds = figmaComponents.map((c) => c.nodeId);
+    // Collect node IDs that we need to fetch hashes for
+    const nodesToFetch: Array<{ nodeId: string; key: string }> = [];
+
+    for (const [componentName, value] of Object.entries(existingConfig.definitions)) {
+        if (typeof value === "string") {
+            // Simple component
+            const figmaComponent = figmaByName.get(componentName);
+            if (figmaComponent) {
+                nodesToFetch.push({ nodeId: figmaComponent.nodeId, key: componentName });
+            } else {
+                warn(`Component "${componentName}" not found in Figma`);
+            }
+        } else if (value != null) {
+            // Variant group
+            for (const variantName of Object.keys(value)) {
+                const key = `${componentName}::${variantName}`;
+                const figmaComponent = figmaByName.get(key);
+                if (figmaComponent) {
+                    nodesToFetch.push({ nodeId: figmaComponent.nodeId, key });
+                } else {
+                    warn(`Variant "${componentName} → ${variantName}" not found in Figma`);
+                }
+            }
+        }
+    }
+
+    if (nodesToFetch.length === 0) {
+        warn("No components found to sync");
+        return;
+    }
+
+    // Fetch SVGs and calculate hashes
+    const nodeIds = nodesToFetch.map((n) => n.nodeId);
     const urls = await fetch.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
@@ -116,7 +146,6 @@ async function syncConfigFromFigma() {
             axios
                 .get<string>(url)
                 .then((resp) => {
-                    info(`Fetching: ${url}`)
                     const hash = createHash("sha256");
                     hash.update(resp.data);
                     const sha256 = hash.digest("base64");
@@ -131,90 +160,46 @@ async function syncConfigFromFigma() {
     await Promise.all(queue);
     info(`Successfully calculated ${hashMap.size} hashes`);
 
-    // Add missing components to the existing definitions
-    const updatedDefinitions = { ...existingConfig.definitions };
+    // Update hashes in the definitions
+    const definitions = doc.get("definitions") as any;
+    let updatedCount = 0;
 
-    for (const c of figmaComponents) {
-        const { nodeId, componentName, variantName } = c;
+    for (const { nodeId, key } of nodesToFetch) {
         const hash = hashMap.get(nodeId);
-
         if (!hash) {
-            warn(`Skipping ${componentName}${variantName ? ` (${variantName})` : ""} - no hash calculated`);
+            warn(`No hash calculated for ${key}`);
             continue;
         }
 
-        if (variantName) {
-            // Add to variant group
-            const existing = updatedDefinitions[componentName];
-            if (typeof existing === "object") {
-                // Group already exists, add this variant
-                existing[variantName] = hash;
-            } else {
-                // Create new group
-                updatedDefinitions[componentName] = {
-                    [variantName]: hash,
-                };
+        if (key.includes("::")) {
+            // Variant
+            const [componentName, variantName] = key.split("::");
+            const componentDef = definitions.get(componentName);
+            if (componentDef && typeof componentDef === "object") {
+                const oldHash = componentDef.get(variantName);
+                if (oldHash !== hash) {
+                    componentDef.set(variantName, hash);
+                    info(`Updated ${componentName} → ${variantName}`);
+                    updatedCount++;
+                }
             }
-            info(`Added ${componentName} → ${variantName}`);
         } else {
             // Simple component
-            updatedDefinitions[componentName] = hash;
-            info(`Added ${componentName}`);
-        }
-    }
-
-    // Update the config object
-    const updatedConfig = {
-        cssIcons: existingConfig.cssIcons,
-        definitions: updatedDefinitions,
-    };
-
-    // Create a YAML Document to add comments
-    const doc = new Document(updatedConfig);
-
-    // Add MARK comments to group items
-    const definitions = doc.get("definitions") as any;
-
-    if (definitions && definitions.items) {
-        const sortedKeys = [...definitions.items].sort((a, b) => {
-            const keyA = String(a.key);
-            const keyB = String(b.key);
-            return keyA.localeCompare(keyB);
-        });
-
-        // Reorder the items
-        definitions.items = sortedKeys;
-
-        let currentGroup = "";
-
-        for (const pair of sortedKeys) {
-            const group = String(pair.key).split('/')[0]
-
-            // Add MARK comment when group changes
-            if (group && group !== currentGroup) {
-                pair.key.commentBefore = ` MARK: ${group}`;
-                pair.key.spaceBefore = true;
-                currentGroup = group;
+            const oldHash = definitions.get(key);
+            if (oldHash !== hash) {
+                definitions.set(key, hash);
+                info(`Updated ${key}`);
+                updatedCount++;
             }
         }
     }
 
-    // Add MARK comment for cssIcons
-    const cssIcons = doc.get("cssIcons");
-    if (cssIcons) {
-        (cssIcons as any).commentBefore = " MARK: CSS Icons";
-        (cssIcons as any).spaceBefore = true;
-    }
-
-    const yamlString = doc.toString({
-        indent: 4,
-        lineWidth: 0,
-    });
-
+    // Write the updated config back
+    const yamlString = doc.toString();
     await writeFile(configPath, yamlString, "utf-8");
 
     success(
-        `Successfully refreshed ${figmaComponents.length} components to config.yaml`
+        `Successfully synced ${nodesToFetch.length} components (${updatedCount} updated) to config.yaml`
     );
 }
 

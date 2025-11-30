@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import { cssIcons } from "../definitions.js";
+import { cssIcons } from "../config.js";
 import { paths } from "./paths.js";
 
 export async function bundleCssIcons() {
