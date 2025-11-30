@@ -6,6 +6,7 @@ class Paths {
         build: string;
         preview: string;
         src: string;
+        raw: string;
     };
 
     constructor() {
@@ -22,6 +23,7 @@ class Paths {
             ),
             preview: path.resolve(process.cwd(), "preview"),
             src: path.resolve(codeRoot, "src"),
+            raw: path.resolve(codeRoot, "raw"),
         };
     }
 

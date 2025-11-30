@@ -46,6 +46,7 @@
         "test:nuget": "dotnet test ./dotnet"
     },
     "devDependencies": {
+        "@figma/rest-api-spec": "^0.34.0",
         "@rollup/plugin-typescript": "^12.3.0",
         "@stackoverflow/eslint-config": "^1.0.0",
         "@stackoverflow/prettier-config": "^1.0.0",

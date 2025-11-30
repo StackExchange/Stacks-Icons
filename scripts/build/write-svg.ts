@@ -13,22 +13,10 @@ import {
     //stacksSvgoTransforms,
     type OutputType,
 } from "./utils.js";
+import { GetFileComponentsResponse, type GetImagesResponse, type PublishedComponent } from '@figma/rest-api-spec'
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;
-
-// https://www.figma.com/developers/api#get-files-endpoint
-export interface FigmaComponent {
-    name: string;
-    node_id: string;
-    thumbnail_url: string;
-    created_at: string;
-    updated_at: string;
-    containing_frame: {
-        name: string;
-        pageName?: string;
-    };
-}
 
 export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     if (!process.env["FIGMA_ACCESS_TOKEN"] || !process.env["FIGMA_FILE_KEY"]) {
@@ -49,9 +37,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     );
 
     // https://developers.figma.com/docs/rest-api/component-endpoints/#http-endpoint-1
-    const stacksFile = await fetch.get<{
-        meta: { components: FigmaComponent[] };
-    }>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
+    const stacksFile = await fetch.get<GetFileComponentsResponse>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
 
     // Full returned components list
     const components = stacksFile.data.meta.components;
@@ -97,7 +83,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // Returns a object of urls
     // https://www.figma.com/developers/api#get-images-endpoint
     // { "images": { "NODE_ID": "AWS URL", ... } }
-    const urls = await fetch.get<{ images: Record<string, string> }>(
+    const urls = await fetch.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
             params: { 
@@ -212,7 +198,11 @@ export async function processSvgFilesAsync(type: OutputType) {
         // Check to see if there is a .css file with the same name, load it if there is and embed it in the svg
         try {
             css = await fs.readFile(paths.src('animations', type + name + '.css'), 'utf8');
-            raw = raw.replace('</svg>', `<style>${css}</style></svg>`)
+            if (css) {
+                info(`[${type}${name}]: Applying found .css file.`)
+                raw = raw.replace(/(<svg[^>]*>)/, `$1<style type="text/css">${css}</style>`);
+            }
+            
         } catch (e: any) {
             // Ignore if CSS doesn't exist
             if (e.code !== 'ENOENT') throw e;
@@ -232,6 +222,7 @@ export async function processSvgFilesAsync(type: OutputType) {
                     ],
                 },
             },
+            // For animations we want to covert layer ID names defined in Figma to classes so they can be reused
             css ? {
                 name: 'convertIdToClass',
                 fn: () => ({
@@ -254,9 +245,15 @@ export async function processSvgFilesAsync(type: OutputType) {
                     overrides: {
                         convertShapeToPath: false,
                         ...(css ? { 
-                            inlineStyles: false
+                            inlineStyles: false,
                         } : {}),
                     },
+                },
+            },
+            {
+                name: "removeUselessStrokeAndFill",
+                params: {
+                    removeNone: true,
                 },
             },
             {
@@ -311,136 +308,4 @@ export async function processSvgFilesAsync(type: OutputType) {
     const iconsObj: Record<string, string> = Object.assign({}, ...svgs);
 
     return { svgNames, iconsObj };
-
-
-
-    //icons = icons.sort(i => i.name)
-
-
-    /*let icons = await fs.readdir(paths.src(type));
-    icons = icons.map((i) => basename(i, ext)).sort();
-
-    let css = await fs.readdir(paths.src('animations'));
-    css = css.map((i) => basename(i, 'css')).sort();
-
-    // Array of promises which do the fetching of the files
-    let rawSvgs = await Promise.all(
-        icons.map((i) =>
-            fs.readFile(paths.src(type, i + ext), "utf8")
-        )
-    );
-
-    let rawCSS = await Promise.all(
-        css.map((i) =>
-            fs.readFile(paths.src(type, i + 'css'), "utf8")
-        )
-    );
-
-    // Optimize them with SVGO
-    const optimizedImages: string[] = [];
-
-    rawSvgs.forEach((i, idx) => {
-        const hasCSS: boolean = css[idx] ? true : false
-
-        try {
-            const optimized = optimize(i, {
-                floatPrecision: 2,
-                multipass: true,
-                plugins: [
-                    {
-                        name: "preset-default",
-                        params: {
-                            overrides: {
-                                mergePaths: {
-                                    force: true,
-                                    noSpaceAfterFlags: true,
-                                },
-                            },
-                        },
-                    },
-                    "removeXMLNS",
-                    {
-                        name: "removeAttrs",
-                        params: {
-                            attrs: "(fill-rule|clip-rule)",
-                        },
-                    },
-                    "convertTransform",
-                ],
-            });
-            optimizedImages.push(optimized.data);
-        } catch (e) {
-            error(e);
-        }
-    });
-
-    const typeClass = type.toLowerCase();
-
-    // Do our custom tweaks to the output
-    rawSvgs = optimizedImages.map((i, idx) => {
-        const icon = icons[idx];
-
-        if (!icon) {
-            return i;
-        }
-
-        return i
-            .replace(
-                "<svg",
-                `<svg aria-hidden="true" class="svg-${typeClass} ${typeClass}${icon}"`
-            ) // Add classes and aria-attributes since our source files don't have them
-            .replace(/fill="#000"/gi, "") // Remove any fills so paths are colored by the parents' color
-            .replace(/fill="none"/gi, "") // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
-            .replace(/fill="#222426"/gi, 'fill="var(--black-600)"') // Replace hardcoded hex value with appropriate CSS variables
-            .replace(/fill="#fff"/gi, 'fill="var(--white)"')
-            .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-400)"')
-            .replace(/fill="#1A1104"/gi, 'fill="var(--black-600)"')
-            .replace(
-                /linearGradient id="(.*?)/gi,
-                `linearGradient id="${icon}$1`
-            ) // Replace any gradient ID with the icon name to namespace
-            .replace(/url\(#(.*?)\)/gi, `url(#${icon}$1)`) // Replace any reference to fill IDs with the icon name to namespace
-            .replace(/\s>/g, ">") // Remove extra space before closing bracket on opening svg element
-            .replace(/\s\/>/g, "/>"); // Remove extra space before closing bracket on path tag element
-    });
-
-    // ensure the directory is created
-    await fs.mkdir(paths.build("lib", type), {
-        recursive: true,
-    });
-
-    // Make an object of our icons { IconName: '<svg>' }
-    const iconsObj: Record<string, string> = {};
-    const promises = rawSvgs.map(async (svgStr, idx) => {
-        const iconName = icons[idx];
-        if (!iconName) {
-            return;
-        }
-
-        iconsObj[iconName] = svgStr;
-
-        const path = paths.build(paths.build("lib", type), iconName + ext);
-
-        // Save each svg
-        await fs.writeFile(path, svgStr, "utf8");
-
-        // only check the file size for icons
-        if (type === "Icon") {
-            const stat = await fs.stat(path);
-
-            if (stat.size > MAX_ICON_SIZE_B) {
-                throw `File too large: ${path}; ${stat.size} B > ${MAX_ICON_SIZE_B} B`;
-            }
-        }
-    });
-
-    const failed = (await Promise.allSettled(promises))
-        .map((r) => (r.status === "rejected" ? (r.reason as string) : null))
-        .filter((r) => !!r);
-
-    if (failed.length) {
-        throw failed.join("\n");
-    }
-
-    return { icons, iconsObj };*/
 }

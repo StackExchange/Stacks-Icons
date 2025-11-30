@@ -3,8 +3,15 @@ import axios from "axios";
 import { createHash } from "node:crypto";
 import YAML, { Document } from "yaml";
 import { readFile, writeFile } from "fs/promises";
-import chalk from "chalk";
-import type { FigmaComponent } from "./build/write-svg.js";
+import {
+    error,
+    success,
+    info,
+    warn,
+    flattenFigmaComponentVariantName,
+} from "./build/utils.js";
+import { GetImagesResponse, type GetFileComponentsResponse } from "@figma/rest-api-spec";
+
 
 // load environmental variables from the .env file
 dotenv.config();
@@ -20,42 +27,6 @@ interface Definitions {
 interface Config {
     cssIcons?: Record<string, { css: string }>;
     definitions: Definitions;
-}
-
-function log(message: string, prefix?: string) {
-    message = message.replace(/(\d+)/g, (d) => chalk.bold(d));
-    console.log(prefix, message);
-}
-
-function info(message: string) {
-    log(message, chalk.blue("i"));
-}
-
-function success(message: string) {
-    log(message, chalk.green("✓"));
-}
-
-function warn(message: string) {
-    log(message, chalk.yellow("⚠"));
-}
-
-function error(...args: unknown[]) {
-    console.error(chalk.red.bold("ERROR"), chalk.red(...args));
-}
-
-// Helper to flatten variant names (matches the build script logic)
-function flattenFigmaComponentVariantName(name: string): string {
-    return name
-        .split(",")
-        .map((pair) => {
-            const [prop, valRaw] = pair.split("=").map((s) => s.trim());
-            const val = String(valRaw ?? "").replace(/\s+/g, "");
-
-            if (val === "Default" || val === "" || val === "False") return "";
-            if (val === "True") return prop;
-            return val;
-        })
-        .join("");
 }
 
 async function syncConfigFromFigma() {
@@ -83,9 +54,7 @@ async function syncConfigFromFigma() {
     );
 
     // Fetch components metadata
-    const stacksFile = await fetch.get<{
-        meta: { components: FigmaComponent[] };
-    }>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
+    const stacksFile = await fetch.get<GetFileComponentsResponse>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
 
     const components = stacksFile.data.meta.components;
     info(`Found ${components.length} components in Figma`);
@@ -124,7 +93,7 @@ async function syncConfigFromFigma() {
 
     // Fetch SVGs and calculate hashes only for missing components
     const nodeIds = figmaComponents.map((c) => c.nodeId);
-    const urls = await fetch.get<{ images: Record<string, string> }>(
+    const urls = await fetch.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
             params: {
