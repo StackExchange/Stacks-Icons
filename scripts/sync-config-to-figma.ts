@@ -74,8 +74,8 @@ async function syncConfigFromFigma() {
         let variantName: string | null = null;
 
         // Check if this is a variant within a component set
-        if (component.containing_frame?.name) {
-            componentName = component.containing_frame.name;
+        if (component.containing_frame?.containingComponentSet?.name) {
+            componentName = component.containing_frame?.containingComponentSet.name;
             variantName = component.name;
         }
 
@@ -252,7 +252,7 @@ async function syncConfigFromFigma() {
         // Display updated components in tree format
         for (const update of updates) {
             if (update.isVariantSet) {
-                info(`Set ${update.componentName}`);
+                info(update.componentName);
                 for (const variant of update.updatedVariants) {
                     info(`    └ ${variant}`);
                 }

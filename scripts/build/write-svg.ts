@@ -52,8 +52,8 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         let name = component.name;
 
         // For variants, loop through all of them to create seperate assets
-        if (component.containing_frame?.name) {
-            const componentName = component.containing_frame.name;
+        if (component.containing_frame?.containingComponentSet?.name) {
+            const componentName = component.containing_frame.containingComponentSet.name;
             const variantName = flattenFigmaComponentVariantName(
                 component.name
             );
@@ -73,6 +73,10 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // double check that all definition entries were found in Figma
     const allRequestedDefs = Object.keys(definitions);
     const fetchedComponents = Object.values(names);
+
+    console.log(allRequestedDefs)
+    console.log('------')
+    console.log(fetchedComponents)
 
     for (const def of allRequestedDefs) {
         if (!fetchedComponents.includes(def)) {

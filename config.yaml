@@ -1,14 +1,22 @@
-# MARK: CSS Icons
 cssIcons:
+    # MARK: CSS Icons
     Answer:
         css: |
             width: 20px;
             height: 20px;
         # TODO: add more icons to be added to the css bundle here
-        # Find & replace these fills in all svgs
 definitions:
     # MARK: Icons
     # Ensure order here and from Figma is Size=Default, Boolean=[True|False], Style=Default
+    Icon/Alert:
+        Size=16, Style=Default: 5NQV7TUfT14Mf9wsv0W07ZnqBcGh6wLMCweX2UMlpzI=
+        Size=16, Style=Fill: g+0AOEHUkZBnMzBHo2lCs5ZaW95Leh2ghUMQNlTMNaY=
+        Size=24, Style=Default: 3V5Wbhwmz2V/LBoQB7TGhga9eaGbMiQ3Q3KpoabLa6A=
+        Size=24, Style=Fill: S5psIC6KPrsGDwzskYngZpYqsjKaY5waOKj6cgJ6yoc=
+        Size=32, Style=Default: 3IELW5ExzGM2uv/GHTgdRRw/+oNLFJcA6s9thKffLUc=
+        Size=32, Style=Fill: q/+lcq0A40wKkC6jAEh0liJopuesryR9OQkOdHeetTM=
+        Size=Default, Style=Default: cOGPYP4UDkunudQZrv2ynheOjg+AmGkLDFYP4Z9A+KA=
+        Size=Default, Style=Fill: w8a6jcrg7nv6WaZ17i2F2rM29HPsGft1VTrnKRMT7Jo=
     Icon/Answer:
         Size=16, Stack=False, Style=Default: 5RLT0+0UcPY0II495P8oT1p6TJcyUk8sDKpaivbBQpY=
         Size=16, Stack=False, Style=Duotone: 7y8ZNtsKi1UnnS38uey7VE1xeRtDhwk/sqLiQKrwzqg=
@@ -16,17 +24,17 @@ definitions:
         Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
         Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
         Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
-        Size=24, Stack=False, Style=Default: yqV+NDsGzJ/csd0DpimJ+pHL4aomqBLEcWtpKF+o3oU=
-        Size=24, Stack=False, Style=Duotone: o2oh8IRtNquh7qyZIAZUvIe0GYrsxj0IjIHMDjoLwxs=
+        Size=24, Stack=False, Style=Default: GRCrOUTCnm0ao1Sj3DcJ/i53G0fAEaoNMEr3mwmlfyU=
+        Size=24, Stack=False, Style=Duotone: qvy+NWVywbAjIPJXzMgNpMi27RrUpPGzmJ9mLOSEMO0=
         Size=24, Stack=False, Style=Fill: 2ZoKztyQgMVxg1TkCkjnifFebvlaeCHMGgoDrUf7INw=
         Size=24, Stack=True, Style=Default: 7lEU66YhnTwA/XefJObrvwvmJF53F+I3otP5LLk7ZHg=
-        Size=24, Stack=True, Style=Duotone: 6I0diw2wM/an0tA1GkSF7Yxg5JrwyVEMVvECOhoyNsg=
+        Size=24, Stack=True, Style=Duotone: AnhnlumpwykYZr2CsFwjeifW6a3kI7AkUVuWSvNcl1U=
         Size=24, Stack=True, Style=Fill: jjuUUHo3CnkV5Q+kcXHSVhm1WUdeeZ8pjLWfdXI8p/o=
         Size=32, Stack=False, Style=Default: CdMo1n96LlnlyRU4ZuxBwH0OyWZWeKKnojAEO/R3lb8=
         Size=32, Stack=False, Style=Duotone: OZhgwOOvJjmb+NW0zmwEfVfzxEQxy9Novz2aguEQD9g=
         Size=32, Stack=False, Style=Fill: +SzL+2N+hwMPS2Yrb1w/dKLKsuO1rqHKquEKfcbdK4I=
         Size=32, Stack=True, Style=Default: k3lM57gtnVRqjMW/0cRkUjN8bV6bWxUC1gDno7ZBUlA=
-        Size=32, Stack=True, Style=Duotone: q3onL3k140W0C9NF22t83pWhF3Z5rYSqrXTXVxFkqJE=
+        Size=32, Stack=True, Style=Duotone: ds+L40UcrLN9fTdYcHC8NROM4fXhlT+0a3TgAmY5ZmM=
         Size=32, Stack=True, Style=Fill: sX/kH3DjGNNDa8O9X2ZuW9sfA2yPDcJSxDbjinZYd3A=
         Size=64, Stack=False, Style=Default: EwdoOiAwegx/xZb8EEMAmX8EO4sPsiP38etDP08IQUU=
         Size=64, Stack=False, Style=Duotone: xhbjQ7C1MxGzCYCgU0TZqpNgdn5mH6mXm+S3LAqy1Lk=
@@ -34,12 +42,17 @@ definitions:
         Size=64, Stack=True, Style=Default: twD+FZ/DwKYmLA+f9DAsD2LHElH1gUVbPQADyTMZwFs=
         Size=64, Stack=True, Style=Duotone: uI2xZPiFmrTKnku7XxGiMU3A2x8BFahW5stmqk+oaok=
         Size=64, Stack=True, Style=Fill: gL0/qhdovHNcrDhf3qG70QF8CQaamJVmJkwrbopF8pI=
-        Size=Default, Stack=False, Style=Default: 5EF4NaKE+x9A0JBf1aAG4aZbi9cG9rIlPIl+ikekGXQ=
-        Size=Default, Stack=False, Style=Duotone: laI+gQ/omZZ5lVm+QeVmHJNb0VZDptUjmrB6mBLyyJ4=
+        Size=Default, Stack=False, Style=Default: vwCyYLDbp4qiayKK2SBNp0koGEg2TkQunkmr84FjJLQ=
+        Size=Default, Stack=False, Style=Duotone: kXFRSCMCdmOW/fYM/wu5MFaKHgGmDtxu+MuVJJOvImc=
         Size=Default, Stack=False, Style=Fill: 2WB2t2CBMn/aLaz5M0GGTU1bxlCOlWZH9RNZdz4/E30=
         Size=Default, Stack=True, Style=Default: LIsoJ3s/18zeiJxWCPYMSWg2p7RIt/TK7dhiolXOgn0=
-        Size=Default, Stack=True, Style=Duotone: mMb3Idsp/8InQCfy1Y7cgPjMSkrLbSKcwPn47FfCitg=
+        Size=Default, Stack=True, Style=Duotone: E2gmqtKsZMTBaTEHS0Rs8n5lO3fWyBrlEp7xTjgVZ2Y=
         Size=Default, Stack=True, Style=Fill: J3Xm3ke9AO3xhbTzD4e/JgVQEwupjcMpqTAgjl/pgdc=
+    Icon/Archive:
+        Size=16, Style=Default: oPohghN3qwKeETod/+ZsUifWbveaQJ/UozTq/WWAnWY=
+        Size=16, Style=Fill: qpnB/e8Q8cL1HXiymxlWyazH9tEp9cj6DcrFryxBLUk=
+        Size=Default, Style=Default: x/4YhiFqWZesia3IewTLIU/0KvTmvzBiRfIfDgFebNU=
+        Size=Default, Style=Fill: 78TgcSlfy+TklDwG68+JZ7XbuPnxNKYOiY9LZ1JdeeI=
     Icon/Arrow:
         Size=Default, Direction=Down, Box=False, Style=Default: z8emz9KL7tKnLcWWzvzg/JYFMMySjjBmfgeDgkP0ppc=
         Size=Default, Direction=Down, Box=True, Style=Default: PZaCrArLgZbrFWoZysw1ZKbQMh98Dt1o/O8uTBX4Id8=
@@ -52,11 +65,17 @@ definitions:
         Size=Default, Direction=Right, Box=True, Style=Default: DQqvuwD90tLR6bzSoKjZ26SVlv61TLArbblJ8ZeoVdw=
         Size=Default, Direction=Up, Box=False, Style=Default: 7DsdLbn8IzjhplLHEdgTJ8914htzjDddK33VQ4fJ7fk=
         Size=Default, Direction=Up, Box=True, Style=Default: t0GbkCT68PVrYwPAquvZkw4Aqh+/Yil8RC/FlFJJwGo=
-        Size=Default, Direction=UpLeft, Box=False, Style=Default: z80lSbgo3IAdOjAohkRzF/4ZEQbP/SVTn5mNLwyMXQE=
-        Size=Default, Direction=UpRight, Box=False, Style=Default: 7OV3sW1qIeRQZuYUiC4fX+zGqcLbc1Xb00z8O7BB87M=
+        Size=Default, Direction=UpLeft, Box=False, Style=Default: le4tnKlQHgQu2kq6CACDVDUKZmN3NeTOS3vjuOo8Jf8=
+        Size=Default, Direction=UpRight, Box=False, Style=Default: 2k19avHblqi9mFTw9/qfUVwjKEDnh0OqiqfRKoh/9qU=
         Size=Default, Direction=UpRight, Box=True, Style=Default: Yu2E5TCUyUNCak+Sqc6P8V1FoWFq7eEGpaaSIooxKM8=
+    Icon/Assistant:
+        Size=16, Style=Default: lsf554gaKlAjvopA58PfzUPwtRLLk/g8HfzzzNk5l08=
+        Size=24, Style=Default: zWl0Ca6pS49buVFGIAPmAcVEuBm1E+KTUz3fO1/bmeA=
+        Size=32, Style=Default: GwYPHxWFMHLCK4o10QqAqxIlCgMY5uQoZjEyCJLPJ9k=
+        Size=64, Style=Default: VcUQY8H65SZzQUXWyV9FHAYmjxKVKkqADinUEnYs1k4=
+        Size=Default, Style=Default: gkMRBivadwSwejGBVt63quiEWL/QhrByMKzU44SGdCQ=
     Icon/Award:
-        Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
+        Size=16, Style=Default: 5Udr7akszDiuBVvknaIQ76IjXSKeA3LhgUXSPU+u/hk=
         Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
         Size=16, Style=Fill: YrMgLJBwRQtx9LRK9hBrzojBz8Ym76QXYpnsqqbrf/8=
         Size=24, Style=Default: wgzlefdjDRjHTqmM/FelxIr2s1TA6e6DleGotaBLM9A=
@@ -68,9 +87,12 @@ definitions:
         Size=64, Style=Default: wGezg4nhlc7Fn6hsGA94tb2EukonEbJcOBrwRqOeCwg=
         Size=64, Style=Duotone: 91rLqTSOHDX0Vie6N+AYnLbsEF+S6zj5qRR45gKbJWo=
         Size=64, Style=Fill: 9D+mlw0zwv2nSNRahUj1TM5d+Rxz1v+yiDTaXfcZf90=
-        Size=Default, Style=Default: eVAdlM6JbMj3hdcm+ClwExewOdfC7I3qa0vjeL3hDPQ=
+        Size=Default, Style=Default: JgHXBSYnD+HYsk0ea6+ab0fA0nJC2bdODtKqEz1E7Mg=
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: MW2oNOOMRDYFkmXSETPjNWnazUfg/SbujGRLMb0hRuQ=
+    Icon/Blog:
+        Size=32, Style=Default: 2NWXC1WIUEMfqZLbh8KF0p3FXSE8tEM3NBSi/Lw275c=
+        Size=Default, Style=Default: ui20qhMUqs1n035TDOo9uxdHMBFV1NBZuVPpqVOIMr0=
     Icon/Bookmark:
         Size=16, Stack=False, Style=Default: 5RLT0+0UcPY0II495P8oT1p6TJcyUk8sDKpaivbBQpY=
         Size=24, Stack=False, Style=Default: zr2HCKPBsnooGx06GuKc5w/WXIbWPEgEtLmHIdQBJ24=
@@ -78,8 +100,8 @@ definitions:
         Size=64, Stack=False, Style=Default: L3cBLiwaItwAsCQO5X3FETZfoYGRHRR9wkFqmRrkPo4=
         Size=Default, Stack=False, Style=Default: Sq/2YtQolDx9IYp2pJq6SJHcgcH9YYTHSy8lVzwPVgo=
         Size=Default, Stack=False, Style=Fill: eOgBQ2ehmd7U7SOAWqnCWe3oCdROy8JvSqqgljrh/UE=
-        Size=Default, Stack=True, Style=Default: hfpfvLxafDmJGtStUbuiKTRqlpQ0b6Ct3lZWg+sKM00=
-        Size=Default, Stack=True, Style=Fill: KqPWY7EwFtCmRqCdwox5lZHtIiXrbbImhqoDAp0oUg0=
+        Size=Default, Stack=True, Style=Default: FEE7Y9MYe9Z/1QFVCvOoiIIW4jveDVn05FD6ttpATOg=
+        Size=Default, Stack=True, Style=Fill: g2UXI6MgjSM0wSS7JYvzf5HDFr9FSAb3U3Lug40t0f4=
     Icon/Challenge:
         Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
         Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
@@ -117,23 +139,27 @@ definitions:
     Icon/Check:
         Size=16, Style=Default, Type=Circle: eSxSYNqwT2iRMaWW22LkanGBRQAXGcpL6RJYvvI/Gnw=
         Size=16, Style=Default, Type=Default: 8adbKj+RID4Gv0ytyg8cv0+GYfhyOPL62woVwia6P/E=
+        Size=16, Style=Default, Type=Square: 3ap/voxZ1LrS1OyQPYE+x2V8ckDIsICwKEcCtUOPB0k=
         Size=16, Style=Fill, Type=Circle: psW4DQNJ3cG2pZ4vkNTDHyuYEmZfUsZnteAwjFp2/Fw=
         Size=16, Style=Fill, Type=Square: c4WfYuOepUWNlNa/ranFmytk8F5ByaduCP/7BZlLTgU=
         Size=24, Style=Default, Type=Circle: sIVQDDYz4E3KhoQtfPgsJ2uABc65L4hmUhKuiIiZaoI=
         Size=24, Style=Default, Type=Default: THbkG+2htMRmCCSuEUyDu1wIjBeJCx/3UxYfVlDSECM=
+        Size=24, Style=Default, Type=Square: aa4qk44XbGlFLNkuscIw+tawIRbrlKt4WRLoB+UDuHM=
         Size=24, Style=Fill, Type=Circle: 1r4OmuL1IEVH64j36lF+XJFwCjubqca3GzxNhpzgY98=
         Size=24, Style=Fill, Type=Square: MwgBnjADOW9uIyKJlldRskKm6Vp+wYXfMpuo7z/HVz0=
         Size=32, Style=Default, Type=Circle: b0PW+hfdv4wzVncCStZAu9ZuIZb55QgivW6jrFruImk=
         Size=32, Style=Default, Type=Default: ePW96lAOgJSyFyHH9UxLE9qxiYTcLtn8/AweUFjv1OA=
+        Size=32, Style=Default, Type=Square: UhV+UfoeYJKjvqueoEr0QeF8aX9ohY0Qiqgc9jojJXc=
         Size=32, Style=Fill, Type=Circle: dGRBWgMuvUWNz6PW98ZnS5AQ/PEJhbjWEwHrwM4M4jU=
         Size=32, Style=Fill, Type=Square: IVEWfDGCpW23nD7y2B5bStIFMJANOKiqZQMqAL8Ze8Q=
         Size=Default, Style=Default, Type=Circle: a5yJJHAIx4G93Ei7TA6BctWXHR2iRfIgC0kDIE9y6Lk=
         Size=Default, Style=Default, Type=Default: BDaUAqiiMpgi46rSP4DvnXNumkOWBstvtSb2lHda6ro=
+        Size=Default, Style=Default, Type=Square: m2T+7ngI20cKnlmPk9uuJxo2u4owulFlBF4hBVUNBlA=
         Size=Default, Style=Fill, Type=Circle: 1nyUcJB0Lu2c6BBtYpmsavqw5MT2WyxYtTa8FvQLVbc=
         Size=Default, Style=Fill, Type=Square: 877vtpweky8bY8MhiMSxzhX0RE6nttBwQI8jw0gerX0=
     Icon/Chevron:
         Size=12, Direction=Down, Style=Default: RabocXmGM9Xfhg0/hp8L8je+rKgYLJsZc5kxBUgp74M=
-        Size=12, Direction=Down, Style=Fill: rjv26wM7v2PwAu3AenXOQtZeswBH5anHvN1dGzrKkzw=
+        Size=12, Direction=Down, Style=Fill: BjqZulkLO6vk69f8CUyuMhCI2xVHPp500A70itG4hew=
         Size=12, Direction=DownUp, Style=Default: 8cRyr5X5EjnwE7mo0io2XCEmW/5mcyyXLZcFG03EjQU=
         Size=12, Direction=DownUp, Style=Fill: ruF0Ifd69nAmfzljOysWPycoYrHgBXsM/Ew9CI7El8I=
         Size=12, Direction=Left, Style=Default: f7nrrWN3k3uELH+DxVGeCuGm8ASp5T0v6jiktKsEEYw=
@@ -141,11 +167,11 @@ definitions:
         Size=12, Direction=Right, Style=Default: EwvjN1oS+hpX3lUClLudsVMPmEQtyAcABy1zDKc+bzk=
         Size=12, Direction=Right, Style=Fill: DzEY99Udx4a+uxvusVzyVggFHXJl10HSv3L5pLDcrEI=
         Size=12, Direction=Up, Style=Default: 5G8Sd8pitg7IaMxRXONormhlpPhC/rcVN2EfCiIh88k=
-        Size=12, Direction=Up, Style=Fill: PCaVCTpWtJY0jy1fphUNRSxXlEBy5GSIo/ZCxFMaMqM=
+        Size=12, Direction=Up, Style=Fill: 1ZZCt0H6PdpLVn+c6G/WOHLgaZy6nebo32dQL4r/w2Q=
         Size=12, Direction=UpDown, Style=Default: XxxCnJY65CmJwG+KmRUgr5ZF17aepm5dRro3l2INWNY=
         Size=12, Direction=UpDown, Style=Fill: +3hvyxSv9MVx44DWJjEg8QnZ+DJfI+GgMePfvX4999I=
         Size=16, Direction=Down, Style=Default: +yYPou40tzVWlGUdXEo3PJQsRPuvYSlf6bYyhgzBP+U=
-        Size=16, Direction=Down, Style=Fill: XrvPXstiYx3NvwMT9K9pvm+rg9RRI+GMLCgbbr/rjbg=
+        Size=16, Direction=Down, Style=Fill: 13nQnuz+zw9IreyVgv0VSW676++XezOaE+LiCE4xsOo=
         Size=16, Direction=DownUp, Style=Default: K3HNUtOeLxg+snRkdF0L6rjGmwGQwKsx5mewmljqhpE=
         Size=16, Direction=DownUp, Style=Fill: Q0tQpeN2ZBXZyWi4kcyH3+Ot92Virn8Y27oG2ixyFwM=
         Size=16, Direction=Left, Style=Default: aSzBTj5Ghi1KVwbk+VjH+5+5yH+VHHnt7UTE/M2or8Q=
@@ -153,13 +179,13 @@ definitions:
         Size=16, Direction=Right, Style=Default: flGPYux+ywMNVO9z+quPZ7hHiW6BAWlDTjRRv3Z0bNw=
         Size=16, Direction=Right, Style=Fill: lop+O9do4Uy3vl7rHG3mEfmIg227U9D8CQjX/gAcx2A=
         Size=16, Direction=Up, Style=Default: BCNElogPtXjbYQuBf5jMoYfTw60hN/EParifCIbr2bc=
-        Size=16, Direction=Up, Style=Fill: 6uNp0Kg6B76DWPsIQnVszzHCc1t2uMfa5Ge023kfHGA=
+        Size=16, Direction=Up, Style=Fill: jZAZt9bSs6KO1JS2t+7HSdvHVyoEJykaf7Gqod0NaDY=
         Size=16, Direction=UpDown, Style=Default: SH7JnzCdmJVKf4a2hG+mnrFn2ttXPF5KC0rz/8ucZy8=
         Size=16, Direction=UpDown, Style=Fill: lyPP71/mG82bccLoJeN+l0/dlhO+n54EaAWdC8yubCY=
-        Size=Default, Direction=Down, Style=Default: vOo/04uhoQ7pysbD6KnSLveEWv0HFzROdfC1EdeU6xI=
-        Size=Default, Direction=Left, Style=Default: UOTbOJYWqwSsRzU0mSh3XMlwvBN9RZ1ITwmoHFQxjzY=
-        Size=Default, Direction=Right, Style=Default: VPyN8cFpZAS5bh4DavC60v3bVt7Ns5nBTNGb25CEyn8=
-        Size=Default, Direction=Up, Style=Default: AFVsyLK7E3yrsYXmAi+3DUaZyBC2SNCFNXn+l3rn0dY=
+        Size=Default, Direction=Down, Style=Default: gLRrvexuqliT39r2NLzZHszddvzLBKOljfP3SF7U19Q=
+        Size=Default, Direction=Left, Style=Default: 05Qi9COYo/Orgf19v2VL66Gqh9guoTPTwlRmz5auUGU=
+        Size=Default, Direction=Right, Style=Default: F9ZUvKXXjaPtQUuC93xB1RJDXmj3KPLuhHNIr9lx17g=
+        Size=Default, Direction=Up, Style=Default: J8c84APx82LvpzlbVnhWn+OQVxczOamsn1O+pOJRXTo=
     Icon/Code:
         Size=Default, Style=Default: 1XmeHXiKvuu3AbYl1btUvwzo7HSC0v1o6JFs4ZPuljo=
     Icon/Community:
@@ -179,7 +205,7 @@ definitions:
         Size=Default, Style=Default, Stack=True: 7FPgCYn6A4icX9yJm7nWZakYZeWN/L5ScyMdmpjILQU=
         Size=Default, Style=Duotone, Stack=False: t/1cm12dw8wwMX4AZPxQqEhw13c7D/f4N91XOLklNxA=
         Size=Default, Style=Fill, Stack=False: Zvwewdc4TXXSK3/69a0aH4rr4T1/g4c7+A81BIDOIhA=
-        Size=Default, Style=Fill, Stack=True: /TWNFFFhC5b0Zz1sITZt3PYTY3pEj1EewUdKB7DL4qo=
+        Size=Default, Style=Fill, Stack=True: 4zxoyTg0+kaGNF1bR6L+v9va1DXMAW6bgqk19UNE0iw=
     Icon/Company:
         Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
         Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
@@ -198,26 +224,30 @@ definitions:
         Size=Default, Style=Fill: qajsswMYq+UQyHRlL+BRniS9ZU2aJlNLIINvzchOQnc=
     Icon/Compose:
         Size=Default, Type=Comment, Style=Default: v+hn0VgN7w9voM9GxncOo4Hz9mNN4uAP5EomoDhFHQo=
-        Size=Default, Type=Comment, Style=Fill: bCNVcWWH6x0rMwxBJIFBVR1lexhWjREg0nysVKPNI3M=
+        Size=Default, Type=Comment, Style=Fill: rbySHZp6x9Low7ao74kLIZrHT7VLccyApFFvnreWPmg=
         Size=Default, Type=Default, Style=Default: H6fW1BFIZVYFzEzH1is8zcALE1rKu6Wk9VY/XP0CyRI=
-        Size=Default, Type=Default, Style=Fill: mjk7NFbiHH4CxzdfvF9JFRGrb/Zj+VmwviFVaHrd7ek=
+        Size=Default, Type=Default, Style=Fill: Wg1DAwoJcMXE5o+cEka32bzVoa5+6L94HW+X57pONp4=
         Size=Default, Type=Document, Style=Default: sk/xrqTDrlJ2GDhyTkhr9zwGrUx8Qy+34avd5ZmzN4M=
         Size=Default, Type=Document, Style=Fill: PePerxUbzXPUhbV/6ausT0lCBALH9MLscuu3s50ohRo=
     Icon/Cross:
         Size=16, Style=Default, Type=Circle: VbZs22UpaBxoIef/wHe3YCzy3ZMW6SQRnjSy3jiTix4=
         Size=16, Style=Default, Type=Default: wk431wS6uFsyEmGpzEDWZwRGvsDCIC9+PiqhbvAZ2OU=
+        Size=16, Style=Default, Type=Square: FBcgkdTMvOwvMzfxjehvPSuYVZt3VLxEDvYCKPkPYd4=
         Size=16, Style=Fill, Type=Circle: +PSs/C8ZNrCIr3T1FHr2S8eW7thg4KhgnE8Qd9TqMbM=
         Size=16, Style=Fill, Type=Square: GpaztXDkRaKMvIgvHoN9gOfFjdaQYgsrwLahfy8MwQQ=
         Size=24, Style=Default, Type=Circle: yek4yXcOUdlZX9LBXf9Jvmr/6nuSAqiP9lnrdBYbaO4=
         Size=24, Style=Default, Type=Default: cqG7Y0zvPN5CLj3pKThhB6fW//6+5m2M+gggDrSJuyE=
+        Size=24, Style=Default, Type=Square: 1V2CKCjcR7z49PKTCjCYfARTkM3EjTWcZsa2n5qhcZY=
         Size=24, Style=Fill, Type=Circle: w8qfCgY7S9/xTN4mgYH34E6ZPeOuq3bbxD9XEpP3urc=
         Size=24, Style=Fill, Type=Square: DrzR56bOStm0XWFUGWs2uu98f8CbHJZRlHGnDepYAI8=
         Size=32, Style=Default, Type=Circle: EDbyhIss2RLL4mJAoNnsUNwPpT1zKVbWx5k2FXfe31g=
         Size=32, Style=Default, Type=Default: 2q5JR7Z7EF3p079RohaG7wyzUWWTf2s7KBBuunUxVng=
+        Size=32, Style=Default, Type=Square: 9dEWZPnEjMErgauDPsqnzcZIzwbItpMwQayrYhj0qCM=
         Size=32, Style=Fill, Type=Circle: webNjmoritEisW55Fv6x1kZ/DVVXeIx8S3Deqrj0X5k=
         Size=32, Style=Fill, Type=Square: Mrz0Clgq/Ela62uZfCPzhUYZlTcUG5kYdJLmb9TNrUY=
         Size=Default, Style=Default, Type=Circle: sENPx+Xqy/5w4MdBRmCfcI7OVAtyEw5XlQ9xUb+7Lyc=
         Size=Default, Style=Default, Type=Default: hQOCKCrKuQ8h/7glM/v6jHGnMtDlaZr1HEdCH+b0qI4=
+        Size=Default, Style=Default, Type=Square: Z3jaeAMunyiyJfV6EHY+o0GrTOnw8rJU8SZSVisadNE=
         Size=Default, Style=Fill, Type=Circle: 3L18yI958enkQWn3jz4OqRj6gxUWf6pbyosupD+f4Qs=
         Size=Default, Style=Fill, Type=Square: I1HRtKS3YhVnSzFW8w9Q5/rKrRHeUdmoicz40N6HkCk=
     Icon/Dashboard:
@@ -237,12 +267,12 @@ definitions:
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: /HraoUCCAsKcqxDnmTDB2Ojjg2uZtPsD6RwXaLxNA6Q=
     Icon/Document:
-        Size=16, Stack=False, Style=Default: 5RLT0+0UcPY0II495P8oT1p6TJcyUk8sDKpaivbBQpY=
+        Size=16, Stack=False, Style=Default: +wC/v0spHmPshbiP3+7OZ7JGHjzrDO+k/mRTVD3kKIg=
         Size=16, Stack=False, Style=Duotone: 7y8ZNtsKi1UnnS38uey7VE1xeRtDhwk/sqLiQKrwzqg=
-        Size=16, Stack=False, Style=Fill: L9rUOkuweFHywRylV0+7U2kSmluTwibuCKWPmM3k1ck=
-        Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
+        Size=16, Stack=False, Style=Fill: tpBpPpgNudPolLkNSBh0xLDgghJGPlXsvue1DcCC+IM=
+        Size=16, Stack=True, Style=Default: GXrvdvEtNz+xu2h2BL0lXUr1qmEkQ6Izd1dQ+XTPGbE=
         Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
-        Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
+        Size=16, Stack=True, Style=Fill: ddEMe6kVTZZWrAyO9P04P+Iw5g9CcgLbD6EOfw3d6xQ=
         Size=24, Stack=False, Style=Default: 1dzgBcPFTCwRlnPEnBwpkr90jFM3RRloeUZjC4DGV5c=
         Size=24, Stack=False, Style=Duotone: qFbyrZyDaxdeeEic6m4kynsk0Q6Rr8BAykq4VuNCkUM=
         Size=24, Stack=False, Style=Fill: nIcsfH2MXtXmzL1NyoWIEGr+twG5KbLCnLBCC3sreZI=
@@ -263,17 +293,20 @@ definitions:
         Size=64, Stack=True, Style=Fill: 4xwFR0FAz2lwwcZy2ScXWffJnJ4HT7hTXU8QuFy2TYY=
         Size=Default, Stack=False, Style=Default: 09kYXsa20f892QnkCdsnMGmAwg2vguNKdZRk7M312sE=
         Size=Default, Stack=False, Style=Duotone: 2XQ3yk4uKbpetMvLGLTd9abTtKz4H7rvBxamJloSmWw=
-        Size=Default, Stack=False, Style=Fill: FF8AqdKVvpYGi1sdA1VIEH9H813yN8HsubxJwvnIUsw=
+        Size=Default, Stack=False, Style=Fill: aMxE+lm83UtRVXVVwRe+czT1Ws4KH08O/T8sz/xSV/o=
         Size=Default, Stack=True, Style=Default: PQkNDNFyGf33LCzul0bz/vhHYdKEtcvkHAHVDiEl1Ug=
         Size=Default, Stack=True, Style=Duotone: +Nb2QJM5+pms/xAfsgIth5892zNiXBubwvuXrtOPnLQ=
         Size=Default, Stack=True, Style=Fill: OKYc1AEkcvjJ6zNvHa0iz4YGaeq9mNFATCVwJtr+haY=
     Icon/Eye:
-        Size=16, Style=Default, Off=False: QfCDFoZYSjjfW6rUarC2WwQp85QMRi8z/OSn46YT8qg=
+        Size=16, Style=Default, Off=False: J8vU07yRWsC4SQhDpEH3pYxVWbZOGMI5cXL+tq9faR0=
+        Size=16, Style=Default, Off=True: fcN281ixCYvy/jSnqQozNamxdaDzDlPMqwt5jki8goE=
+        Size=16, Style=Fill, Off=False: dLaFtWM1wRAtsTLZSEy1pwrzNTeD2Ntb/WC+cKjCEG8=
+        Size=16, Style=Fill, Off=True: 9aiwJDGvbsJjaY0nSGB9IxynMCTLIrSxR4gABQt8S4o=
         Size=24, Style=Default, Off=False: M23D4NoinNOqVrRzcpGcMidPod8+o6Y6gc++WXPqhr4=
         Size=32, Style=Default, Off=False: MnTnfbgR7iRceZGr4E4ysO5Ol3te9eDzXt7hLXI1hzM=
         Size=64, Style=Default, Off=False: d5wrDjESIhPFY9GNGGmgJ2qTEW+OmnJ4UvTnOeFPXRA=
         Size=Default, Style=Default, Off=False: qY0+lrXVB9/fM3UmttGXXwqYZvayq+kzCFHdo910yHc=
-        Size=Default, Style=Default, Off=True: cn7E6HJ4qywutjPS8OA79D0cfGkziC1Q96O2iAoWIWw=
+        Size=Default, Style=Default, Off=True: LxcjfHKOiI9e42JNO3UHM8LJwgfx06UUFGVIMRO3LeE=
     Icon/Flag:
         Size=16, Off=False, Style=Default: olCJTFjoWtoe7h6KXttn7gkXQHH92YeSqHSVzpyrih4=
         Size=16, Off=False, Style=Duotone: B/lm3YMl1lAXizYG0SLoEPQics7xx28EqGXYaW1Xwwc=
@@ -296,29 +329,31 @@ definitions:
         Size=16, Style=Default, Type=False: Zeyjgosn79knhEEe0DVR4KPyuAC7Djjgf2aPUgLwTdA=
         Size=16, Style=Default, Type=Square: 6rBUNCXn+yAXpr0BsGMBe4SI/yo8zMVQS00bx9kp25Y=
         Size=24, Style=Default, Type=False: 1d4BMS6u4txOHTAoHMve1aXEkOAOsH+0+sgWL/3/T/M=
-        Size=24, Style=Default, Type=Square: bh3Ie1OXe0kQ6cIkmJC5KrMXO8LzFXX13xbcR5tvur4=
-        Size=32, Style=Default, Type=False: uaXL2NMfXzc2KrrX7niWXo9V+Yyx5ofjpHxZgLX/nXU=
+        Size=24, Style=Default, Type=Square: UvmOQRkt62zEAUMljcRxUd1j/ecRA+AsoMAIEUWU9qQ=
+        Size=32, Style=Default, Type=False: smcrx2oSbuuMbCXQ8dndzzHKgLd8fupN8/+H/EjXa20=
         Size=32, Style=Default, Type=Square: y/bql6fRlt7IN1g6mTbqD2ZU14YpMfKDx/82oczp02w=
-        Size=64, Style=Default, Type=False: 0srYWu11Qi221jg3WPP8hZ0N4m2P6AE5PxGXdutyRUE=
-        Size=64, Style=Default, Type=Square: jhHYncPl0BJR41DqegPGmLrd1+f/kjoTs5HGnJcsdaM=
+        Size=64, Style=Default, Type=False: Tq06w75acsbrbpJEIvvrpmpX5Ex0jJAsnE5d8itcd2A=
+        Size=64, Style=Default, Type=Square: ZaQbo/cIwbTT7MvEhSPSNE1sBjy8nWMQKyH5woWyNdU=
         Size=Default, Style=Default, Type=False: Sgr2TDk27wIVpn5DyBdJIbYMCQEYH0fozra6rO17VlQ=
-        Size=Default, Style=Default, Type=Square: BXwK4amhDSVV232HePzKWNGLwOQnNzodQV8OlqM0IwE=
+        Size=Default, Style=Default, Type=Square: Tm5pPqPo1MQ9NSquhfX682C0nn2NhdGRich9jT1gRfQ=
     Icon/Help:
         Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
         Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
-        Size=16, Style=Fill: YrMgLJBwRQtx9LRK9hBrzojBz8Ym76QXYpnsqqbrf/8=
+        Size=16, Style=Fill: 3qJe9agW4jSWHw2iqg5dqdoc18zQTHAFKUjTEpaOcf4=
         Size=24, Style=Default: 9/sTxm8sDr8E4KOa+GcST+UxMJ7tvgrBtU1iCsJ2LBE=
         Size=24, Style=Duotone: aq7Qf8k3l66a7lMPd1aV1dcqnIuZDuH8aNS/GE1O688=
         Size=24, Style=Fill: zDl5XfbaS8pcvQdlc/7zR7WtYrai4rd+uLfvLVrTapc=
-        Size=32, Style=Default: yUqThFUpMny+pATUeB2gxPRtkihRPk43154NXVjs+Ww=
+        Size=32, Style=Default: 5cfvlhh0tAR2DP+pkqlyHaIcJeg1zvZABhOkB+Cr8dk=
         Size=32, Style=Duotone: OvPp0bLjhB0fWNk1INTCX6K3zke4ivubq5fL7Zo8zkQ=
         Size=32, Style=Fill: 0EYz6zB+Gh4M7En2fnDa5RNuYyFhXVWQEGpkUVa0O7c=
         Size=64, Style=Default: wGezg4nhlc7Fn6hsGA94tb2EukonEbJcOBrwRqOeCwg=
         Size=64, Style=Duotone: 91rLqTSOHDX0Vie6N+AYnLbsEF+S6zj5qRR45gKbJWo=
         Size=64, Style=Fill: 9D+mlw0zwv2nSNRahUj1TM5d+Rxz1v+yiDTaXfcZf90=
+        Size=Default, Style=16: yfHAxD3Od1ZcKzir5SZioGngdpIpZNVr+r1V1vpJHr4=
         Size=Default, Style=Default: C1W/A3QEJPYp0vxIH3dZnfXszXicB3LX4gwUVQ25yR4=
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: mhgaCOtNoPFcEXa24Cq+ckD7NZMari1Qq6scT+bkX6o=
+        Size=Default, Style=k: /NNdSO1QcHMHJC0Ugr7U8Cg8lj/STTK5FPAGQj0CbHA=
     Icon/Home:
         Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
         Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
@@ -364,6 +399,7 @@ definitions:
         Size=64, Style=Default: wGezg4nhlc7Fn6hsGA94tb2EukonEbJcOBrwRqOeCwg=
         Size=64, Style=Duotone: 91rLqTSOHDX0Vie6N+AYnLbsEF+S6zj5qRR45gKbJWo=
         Size=64, Style=Fill: 9D+mlw0zwv2nSNRahUj1TM5d+Rxz1v+yiDTaXfcZf90=
+        Size=Default, Style=32: uld8mWZhBJC2GIKh3+a8aXNSEf54zpGGDCEvVO08420=
         Size=Default, Style=Default: FzhzUR/W3LIkJgc0gLbVYacJYNt0wfj9MZVrAqRf1D8=
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: g9VC7Ymo9bqeRhNFn3s7bdiVo5n0rnpqOgW43dneLqI=
@@ -396,8 +432,8 @@ definitions:
         Size=Default, Open=False, Style=Default: zBm1tpUENS/x+rk/RCEIaNGroweTxhmpgOC4lZW7C+o=
         Size=Default, Open=False, Style=Duotone: n7ZupWmr1ym8ued+coteRHMEeRPWZGoYPJ6AHuXzXl0=
         Size=Default, Open=False, Style=Fill: akFjLoOzles092uFcLkllqWf+gtCRHn69JNNqfNbJpI=
-        Size=Default, Open=True, Style=Default: y55wiotDuj/2stMFE3vsnfP/q/TWAZvHSVrYsXWUXCE=
-        Size=Default, Open=True, Style=Fill: 9QCaJxfLD6w6QZrjW1bKRnneQwVbzZGaimz++7EiqRc=
+        Size=Default, Open=True, Style=Default: qNS8MdkrAqqkgLT0Pv0/3nkaY56x8Mh2aHUaidFfPZI=
+        Size=Default, Open=True, Style=Fill: dc8KEVdeFwEl9ax0EYVE7JLkIM687qc8ZoGC3Ew2GBI=
     Icon/Meta:
         Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
         Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
@@ -415,14 +451,17 @@ definitions:
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: yKIMbSNT3ZesXNhueuRZgtG6jWhYQEaN26b8a4usVnY=
     Icon/Mod:
-        Size=Default, Type=Dashboard, Stack=False, Style=Default: 6EE3OxOlq6q7JtT+Z4+XdDbjCEQ7q/vmFZ9ZOAbsj7I=
-        Size=Default, Type=Dashboard, Stack=False, Style=Fill: n4VD6081e58k6RfM/FQyV+gSFXsTjLo4hwIb/5T4AFA=
-        Size=Default, Type=Default, Stack=False, Style=Default: 5VAsyyGwtMzwIxZupaGyZH0rSaz15T0MPJeI877bHSc=
-        Size=Default, Type=Default, Stack=False, Style=Fill: 4Kcr1VQphkJq1unibYbE/3uL/YhStBZsX8oOpc9r/f4=
-        Size=Default, Type=Default, Stack=True, Style=Default: CC0KUBmXpgUMXX0noJaAjTvkBbfGRkWO3GWFV48ZbVI=
+        Size=Default, Type=Dashboard, Stack=False, Style=Default: sKgcJGufOXC8knHMefFvLOFF081ou8wT685i6L1lw/4=
+        Size=Default, Type=Dashboard, Stack=False, Style=Fill: ImStVBlK9XZ+etccQqqmZX1/Ipy07FGkQYyWkq3Lxpk=
+        Size=Default, Type=Default, Stack=False, Style=Default: rr46Fj494QQW3MYjnrRgUWjUOTRNPFeb8TyfsRVC0LU=
+        Size=Default, Type=Default, Stack=False, Style=Fill: oQmmtS+hmUrb2tGH2k1bJGF9RJsY9wl7R+hHJkXiQU0=
+        Size=Default, Type=Default, Stack=True, Style=Default: sRtuU3NrTd+GwZYDajriS8sC9x/D9U6THRSzbsfCrrY=
         Size=Default, Type=Default, Stack=True, Style=Fill: VSR/AfVFli1vZx/LrhrHcL1RTsZ/8FZCaRQu6FINV0w=
         Size=Default, Type=Messages, Stack=True, Style=Default: CeIK7uGQB0OGIEiKkn81GO/t4loGuOcAMlCm51H98xc=
         Size=Default, Type=Messages, Stack=True, Style=Fill: cURHERkz4ryCnN8H9FhIOAsSdrpJ1qYV8W+Uzjk7pQs=
+    Icon/No:
+        Size=16, Style=Default: 6XePe9UdcqqQ96XCBKJqcBjtXdtJ0KQtq4XreAuzYPU=
+        Size=Default, Style=Default: hTMhMmhgLOjigp7zAizyp8cLk1NMZlk99AHfsdXmpPs=
     Icon/Notification:
         Size=16, Off=False, Style=Default: olCJTFjoWtoe7h6KXttn7gkXQHH92YeSqHSVzpyrih4=
         Size=16, Off=False, Style=Duotone: B/lm3YMl1lAXizYG0SLoEPQics7xx28EqGXYaW1Xwwc=
@@ -441,6 +480,31 @@ definitions:
         Size=Default, Off=False, Style=Fill: /6Um4ysW2fP1A6TR0U20zxUVR/02iqZZuSmPU49ykaU=
         Size=Default, Off=True, Style=Default: 2XEQugUUqyIc8+6RbK2S3h/gsBItRt+MiBXBQHyc+gE=
         Size=Default, Off=True, Style=Fill: wfm99203sJA75RR8LUCT1M/SYj/SD748Wh0saqgW6bo=
+    Icon/Pin:
+        Size=16, Style=Default, Off=False: JkS2BqomkaNF5zXAomgrWI/qxMUrTnIwM52+0YBcJNo=
+        Size=16, Style=Default, Off=True: v2hLhArC7kHlhruoqA024VZU0q2EvlXqRUPJ+tzxUiE=
+        Size=16, Style=Fill, Off=False: bvFRLO1epq3Yp5TDfNwggSrZTIwb8cH0steVRggKAxU=
+        Size=16, Style=Fill, Off=True: Bp43fvrTjU1kB/Nd+4JbulE4BNhe0oPcRcA7DuDVoeA=
+        Size=Default, Style=Default, Off=False: 0enbn7iRr3KjvRr9zZ1dccJhdFiRhvjPDiaY1nTiCto=
+        Size=Default, Style=Default, Off=True: 6tS32xEKMrgbMd3uV2/de4MXoDUONyd+6PnfI/DImO8=
+        Size=Default, Style=Fill, Off=False: P7T4Vm893P9J2vNiZ3Pd8m0zbDIF/2IgjGKP2af5S6Y=
+        Size=Default, Style=Fill, Off=True: oC9rplc2Y8kmvusK6In/V4mB1CLHzRoVxBIaYxw0L4A=
+    Icon/Placeholder:
+        Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
+        Size=16, Style=Duotone: UMxTpSSSkaBG2DuP2/9VCMiB63mz3L0+ZM+J7L/mrHU=
+        Size=16, Style=Fill: YrMgLJBwRQtx9LRK9hBrzojBz8Ym76QXYpnsqqbrf/8=
+        Size=24, Style=Default: xJXLHyeQIKCkJvoA5Gz7nQy4yGZVr6JKEZhHtzSU6qU=
+        Size=24, Style=Duotone: Om27YA5s+fFriYzy/jRfXbaAUg6x7lN2ENzLjMLWbyY=
+        Size=24, Style=Fill: cCLQe8btqep42nN+X3d13kJfVcbWzvAB4S6HSpAQXlo=
+        Size=32, Style=Default: yUqThFUpMny+pATUeB2gxPRtkihRPk43154NXVjs+Ww=
+        Size=32, Style=Duotone: OvPp0bLjhB0fWNk1INTCX6K3zke4ivubq5fL7Zo8zkQ=
+        Size=32, Style=Fill: l7cEn3RKS22z+N8eF/iCJWRfFS2loNHbXvG1H4DzgMo=
+        Size=64, Style=Default: wGezg4nhlc7Fn6hsGA94tb2EukonEbJcOBrwRqOeCwg=
+        Size=64, Style=Duotone: 91rLqTSOHDX0Vie6N+AYnLbsEF+S6zj5qRR45gKbJWo=
+        Size=64, Style=Fill: 9D+mlw0zwv2nSNRahUj1TM5d+Rxz1v+yiDTaXfcZf90=
+        Size=Default, Style=Default: mgcwoLNkWLMVKLOQKMHKnEUHRNY1ahX3SOSdTvxLp/k=
+        Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
+        Size=Default, Style=Fill: 2agLv8zhk5VSTQ8TnRGe63x6zpdSz9q6Atzs7aPYNJo=
     Icon/Plus:
         Size=Default, Style=Default: C/9mYtXGb4JIYw8XV40JJ0tOI1YVA+q2IOE5vLFSKi0=
     Icon/QandA:
@@ -466,11 +530,11 @@ definitions:
         Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
         Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
         Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
-        Size=24, Stack=False, Style=Default: iSD5M8QPEtkjYHLQqTgAni0unM/a9ZVRB2+Vx9liitk=
-        Size=24, Stack=False, Style=Duotone: ixb97ASRnuLg12UOkQgzIhuJLGL96OQAu/JImW64BcE=
+        Size=24, Stack=False, Style=Default: ZXKxiLb0R/0470fPXPyQPrLrJfnEyu8qQpIaF4ZfefE=
+        Size=24, Stack=False, Style=Duotone: GaT3tMA9UKF298dgjR7TCcloHBWYhnDFdxBmGGRFKUg=
         Size=24, Stack=False, Style=Fill: fmYnG572rGbRfxEidKtD7gJWObbDAH2kll3xYSf1ohM=
         Size=24, Stack=True, Style=Default: XxskWGNQAPx166nzJklDBNOmjxmtBHLAaBLu6h/UTzo=
-        Size=24, Stack=True, Style=Duotone: 9NEAzrw8I4RbzrwQ7AQtLTqfK802Hx1v/b/d7mrb8fs=
+        Size=24, Stack=True, Style=Duotone: n6iPL/5BZB8xSTJmLps/+haJWpGf5g8SI68haw4M9c8=
         Size=24, Stack=True, Style=Fill: 4wkOQJZ6Vz6L4f4MHO3F/GUPP4AADq3TH75UrlV/Aps=
         Size=32, Stack=False, Style=Default: g6HvWripsnLRR8VbCAKcEnoFjxJleMaYkSZiQcxdSp4=
         Size=32, Stack=False, Style=Duotone: TeO7F6DT9Evp3VCRi46N6E98d4Axwb126Cef/uaiuBk=
@@ -484,11 +548,11 @@ definitions:
         Size=64, Stack=True, Style=Default: PBsqvlTA+xBvkIHLdSlrpyE7bQSldDrfz4jjydzMP58=
         Size=64, Stack=True, Style=Duotone: QsoBAIY3bnS+RWj+s30gvZjj+D0HmNwgNjZZHEodAtc=
         Size=64, Stack=True, Style=Fill: i150xoEMCTAj3KftwDzmKi5UmHStonxHqgIclyrHe4U=
-        Size=Default, Stack=False, Style=Default: MjbY3xdopbvv6Eyb28Z224owkah8BGF2LnYfu+/NfR4=
-        Size=Default, Stack=False, Style=Duotone: qSqlqoHOoFknpmF6BJkWg5Zy3YOOVUI0y8QwCzqIo2w=
+        Size=Default, Stack=False, Style=Default: bMNGk29pwOxnIUQmwMdqWCj2EVY99K+HqZ7HH82kkZo=
+        Size=Default, Stack=False, Style=Duotone: Z2UMrm+2BAF36U996+IX9zy0zR5yGL95HxdDmNa6wRU=
         Size=Default, Stack=False, Style=Fill: RiYQ/I7KQuzaVKHOHp4Xhpki1llssOP4iNPJegE9efg=
         Size=Default, Stack=True, Style=Default: mbmuRkNqjEEumr0X0ju3h2P9j48AScFuDUMFFFH+tx8=
-        Size=Default, Stack=True, Style=Duotone: NFXVDY9uLxbMsgac/js6gz33BeXVCsdnhDNysJsiDrc=
+        Size=Default, Stack=True, Style=Duotone: 1o2hcJWk67JICCNyZHVlHqU0i0OGgkRI2ygkFpltT7w=
         Size=Default, Stack=True, Style=Fill: rsEy+yUNywPSLVQ6jkuAxRAlfvt7saii9HLIaiasHX8=
     Icon/Receipt:
         Size=Default, Style=Default: urnt/UyLXIuqL4Af6oyL537QjkaIN77F9kiZmxC0p8U=
@@ -510,9 +574,9 @@ definitions:
         Size=Default, Style=Fill: W/mBt/TPzeAITvXJ+gMm5AGTcgI+1Z4ARpEIQBsJVTw=
     Icon/Service:
         Service=Backstage, Size=32: mkW/eKavM19gQVIvJCV4NSH2esVs9a+LUZczVeG161E=
-        Service=Backstage, Size=64: sQod+n5Pe63j7hgYJonzal0VAU3q8t7yEflfFiaS8cw=
+        Service=Backstage, Size=64: E4p/TlDGb7pSMxP2HQJBcfFBWEoN3nfQPcqIfvVlC0Y=
         Service=Backstage, Size=Default: ivNEsoTJo1kOqr0JJsVC89+O3giC+h7787+2yST/ysY=
-        Service=CCPA, Size=Default: syEmnFR8+pPQN6yWTjIX5CX/l5ORumHxjqUcdoOLIPk=
+        Service=CCPA, Size=Default: Cdi32S+aZsgU2cvGYlcfmjm4xf5diE3b80kVToifW28=
         Service=Confluence, Size=32: YhjFScGXWnh+45v6zh2M7GJoTxJ1IG8pJ21f/wxgQA0=
         Service=Confluence, Size=64: 271pYhh2vXH9E1+6eGMTb+zGPQx5ycAtSbpTIIubMCg=
         Service=Confluence, Size=Default: ANZstCim6EwkxnV5s0MG2iyxr8oM3oa+/Ot2MfM3zKk=
@@ -538,9 +602,9 @@ definitions:
         Service=Microsoft, Size=32: KnbM0ZUACdNK0DNqFs0/xnhKPpIXQdHP3xI0g3uckE4=
         Service=Microsoft, Size=64: 6JsP5Pt6jMeCkVxeYiRyW9y+NzDTU/7YppBJTge4pVU=
         Service=Microsoft, Size=Default: BBA+l8CXShNkNMQsHotCf6kntMiD4mcuy5yltR73HYU=
-        Service=MicrosoftTeams, Size=32: soazsqNNJRleRbJauZwTkwgrlrD3OdedMVUNQSluaZw=
-        Service=MicrosoftTeams, Size=64: 0OgBVGaSjvyINstmHEnu1TFNWUskIC/wco7v6qY23qI=
-        Service=MicrosoftTeams, Size=Default: 7QlexjBfsVP0fEJDAUcE9Q9xXBy+SoP7uaEMphiblew=
+        Service=MicrosoftTeams, Size=32: 8gFyqA1fDWJgCEh5R/wrzpHkNS2e3i2Y7ZNfkQnMGPk=
+        Service=MicrosoftTeams, Size=64: evKhLhLPpfpcd9YJMoB0pud/3PSwRgxFbtqqH17tYHg=
+        Service=MicrosoftTeams, Size=Default: BZJ3wHN4i7ZdD3Fwa+oD6toXin4sfKpe9VQonsux2AQ=
         Service=Moveworks, Size=32: 9KhPSqJXm1Y7Im9Mm7sdzw6rqxfvXBrCZx92OHekbLk=
         Service=Moveworks, Size=64: 2JTOrXqoifbDUjoFvcij7pnAbZ+KyIGqbALSMoXx6IY=
         Service=Moveworks, Size=Default: NrVFqcVppGorXf9Z7YbMRapj/dODmDtLSvLus1NTDR8=
@@ -550,17 +614,17 @@ definitions:
         Service=SCIM, Size=32: FX7ckcH7zSmsIzPflCTcGk6ScJI9gXvDdQk5lDtHuWY=
         Service=SCIM, Size=64: PBn8M/TFJp6jzMVeFJ+KY1c3tBpP1aQFbliGN20CACg=
         Service=SCIM, Size=Default: 2ywDeMTBeJ1yR09vLrvWYskcmtg26/FywmFSbjROLn8=
-        Service=Slack, Size=32: qscs4X7W0cP8vjr2FxQtSpduBFob/9TEBv/ZO8xG16s=
-        Service=Slack, Size=64: lu1YodTDiFXTMuKAEdxi+jKI/ETbsV4DREQe9gOPWwA=
+        Service=Slack, Size=32: yFeDyUJ2Jg1uuZF1xgVK2f3t76Rj/TBKYoo0n+gnp6I=
+        Service=Slack, Size=64: Qo5+9fwrGEGiF+QuiqCLvR8a70ELTtiUl3eMZL74/ew=
         Service=Slack, Size=Default: eLTHbiynQs2GbaM7YrLupLGAa278mM6jjgVcHeV2d1A=
-        Service=Threads, Size=Default: HaR59eGP8JI1Vz/OyjnvyiiH8aHe1SYaO7OMm5K24SY=
+        Service=Threads, Size=Default: 4Gh/zVtmIf+8DAlUF5RboJdVKrbeEe+fY0tficz2b8o=
         Service=VisualStudioCode, Size=32: CXT/8+8jE76QIXDXD2k9g/VFypGpfOhM4vGXMzBQ4C4=
         Service=VisualStudioCode, Size=64: oY/G3HacthgfsrcMoz7b19gx/c9RkyophcP7gFANeEc=
         Service=VisualStudioCode, Size=Default: EettivL7Kk1iTHwpDAN+mSOF1NzlLSCVj9Hc2bIt04A=
-        Service=Webhooks, Size=32: 8d33wrz/ouRG71GjrHOZg5PXVi7KQ+BSCW7Za4yqPB0=
+        Service=Webhooks, Size=32: MnvUdhyT8esuICS812fFf3RyFqz0uaKdVj7LHp8T3f0=
         Service=Webhooks, Size=64: tOIgUVkBxUpe5vWGuPN2tKhkB2oBNPJDgxFhNvD7d0w=
         Service=Webhooks, Size=Default: Ja1Qdg5wIu28kle7s1/mwmhO8yG6+qouk7yZ1gQfJ/E=
-        Service=X, Size=Default: IQHDB4eTZ9sPoaOl8sqE6E1oPojV1Fwspca3rcwpahc=
+        Service=X, Size=Default: QBGGuN5kXw+OyiTXe+zBZLLEIJzOvioqoYqhChRNR4w=
         Service=YouTube, Size=Default: 6C/7gaxTE8HJ3GGODq5XUK1rfHwl/w5iJbZsSn5lJtI=
     Icon/Settings:
         Size=16, Style=Default: e0fsZ2ifaiTKcrx+LiRDcu3BQ7VpgxwP3Jfj2+NZdj8=
@@ -579,10 +643,13 @@ definitions:
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: LFQ5a7wOn8zzkaR/Hs8fYyfYdpUZ+ek1TJ3K00SVZ8Q=
     Icon/Stack:
+        Size=Default, Type=Box: Tsa6/Bq9C3lKsptWSgE3uUK9HS9a+9RtJ+M6AXyJ/0Y=
+        Size=Default, Type=Boxes: Emg6Qy3SzgW7CjLAOjoTiG3p61Bzj269unnP2/hxFz0=
         Size=Default, Type=Circle: mVtF2kpuf9QHoYKnpmK5L+cmrG4IoZEzag2XMSpuMzU=
         Size=Default, Type=Rectangle: V9BiKOvkbaTlhXwj3no118prDmILBCluiXXCxsEhO/M=
     Icon/Star:
-        Size=Default, Half=False, Style=Default: wMrrPYgX540T3cbHkovoGgYfoFMBjzAjhBS2mgJeIjk=
+        Size=32, Half=False, Style=Default: uslMVqbhb84uaMAAuJjQuGQu/GSy+3eMnrQ14O4T7kA=
+        Size=Default, Half=False, Style=Default: Mtfdasa26P3hlCosYyH8ZIP7zZ7ImWzyNTdUP0u0jv0=
         Size=Default, Half=False, Style=Fill: Aq8vz1NciSj3FRWZizopF1KhId61pIMr5IqKgBZAL0g=
         Size=Default, Half=True, Style=Fill: bXbZTzG85IJoLO3tSgzXZyE3K4dNyZ6DQd3sdplxzkA=
     Icon/Tag:
@@ -616,10 +683,21 @@ definitions:
         Size=Default, Stack=True, Style=Default: f4xYTaL4bfDIoat6YhZDCUETNoLH30HTPGleLAB0qkw=
         Size=Default, Stack=True, Style=Duotone: 6DbCZVTaxXa7IKDnCT3sGNkKmvObA3R7O4FExjJhqTY=
         Size=Default, Stack=True, Style=Fill: Htly1zFPN59V7xPrDO+7fAjN4XvPcTFp67hre48T8Tw=
+    Icon/Tool:
+        Size=16, Style=Default: N9IwPNlDdF/tu45lCH/9qJnqXT0u/+Nj2rx/RbUoeaw=
+        Size=16, Style=Fill: Kt+eKYmf2SHmOjXqBVL0TB+cv5DUw9Bd98VQl1cpy5s=
+        Size=Default, Style=Default: M8lri3NjYWyArEa+PiEJ3LJfoKKBwvD8ZmkilQKxACU=
+        Size=Default, Style=Fill: OwYE8b96SjDb3wL8o7dwD1s6qZCEXSpaqTllcM4i4e0=
+    Icon/Trash:
+        Size=16, Style=Default: +BhTAg9YD90Bbm4u8Bt2NFvhdH6kFoykfLuDIz6X2EE=
+        Size=16, Style=Fill: zrh1Ow/nZAgjf8dmwUe58Y2Y5Bc/+8kJiTgez/DHSm4=
+        Size=Default, Style=Default: lLsJgFF5RnEKbTW3Z2Zjeqas3nuDMBKyhKVVdGdUeIY=
+        Size=Default, Style=Fill: huEv6yS/oYkna2bb65GtRH2kgPLrgiNS1yh/BV7f9wE=
     Icon/Trend:
         Size=Default, Direction=Down, Style=Default: dzAzHMnemcTeDJUvXbnX5AB3fbfGKcJCbDHln6fElIc=
         Size=Default, Direction=Up, Style=Default: bACYJc4jSqcgSHt4SIPGOVY8/D0qkyKzzZqQsfWu2m0=
     Icon/Trust:
+        Size=Default, Style=32: vU7MtK2TaNI1JWHKR3vprwrS/Lrcv+UhxOXvrpHDMns=
         Size=Default, Style=Default: DU8F0IXiK6ozKXH9TfNSl9m9Yb4WPjzOTtsgfU2ul0w=
     Icon/User:
         Size=16, Stack=False, Style=Default: 5RLT0+0UcPY0II495P8oT1p6TJcyUk8sDKpaivbBQpY=
@@ -648,7 +726,7 @@ definitions:
         Size=64, Stack=True, Style=Fill: 4xwFR0FAz2lwwcZy2ScXWffJnJ4HT7hTXU8QuFy2TYY=
         Size=Default, Stack=False, Style=Default: OwMdXfT7AYZdUAZKVPMhKUvRHiyjfppqzT9jcchoByE=
         Size=Default, Stack=False, Style=Duotone: 2XQ3yk4uKbpetMvLGLTd9abTtKz4H7rvBxamJloSmWw=
-        Size=Default, Stack=False, Style=Fill: JeL7k9WszIYb2DYkkfk+hznFv8LHVn6BnqBi63UbO+Q=
+        Size=Default, Stack=False, Style=Fill: bbVd0b7JjY+WJlbxfFNmpi5/v9w5Jw5AGKFuOaVOc3Y=
         Size=Default, Stack=True, Style=Default: NxS6kGPXdyc46idhG3Q2AXDX4Ja+rKxGqObvpbNUd4M=
         Size=Default, Stack=True, Style=Duotone: +Nb2QJM5+pms/xAfsgIth5892zNiXBubwvuXrtOPnLQ=
         Size=Default, Stack=True, Style=Fill: x0jGtyRMvnO9A3V59Dz6Bgdmsew9d1e1z0Q0XnjitP0=
@@ -656,9 +734,9 @@ definitions:
         Size=16, Direction=Down, Style=Default: IeBfjx92nJHbMMTDfkK8NynfQwYDD5kXoqotpxiyT70=
         Size=16, Direction=Down, Style=Duotone: 59M6iGZZl2NnA94B6Na9AfHIiCV7K56EyLAyeVXBmOk=
         Size=16, Direction=Down, Style=Fill: SoIZ+0hX+Cp6rcHFvHCjecIoqwftM+FctXimP9cjT+A=
-        Size=16, Direction=Up, Style=Default: /8VHuzI/9Ri06uFHR5TTmL7h6KC7oQmm/4qpUbSG5JM=
-        Size=16, Direction=Up, Style=Duotone: mXO20rE8axhKctwSNnZlWEXC/9U4uGVeJU7wf1iGv3M=
-        Size=16, Direction=Up, Style=Fill: bkexBfga/S7rawQhUo0n4o9GoTACMF4Bl1IGlNcjJag=
+        Size=16, Direction=Up, Style=Default: bG5bwEh1i27c/nxaNhJJokWvnWu9+L+p2Z+mkRLP3vs=
+        Size=16, Direction=Up, Style=Duotone: 2Hna8O0HR/sHv27kwqjmsH9Vc9bBeCLDeBVkaHrL1QY=
+        Size=16, Direction=Up, Style=Fill: tRDVuO+RJKEHFJiFGtGw0BA3zzT/I1lRR3xB33aydGc=
         Size=24, Direction=Down, Style=Default: imziDzVjztM08lNifTN0ST1DughMTDMvd1qbcu5XID8=
         Size=24, Direction=Down, Style=Duotone: ahzaoVZFMQgbBhBuLyLpAmKtjsyU9dskBhT0gn+zCx8=
         Size=24, Direction=Down, Style=Fill: gkYK4Gkbu+DZUfMN07kP5fg3NoetOtxgvsHM7vvlvYo=
@@ -683,16 +761,46 @@ definitions:
         Size=Default, Direction=Up, Style=Default: SigxoVi+8rTa2mI3VvDp7kKt6cQde/RcmmMW3TNwKzk=
         Size=Default, Direction=Up, Style=Duotone: K5Wqhy9yyspLhfgnwkhuTSDYBb1eq+Pg81HmkfOvzPI=
         Size=Default, Direction=Up, Style=Fill: TuaJdqbO3qJHwPhjjbIe9ub1XhAGBh3mI8VB/bcwPaQ=
-    # MARK: Spots
+    Spot/Ads: h+cdB+kuk57Hpk1C9PbgjvQS2EuxhvMeTz0wVeDBS5U=
+    Spot/Answers: jIIKpFrAHBjrw6T2mjvu5JhBqo52ixsz7P5NSLRRy84=
+    Spot/Award: /qkT2/ZPSV+LXPsV34uyRyICbk3SoGEsk5e0hcRAnpQ=
+    Spot/Celebrate: X+Lzxddie8XG+n8chtRyyTu7C0s84jX+gIU7OM6YW7s=
+    Spot/Chat: WQDAdOmHJj9jgyjafUCl5ZPIPNsh5+Tta5/xHOM+Rsw=
+    Spot/Checklist: aMyoVCAO3oJU7lfJZs2Lun0Q3xzM+S+zwrIgg8+VmM0=
+    Spot/Coding: 0E2+lFqZfwM0ZjaYBMVKPutdLFq4Yo1uMCMnGUQ99cg=
+    Spot/Conversation: WxsSPmsj24NPs2I60/Dj2g2kmfdQaz7O3OPzX/oKaqs=
+    Spot/Create: EtBT/82Z8rpmIbBj52OqTV++XXaGV13YdwY+1illwqU=
+    Spot/Dataset: qeRo7K1wMmn4OwLPMl5h17NrsjlsCOVzvJuibrKoEac=
+    Spot/Document: Q9r2a60fvN9Pb4VCWWMj6ieWCe0QKLWfmVMrE1oBV20=
+    Spot/Empty: O9mX8piiwpE9dWeSlMAuOUCeWMYNp+ifzS2fExP7qMc=
     Spot/Error:
         Code=401: WuwA5T0xqnX0RfNzNbYxyYlUCRmx6kcG4bn7WbA/9Aw=
         Code=404: RbyIiFmx/ZWJmdZFH4Ivbn41Ed1E2zH3s6H14cP7aGc=
         Code=500: dQpy248NdHpruD0+Z2qkjntCHEBCX9pAlopARmq1MYE=
         Code=503: iqrllZJOiv3wQdPZT5EHEtZnmXuf8bWYDE1oSeJr7mw=
-    Spot/Loading: 8CoPQIzmots2tCdONp4QYfxh/UOB4VMfgbY/Amr1m6M=
-# MARK: Fill maps
+    Spot/Idea: 41TPxswMk7+BBkM6hg0e9h+MnKqIB0qwc8DNCKkgm7U=
+    Spot/Ideas: 6BML39ZsfZMas2gkxUClNErat197QNdvh42PE7WZsiY=
+    Spot/Learning: cg02iZD2c6Uuly0plbK+y7Uohwm2lDU92UxLbEElfYA=
+    Spot/Loading: XmVs6COlxy+xJv+vtW+yURrpyHis0LmXijftLTy/oIg=
+    Spot/LoadingGlyph: pDr1Vx6hiCbEIxSsvw54B8/jFvmZIDE9nAKVp24nYOA=
+    Spot/Lock: gqf7aNcWypr/yEFgAKgd4WLuB5mM7uMp9oWtwOK70VI=
+    Spot/Metrics: 1lR0rUaHiPtYo+mqN4AL1LvbPFuIUSH+WwTK4QXse8c=
+    Spot/People: PefksJ6YKHyHbq1lvq5DvpZfyncM76cTVBrXZcLqyxE=
+    Spot/Puzzle: sl20TK6d9szPbg/vGp+y60CP973Fu6404HPUdhORH8Y=
+    Spot/Questions: fPXyri9iYkADh1kXIXLPuGtBn4EL0r7dIafow+IS5IQ=
+    Spot/Search: b2m2QJ0CLSLWcqWY6nBC5C54yXUplEDj9G/FRTIZb88=
+    Spot/Server: RvbOa/IuHSWWEpeSavkRpxd3vwL1+21S8UA2O6TeJtk=
+    Spot/Support: AmbgEHJWFh+wyg5MpbHwtoDIAlo0E0AnlHO58BKFF1Q=
+    Spot/Validation: UzNTHTUtCRiJGbDahvutEO5VNajD0JfRB4gkJnTuSTw=
 fills:
+    # MARK: Fill maps
+    # Key will be searched and replaced with value
     '#000': null
+    '#0f2465': var(--blue-600)
+    '#200b73': var(--purple-600)
     '#201c1d': var(--black-600)
+    '#5176f2': var(--blue-400)
+    '#590405': var(--red-600)
+    '#f0efed': var(--black-150)
     '#fff': var(--white)
     none: null

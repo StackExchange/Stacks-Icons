@@ -27,64 +27,61 @@
     </head>
 
     <body>
-        <div class="mx-auto pb64 sm:pb16 px32 sm:px16 pt12 sm:pt0">
-            <div class="ps-relative">
-                <div
-                    class="ps-sticky t0 bg-white d-flex ai-center bb bc-black-300 py24 mb64 sm:mb32"
+        <div class="ps-relative mx-auto pb64 sm:pb16 px32 sm:px16 pt12 sm:pt0">
+            <div class="ps-fixed gs12 d-flex t0 r0 p24 bg-white">
+                <label for="toggle-darkmode" class="d-flex ai-center">
+                    <div class="d-flex ai-center g8">
+                        <label class="s-label" for="toggle-native">
+                            Dark mode
+                        </label>
+                        <input
+                            class="s-toggle-switch"
+                            id="toggle-darkmode"
+                            type="checkbox"
+                        />
+                    </div>
+                </label>
+                <label for="toggle-native" class="d-flex ai-center">
+                    <div class="d-flex ai-center g8">
+                        <label class="s-label" for="toggle-native">
+                            Override native
+                        </label>
+                        <input
+                            class="s-toggle-switch"
+                            id="toggle-native"
+                            type="checkbox"
+                        />
+                    </div>
+                </label>
+                <label
+                    for="toggle-currentcolor"
+                    class="ml8 d-flex ai-center"
                 >
-                    <h2 class="fs-headline1 mb0">
-                        Icons
-                        <span class="s-badge s-badge__new lh-lg">Beta</span>
-                    </h2>
-                    <label for="toggle-darkmode" class="ml-auto d-flex ai-center">
-                        <div class="d-flex ai-center g8">
-                            <label class="s-label" for="toggle-native">
-                                Dark mode
-                            </label>
-                            <input
-                                class="s-toggle-switch"
-                                id="toggle-darkmode"
-                                type="checkbox"
-                            />
-                        </div>
-                    </label>
-                    <label for="toggle-native" class="ml-auto d-flex ai-center">
-                        <div class="d-flex ai-center g8">
-                            <label class="s-label" for="toggle-native">
-                                Override native
-                            </label>
-                            <input
-                                class="s-toggle-switch"
-                                id="toggle-native"
-                                type="checkbox"
-                            />
-                        </div>
-                    </label>
-                    <label
-                        for="toggle-currentcolor"
-                        class="ml8 d-flex ai-center"
-                    >
-                        <div class="d-flex ai-center g8">
-                            <label class="s-label" for="toggle-currentcolor">
-                                <span
-                                    class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
-                                    style="background: magenta"
-                                ></span>
-                                Override fill
-                            </label>
-                            <input
-                                class="s-toggle-switch"
-                                id="toggle-currentcolor"
-                                type="checkbox"
-                            />
-                        </div>
-                    </label>
-                </div>
-                <div
-                    class="d-grid grid__6 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 mt32 sm:mt16"
-                >
-                    {ICONS_MANIFEST}
-                </div>
+                    <div class="d-flex ai-center g8">
+                        <label class="s-label" for="toggle-currentcolor">
+                            <span
+                                class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
+                                style="background: magenta"
+                            ></span>
+                            Override fill
+                        </label>
+                        <input
+                            class="s-toggle-switch"
+                            id="toggle-currentcolor"
+                            type="checkbox"
+                        />
+                    </div>
+                </label>
+            </div>
+ 
+            <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">
+                Icons
+                <span class="s-badge s-badge__new lh-lg">Beta</span>
+            </h2>
+            <div
+                class="d-grid grid__6 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 mt32 sm:mt16"
+            >
+                {ICONS_MANIFEST}
             </div>
 
             <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">
