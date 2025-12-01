@@ -103,15 +103,18 @@ async function syncConfigFromFigma() {
                 warn(`Component "${componentName}" not found in Figma`);
             }
         } else if (value != null) {
-            // Variant group
-            for (const variantName of Object.keys(value)) {
-                const key = `${componentName}::${variantName}`;
-                const figmaComponent = figmaByName.get(key);
-                if (figmaComponent) {
+            // Variant group - fetch ALL variants from Figma for this component
+            let variantCount = 0;
+            for (const [key, figmaComponent] of figmaByName) {
+                if (figmaComponent.componentName === componentName && figmaComponent.variantName) {
                     nodesToFetch.push({ nodeId: figmaComponent.nodeId, key });
-                } else {
-                    warn(`Variant "${componentName} → ${variantName}" not found in Figma`);
+                    variantCount++;
                 }
+            }
+            if (variantCount > 0) {
+                info(`Found ${variantCount} variants for ${componentName} in Figma`);
+            } else {
+                warn(`No variants found in Figma for component "${componentName}"`);
             }
         }
     }
@@ -160,9 +163,19 @@ async function syncConfigFromFigma() {
     await Promise.all(queue);
     info(`Successfully calculated ${hashMap.size} hashes`);
 
-    // Update hashes in the definitions
+    // Update hashes in the definitions - only update what changed
     const definitions = doc.get("definitions") as any;
-    let updatedCount = 0;
+
+    // Track updates by component for organized output
+    interface UpdateInfo {
+        componentName: string;
+        isVariantSet: boolean;
+        updatedVariants: string[];
+    }
+    const updates: UpdateInfo[] = [];
+
+    // Group updates by component to handle variant replacements
+    const componentUpdates = new Map<string, Map<string, string>>();
 
     for (const { nodeId, key } of nodesToFetch) {
         const hash = hashMap.get(nodeId);
@@ -173,34 +186,85 @@ async function syncConfigFromFigma() {
 
         if (key.includes("::")) {
             // Variant
-            const [componentName, variantName] = key.split("::");
-            const componentDef = definitions.get(componentName);
-            if (componentDef && typeof componentDef === "object") {
-                const oldHash = componentDef.get(variantName);
-                if (oldHash !== hash) {
-                    componentDef.set(variantName, hash);
-                    info(`Updated ${componentName} → ${variantName}`);
-                    updatedCount++;
-                }
+            const parts = key.split("::");
+            const componentName = parts[0];
+            const variantName = parts[1];
+            if (!componentName || !variantName) {
+                warn(`Invalid variant key: ${key}`);
+                continue;
             }
+            if (!componentUpdates.has(componentName)) {
+                componentUpdates.set(componentName, new Map());
+            }
+            componentUpdates.get(componentName)!.set(variantName, hash);
         } else {
             // Simple component
             const oldHash = definitions.get(key);
             if (oldHash !== hash) {
                 definitions.set(key, hash);
-                info(`Updated ${key}`);
-                updatedCount++;
+                updates.push({
+                    componentName: key,
+                    isVariantSet: false,
+                    updatedVariants: [],
+                });
             }
         }
     }
 
-    // Write the updated config back
-    const yamlString = doc.toString();
-    await writeFile(configPath, yamlString, "utf-8");
+    // Apply variant updates - only update variants that changed
+    const componentNames = Array.from(componentUpdates.keys());
+    for (let i = 0; i < componentNames.length; i++) {
+        const componentName = componentNames[i];
+        if (!componentName) continue;
 
-    success(
-        `Successfully synced ${nodesToFetch.length} components (${updatedCount} updated) to config.yaml`
-    );
+        const variants = componentUpdates.get(componentName);
+        if (!variants) continue;
+
+        const componentDef = definitions.get(componentName);
+        if (componentDef && typeof componentDef === "object" && componentDef.items) {
+            const updatedVariants: string[] = [];
+
+            // Check each variant for changes
+            for (const [variantName, newHash] of variants) {
+                const oldHash = componentDef.get(variantName);
+                if (oldHash !== newHash) {
+                    componentDef.set(variantName, newHash);
+                    updatedVariants.push(variantName);
+                }
+            }
+
+            // Track if any variants were updated for this component
+            if (updatedVariants.length > 0) {
+                updates.push({
+                    componentName,
+                    isVariantSet: true,
+                    updatedVariants,
+                });
+            }
+        }
+    }
+
+    // Write the updated config back if there were changes
+    if (updates.length > 0) {
+        const yamlString = doc.toString();
+        await writeFile(configPath, yamlString, "utf-8");
+
+        // Display updated components in tree format
+        for (const update of updates) {
+            if (update.isVariantSet) {
+                info(`Set ${update.componentName}`);
+                for (const variant of update.updatedVariants) {
+                    info(`    └ ${variant}`);
+                }
+            } else {
+                info(`Set ${update.componentName}`);
+            }
+        }
+
+        success(`Successfully updated ${updates.length} component${updates.length !== 1 ? 's' : ''} in config.yaml`);
+    } else {
+        success("All components are up to date");
+    }
 }
 
 // Run the script

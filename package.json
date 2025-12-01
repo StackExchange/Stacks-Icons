@@ -33,11 +33,11 @@
     },
     "scripts": {
         "start": "npm run build",
-        "build": "tsc && node --no-warnings --loader ts-node/esm ./scripts/build/index.ts",
+        "build": "tsc && tsx ./scripts/build/index.ts",
         "preview": "http-server ./preview -o -c-1",
         "prepublishOnly": "npm start",
-        "version": "tsc && node --no-warnings --loader ts-node/esm ./scripts/sync-dotnet-version.ts",
-        "sync:figma": "node --no-warnings --loader ts-node/esm ./scripts/sync-config-to-figma.ts && npm run format:config",
+        "version": "tsc && tsx ./scripts/sync-dotnet-version.ts",
+        "sync:figma": "tsx ./scripts/sync-config-to-figma.ts && npm run format:config",
         "lint": "prettier --check . && eslint .",
         "format": "prettier --write .",
         "format:config": "yq eval 'sort_keys(..)' config.yaml -i --indent 4 --prettyPrint",
@@ -63,6 +63,7 @@
         "svgo": "^4.0.0",
         "ts-node": "^10.9.2",
         "tslib": "^2.8.1",
+        "tsx": "^4.21.0",
         "typescript": "^5.9.3",
         "yaml": "^2.8.1"
     }

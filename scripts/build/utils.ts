@@ -84,6 +84,17 @@ export function svgoPlugins(type: string, name: string, isAnimated: boolean): Pl
             ],
         },
     },
+    {
+        name: "removeAttributesBySelector",
+        params: {
+            selectors: [
+                {
+                    selector: "path",
+                    attributes: ["clip-rule", "fill-rule"],
+                },
+            ],
+        },
+    },
     // This runs in preset but run here to normalise colors to make it easier to replace them in the next step
     "convertColors",
     {
@@ -175,7 +186,6 @@ export function svgoPlugins(type: string, name: string, isAnimated: boolean): Pl
     },
     "removeXMLNS",
     "removeXlink",
-    "prefixIds",
 ].filter(Boolean) as PluginConfig[]
 
 }
