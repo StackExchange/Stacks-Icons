@@ -79,7 +79,7 @@ export function svgoPlugins(type: string, name: string, isAnimated: boolean): Pl
             selectors: [
                 {
                     selector: "svg > g",
-                    attributes: ["class"],
+                    attributes: ["id"],
                 },
             ],
         },
@@ -168,12 +168,18 @@ export function svgoPlugins(type: string, name: string, isAnimated: boolean): Pl
         },
     },
     {
+      name: "prefixIds",
+      params: {
+        prefix: `${type.toLowerCase()}-${name.toLowerCase()}`,
+        delim: "__",
+        prefixIds: true,
+        prefixClassNames: true
+      }
+    },
+    {
         name: "addClassesToSVGElement",
         params: {
-            classNames: [
-                `svg-${type?.toLowerCase()}`,
-                `${type}${name}`,
-            ],
+            className: `svg-${type?.toLowerCase()} ${type}${name}`,
         },
     },
     {
@@ -184,6 +190,7 @@ export function svgoPlugins(type: string, name: string, isAnimated: boolean): Pl
             ]
         },
     },
+
     "removeXMLNS",
     "removeXlink",
 ].filter(Boolean) as PluginConfig[]

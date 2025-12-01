@@ -74,10 +74,6 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     const allRequestedDefs = Object.keys(definitions);
     const fetchedComponents = Object.values(names);
 
-    console.log(allRequestedDefs)
-    console.log('------')
-    console.log(fetchedComponents)
-
     for (const def of allRequestedDefs) {
         if (!fetchedComponents.includes(def)) {
             warn(`"${def}" found in definitions, but not in Figma`);
@@ -216,7 +212,6 @@ export async function processSvgFilesAsync(type: OutputType) {
         try {
             outputSvg = optimize(raw, {
                 floatPrecision: 2,
-                multipass: true,
                 plugins: svgoPlugins(type, name, css ? true : false),
             }).data;
         } catch (e) {
