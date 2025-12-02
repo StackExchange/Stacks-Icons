@@ -52,7 +52,7 @@ For performance / file size reasons, not all icons are available in css. You can
 
 ### Using CSS animations
 
-Icons can now include custom CSS animations. Named layers in Figma will be passed to the final file, converted from IDs to classes, and prefixed with the icon name to reduce collisions in production.
+SVGs can include custom CSS animations. Named layers in Figma will be passed to the final file, converted from IDs to classes, and prefixed with the icon name to reduce collisions in production.
 
 To add a new animation for an icon:
 
