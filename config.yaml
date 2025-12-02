@@ -562,4 +562,5 @@ fills:
     '#f0efed': var(--black-150)
     '#fff': var(--white)
     none: null
-    white: var(--white)
+    white: null
+    black: null
