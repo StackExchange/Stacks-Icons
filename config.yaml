@@ -471,7 +471,7 @@ definitions:
         Size=16, Style=Default: N9IwPNlDdF/tu45lCH/9qJnqXT0u/+Nj2rx/RbUoeaw=
         Size=16, Style=Fill: Kt+eKYmf2SHmOjXqBVL0TB+cv5DUw9Bd98VQl1cpy5s=
         Size=Default, Style=Default: M8lri3NjYWyArEa+PiEJ3LJfoKKBwvD8ZmkilQKxACU=
-        Size=Default, Style=Fill: OwYE8b96SjDb3wL8o7dwD1s6qZCEXSpaqTllcM4i4e0=
+        Size=Default, Style=Fill: lw3lUj4vX/t4VkL5R337x57MBSoHJNwxYbAQ6WLma8s=
     Icon/Trash:
         Size=16, Style=Default: +BhTAg9YD90Bbm4u8Bt2NFvhdH6kFoykfLuDIz6X2EE=
         Size=16, Style=Fill: zrh1Ow/nZAgjf8dmwUe58Y2Y5Bc/+8kJiTgez/DHSm4=
@@ -553,14 +553,14 @@ definitions:
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
-    "#000": null
-    "#0f2465": var(--blue-600)
-    "#200b73": var(--purple-600)
-    "#201c1d": var(--black-600)
-    "#5176f2": var(--blue-400)
-    "#590405": var(--red-600)
-    "#f0efed": var(--black-150)
-    "#fff": var(--white)
+    '#000': null
+    '#0f2465': var(--blue-600)
+    '#200b73': var(--purple-600)
+    '#201c1d': var(--black-600)
+    '#5176f2': var(--blue-400)
+    '#590405': var(--red-600)
+    '#f0efed': var(--black-150)
+    '#fff': var(--white)
+    black: null
     none: null
     white: null
-    black: null
