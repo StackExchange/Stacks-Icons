@@ -23,7 +23,6 @@ class Paths {
             ),
             preview: path.resolve(process.cwd(), "preview"),
             src: path.resolve(codeRoot, "src"),
-            raw: path.resolve(codeRoot, "raw"),
         };
     }
 
