@@ -84,8 +84,8 @@ async function syncConfigFromFigma() {
             : componentName;
 
         figmaByName.set(key, {
-            nodeId,
             componentName,
+            nodeId,
             variantName,
         });
     }
@@ -101,8 +101,8 @@ async function syncConfigFromFigma() {
             const figmaComponent = figmaByName.get(componentName);
             if (figmaComponent) {
                 nodesToFetch.push({
-                    nodeId: figmaComponent.nodeId,
                     key: componentName,
+                    nodeId: figmaComponent.nodeId,
                 });
             } else {
                 warn(`Component "${componentName}" not found in Figma`);
@@ -115,7 +115,7 @@ async function syncConfigFromFigma() {
                     figmaComponent.componentName === componentName &&
                     figmaComponent.variantName
                 ) {
-                    nodesToFetch.push({ nodeId: figmaComponent.nodeId, key });
+                    nodesToFetch.push({ key, nodeId: figmaComponent.nodeId });
                     variantCount++;
                 }
             }
@@ -166,8 +166,8 @@ async function syncConfigFromFigma() {
                     const sha256 = hash.digest("base64");
                     hashMap.set(nodeId, sha256);
                 })
-                .catch((err) => {
-                    error(`Failed to fetch ${nodeId}: ${err}`);
+                .catch((err: unknown) => {
+                    error(`Failed to fetch ${nodeId}: ${String(err)}`);
                 })
         );
     }
@@ -176,6 +176,7 @@ async function syncConfigFromFigma() {
     info(`Successfully calculated ${hashMap.size} hashes`);
 
     // Update hashes in the definitions - only update what changed
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
     const definitions = doc.get("definitions") as any;
 
     // Track updates by component for organized output
@@ -208,11 +209,16 @@ async function syncConfigFromFigma() {
             if (!componentUpdates.has(componentName)) {
                 componentUpdates.set(componentName, new Map());
             }
-            componentUpdates.get(componentName)!.set(variantName, hash);
+            const componentUpdate = componentUpdates.get(componentName);
+            if (componentUpdate) {
+                componentUpdate.set(variantName, hash);
+            }
         } else {
             // Simple component
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             const oldHash = definitions.get(key);
             if (oldHash !== hash) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 definitions.set(key, hash);
                 updates.push({
                     componentName: key,
@@ -232,18 +238,22 @@ async function syncConfigFromFigma() {
         const variants = componentUpdates.get(componentName);
         if (!variants) continue;
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         const componentDef = definitions.get(componentName);
         if (
             componentDef &&
             typeof componentDef === "object" &&
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             componentDef.items
         ) {
             const updatedVariants: string[] = [];
 
             // Check each variant for changes
             for (const [variantName, newHash] of variants) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 const oldHash = componentDef.get(variantName);
                 if (oldHash !== newHash) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                     componentDef.set(variantName, newHash);
                     updatedVariants.push(variantName);
                 }

@@ -82,8 +82,8 @@ export function svgoPlugins(
             params: {
                 selectors: [
                     {
-                        selector: "svg > g",
                         attributes: ["id"],
+                        selector: "svg > g",
                     },
                 ],
             },
@@ -93,8 +93,8 @@ export function svgoPlugins(
             params: {
                 selectors: [
                     {
-                        selector: "path",
                         attributes: ["clip-rule", "fill-rule"],
+                        selector: "path",
                     },
                 ],
             },
@@ -102,7 +102,6 @@ export function svgoPlugins(
         // This runs in preset but run here to normalise colors to make it easier to replace them in the next step
         "convertColors",
         {
-            name: "fillMap",
             fn: () => ({
                 element: {
                     enter: (node: XastElement) => {
@@ -135,11 +134,11 @@ export function svgoPlugins(
                     },
                 },
             }),
+            name: "fillMap",
         },
         // For animations we want to covert layer ID names defined in Figma to classes so they can be reused
         isAnimated
             ? {
-                  name: "convertIdToClass",
                   fn: () => ({
                       element: {
                           enter: (node: XastElement) => {
@@ -155,6 +154,7 @@ export function svgoPlugins(
                           },
                       },
                   }),
+                  name: "convertIdToClass",
               }
             : undefined,
         {
@@ -179,10 +179,10 @@ export function svgoPlugins(
         {
             name: "prefixIds",
             params: {
-                prefix: `${type.toLowerCase()}-${name.toLowerCase()}`,
                 delim: "__",
-                prefixIds: true,
+                prefix: `${type.toLowerCase()}-${name.toLowerCase()}`,
                 prefixClassNames: true,
+                prefixIds: true,
             },
         },
         {

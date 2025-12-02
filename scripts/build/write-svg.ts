@@ -114,7 +114,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
             error(
                 `Unable to find name or url: name: "${String(
                     name
-                )}", url: "${url}"`
+                )}", url: "${url ?? ""}"`
             );
             continue;
         }
@@ -185,15 +185,15 @@ export async function processSvgFilesAsync(type: OutputType) {
     const ext = ".svg";
 
     // Read the source files then remove the extensions and sort alphabetically
-    let svgPaths = await fs.readdir(paths.src(type));
-    let svgNames = svgPaths.map((i) => basename(i, ext)).sort();
+    const svgPaths = await fs.readdir(paths.src(type));
+    const svgNames = svgPaths.map((i) => basename(i, ext)).sort();
 
     // Ensure the save directory is created
     await fs.mkdir(paths.build("lib", type), {
         recursive: true,
     });
 
-    let svgPromises = svgPaths.map(async (i) => {
+    const svgPromises = svgPaths.map(async (i) => {
         const name = basename(i, ext);
         const outputPath = paths.build(paths.build("lib", type), name + ext);
 
@@ -214,9 +214,15 @@ export async function processSvgFilesAsync(type: OutputType) {
                     `$1<style type="text/css">${css}</style>`
                 );
             }
-        } catch (e: any) {
+        } catch (e: unknown) {
             // Ignore if CSS doesn't exist
-            if (e.code !== "ENOENT") throw e;
+            if (
+                typeof e === "object" &&
+                e !== null &&
+                "code" in e &&
+                e.code !== "ENOENT"
+            )
+                throw e;
         }
 
         // Optimize it
@@ -245,7 +251,8 @@ export async function processSvgFilesAsync(type: OutputType) {
     });
 
     const svgs = await Promise.all(svgPromises);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const iconsObj: Record<string, string> = Object.assign({}, ...svgs);
 
-    return { svgNames, iconsObj };
+    return { iconsObj, svgNames };
 }
