@@ -114,9 +114,11 @@
             document
                 .getElementById("toggle-native")
                 .addEventListener("change", () => {
-                    document.querySelectorAll(".svg-spot, .svg-icon").forEach(el => {
-                        el.classList.toggle("native");
-                    });
+                    document
+                        .querySelectorAll(".svg-spot, .svg-icon")
+                        .forEach((el) => {
+                            el.classList.toggle("native");
+                        });
                 });
         </script>
     </body>
