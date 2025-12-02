@@ -553,14 +553,14 @@ definitions:
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
-    '#000': null
-    '#0f2465': var(--blue-600)
-    '#200b73': var(--purple-600)
-    '#201c1d': var(--black-600)
-    '#5176f2': var(--blue-400)
-    '#590405': var(--red-600)
-    '#f0efed': var(--black-150)
-    '#fff': var(--white)
+    "#000": null
+    "#0f2465": var(--blue-600)
+    "#200b73": var(--purple-600)
+    "#201c1d": var(--black-600)
+    "#5176f2": var(--blue-400)
+    "#590405": var(--red-600)
+    "#f0efed": var(--black-150)
+    "#fff": var(--white)
     none: null
     white: null
     black: null

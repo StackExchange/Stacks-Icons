@@ -13,7 +13,10 @@ import {
     type OutputType,
     svgoPlugins,
 } from "./utils.js";
-import { type GetFileComponentsResponse, type GetImagesResponse } from '@figma/rest-api-spec'
+import {
+    type GetFileComponentsResponse,
+    type GetImagesResponse,
+} from "@figma/rest-api-spec";
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;
@@ -37,7 +40,9 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     );
 
     // https://developers.figma.com/docs/rest-api/component-endpoints/#http-endpoint-1
-    const stacksFile = await fetch.get<GetFileComponentsResponse>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
+    const stacksFile = await fetch.get<GetFileComponentsResponse>(
+        `/files/${process.env["FIGMA_FILE_KEY"]}/components`
+    );
 
     // Full returned components list
     const components = stacksFile.data.meta.components;
@@ -53,7 +58,8 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
 
         // For variants, loop through all of them to create seperate assets
         if (component.containing_frame?.containingComponentSet?.name) {
-            const componentName = component.containing_frame.containingComponentSet.name;
+            const componentName =
+                component.containing_frame.containingComponentSet.name;
             const variantName = flattenFigmaComponentVariantName(
                 component.name
             );
@@ -86,7 +92,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     const urls = await fetch.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
-            params: { 
+            params: {
                 format: "svg",
                 ids: Object.keys(names).join(","),
                 svg_include_id: true,
@@ -177,9 +183,9 @@ ${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
 /** Optimizes svg files using svgo then writes them to build/lib */
 export async function processSvgFilesAsync(type: OutputType) {
     const ext = ".svg";
-    
+
     // Read the source files then remove the extensions and sort alphabetically
-    let svgPaths = await fs.readdir(paths.src(type))
+    let svgPaths = await fs.readdir(paths.src(type));
     let svgNames = svgPaths.map((i) => basename(i, ext)).sort();
 
     // Ensure the save directory is created
@@ -188,24 +194,29 @@ export async function processSvgFilesAsync(type: OutputType) {
     });
 
     let svgPromises = svgPaths.map(async (i) => {
-        const name = basename(i, ext)
-        const outputPath = paths.build(paths.build("lib", type), name + ext)
+        const name = basename(i, ext);
+        const outputPath = paths.build(paths.build("lib", type), name + ext);
 
-        let outputSvg = ''
-        let raw = await fs.readFile(paths.src(type, i), "utf8")
-        let css = ''
+        let outputSvg = "";
+        let raw = await fs.readFile(paths.src(type, i), "utf8");
+        let css = "";
 
         // Check to see if there is a .css file with the same name, load it if there is and embed it in the svg
         try {
-            css = await fs.readFile(paths.src('animations', type + name + '.css'), 'utf8');
+            css = await fs.readFile(
+                paths.src("animations", type + name + ".css"),
+                "utf8"
+            );
             if (css) {
-                info(`[${type}${name}]: Applying found .css file.`)
-                raw = raw.replace(/(<svg[^>]*>)/, `$1<style type="text/css">${css}</style>`);
+                info(`[${type}${name}]: Applying found .css file.`);
+                raw = raw.replace(
+                    /(<svg[^>]*>)/,
+                    `$1<style type="text/css">${css}</style>`
+                );
             }
-            
         } catch (e: any) {
             // Ignore if CSS doesn't exist
-            if (e.code !== 'ENOENT') throw e;
+            if (e.code !== "ENOENT") throw e;
         }
 
         // Optimize it
@@ -217,7 +228,7 @@ export async function processSvgFilesAsync(type: OutputType) {
         } catch (e) {
             error(e);
         }
-        
+
         // Save each svg
         await fs.writeFile(outputPath, outputSvg, "utf8");
 
@@ -230,9 +241,8 @@ export async function processSvgFilesAsync(type: OutputType) {
             }
         }
 
-
-        return { [name]: outputSvg }
-    })
+        return { [name]: outputSvg };
+    });
 
     const svgs = await Promise.all(svgPromises);
     const iconsObj: Record<string, string> = Object.assign({}, ...svgs);

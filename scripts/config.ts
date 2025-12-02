@@ -22,4 +22,4 @@ export const cssIcons = configRaw.cssIcons || {};
 
 export const definitions = flattenDefinitions(configRaw.definitions);
 
-export const fillMap = configRaw.fills || {}
+export const fillMap = configRaw.fills || {};

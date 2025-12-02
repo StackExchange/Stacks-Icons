@@ -63,12 +63,16 @@ To add a new animation for an icon:
 ```css
 /* Example: src/animations/IconSpin.css */
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .spinning-layer {
-  animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
 }
 ```
 
@@ -153,8 +157,8 @@ The build process now supports mapping specific colors to CSS variables via the 
 
 ```yaml
 fills:
-  "#FF0000": "var(--theme-primary-color)"
-  "#00FF00": "var(--theme-secondary-color)"
+    "#FF0000": "var(--theme-primary-color)"
+    "#00FF00": "var(--theme-secondary-color)"
 ```
 
 Colors defined in the `fills` mapping will be automatically replaced during the build process using SVGO's plugin architecture, providing more reliable optimization than string replacement.

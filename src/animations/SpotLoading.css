@@ -1,13 +1,36 @@
-.s1,.s2,.s3 {
-  animation: a .8s cubic-bezier(1,1,0,1) infinite
+.s1,
+.s2,
+.s3 {
+    animation: a 0.8s cubic-bezier(1, 1, 0, 1) infinite;
 }
-.s2 { animation-delay:.25s }
-.s3 { animation-delay:.5s }
+.s2 {
+    animation-delay: 0.25s;
+}
+.s3 {
+    animation-delay: 0.5s;
+}
 
 @keyframes a {
-  0%,1% { transform: translateY(0); opacity: 0.2 }
-  49% { transform: translateY(-5px); opacity: 1 }
-  50% { transform: translateY(-5px); opacity: 1 }
-  51% { transform: translateY(-5px); opacity: 0.2 }
-  99%,100% { transform: translateY(0); opacity: 0.2 }
+    0%,
+    1% {
+        transform: translateY(0);
+        opacity: 0.2;
+    }
+    49% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+    51% {
+        transform: translateY(-5px);
+        opacity: 0.2;
+    }
+    99%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.2;
+    }
 }

@@ -3,14 +3,11 @@ import axios from "axios";
 import { createHash } from "node:crypto";
 import YAML from "yaml";
 import { readFile, writeFile } from "fs/promises";
+import { error, success, info, warn } from "./build/utils.js";
 import {
-    error,
-    success,
-    info,
-    warn,
-} from "./build/utils.js";
-import { GetImagesResponse, type GetFileComponentsResponse } from "@figma/rest-api-spec";
-
+    GetImagesResponse,
+    type GetFileComponentsResponse,
+} from "@figma/rest-api-spec";
 
 // load environmental variables from the .env file
 dotenv.config();
@@ -54,7 +51,9 @@ async function syncConfigFromFigma() {
     );
 
     // Fetch components metadata
-    const stacksFile = await fetch.get<GetFileComponentsResponse>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
+    const stacksFile = await fetch.get<GetFileComponentsResponse>(
+        `/files/${process.env["FIGMA_FILE_KEY"]}/components`
+    );
 
     const components = stacksFile.data.meta.components;
     info(`Found ${components.length} components in Figma`);
@@ -75,7 +74,8 @@ async function syncConfigFromFigma() {
 
         // Check if this is a variant within a component set
         if (component.containing_frame?.containingComponentSet?.name) {
-            componentName = component.containing_frame?.containingComponentSet.name;
+            componentName =
+                component.containing_frame?.containingComponentSet.name;
             variantName = component.name;
         }
 
@@ -93,12 +93,17 @@ async function syncConfigFromFigma() {
     // Collect node IDs that we need to fetch hashes for
     const nodesToFetch: Array<{ nodeId: string; key: string }> = [];
 
-    for (const [componentName, value] of Object.entries(existingConfig.definitions)) {
+    for (const [componentName, value] of Object.entries(
+        existingConfig.definitions
+    )) {
         if (typeof value === "string") {
             // Simple component
             const figmaComponent = figmaByName.get(componentName);
             if (figmaComponent) {
-                nodesToFetch.push({ nodeId: figmaComponent.nodeId, key: componentName });
+                nodesToFetch.push({
+                    nodeId: figmaComponent.nodeId,
+                    key: componentName,
+                });
             } else {
                 warn(`Component "${componentName}" not found in Figma`);
             }
@@ -106,15 +111,22 @@ async function syncConfigFromFigma() {
             // Variant group - fetch ALL variants from Figma for this component
             let variantCount = 0;
             for (const [key, figmaComponent] of figmaByName) {
-                if (figmaComponent.componentName === componentName && figmaComponent.variantName) {
+                if (
+                    figmaComponent.componentName === componentName &&
+                    figmaComponent.variantName
+                ) {
                     nodesToFetch.push({ nodeId: figmaComponent.nodeId, key });
                     variantCount++;
                 }
             }
             if (variantCount > 0) {
-                info(`Found ${variantCount} variants for ${componentName} in Figma`);
+                info(
+                    `Found ${variantCount} variants for ${componentName} in Figma`
+                );
             } else {
-                warn(`No variants found in Figma for component "${componentName}"`);
+                warn(
+                    `No variants found in Figma for component "${componentName}"`
+                );
             }
         }
     }
@@ -221,7 +233,11 @@ async function syncConfigFromFigma() {
         if (!variants) continue;
 
         const componentDef = definitions.get(componentName);
-        if (componentDef && typeof componentDef === "object" && componentDef.items) {
+        if (
+            componentDef &&
+            typeof componentDef === "object" &&
+            componentDef.items
+        ) {
             const updatedVariants: string[] = [];
 
             // Check each variant for changes
@@ -261,7 +277,9 @@ async function syncConfigFromFigma() {
             }
         }
 
-        success(`Successfully updated ${updates.length} component${updates.length !== 1 ? 's' : ''} in config.yaml`);
+        success(
+            `Successfully updated ${updates.length} component${updates.length !== 1 ? "s" : ""} in config.yaml`
+        );
     } else {
         success("All components are up to date");
     }

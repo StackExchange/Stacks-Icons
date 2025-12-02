@@ -70,129 +70,135 @@ export function flattenDefinitions(defs: Definitions): Record<string, string> {
 }
 
 // Define SVGO plugins to run, the order is important
-export function svgoPlugins(type: string, name: string, isAnimated: boolean): PluginConfig[] {
+export function svgoPlugins(
+    type: string,
+    name: string,
+    isAnimated: boolean
+): PluginConfig[] {
     return [
-    // With the figma setting svg_include_id sometimes there is a parent group with an id of the component name
-    {
-        name: "removeAttributesBySelector",
-        params: {
-            selectors: [
-                {
-                    selector: "svg > g",
-                    attributes: ["id"],
-                },
-            ],
+        // With the figma setting svg_include_id sometimes there is a parent group with an id of the component name
+        {
+            name: "removeAttributesBySelector",
+            params: {
+                selectors: [
+                    {
+                        selector: "svg > g",
+                        attributes: ["id"],
+                    },
+                ],
+            },
         },
-    },
-    {
-        name: "removeAttributesBySelector",
-        params: {
-            selectors: [
-                {
-                    selector: "path",
-                    attributes: ["clip-rule", "fill-rule"],
-                },
-            ],
+        {
+            name: "removeAttributesBySelector",
+            params: {
+                selectors: [
+                    {
+                        selector: "path",
+                        attributes: ["clip-rule", "fill-rule"],
+                    },
+                ],
+            },
         },
-    },
-    // This runs in preset but run here to normalise colors to make it easier to replace them in the next step
-    "convertColors",
-    {
-        name: "fillMap",
-        fn: () => ({
-            element: {
-                enter: (node: XastElement) => {
-                    const attrs = node.attributes;
-                    if (!attrs) return;
+        // This runs in preset but run here to normalise colors to make it easier to replace them in the next step
+        "convertColors",
+        {
+            name: "fillMap",
+            fn: () => ({
+                element: {
+                    enter: (node: XastElement) => {
+                        const attrs = node.attributes;
+                        if (!attrs) return;
 
-                    // If we have a group named currentColor, swap it to a fill
-                    // In the preset moveElemsAttrsToGroup will handle collapsing the group later by moving the fill to the children
-                    if (attrs["id"] === "currentColor") {
-                        delete attrs["id"];
-                        attrs["fill"] = "currentColor";
-                    }
+                        // If we have a group named currentColor, swap it to a fill
+                        // In the preset moveElemsAttrsToGroup will handle collapsing the group later by moving the fill to the children
+                        if (attrs["id"] === "currentColor") {
+                            delete attrs["id"];
+                            attrs["fill"] = "currentColor";
+                        }
 
-                    // Swap any colors for our fill map
-                    if (attrs["fill"]) {
-                        const rawFill = attrs["fill"].toLowerCase();
+                        // Swap any colors for our fill map
+                        if (attrs["fill"]) {
+                            const rawFill = attrs["fill"].toLowerCase();
 
-                        if (rawFill in fillMap) {
-                            const mapped = fillMap[rawFill];
+                            if (rawFill in fillMap) {
+                                const mapped = fillMap[rawFill];
 
-                            if (mapped === null) {
-                                // if we set as null = remove the fill entirely
-                                delete attrs["fill"];
-                            } else {
-                                // replace with Stacks var or new value
-                                attrs["fill"] = mapped as string;
+                                if (mapped === null) {
+                                    // if we set as null = remove the fill entirely
+                                    delete attrs["fill"];
+                                } else {
+                                    // replace with Stacks var or new value
+                                    attrs["fill"] = mapped as string;
+                                }
                             }
                         }
-                    }
-                }
-            
-            }
-        })
-    },
-    // For animations we want to covert layer ID names defined in Figma to classes so they can be reused
-    isAnimated ? {
-        name: 'convertIdToClass',
-        fn: () => ({
-            element: {
-                enter: (node: XastElement) => {
-                    const idValue = node.attributes["id"];
-                    if (!idValue) return
-                    delete node.attributes["id"];
+                    },
+                },
+            }),
+        },
+        // For animations we want to covert layer ID names defined in Figma to classes so they can be reused
+        isAnimated
+            ? {
+                  name: "convertIdToClass",
+                  fn: () => ({
+                      element: {
+                          enter: (node: XastElement) => {
+                              const idValue = node.attributes["id"];
+                              if (!idValue) return;
+                              delete node.attributes["id"];
 
-                    node.attributes["class"] = node.attributes["class"]
-                        ? `${node.attributes["class"]} ${idValue}`
-                        : `${idValue}`;
+                              node.attributes["class"] = node.attributes[
+                                  "class"
+                              ]
+                                  ? `${node.attributes["class"]} ${idValue}`
+                                  : `${idValue}`;
+                          },
+                      },
+                  }),
+              }
+            : undefined,
+        {
+            name: "preset-default",
+            params: {
+                overrides: {
+                    convertShapeToPath: false,
+                    ...(isAnimated
+                        ? {
+                              inlineStyles: false,
+                          }
+                        : {}),
                 },
             },
-        })
-    } : undefined,
-    {
-        name: "preset-default",
-        params:{
-            overrides: {
-                convertShapeToPath: false,
-                ...(isAnimated ? { 
-                    inlineStyles: false,
-                } : {}),
+        },
+        {
+            name: "removeUselessStrokeAndFill",
+            params: {
+                removeNone: true,
             },
         },
-    },
-    {
-        name: "removeUselessStrokeAndFill",
-        params: {
-            removeNone: true,
+        {
+            name: "prefixIds",
+            params: {
+                prefix: `${type.toLowerCase()}-${name.toLowerCase()}`,
+                delim: "__",
+                prefixIds: true,
+                prefixClassNames: true,
+            },
         },
-    },
-    {
-      name: "prefixIds",
-      params: {
-        prefix: `${type.toLowerCase()}-${name.toLowerCase()}`,
-        delim: "__",
-        prefixIds: true,
-        prefixClassNames: true
-      }
-    },
-    {
-        name: "addClassesToSVGElement",
-        params: {
-            className: `svg-${type?.toLowerCase()} ${type}${name}`,
+        {
+            name: "addClassesToSVGElement",
+            params: {
+                className: `svg-${type?.toLowerCase()} ${type}${name}`,
+            },
         },
-    },
-    {
-        name: "addAttributesToSVGElement",
-        params: {
-            attributes: [
-                { "aria-hidden": "true" }
-            ]
+        {
+            name: "addAttributesToSVGElement",
+            params: {
+                attributes: [{ "aria-hidden": "true" }],
+            },
         },
-    },
 
-    "removeXMLNS",
-    "removeXlink",
-].filter(Boolean) as PluginConfig[]
-
+        "removeXMLNS",
+        "removeXlink",
+    ].filter(Boolean) as PluginConfig[];
 }
