@@ -50,7 +50,7 @@ definitions:
         Size=Default, Stack=True, Style=Fill: J3Xm3ke9AO3xhbTzD4e/JgVQEwupjcMpqTAgjl/pgdc=
     Icon/Archive:
         Size=16, Style=Default: oPohghN3qwKeETod/+ZsUifWbveaQJ/UozTq/WWAnWY=
-        Size=16, Style=Fill: qpnB/e8Q8cL1HXiymxlWyazH9tEp9cj6DcrFryxBLUk=
+        Size=16, Style=Fill: TxAUjA1sqK1H0F+sDnPmI4lKx2lU3GXWZHmgKNFbAuI=
         Size=Default, Style=Default: x/4YhiFqWZesia3IewTLIU/0KvTmvzBiRfIfDgFebNU=
         Size=Default, Style=Fill: 78TgcSlfy+TklDwG68+JZ7XbuPnxNKYOiY9LZ1JdeeI=
     Icon/Arrow:
@@ -168,7 +168,7 @@ definitions:
         Size=Default, Style=Default, Stack=False: cnXjllgEWn/5HiySqfDFUOtNH+V8uJhUMPRS6M6cIZE=
         Size=Default, Style=Default, Stack=True: 7FPgCYn6A4icX9yJm7nWZakYZeWN/L5ScyMdmpjILQU=
         Size=Default, Style=Fill, Stack=False: Zvwewdc4TXXSK3/69a0aH4rr4T1/g4c7+A81BIDOIhA=
-        Size=Default, Style=Fill, Stack=True: 4zxoyTg0+kaGNF1bR6L+v9va1DXMAW6bgqk19UNE0iw=
+        Size=Default, Style=Fill, Stack=True: 4SsYZ0BTWEvrldVkHVaTabEJ84MNs+0hhbtplPi9V8Q=
     Icon/Company:
         Size=Default, Style=Default: 0elKKLCcn554U8toP7iKmuZVs7DuVXn2m93pmhhRfVQ=
         Size=Default, Style=Fill: qajsswMYq+UQyHRlL+BRniS9ZU2aJlNLIINvzchOQnc=
@@ -215,8 +215,8 @@ definitions:
     Icon/Eye:
         Size=16, Style=Default, Off=False: J8vU07yRWsC4SQhDpEH3pYxVWbZOGMI5cXL+tq9faR0=
         Size=16, Style=Default, Off=True: fcN281ixCYvy/jSnqQozNamxdaDzDlPMqwt5jki8goE=
-        Size=16, Style=Fill, Off=False: dLaFtWM1wRAtsTLZSEy1pwrzNTeD2Ntb/WC+cKjCEG8=
-        Size=16, Style=Fill, Off=True: 9aiwJDGvbsJjaY0nSGB9IxynMCTLIrSxR4gABQt8S4o=
+        Size=16, Style=Fill, Off=False: TOoF12kW5T0WGVKg8B6aXNXbA15RCRn1aY2bKHx4PIw=
+        Size=16, Style=Fill, Off=True: XRsm4OhGmIUX9+DMWobSHxcouBxIRMrmFo5DxTLizRo=
         Size=Default, Style=Default, Off=False: qY0+lrXVB9/fM3UmttGXXwqYZvayq+kzCFHdo910yHc=
         Size=Default, Style=Default, Off=True: LxcjfHKOiI9e42JNO3UHM8LJwgfx06UUFGVIMRO3LeE=
     Icon/Flag:
@@ -400,8 +400,8 @@ definitions:
         Service=Microsoft, Size=32: KnbM0ZUACdNK0DNqFs0/xnhKPpIXQdHP3xI0g3uckE4=
         Service=Microsoft, Size=64: 6JsP5Pt6jMeCkVxeYiRyW9y+NzDTU/7YppBJTge4pVU=
         Service=Microsoft, Size=Default: BBA+l8CXShNkNMQsHotCf6kntMiD4mcuy5yltR73HYU=
-        Service=MicrosoftTeams, Size=32: 8gFyqA1fDWJgCEh5R/wrzpHkNS2e3i2Y7ZNfkQnMGPk=
-        Service=MicrosoftTeams, Size=64: evKhLhLPpfpcd9YJMoB0pud/3PSwRgxFbtqqH17tYHg=
+        Service=MicrosoftTeams, Size=32: hHmogVtN09S3KU4Rdx/Np/ZMVVD/fVgzCvWTCIv1KSo=
+        Service=MicrosoftTeams, Size=64: eahSG/30+qCmFkdqYxk0Y5QV/qMQsiR8jPLjvqB/9Lk=
         Service=MicrosoftTeams, Size=Default: BZJ3wHN4i7ZdD3Fwa+oD6toXin4sfKpe9VQonsux2AQ=
         Service=Moveworks, Size=32: 9KhPSqJXm1Y7Im9Mm7sdzw6rqxfvXBrCZx92OHekbLk=
         Service=Moveworks, Size=64: 2JTOrXqoifbDUjoFvcij7pnAbZ+KyIGqbALSMoXx6IY=
@@ -539,7 +539,7 @@ definitions:
     Spot/Idea: 41TPxswMk7+BBkM6hg0e9h+MnKqIB0qwc8DNCKkgm7U=
     Spot/Ideas: 6BML39ZsfZMas2gkxUClNErat197QNdvh42PE7WZsiY=
     Spot/Learning: cg02iZD2c6Uuly0plbK+y7Uohwm2lDU92UxLbEElfYA=
-    Spot/Loading: YCSpLHTCqQYlWV5Df54RMYakFw93bW05QbhyEjtIC90=
+    Spot/Loading: fFMINIOdQ545KZ6JJjDWKoASxMNjqLTyZ0XdXkCS8Nk=
     Spot/LoadingGlyph: pDr1Vx6hiCbEIxSsvw54B8/jFvmZIDE9nAKVp24nYOA=
     Spot/Lock: gqf7aNcWypr/yEFgAKgd4WLuB5mM7uMp9oWtwOK70VI=
     Spot/Metrics: 1lR0rUaHiPtYo+mqN4AL1LvbPFuIUSH+WwTK4QXse8c=
@@ -562,3 +562,4 @@ fills:
     '#f0efed': var(--black-150)
     '#fff': var(--white)
     none: null
+    white: var(--white)
