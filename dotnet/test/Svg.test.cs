@@ -6,7 +6,7 @@ public class SvgTest
     public void FindsEmbeddedResources()
     {
         var icon = Svg.Answer;
-        var spot = Svg.Spot.Test;
+        var spot = Svg.Spot.Empty;
         Assert.False(string.IsNullOrWhiteSpace(icon.Value));
         Assert.False(string.IsNullOrWhiteSpace(spot.Value));
     }
