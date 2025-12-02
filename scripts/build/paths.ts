@@ -6,7 +6,6 @@ class Paths {
         build: string;
         preview: string;
         src: string;
-        raw: string;
     };
 
     constructor() {
