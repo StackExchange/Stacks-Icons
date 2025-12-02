@@ -12,10 +12,6 @@
         />
         {CSS_STYLES}
         <style>
-            body.js-unnative .svg-icon *,
-            body.js-unnative .svg-svg * {
-                fill: unset;
-            }
             body.js-currentcolor .svg-icon,
             body.js-currentcolor .svg-spot {
                 fill: magenta;
@@ -44,12 +40,13 @@
                 <label for="toggle-native" class="d-flex ai-center">
                     <div class="d-flex ai-center g8">
                         <label class="s-label" for="toggle-native">
-                            Override native
+                            .native
                         </label>
                         <input
                             class="s-toggle-switch"
                             id="toggle-native"
                             type="checkbox"
+                            checked
                         />
                     </div>
                 </label>
@@ -117,7 +114,9 @@
             document
                 .getElementById("toggle-native")
                 .addEventListener("change", () => {
-                    document.body.classList.toggle("js-unnative");
+                    document.querySelectorAll(".svg-spot, .svg-icon").forEach(el => {
+                        el.classList.toggle("native");
+                    });
                 });
         </script>
     </body>
