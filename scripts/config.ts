@@ -5,6 +5,7 @@ import { readFile } from "fs/promises";
 
 export interface Config {
     definitions: Definitions;
+    fills: Record<string, string>;
     cssIcons: Record<string, { css: string }>;
 }
 
@@ -20,3 +21,5 @@ export const configRaw = YAML.parse(configFile) as Config;
 export const cssIcons = configRaw.cssIcons || {};
 
 export const definitions = flattenDefinitions(configRaw.definitions);
+
+export const fillMap = configRaw.fills || {};

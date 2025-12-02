@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import { createHash } from "node:crypto";
 import { basename } from "path";
 import { optimize } from "svgo";
-import { definitions } from "../definitions.js";
+import { definitions } from "../config.js";
 import { paths } from "./paths.js";
 import {
     error,
@@ -11,23 +11,15 @@ import {
     warn,
     flattenFigmaComponentVariantName,
     type OutputType,
+    svgoPlugins,
 } from "./utils.js";
+import {
+    type GetFileComponentsResponse,
+    type GetImagesResponse,
+} from "@figma/rest-api-spec";
 
 /** The upper limit to an icon's svg size in bytes */
 const MAX_ICON_SIZE_B = 4500;
-
-// https://www.figma.com/developers/api#get-files-endpoint
-export interface FigmaComponent {
-    name: string;
-    node_id: string;
-    thumbnail_url: string;
-    created_at: string;
-    updated_at: string;
-    containing_frame: {
-        name: string;
-        pageName?: string;
-    };
-}
 
 export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     if (!process.env["FIGMA_ACCESS_TOKEN"] || !process.env["FIGMA_FILE_KEY"]) {
@@ -48,9 +40,9 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     );
 
     // https://developers.figma.com/docs/rest-api/component-endpoints/#http-endpoint-1
-    const stacksFile = await fetch.get<{
-        meta: { components: FigmaComponent[] };
-    }>(`/files/${process.env["FIGMA_FILE_KEY"]}/components`);
+    const stacksFile = await fetch.get<GetFileComponentsResponse>(
+        `/files/${process.env["FIGMA_FILE_KEY"]}/components`
+    );
 
     // Full returned components list
     const components = stacksFile.data.meta.components;
@@ -65,8 +57,9 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         let name = component.name;
 
         // For variants, loop through all of them to create seperate assets
-        if (component.containing_frame?.name) {
-            const componentName = component.containing_frame.name;
+        if (component.containing_frame?.containingComponentSet?.name) {
+            const componentName =
+                component.containing_frame.containingComponentSet.name;
             const variantName = flattenFigmaComponentVariantName(
                 component.name
             );
@@ -96,10 +89,14 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // Returns a object of urls
     // https://www.figma.com/developers/api#get-images-endpoint
     // { "images": { "NODE_ID": "AWS URL", ... } }
-    const urls = await fetch.get<{ images: Record<string, string> }>(
+    const urls = await fetch.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
-            params: { format: "svg", ids: Object.keys(names).join(",") },
+            params: {
+                format: "svg",
+                ids: Object.keys(names).join(","),
+                svg_include_id: true,
+            },
         }
     );
 
@@ -117,7 +114,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
             error(
                 `Unable to find name or url: name: "${String(
                     name
-                )}", url: "${url}"`
+                )}", url: "${url ?? ""}"`
             );
             continue;
         }
@@ -174,7 +171,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
 ${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
 
         if (ignoreHashMismatch) {
-            error(mismatchError);
+            info(mismatchError);
         } else {
             throw mismatchError;
         }
@@ -186,121 +183,76 @@ ${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
 /** Optimizes svg files using svgo then writes them to build/lib */
 export async function processSvgFilesAsync(type: OutputType) {
     const ext = ".svg";
-    // Read the source directory of SVGs
-    let icons = await fs.readdir(paths.src(type));
 
-    // Get the name without the extension and sort alphabetically
-    icons = icons.map((i) => basename(i, ext)).sort();
+    // Read the source files then remove the extensions and sort alphabetically
+    const svgPaths = await fs.readdir(paths.src(type));
+    const svgNames = svgPaths.map((i) => basename(i, ext)).sort();
 
-    // Array of promises which do the fetching of the files
-    const readPromises = icons.map((i) =>
-        fs.readFile(paths.src(type, i + ext), "utf8")
-    );
-    let processed = await Promise.all(readPromises);
-
-    const optimizedImages: string[] = [];
-
-    // Optimize them with SVGO
-    processed.forEach((i) => {
-        try {
-            const optimized = optimize(i, {
-                floatPrecision: 2,
-                multipass: true,
-                plugins: [
-                    {
-                        name: "preset-default",
-                        params: {
-                            overrides: {
-                                mergePaths: {
-                                    force: true,
-                                    noSpaceAfterFlags: true,
-                                },
-                            },
-                        },
-                    },
-                    "removeXMLNS",
-                    {
-                        name: "removeAttrs",
-                        params: {
-                            attrs: "(fill-rule|clip-rule)",
-                        },
-                    },
-                    "convertTransform",
-                ],
-            });
-            optimizedImages.push(optimized.data);
-        } catch (e) {
-            error(e);
-        }
-    });
-
-    const typeClass = type.toLowerCase();
-
-    // Do our custom tweaks to the output
-    processed = optimizedImages.map((i, idx) => {
-        const icon = icons[idx];
-
-        if (!icon) {
-            return i;
-        }
-
-        return i
-            .replace(
-                "<svg",
-                `<svg aria-hidden="true" class="svg-${typeClass} ${typeClass}${icon}"`
-            ) // Add classes and aria-attributes since our source files don't have them
-            .replace(/fill="#000"/gi, "") // Remove any fills so paths are colored by the parents' color
-            .replace(/fill="none"/gi, "") // Remove any empty fills that SVGO's removeUselessStrokeAndFill: true doesn't remove
-            .replace(/fill="#222426"/gi, 'fill="var(--black-600)"') // Replace hardcoded hex value with appropriate CSS variables
-            .replace(/fill="#fff"/gi, 'fill="var(--white)"')
-            .replace(/fill="#6A7E7C"/gi, 'fill="var(--black-400)"')
-            .replace(/fill="#1A1104"/gi, 'fill="var(--black-600)"')
-            .replace(
-                /linearGradient id="(.*?)/gi,
-                `linearGradient id="${icon}$1`
-            ) // Replace any gradient ID with the icon name to namespace
-            .replace(/url\(#(.*?)\)/gi, `url(#${icon}$1)`) // Replace any reference to fill IDs with the icon name to namespace
-            .replace(/\s>/g, ">") // Remove extra space before closing bracket on opening svg element
-            .replace(/\s\/>/g, "/>"); // Remove extra space before closing bracket on path tag element
-    });
-
-    // ensure the directory is created
+    // Ensure the save directory is created
     await fs.mkdir(paths.build("lib", type), {
         recursive: true,
     });
 
-    // Make an object of our icons { IconName: '<svg>' }
-    const iconsObj: Record<string, string> = {};
-    const promises = processed.map(async (svgStr, idx) => {
-        const iconName = icons[idx];
-        if (!iconName) {
-            return;
+    const svgPromises = svgPaths.map(async (i) => {
+        const name = basename(i, ext);
+        const outputPath = paths.build(paths.build("lib", type), name + ext);
+
+        let outputSvg = "";
+        let raw = await fs.readFile(paths.src(type, i), "utf8");
+        let css = "";
+
+        // Check to see if there is a .css file with the same name, load it if there is and embed it in the svg
+        try {
+            css = await fs.readFile(
+                paths.src("animations", type + name + ".css"),
+                "utf8"
+            );
+            if (css) {
+                info(`[${type}${name}]: Applying found .css file.`);
+                raw = raw.replace(
+                    /(<svg[^>]*>)/,
+                    `$1<style type="text/css">${css}</style>`
+                );
+            }
+        } catch (e: unknown) {
+            // Ignore if CSS doesn't exist
+            if (
+                typeof e === "object" &&
+                e !== null &&
+                "code" in e &&
+                e.code !== "ENOENT"
+            )
+                throw e;
         }
 
-        iconsObj[iconName] = svgStr;
-
-        const path = paths.build(paths.build("lib", type), iconName + ext);
+        // Optimize it
+        try {
+            outputSvg = optimize(raw, {
+                floatPrecision: 2,
+                plugins: svgoPlugins(type, name, css ? true : false),
+            }).data;
+        } catch (e) {
+            error(e);
+        }
 
         // Save each svg
-        await fs.writeFile(path, svgStr, "utf8");
+        await fs.writeFile(outputPath, outputSvg, "utf8");
 
         // only check the file size for icons
         if (type === "Icon") {
-            const stat = await fs.stat(path);
+            const stat = await fs.stat(outputPath);
 
             if (stat.size > MAX_ICON_SIZE_B) {
-                throw `File too large: ${path}; ${stat.size} B > ${MAX_ICON_SIZE_B} B`;
+                throw `File too large: ${outputPath}; ${stat.size} B > ${MAX_ICON_SIZE_B} B`;
             }
         }
+
+        return { [name]: outputSvg };
     });
 
-    const failed = (await Promise.allSettled(promises))
-        .map((r) => (r.status === "rejected" ? (r.reason as string) : null))
-        .filter((r) => !!r);
+    const svgs = await Promise.all(svgPromises);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const iconsObj: Record<string, string> = Object.assign({}, ...svgs);
 
-    if (failed.length) {
-        throw failed.join("\n");
-    }
-
-    return { icons, iconsObj };
+    return { iconsObj, svgNames };
 }

@@ -39,15 +39,15 @@ async function cleanBuildDirectoryAsync() {
 }
 
 async function buildSvgSetAsync(buildPrefix: OutputType) {
-    const { icons, iconsObj } = await processSvgFilesAsync(buildPrefix);
+    const { svgNames, iconsObj } = await processSvgFilesAsync(buildPrefix);
 
     await Promise.all([
-        writeCSharp(icons, buildPrefix),
+        writeCSharp(svgNames, buildPrefix),
         writeJson(iconsObj, buildPrefix),
         writeJsModule(iconsObj, buildPrefix),
     ]);
 
-    return { count: icons.length, obj: iconsObj };
+    return { count: svgNames.length, obj: iconsObj };
 }
 
 (async () => {

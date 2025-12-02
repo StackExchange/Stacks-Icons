@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import { paths } from "./paths.js";
-import { configRaw } from "../definitions.js";
+import { configRaw } from "../config.js";
 import { flattenFigmaComponentVariantName } from "./utils.js";
 
 function buildCssManifestHtml(

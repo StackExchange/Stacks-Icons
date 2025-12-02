@@ -1,0 +1,137 @@
+.g,
+.b,
+.s {
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.33, 1, 0.66, 1);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.s {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.g {
+    animation-name: slide-in;
+}
+.b1 {
+    animation-name: rotate-b1;
+}
+.b2 {
+    animation-name: rotate-b2;
+}
+.b3 {
+    animation-name: rotate-b3;
+}
+
+.s1 {
+    animation-name: reveal-s1;
+}
+.s2 {
+    animation-name: reveal-s2;
+}
+.s3 {
+    animation-name: reveal-s3;
+}
+
+@keyframes rotate-b1 {
+    0%,
+    20% {
+        transform: rotate(0deg);
+        transform-origin: 117px 190px;
+    }
+    30%,
+    35%,
+    45%,
+    100% {
+        transform: rotate(15deg);
+        transform-origin: 120px 160px;
+    }
+}
+@keyframes rotate-b2 {
+    0%,
+    20% {
+        transform: rotate(0deg);
+        transform-origin: 117px 190px;
+    }
+    30%,
+    40% {
+        transform: rotate(15deg);
+        transform-origin: 120px 160px;
+    }
+    50%,
+    55%,
+    65%,
+    100% {
+        transform: rotate(30deg);
+        transform-origin: 136px 147px;
+    }
+}
+@keyframes rotate-b3 {
+    0%,
+    20% {
+        transform: rotate(0deg);
+        transform-origin: 117px 190px;
+    }
+    30%,
+    40% {
+        transform: rotate(15deg);
+        transform-origin: 120px 160px;
+    }
+    50%,
+    60% {
+        transform: rotate(30deg);
+        transform-origin: 136px 147px;
+    }
+    70%,
+    75%,
+    85%,
+    100% {
+        transform: rotate(45deg);
+        transform-origin: 143px 136px;
+    }
+}
+
+@keyframes reveal-s1 {
+    0%,
+    15% {
+        transform: scale(0) rotate(-15deg);
+    }
+    25%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+@keyframes reveal-s2 {
+    0%,
+    40% {
+        transform: scale(0);
+    }
+    50%,
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes reveal-s3 {
+    0%,
+    60% {
+        transform: scale(0);
+    }
+    70%,
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(100%);
+    }
+    33% {
+        transform: translateY(0);
+    }
+    67%,
+    100% {
+        transform: translateY(0);
+    }
+}

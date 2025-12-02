@@ -50,6 +50,32 @@ In certain cases where adding the raw svg markup to your html would cause bloat 
 
 For performance / file size reasons, not all icons are available in css. You can add support for more CSS icons my editing the `cssIcons` value in [config.yaml](config.yaml).
 
+### Using CSS animations
+
+SVGs can include custom CSS animations. Named layers in Figma will be passed to the final file, converted from IDs to classes, and prefixed with the icon name to reduce collisions in production.
+
+To add a new animation for an icon:
+
+1. Create a CSS file in `src/animations/[IconName].css`
+2. At build time, the SVG and CSS will be compiled into one minified file
+3. Use the Figma layer names (which become classes) to target elements for animation
+
+```css
+/* Example: src/animations/IconSpin.css */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinning-layer {
+    animation: spin 1s linear infinite;
+}
+```
+
 ### Use in dotnet
 
 Stacks-Icons also provides a NuGet package that targets `net6.0;net8.0`.
@@ -125,6 +151,18 @@ brew install yq # if you haven't already installed it
 npm run format:config
 ```
 
+### Customizing color mappings
+
+The build process now supports mapping specific colors to CSS variables via the `fills` section in `config.yaml`. This allows for better theming and customization of icons:
+
+```yaml
+fills:
+    "#FF0000": "var(--theme-primary-color)"
+    "#00FF00": "var(--theme-secondary-color)"
+```
+
+Colors defined in the `fills` mapping will be automatically replaced during the build process using SVGO's plugin architecture, providing more reliable optimization than string replacement.
+
 #### Publishing an icon
 
 In order to expose a new icon to this repository, you'll need to convert it into a component then publish it by following these steps:
@@ -166,6 +204,18 @@ Icons can have various property combinations depending on their Figma component 
 1. The property order matches Figma's component definition (usually Size, then Boolean properties, then Style)
 2. All entries are in alphabetical order for ease of reference
 3. The initial hash values can be left empty (`""`)
+
+#### Syncing config with Figma
+
+To make adding new icons easier, you can use the sync script to programmatically update the `config.yaml` hashes:
+
+```sh
+npm run sync:figma
+```
+
+This script will automatically fetch the latest components from Figma and update the hash values in `config.yaml`. Hashes will only update if the icon is already defined.
+
+#### Manually updating hashes
 
 Once you run the first build process, it'll throw an error like the following:
 
