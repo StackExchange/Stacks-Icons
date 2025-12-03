@@ -1,6 +1,7 @@
 import axios, { type AxiosInstance } from "axios";
 import axiosRetry from "axios-retry";
 import { createRequire } from "module";
+import { info } from "./utils.js";
 
 // Handle CommonJS default export - axios-rate-limit is CommonJS
 const require = createRequire(import.meta.url);
@@ -61,6 +62,9 @@ export function createFigmaClient(): AxiosInstance {
                 | string
                 | undefined;
             const retryAfterSeconds = Number.parseInt(String(retryAfter), 10);
+            info(
+                `Rate limited by Figma API. Retrying after ${retryAfterSeconds} seconds...`
+            );
             return retryAfterSeconds * 1000;
         },
     });
