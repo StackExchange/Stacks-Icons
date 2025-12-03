@@ -62,10 +62,11 @@ export function createFigmaClient(): AxiosInstance {
                 | string
                 | undefined;
             const retryAfterSeconds = Number.parseInt(String(retryAfter), 10);
+            const delaySeconds = Math.min(retryAfterSeconds, 60); // Cap at 60 seconds
             info(
-                `Rate limited by Figma API. Retrying after ${retryAfterSeconds} seconds...`
+                `Rate limited by Figma API. Retrying after ${delaySeconds} seconds...`
             );
-            return retryAfterSeconds * 1000;
+            return delaySeconds * 1000;
         },
     });
 
