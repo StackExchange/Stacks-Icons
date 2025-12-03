@@ -12,6 +12,8 @@ import {
     flattenFigmaComponentVariantName,
     type OutputType,
     svgoPlugins,
+    createSvgDownloader,
+    withProgressTracking,
 } from "./utils.js";
 import {
     type GetFileComponentsResponse,
@@ -33,6 +35,8 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         baseURL: "https://api.figma.com/v1",
         headers: { "X-Figma-Token": process.env["FIGMA_ACCESS_TOKEN"] },
     });
+    // Create a rate-limited axios instance for downloading SVG files
+    const svgDownloader = createSvgDownloader();
 
     // Get the Stacks icon file
     info(
@@ -100,14 +104,13 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         }
     );
 
-    const queue: Promise<unknown>[] = [];
     const incorrectHashes: Record<string, string> = {};
     const images = Object.entries(urls.data.images);
-    info(`Attempting to fetch ${images.length} files from Figma...`);
+    const totalImages = images.length;
+    info(`Attempting to fetch ${totalImages} files from Figma...`);
 
-    // Loop over the object of images
-    for (const entry of images) {
-        const [node_id, url] = entry;
+    // Download images with rate limiting and retries
+    const downloadPromises = images.map(async ([node_id, url]) => {
         const name = names[node_id];
 
         if (!name || !url) {
@@ -116,41 +119,36 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
                     name
                 )}", url: "${url ?? ""}"`
             );
-            continue;
+            return;
         }
 
         const location = paths.src(`${name}.svg`);
 
-        queue.push(
-            axios
-                .get<string>(url)
-                .then((resp) => {
-                    const data = resp.data;
+        try {
+            const resp = await svgDownloader.get<string>(url);
+            const data = resp.data;
 
-                    // calculate the hash
-                    const hash = createHash("sha256");
-                    hash.update(data);
-                    const sha256 = hash.digest("base64");
+            // calculate the hash
+            const hash = createHash("sha256");
+            hash.update(data);
+            const sha256 = hash.digest("base64");
 
-                    //debug(`💾 '${name}' (${url}) ${sha256}`);
+            //debug(`💾 '${name}' (${url}) ${sha256}`);
 
-                    if (definitions[name] === sha256) {
-                        // write to file
-                        return fs.writeFile(location, data);
-                    } else {
-                        incorrectHashes[name] = sha256;
-                        // don't crash the process on a failed hash, resolve and error later
-                        return Promise.resolve();
-                    }
-                })
-                .catch((err) => {
-                    error(err);
-                })
-        );
-    }
+            if (definitions[name] === sha256) {
+                // write to file
+                await fs.writeFile(location, data);
+            } else {
+                incorrectHashes[name] = sha256;
+                // don't crash the process on a failed hash, resolve and error later
+            }
+        } catch (err) {
+            error(`Failed to fetch ${name}: ${String(err)}`);
+            throw err;
+        }
+    });
 
-    // wait for all the files to come back and be written to disk
-    await Promise.all(queue);
+    await withProgressTracking(downloadPromises, totalImages, "SVG files");
 
     const hashEntries = Object.entries(incorrectHashes).sort((a, b) => {
         if (a < b) {

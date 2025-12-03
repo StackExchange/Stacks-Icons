@@ -3,7 +3,14 @@ import axios from "axios";
 import { createHash } from "node:crypto";
 import YAML from "yaml";
 import { readFile, writeFile } from "fs/promises";
-import { error, success, info, warn } from "./build/utils.js";
+import {
+    error,
+    success,
+    info,
+    warn,
+    createSvgDownloader,
+    withProgressTracking,
+} from "./build/utils.js";
 import {
     GetImagesResponse,
     type GetFileComponentsResponse,
@@ -45,6 +52,8 @@ async function syncConfigFromFigma() {
         baseURL: "https://api.figma.com/v1",
         headers: { "X-Figma-Token": process.env["FIGMA_ACCESS_TOKEN"] },
     });
+    // Create a rate-limited axios instance for downloading SVG files
+    const svgDownloader = createSvgDownloader();
 
     info(
         `Fetching all components from Figma ("https://figma.com/design/${process.env["FIGMA_FILE_KEY"]}")...`
@@ -149,30 +158,31 @@ async function syncConfigFromFigma() {
         }
     );
 
-    info(`Fetching ${nodeIds.length} SVG files to calculate hashes...`);
+    const imageEntries = Object.entries(urls.data.images).filter(
+        ([, url]) => url
+    );
+    const totalImages = imageEntries.length;
+    info(`Fetching ${totalImages} SVG files to calculate hashes...`);
 
     const hashMap = new Map<string, string>();
-    const queue: Promise<void>[] = [];
 
-    for (const [nodeId, url] of Object.entries(urls.data.images)) {
-        if (!url) continue;
+    // Download images with rate limiting and retries
+    const downloadPromises = imageEntries.map(async ([nodeId, url]) => {
+        if (!url) return;
 
-        queue.push(
-            axios
-                .get<string>(url)
-                .then((resp) => {
-                    const hash = createHash("sha256");
-                    hash.update(resp.data);
-                    const sha256 = hash.digest("base64");
-                    hashMap.set(nodeId, sha256);
-                })
-                .catch((err: unknown) => {
-                    error(`Failed to fetch ${nodeId}: ${String(err)}`);
-                })
-        );
-    }
+        try {
+            const resp = await svgDownloader.get<string>(url);
+            const hash = createHash("sha256");
+            hash.update(resp.data);
+            const sha256 = hash.digest("base64");
+            hashMap.set(nodeId, sha256);
+        } catch (err: unknown) {
+            error(`Failed to fetch ${nodeId}: ${String(err)}`);
+            throw err;
+        }
+    });
 
-    await Promise.all(queue);
+    await withProgressTracking(downloadPromises, totalImages, "SVG files");
     info(`Successfully calculated ${hashMap.size} hashes`);
 
     // Update hashes in the definitions - only update what changed
