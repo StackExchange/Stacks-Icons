@@ -34,3 +34,23 @@
         opacity: 0.2;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .s1,
+    .s2,
+    .s3 {
+        animation: a-reduced 2s ease-in-out infinite;
+    }
+
+    @keyframes a-reduced {
+        0%,
+        100% {
+            transform: none;
+            opacity: 0.3;
+        }
+        50% {
+            transform: none;
+            opacity: 1;
+        }
+    }
+}

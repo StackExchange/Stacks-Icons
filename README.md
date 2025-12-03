@@ -74,6 +74,14 @@ To add a new animation for an icon:
 .spinning-layer {
     animation: spin 1s linear infinite;
 }
+
+/* Always respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .spinning-layer {
+        animation: none;
+        /* For loading indicators, consider a subtle opacity fade instead */
+    }
+}
 ```
 
 ### Use in dotnet
