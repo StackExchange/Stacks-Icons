@@ -409,9 +409,9 @@ definitions:
         Service=MicrosoftTeams, Size=32: hHmogVtN09S3KU4Rdx/Np/ZMVVD/fVgzCvWTCIv1KSo=
         Service=MicrosoftTeams, Size=64: eahSG/30+qCmFkdqYxk0Y5QV/qMQsiR8jPLjvqB/9Lk=
         Service=MicrosoftTeams, Size=Default: BZJ3wHN4i7ZdD3Fwa+oD6toXin4sfKpe9VQonsux2AQ=
-        Service=Moveworks, Size=32: 9KhPSqJXm1Y7Im9Mm7sdzw6rqxfvXBrCZx92OHekbLk=
-        Service=Moveworks, Size=64: 2JTOrXqoifbDUjoFvcij7pnAbZ+KyIGqbALSMoXx6IY=
-        Service=Moveworks, Size=Default: NrVFqcVppGorXf9Z7YbMRapj/dODmDtLSvLus1NTDR8=
+        Service=Moveworks, Size=32: 95QQm1/0BROQb1ZIf5lOs+QucB5EjTVFTdveFTPY7Fo=
+        Service=Moveworks, Size=64: 8uf4DFCXjlXL8lGY8UdTK6Qo1qJsV6u08SamkK2Ql/k=
+        Service=Moveworks, Size=Default: MNhfjOV6oEMWlt9z5q8MRfZV8P/eibA3gTpWCwZmgRw=
         Service=Okta, Size=32: sXuhRZ1hcUaFb3l6owMQv0jc+fw0xEGi4ETnMTCIRAg=
         Service=Okta, Size=64: 4NDlo3+Al7YOO/e3bd2BShWfGyrUr5vo7yxelZsbgcs=
         Service=Okta, Size=Default: 9SjHKeGbBp53Xcx+rwcX/X8687cjQYE4HArd3o5oIaQ=
@@ -490,6 +490,8 @@ definitions:
         Size=Default, Style=32: vU7MtK2TaNI1JWHKR3vprwrS/Lrcv+UhxOXvrpHDMns=
         Size=Default, Style=Default: DU8F0IXiK6ozKXH9TfNSl9m9Yb4WPjzOTtsgfU2ul0w=
     Icon/User:
+        Size=32, Stack=False, Style=Default: rX8GZI8pWoLzcHc79LLkD13yfFPdI2NDbcxmYR2LTyw=
+        Size=32, Stack=True, Style=Default: pzSHYxh9ddIJWS+7+XpNU/q7tHFvmjPH+TyzoYG37E4=
         Size=Default, Stack=False, Style=Default: OwMdXfT7AYZdUAZKVPMhKUvRHiyjfppqzT9jcchoByE=
         Size=Default, Stack=False, Style=Fill: bbVd0b7JjY+WJlbxfFNmpi5/v9w5Jw5AGKFuOaVOc3Y=
         Size=Default, Stack=True, Style=Default: NxS6kGPXdyc46idhG3Q2AXDX4Ja+rKxGqObvpbNUd4M=
@@ -559,14 +561,14 @@ definitions:
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
-    "#000": null
-    "#0f2465": var(--blue-600)
-    "#200b73": var(--purple-600)
-    "#201c1d": var(--black-600)
-    "#5176f2": var(--blue-400)
-    "#590405": var(--red-600)
-    "#f0efed": var(--black-150)
-    "#fff": var(--white)
+    '#000': null
+    '#0f2465': var(--blue-600)
+    '#200b73': var(--purple-600)
+    '#201c1d': var(--black-600)
+    '#5176f2': var(--blue-400)
+    '#590405': var(--red-600)
+    '#f0efed': var(--black-150)
+    '#fff': var(--white)
     black: null
     none: null
     white: null
