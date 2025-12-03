@@ -1,4 +1,3 @@
-import axios from "axios";
 import fs from "fs/promises";
 import { createHash } from "node:crypto";
 import { basename } from "path";
@@ -12,9 +11,9 @@ import {
     flattenFigmaComponentVariantName,
     type OutputType,
     svgoPlugins,
-    createSvgDownloader,
     withProgressTracking,
 } from "./utils.js";
+import { createSvgClient, createFigmaClient } from "./client.js";
 import {
     type GetFileComponentsResponse,
     type GetImagesResponse,
@@ -30,13 +29,9 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         );
     }
 
-    // https://www.figma.com/developers/api
-    const fetch = axios.create({
-        baseURL: "https://api.figma.com/v1",
-        headers: { "X-Figma-Token": process.env["FIGMA_ACCESS_TOKEN"] },
-    });
-    // Create a rate-limited axios instance for downloading SVG files
-    const svgDownloader = createSvgDownloader();
+    // Create rate-limited axios instances
+    const figmaClient = createFigmaClient();
+    const svgClient = createSvgClient();
 
     // Get the Stacks icon file
     info(
@@ -44,7 +39,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     );
 
     // https://developers.figma.com/docs/rest-api/component-endpoints/#http-endpoint-1
-    const stacksFile = await fetch.get<GetFileComponentsResponse>(
+    const stacksFile = await figmaClient.get<GetFileComponentsResponse>(
         `/files/${process.env["FIGMA_FILE_KEY"]}/components`
     );
 
@@ -93,7 +88,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     // Returns a object of urls
     // https://www.figma.com/developers/api#get-images-endpoint
     // { "images": { "NODE_ID": "AWS URL", ... } }
-    const urls = await fetch.get<GetImagesResponse>(
+    const urls = await figmaClient.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
             params: {
@@ -125,7 +120,7 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
         const location = paths.src(`${name}.svg`);
 
         try {
-            const resp = await svgDownloader.get<string>(url);
+            const resp = await svgClient.get<string>(url);
             const data = resp.data;
 
             // calculate the hash

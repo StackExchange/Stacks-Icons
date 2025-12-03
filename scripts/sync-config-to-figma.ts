@@ -1,5 +1,4 @@
 import * as dotenv from "dotenv";
-import axios from "axios";
 import { createHash } from "node:crypto";
 import YAML from "yaml";
 import { readFile, writeFile } from "fs/promises";
@@ -8,9 +7,9 @@ import {
     success,
     info,
     warn,
-    createSvgDownloader,
     withProgressTracking,
 } from "./build/utils.js";
+import { createSvgClient, createFigmaClient } from "./build/client.js";
 import {
     GetImagesResponse,
     type GetFileComponentsResponse,
@@ -47,20 +46,16 @@ async function syncConfigFromFigma() {
 
     info("Loaded existing config.yaml");
 
-    // https://www.figma.com/developers/api
-    const fetch = axios.create({
-        baseURL: "https://api.figma.com/v1",
-        headers: { "X-Figma-Token": process.env["FIGMA_ACCESS_TOKEN"] },
-    });
-    // Create a rate-limited axios instance for downloading SVG files
-    const svgDownloader = createSvgDownloader();
+    // Create rate-limited axios instances
+    const figmaClient = createFigmaClient();
+    const svgClient = createSvgClient();
 
     info(
         `Fetching all components from Figma ("https://figma.com/design/${process.env["FIGMA_FILE_KEY"]}")...`
     );
 
     // Fetch components metadata
-    const stacksFile = await fetch.get<GetFileComponentsResponse>(
+    const stacksFile = await figmaClient.get<GetFileComponentsResponse>(
         `/files/${process.env["FIGMA_FILE_KEY"]}/components`
     );
 
@@ -147,7 +142,7 @@ async function syncConfigFromFigma() {
 
     // Fetch SVGs and calculate hashes
     const nodeIds = nodesToFetch.map((n) => n.nodeId);
-    const urls = await fetch.get<GetImagesResponse>(
+    const urls = await figmaClient.get<GetImagesResponse>(
         `/images/${process.env["FIGMA_FILE_KEY"]}`,
         {
             params: {
@@ -171,7 +166,7 @@ async function syncConfigFromFigma() {
         if (!url) return;
 
         try {
-            const resp = await svgDownloader.get<string>(url);
+            const resp = await svgClient.get<string>(url);
             const hash = createHash("sha256");
             hash.update(resp.data);
             const sha256 = hash.digest("base64");

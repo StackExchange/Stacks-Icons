@@ -1,48 +1,8 @@
-import axios, { type AxiosInstance } from "axios";
-import axiosRetry from "axios-retry";
-import { createRequire } from "module";
 import chalk from "chalk";
 import { type XastElement, type PluginConfig } from "svgo";
 import { fillMap } from "../config.js";
 
 export type OutputType = "Spot" | "Icon";
-
-// Handle CommonJS default export - axios-rate-limit is CommonJS
-const require = createRequire(import.meta.url);
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const rateLimit = require("axios-rate-limit") as <T extends AxiosInstance>(
-    axiosInstance: T,
-    options: {
-        maxRequests?: number;
-        perMilliseconds?: number;
-        maxRPS?: number;
-    }
-) => T;
-
-/**
- * Creates a rate-limited axios instance for downloading SVG files.
- * Rate limits to 50 requests per second (configurable via SVG_DOWNLOAD_RPS env var) and retries on 429 errors.
- */
-export function createSvgDownloader(): AxiosInstance {
-    const maxRPS = process.env["SVG_DOWNLOAD_RPS"]
-        ? Number.parseInt(process.env["SVG_DOWNLOAD_RPS"], 10)
-        : 50;
-    const svgDownloader = rateLimit(axios.create(), {
-        maxRequests: maxRPS,
-        perMilliseconds: 1000,
-    });
-
-    // Add retry logic for SVG downloads
-    axiosRetry(svgDownloader, {
-        retries: 3,
-        retryCondition: (error) => {
-            return error.response?.status === 429;
-        },
-        retryDelay: (retryCount) => axiosRetry.exponentialDelay(retryCount),
-    });
-
-    return svgDownloader;
-}
 
 /**
  * Wraps an array of promises with progress tracking.
