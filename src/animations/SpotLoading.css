@@ -10,6 +10,14 @@
     animation-delay: 0.5s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .s1,
+    .s2,
+    .s3 {
+        animation: a-reduced 2s ease-in-out infinite;
+    }
+}
+
 @keyframes a {
     0%,
     1% {
@@ -35,22 +43,14 @@
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .s1,
-    .s2,
-    .s3 {
-        animation: a-reduced 2s ease-in-out infinite;
+@keyframes a-reduced {
+    0%,
+    100% {
+        transform: none;
+        opacity: 0.3;
     }
-
-    @keyframes a-reduced {
-        0%,
-        100% {
-            transform: none;
-            opacity: 0.3;
-        }
-        50% {
-            transform: none;
-            opacity: 1;
-        }
+    50% {
+        transform: none;
+        opacity: 1;
     }
 }
