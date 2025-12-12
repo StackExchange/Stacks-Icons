@@ -11,29 +11,60 @@ import { paths } from "./build/paths.js";
 import { error, info, success } from "./build/utils.js";
 import { fillMap } from "./config.js";
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 const parseSVG = svgPathParser.parseSVG || svgPathParser;
 
 type PptxPoint =
-    | { x: number; y: number; moveTo?: boolean }
-    | { x: number; y: number; curve: { type: "cubic"; x1: number; y1: number; x2: number; y2: number } }
-    | { x: number; y: number; curve: { type: "quadratic"; x1: number; y1: number } }
+    | { moveTo?: boolean; x: number; y: number }
+    | {
+          curve: {
+              type: "cubic";
+              x1: number;
+              x2: number;
+              y1: number;
+              y2: number;
+          };
+          x: number;
+          y: number;
+      }
+    | {
+          curve: { type: "quadratic"; x1: number; y1: number };
+          x: number;
+          y: number;
+      }
     | { close: true };
 
 interface PathWithStyle {
-    points: PptxPoint[];
     fill?: string;
+    points: PptxPoint[];
 }
 
 interface ParsedSvgShape {
     paths: PathWithStyle[];
-    viewBox: { width: number; height: number };
+    viewBox: { height: number; width: number };
+}
+
+interface SvgNode {
+    attributes?: Record<string, string>;
+    children?: SvgNode[];
+    name?: string;
+}
+
+interface SvgCommand {
+    code: string;
+    x?: number;
+    x1?: number;
+    x2?: number;
+    y?: number;
+    y1?: number;
+    y2?: number;
 }
 
 // Invert fillMap: CSS variable -> hex color (without #)
 // This is mildly dumb since we apply these when we generate the svgs, but we need the fills back for PPT!
 const CSS_VAR_COLORS: Record<string, string> = Object.fromEntries(
     Object.entries(fillMap)
-        .filter(([_, value]) => value && value !== "null")
+        .filter(([, value]) => value && value !== "null")
         .map(([key, value]) => [value, key.replace("#", "")])
 );
 
@@ -45,20 +76,25 @@ async function generatePowerPoint() {
     const iconFiles = await fs.readdir(iconDir);
     const selectedIcons = iconFiles
         .filter((file) => file.includes("64"))
-        .filter((file) => !["Duotone", "Fill", "Service"].some(i => file.includes(i)))
-        .map((file) => ({ file, dir: iconDir }));
+        .filter(
+            (file) =>
+                !["Duotone", "Fill", "Service"].some((i) => file.includes(i))
+        )
+        .map((file) => ({ dir: iconDir, file }));
 
     // Collect spots
     const spotDir = paths.src("Spot");
     const spotFiles = (await fs.readdir(spotDir))
-        .filter(f => f.endsWith(".svg"))
-        .filter((file) => !["Error", "Loading"].some(i => file.includes(i)))
-        .map((file) => ({ file, dir: spotDir }));
+        .filter((f) => f.endsWith(".svg"))
+        .filter((file) => !["Error", "Loading"].some((i) => file.includes(i)))
+        .map((file) => ({ dir: spotDir, file }));
 
     // Combine both
     const allItems = [...selectedIcons, ...spotFiles];
 
-    info(`Found ${selectedIcons.length} icons and ${spotFiles.length} spots to process (${allItems.length} total)`);
+    info(
+        `Found ${selectedIcons.length} icons and ${spotFiles.length} spots to process (${allItems.length} total)`
+    );
 
     // Create PowerPoint presentation
     info("Creating PowerPoint presentation...");
@@ -115,7 +151,7 @@ async function generatePowerPoint() {
 
                 // Handle colors: hex colors, CSS variables, or default to black
                 let fillColor = "000000";
-                let normalizedFill = pathWithStyle.fill?.toLowerCase()
+                const normalizedFill = pathWithStyle.fill?.toLowerCase();
 
                 if (normalizedFill) {
                     if (normalizedFill.startsWith("#")) {
@@ -125,27 +161,27 @@ async function generatePowerPoint() {
                     }
                 }
 
-                slide.addShape("custGeom" as any, {
+                slide.addShape("custGeom", {
+                    fill: { color: fillColor },
+                    h: ICON_SIZE,
+                    line: { type: "none" },
+                    points: scaledPoints,
+                    w: ICON_SIZE,
                     x,
                     y,
-                    w: ICON_SIZE,
-                    h: ICON_SIZE,
-                    points: scaledPoints,
-                    fill: { color: fillColor },
-                    line: { type: "none" },
                 });
             }
 
             // Add name label below the item
             const itemName = item.file.replace(".svg", "");
             slide.addText(itemName, {
-                x,
-                y: y + ICON_SIZE + 0.1,
-                w: ICON_SIZE,
-                h: 0.25,
-                fontSize: 8,
                 align: "center",
                 color: "666666",
+                fontSize: 8,
+                h: 0.25,
+                w: ICON_SIZE,
+                x,
+                y: y + ICON_SIZE + 0.1,
             });
         }
     }
@@ -162,30 +198,29 @@ async function generatePowerPoint() {
     );
 }
 
-
 // Parse an SVG string and extract path data suitable for pptxgenjs
 function parseSvgToShapes(svgContent: string): ParsedSvgShape {
     // Normalize SVG using svgo: convert shapes to paths, make paths absolute
     // Use minimal optimization to prevent distortion - NO ROUNDING
     const optimized = optimize(svgContent, {
-        multipass: false, // Single pass to prevent aggressive optimization
         floatPrecision: 0, // 0 = no rounding, preserve all decimals
+        multipass: false, // Single pass to prevent aggressive optimization
         plugins: [
             // Only convert shapes to paths (needed for PowerPoint)
             {
                 name: "convertShapeToPath",
                 params: {
                     convertArcs: false, // Keep arcs as-is
-                }
+                },
             },
         ],
     });
 
     // Parse normalized SVG to JSON
-    const svgJson = parseSync(optimized.data);
+    const svgJson = parseSync(optimized.data) as SvgNode;
 
     // Extract viewBox
-    const viewBoxAttr = svgJson.attributes["viewBox"] || "0 0 64 64";
+    const viewBoxAttr = svgJson.attributes?.["viewBox"] || "0 0 64 64";
     const parts = viewBoxAttr.split(" ").map(Number);
     const width = parts[2] || 64;
     const height = parts[3] || 64;
@@ -193,15 +228,15 @@ function parseSvgToShapes(svgContent: string): ParsedSvgShape {
     // Find all path elements with their fill colors
     const paths: PathWithStyle[] = [];
 
-    function extractPaths(node: any) {
-        if (node.name === "path" && node.attributes.d) {
+    function extractPaths(node: SvgNode) {
+        if (node.name === "path" && node.attributes?.d) {
             const pathData = node.attributes.d;
             const points = convertSvgPathToPptxPoints(pathData);
             if (points.length > 0) {
                 const fill = node.attributes["fill"];
                 paths.push({
-                    points,
                     fill: fill && fill !== "none" ? fill : undefined,
+                    points,
                 });
             }
         }
@@ -215,58 +250,60 @@ function parseSvgToShapes(svgContent: string): ParsedSvgShape {
 
     return {
         paths,
-        viewBox: { width, height },
+        viewBox: { height, width },
     };
 }
 
 // Convert SVG path data to pptxgenjs points format
 // SVG paths are normalized by svgo, but we use makeAbsolute as a safety check
 function convertSvgPathToPptxPoints(pathData: string): PptxPoint[] {
-    const commands = parseSVG(pathData);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    const commands = parseSVG(pathData) as SvgCommand[];
     const points: PptxPoint[] = [];
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     for (let i = 0; i < commands.length; i++) {
         const cmd = commands[i];
 
-        switch (cmd.code) {
+        switch (cmd?.code) {
             case "M": // MoveTo
                 points.push({
-                    x: cmd.x,
-                    y: cmd.y,
                     moveTo: true,
+                    x: cmd.x ?? 0,
+                    y: cmd.y ?? 0,
                 });
                 break;
 
             case "L": // LineTo
                 points.push({
-                    x: cmd.x,
-                    y: cmd.y,
+                    x: cmd.x ?? 0,
+                    y: cmd.y ?? 0,
                 });
                 break;
 
             case "C": // Cubic Bezier
                 points.push({
-                    x: cmd.x,
-                    y: cmd.y,
                     curve: {
                         type: "cubic",
-                        x1: cmd.x1,
-                        y1: cmd.y1,
-                        x2: cmd.x2,
-                        y2: cmd.y2,
+                        x1: cmd.x1 ?? 0,
+                        x2: cmd.x2 ?? 0,
+                        y1: cmd.y1 ?? 0,
+                        y2: cmd.y2 ?? 0,
                     },
+                    x: cmd.x ?? 0,
+                    y: cmd.y ?? 0,
                 });
                 break;
 
             case "Q": // Quadratic Bezier
                 points.push({
-                    x: cmd.x,
-                    y: cmd.y,
                     curve: {
                         type: "quadratic",
-                        x1: cmd.x1,
-                        y1: cmd.y1,
+                        x1: cmd.x1 ?? 0,
+                        y1: cmd.y1 ?? 0,
                     },
+                    x: cmd.x ?? 0,
+                    y: cmd.y ?? 0,
                 });
                 break;
 
@@ -281,7 +318,7 @@ function convertSvgPathToPptxPoints(pathData: string): PptxPoint[] {
                     const prevPoint = points[points.length - 1];
                     if (prevPoint && "y" in prevPoint) {
                         points.push({
-                            x: cmd.x,
+                            x: cmd.x ?? 0,
                             y: prevPoint.y,
                         });
                     }
@@ -294,7 +331,7 @@ function convertSvgPathToPptxPoints(pathData: string): PptxPoint[] {
                     if (prevPoint && "x" in prevPoint) {
                         points.push({
                             x: prevPoint.x,
-                            y: cmd.y,
+                            y: cmd.y ?? 0,
                         });
                     }
                 }
@@ -309,7 +346,7 @@ function convertSvgPathToPptxPoints(pathData: string): PptxPoint[] {
 //CUSTOM_GEOMETRY expects coordinates relative to the shape's width and height
 function scalePointsToShapeLocal(
     points: PptxPoint[],
-    viewBox: { width: number; height: number },
+    viewBox: { height: number; width: number },
     targetSize: number // target size in inches (both width and height for square icons)
 ): PptxPoint[] {
     // For custom geometry, coordinates are in the same units as the shape size
@@ -317,31 +354,35 @@ function scalePointsToShapeLocal(
     const scaleX = targetSize / viewBox.width;
     const scaleY = targetSize / viewBox.height;
 
-    return points.map((point) => {
+    return points.map((point): PptxPoint => {
         if ("close" in point) {
             return point;
         }
 
-        const scaled: any = {
+        const scaled: PptxPoint = {
             x: point.x * scaleX,
             y: point.y * scaleY,
         };
 
         if ("moveTo" in point) {
-            scaled.moveTo = point.moveTo;
+            (scaled as { moveTo?: boolean }).moveTo = point.moveTo;
         }
 
         if ("curve" in point) {
-            scaled.curve = {
+            const curve = {
                 ...point.curve,
                 x1: point.curve.x1 * scaleX,
                 y1: point.curve.y1 * scaleY,
             };
 
             if ("x2" in point.curve) {
-                scaled.curve.x2 = point.curve.x2 * scaleX;
-                scaled.curve.y2 = point.curve.y2 * scaleY;
+                (curve as { x2?: number; y2?: number }).x2 =
+                    point.curve.x2 * scaleX;
+                (curve as { x2?: number; y2?: number }).y2 =
+                    point.curve.y2 * scaleY;
             }
+
+            (scaled as { curve?: typeof curve }).curve = curve;
         }
 
         return scaled;
@@ -349,7 +390,7 @@ function scalePointsToShapeLocal(
 }
 
 // Run the script
-(async () => {
+void (async () => {
     try {
         await generatePowerPoint();
     } catch (e) {
