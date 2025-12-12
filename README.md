@@ -234,6 +234,17 @@ Take these hash values and use them as the values for the previously added entri
 
 When updating an existing icon, just update the corresponding hash value(s) for the property combination(s) that changed.
 
+### Syncing to Google Slides/PowerPoint
+
+Optionally, you can generate a `.pptx` file which will contain the `Size=64` and `Spot/*` assets as native vectors, allowing you to recolor and scale. We maintain a [publicly available version of this](https://docs.google.com/presentation/d/1sisvc-ZBWxUsas10wlMGaT5MZX4nw85lIyReGPz5pqc/edit) for internal and external folks.
+
+```
+npm run build
+
+# Not part of the main build process (yet)
+npm run generate:powerpoint
+```
+
 ## Publishing a new release
 
 In order to publish a new release to npm and NuGet, you just need to tag a new release and push it to origin:
