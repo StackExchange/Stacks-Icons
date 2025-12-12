@@ -1,14 +1,17 @@
 import { promises as fs } from "fs";
 import path from "path";
-import PptxGenJS from "pptxgenjs";
-import { paths } from "./build/paths.js";
-import { error, info, success } from "./build/utils.js";
-import { parseSync } from "svgson";
+
 // @ts-ignore - no type definitions available
 import svgPathParser from "svg-path-parser";
+import { parseSync } from "svgson";
+import { optimize } from "svgo";
+import PptxGenJS from "pptxgenjs";
+
+import { paths } from "./build/paths.js";
+import { error, info, success } from "./build/utils.js";
+import { fillMap } from "./config.js";
 
 const parseSVG = svgPathParser.parseSVG || svgPathParser;
-const makeAbsolute = svgPathParser.makeAbsolute;
 
 type PptxPoint =
     | { x: number; y: number; moveTo?: boolean }
@@ -26,17 +29,36 @@ interface ParsedSvgShape {
     viewBox: { width: number; height: number };
 }
 
+// Invert fillMap: CSS variable -> hex color (without #)
+// This is mildly dumb since we apply these when we generate the svgs, but we need the fills back for PPT!
+const CSS_VAR_COLORS: Record<string, string> = Object.fromEntries(
+    Object.entries(fillMap)
+        .filter(([_, value]) => value && value !== "null")
+        .map(([key, value]) => [value, key.replace("#", "")])
+);
+
 async function generatePowerPoint() {
     info("Starting PowerPoint generation with vector shapes...");
 
+    // Collect icons
     const iconDir = paths.src("Icon");
-    const allFiles = await fs.readdir(iconDir);
+    const iconFiles = await fs.readdir(iconDir);
+    const selectedIcons = iconFiles
+        .filter((file) => file.includes("64"))
+        .filter((file) => !["Duotone", "Fill", "Service"].some(i => file.includes(i)))
+        .map((file) => ({ file, dir: iconDir }));
 
-    const selects = allFiles
-        .filter((file) => file.includes("64")) // Include
-        .filter((file) => !["Duotone", "Fill", "Service"].some(i => file.includes(i))) // Exclude
+    // Collect spots
+    const spotDir = paths.src("Spot");
+    const spotFiles = (await fs.readdir(spotDir))
+        .filter(f => f.endsWith(".svg"))
+        .filter((file) => !["Error", "Loading"].some(i => file.includes(i)))
+        .map((file) => ({ file, dir: spotDir }));
 
-    info(`Found ${selects.length} icons to process`);
+    // Combine both
+    const allItems = [...selectedIcons, ...spotFiles];
+
+    info(`Found ${selectedIcons.length} icons and ${spotFiles.length} spots to process (${allItems.length} total)`);
 
     // Create PowerPoint presentation
     info("Creating PowerPoint presentation...");
@@ -47,30 +69,30 @@ async function generatePowerPoint() {
 
     // Grid layout configuration
     const ICONS_PER_ROW = 6;
-    const ICONS_PER_PAGE = 12;
+    const ICONS_PER_PAGE = 18;
     const ICON_SIZE = 1.1;
     const SPACING = 0.5;
     const START_X = 0.5;
     const START_Y = 0.6;
 
-    // Process icons in batches for multiple slides if needed
+    // Process items in batches for multiple slides if needed
     for (
         let pageIndex = 0;
-        pageIndex < Math.ceil(selects.length / ICONS_PER_PAGE);
+        pageIndex < Math.ceil(allItems.length / ICONS_PER_PAGE);
         pageIndex++
     ) {
         const slide = pptx.addSlide();
 
-        // Get icons for this page
-        const pageIcons = selects.slice(
+        // Get items for this page
+        const pageItems = allItems.slice(
             pageIndex * ICONS_PER_PAGE,
             (pageIndex + 1) * ICONS_PER_PAGE
         );
 
-        // Place icons in grid
-        for (let i = 0; i < pageIcons.length; i++) {
-            const file = pageIcons[i];
-            if (!file) continue;
+        // Place items in grid
+        for (let i = 0; i < pageItems.length; i++) {
+            const item = pageItems[i];
+            if (!item) continue;
 
             const row = Math.floor(i / ICONS_PER_ROW);
             const col = i % ICONS_PER_ROW;
@@ -79,7 +101,7 @@ async function generatePowerPoint() {
             const y = START_Y + row * (ICON_SIZE + SPACING);
 
             // Read and parse SVG file
-            const svgPath = path.join(iconDir, file);
+            const svgPath = path.join(item.dir, item.file);
             const svgContent = await fs.readFile(svgPath, "utf8");
             const parsedShape = parseSvgToShapes(svgContent);
 
@@ -91,10 +113,17 @@ async function generatePowerPoint() {
                     ICON_SIZE
                 );
 
-                // Dist files either have no fill (defaults to black) or hex colors like #1868db
-                const fillColor = pathWithStyle.fill?.startsWith("#")
-                    ? pathWithStyle.fill.substring(1)
-                    : "000000";
+                // Handle colors: hex colors, CSS variables, or default to black
+                let fillColor = "000000";
+                let normalizedFill = pathWithStyle.fill?.toLowerCase()
+
+                if (normalizedFill) {
+                    if (normalizedFill.startsWith("#")) {
+                        fillColor = normalizedFill.substring(1);
+                    } else if (normalizedFill.startsWith("var(")) {
+                        fillColor = CSS_VAR_COLORS[normalizedFill] || "000000";
+                    }
+                }
 
                 slide.addShape("custGeom" as any, {
                     x,
@@ -107,9 +136,9 @@ async function generatePowerPoint() {
                 });
             }
 
-            // Add icon name label below the icon
-            const iconName = file.replace(".svg", "");
-            slide.addText(iconName, {
+            // Add name label below the item
+            const itemName = item.file.replace(".svg", "");
+            slide.addText(itemName, {
                 x,
                 y: y + ICON_SIZE + 0.1,
                 w: ICON_SIZE,
@@ -122,22 +151,38 @@ async function generatePowerPoint() {
     }
 
     // Save the PowerPoint file
-    const outputPath = paths.build("icons.pptx");
+    const outputPath = paths.build("icons-and-spots.pptx");
 
     // Ensure build directory exists
     await fs.mkdir(paths.build(), { recursive: true });
     await pptx.writeFile({ fileName: outputPath });
 
     success(
-        `Successfully created PowerPoint with ${selects.length} icons at ${outputPath}`
+        `Successfully created PowerPoint with ${selectedIcons.length} icons and ${spotFiles.length} spots (${allItems.length} total) at ${outputPath}`
     );
 }
 
 
 // Parse an SVG string and extract path data suitable for pptxgenjs
 function parseSvgToShapes(svgContent: string): ParsedSvgShape {
-    // Parse SVG to JSON
-    const svgJson = parseSync(svgContent);
+    // Normalize SVG using svgo: convert shapes to paths, make paths absolute
+    // Use minimal optimization to prevent distortion - NO ROUNDING
+    const optimized = optimize(svgContent, {
+        multipass: false, // Single pass to prevent aggressive optimization
+        floatPrecision: 0, // 0 = no rounding, preserve all decimals
+        plugins: [
+            // Only convert shapes to paths (needed for PowerPoint)
+            {
+                name: "convertShapeToPath",
+                params: {
+                    convertArcs: false, // Keep arcs as-is
+                }
+            },
+        ],
+    });
+
+    // Parse normalized SVG to JSON
+    const svgJson = parseSync(optimized.data);
 
     // Extract viewBox
     const viewBoxAttr = svgJson.attributes["viewBox"] || "0 0 64 64";
@@ -175,9 +220,9 @@ function parseSvgToShapes(svgContent: string): ParsedSvgShape {
 }
 
 // Convert SVG path data to pptxgenjs points format
-// SVG coordinates are absolute, pptxgenjs expects coordinates in inches
+// SVG paths are normalized by svgo, but we use makeAbsolute as a safety check
 function convertSvgPathToPptxPoints(pathData: string): PptxPoint[] {
-    const commands = makeAbsolute(parseSVG(pathData));
+    const commands = parseSVG(pathData);
     const points: PptxPoint[] = [];
 
     for (let i = 0; i < commands.length; i++) {
@@ -260,15 +305,8 @@ function convertSvgPathToPptxPoints(pathData: string): PptxPoint[] {
     return points;
 }
 
-/**
- * Scale points from SVG viewBox coordinates to PowerPoint shape-local coordinates
- * CUSTOM_GEOMETRY expects coordinates relative to the shape's width and height
- *
- * @param points - Array of points in SVG coordinate space
- * @param viewBox - SVG viewBox dimensions
- * @param targetSize - Target size of the shape in inches
- * @returns Points scaled to shape-local coordinate system (0 to targetSize)
- */
+// Scale points from SVG viewBox coordinates to PowerPoint shape-local coordinates
+//CUSTOM_GEOMETRY expects coordinates relative to the shape's width and height
 function scalePointsToShapeLocal(
     points: PptxPoint[],
     viewBox: { width: number; height: number },
