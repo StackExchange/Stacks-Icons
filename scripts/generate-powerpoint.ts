@@ -161,7 +161,7 @@ async function generatePowerPoint() {
                     }
                 }
 
-                slide.addShape("custGeom", {
+                slide.addShape("custGeom" as any, {
                     fill: { color: fillColor },
                     h: ICON_SIZE,
                     line: { type: "none" },
@@ -229,15 +229,18 @@ function parseSvgToShapes(svgContent: string): ParsedSvgShape {
     const paths: PathWithStyle[] = [];
 
     function extractPaths(node: SvgNode) {
-        if (node.name === "path" && node.attributes?.d) {
-            const pathData = node.attributes.d;
+        if (node.name === "path" && node.attributes?.["d"]) {
+            const pathData = node.attributes["d"];
             const points = convertSvgPathToPptxPoints(pathData);
             if (points.length > 0) {
                 const fill = node.attributes["fill"];
-                paths.push({
-                    fill: fill && fill !== "none" ? fill : undefined,
+                const pathWithStyle: PathWithStyle = {
                     points,
-                });
+                };
+                if (fill && fill !== "none") {
+                    pathWithStyle.fill = fill;
+                }
+                paths.push(pathWithStyle);
             }
         }
 
