@@ -161,6 +161,7 @@ async function generatePowerPoint() {
                     }
                 }
 
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
                 slide.addShape("custGeom" as any, {
                     fill: { color: fillColor },
                     h: ICON_SIZE,
