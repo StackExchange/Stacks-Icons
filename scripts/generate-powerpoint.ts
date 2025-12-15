@@ -188,10 +188,10 @@ async function generatePowerPoint() {
     }
 
     // Save the PowerPoint file
-    const outputPath = paths.build("icons-and-spots.pptx");
+    const outputPath = paths.preview("icons-and-spots.pptx");
 
     // Ensure build directory exists
-    await fs.mkdir(paths.build(), { recursive: true });
+    await fs.mkdir(paths.preview(), { recursive: true });
     await pptx.writeFile({ fileName: outputPath });
 
     success(
