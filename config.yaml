@@ -293,6 +293,9 @@ definitions:
     Icon/Link:
         Size=32, Style=Default: DL6IhIKmLpbrOQrvII73pIvbKK5HNeq/NYXEGKk7t0A=
         Size=Default, Style=Default: BbrpIP/LZ9RkrPVpNT6x+U1PxaZviJe86ib6BINLMHU=
+    Icon/List:
+        Size=Default, Style=Default, Type=Default: Cx4WlhtkCvIh1W83h/u2Ot4C6qMYnZsx8CO/BH3AdaM=
+        Size=Default, Style=Default, Type=Ordered: nru4Cr1iZhubz9Xj58TlDYpifRg86a/6I160BpreI6Y=
     Icon/Location:
         Size=Default, Style=Default: psaFv/2NeI8gYZqkCQHGD4FRYLlCMrSt2cmY4XCuINQ=
     Icon/Lock:
