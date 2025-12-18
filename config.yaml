@@ -162,6 +162,8 @@ definitions:
         Size=Default, Direction=Left, Style=Default: 05Qi9COYo/Orgf19v2VL66Gqh9guoTPTwlRmz5auUGU=
         Size=Default, Direction=Right, Style=Default: F9ZUvKXXjaPtQUuC93xB1RJDXmj3KPLuhHNIr9lx17g=
         Size=Default, Direction=Up, Style=Default: J8c84APx82LvpzlbVnhWn+OQVxczOamsn1O+pOJRXTo=
+    Icon/Clock:
+        Size=Default, Style=Default: tobirKbe6o8gkmYEBNecnvGbl0xZ2ZrglJmv7XngsVE=
     Icon/Code:
         Size=Default, Style=Default: +NKEgVMbkRM9URRPxyHm5lbiyb7EeK60+1GAOp/AoiA=
         Size=Default, Style=Default, Type=Box: YcAv740t7d5qhCjkrhyzG4lJnqChRWl9Skz5U/qiG6o=
@@ -291,6 +293,8 @@ definitions:
     Icon/Link:
         Size=32, Style=Default: DL6IhIKmLpbrOQrvII73pIvbKK5HNeq/NYXEGKk7t0A=
         Size=Default, Style=Default: BbrpIP/LZ9RkrPVpNT6x+U1PxaZviJe86ib6BINLMHU=
+    Icon/Location:
+        Size=Default, Style=Default: psaFv/2NeI8gYZqkCQHGD4FRYLlCMrSt2cmY4XCuINQ=
     Icon/Lock:
         Size=Default, Style=Default: YXa1YaknRvX9LWvSW3LnBs33h0nDtIroohJ7FbYeNAk=
         Size=Default, Style=Default, Off=False: llXKw/qO1BquPGcI9Iw+/m5eJJzEl4vAfuBPQKwABdY=
@@ -309,6 +313,8 @@ definitions:
         Size=Default, Stack=False, Open=True, Style=Default: hChkoMHSXMW74sK8b+ryn0HbkO1qNbaqCJI3nhyCLac=
         Size=Default, Stack=False, Open=True, Style=Fill: T2NU7h+a1lj+JDvKZ6sEkDlGIuPEuCH8qJcNqas3IFA=
         Size=Default, Stack=True, Open=False, Style=32: eusB6AfK4T66AZKY6l2niYqYgWM67oiyvFTgzw8A9p4=
+    Icon/Menu:
+        Size=Default, Style=Default: 7cwQES7SsWT+9tz/MIQ3qb801YHP3Tie9uh+v6lHO3k=
     Icon/Meta:
         Size=Default, Style=Default: zVI0PD72SVWmdahi7PdBSuq4UvhtLV00rCSDkj6vP5I=
         Size=Default, Style=Fill: yKIMbSNT3ZesXNhueuRZgtG6jWhYQEaN26b8a4usVnY=
@@ -359,6 +365,8 @@ definitions:
         Size=Default, Style=Default: mgcwoLNkWLMVKLOQKMHKnEUHRNY1ahX3SOSdTvxLp/k=
         Size=Default, Style=Duotone: YqnJesPMe/P3SmvYKlN2F8Ew6Is7faEL+xF5+aj5xzE=
         Size=Default, Style=Fill: 2agLv8zhk5VSTQ8TnRGe63x6zpdSz9q6Atzs7aPYNJo=
+    Icon/Play:
+        Size=Default, Style=Default: sFy+2DMJRRFWiUTNxVboGXfQy2sLdOHyoAtDVnn0G94=
     Icon/Plus:
         Size=Default, Style=Default: C/9mYtXGb4JIYw8XV40JJ0tOI1YVA+q2IOE5vLFSKi0=
     Icon/QandA:
