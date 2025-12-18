@@ -395,6 +395,8 @@ definitions:
         Size=Default, Stack=True, Style=Default: mbmuRkNqjEEumr0X0ju3h2P9j48AScFuDUMFFFH+tx8=
         Size=Default, Stack=True, Style=Duotone: Ht54fWWbSJK0Kdwn4cpk3G7azo4pDyP7uhMjG0qbLqQ=
         Size=Default, Stack=True, Style=Fill: rsEy+yUNywPSLVQ6jkuAxRAlfvt7saii9HLIaiasHX8=
+    Icon/RSS:
+        Size=Default, Style=Default: s2zCjZIMWUhhMLYf1GO6Cs1Cn1RMK/bKMhsjybXbA/A=
     Icon/Receipt:
         Size=Default, Style=Default: urnt/UyLXIuqL4Af6oyL537QjkaIN77F9kiZmxC0p8U=
     Icon/Search:
