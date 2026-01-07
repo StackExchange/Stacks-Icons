@@ -475,7 +475,7 @@ definitions:
     Icon/Share:
         Size=Default, Style=Default: etl2J/C8PnYxbH/cMHYdB1+xB7G48tW/zeJqOdhiH/k=
     Icon/Sound:
-        Size=Default, Style=Default: AqEhyQ8DEOLhW22QRaLoR9CeyNGoRvfWwU6GAAJRIhY=
+        Size=Default, Style=Default: gWoqmeU262k8wBvNsgUe0XM5pW9ZcXn0TeA7J6ySzH4=
     Icon/Stack:
         Size=Default, Type=Box: Tsa6/Bq9C3lKsptWSgE3uUK9HS9a+9RtJ+M6AXyJ/0Y=
         Size=Default, Type=Boxes: Emg6Qy3SzgW7CjLAOjoTiG3p61Bzj269unnP2/hxFz0=
@@ -583,14 +583,16 @@ definitions:
     Icon/Window:
         Size=Default, Style=Default: ay4ytm2IqtU7YyqKzr2Pdybv0+mB+LoviUpJ9p8Xu/4=
         Size=Default, Style=Default, Type=Column: 9hqhPcKLKnm/yzop//XXwfuH/XcuEncgBKbuT2FGuXw=
+        Size=Default, Style=Default, Type=Compact: vkI/IsPijc3Di0ADDIgtojgSzeUmxmgFwAFCRgJczok=
         Size=Default, Style=Default, Type=Default: EDAq69XJkxLe7sBTCEXwpwBty1BoEYi6DYuCekWW3+c=
+        Size=Default, Style=Default, Type=Expanded: ooKefAfHcgL8ZRTlkX1Z5D5VvUzv0FzodKrlfjrvd5Q=
         Size=Default, Style=Default, Type=SideArrowLeft: R2rurD6tfYlryVIiMmH7Rgc9yfRtR5G86roCq4wwmMg=
         Size=Default, Style=Default, Type=SideArrowRight: BIAkqWiYxS8wKb7Uhwh5Yy84Pcp76CcrEcT1Y417qek=
         Size=Default, Style=Default, Type=SideLeft: BkimC6IEZDYa567/OQgUGkCwfond69PicoajAsiA2r8=
         Size=Default, Style=Default, Type=SideRight: 9P0ll5j8IitCc+tdTPtuUWLiKierGnJntyPJbzEbfII=
         Size=Default, Style=Fill: /HraoUCCAsKcqxDnmTDB2Ojjg2uZtPsD6RwXaLxNA6Q=
         Size=Default, Style=Fill, Type=Default: wMkZKHP3NHaLvAjBki7kHmPtJCtPigBQHeiQs3J7Na0=
-        Size=Default, Style=Fill, Type=SideArrowLeft: xNX6hsB5g5FF0Y+XdkKHQ2aQpUhne14wZSxw0d6uRgE=
+        Size=Default, Style=Fill, Type=SideArrowLeft: SytuW/2pRchytjs7DGSLCYhbXSjPL6ccb9lBnNJ95Nk=
         Size=Default, Style=Fill, Type=SideArrowRight: ZtL1lzXp3/2X4qkAPscuFoNWC6EhHS34Dff6Qs9+3mQ=
         Size=Default, Style=Fill, Type=SideLeft: oFNo3VnV0U2xJuNqdGusPr3RGuL5JX2ueXtEJ/HlJbw=
         Size=Default, Style=Fill, Type=SideRight: mSrG7j+zq2uoE+ed4NdWH+FoEMUB4IwFfUuO6xaU3ss=
@@ -625,6 +627,7 @@ definitions:
     Spot/Server: RvbOa/IuHSWWEpeSavkRpxd3vwL1+21S8UA2O6TeJtk=
     Spot/Support: AmbgEHJWFh+wyg5MpbHwtoDIAlo0E0AnlHO58BKFF1Q=
     Spot/Validation: UzNTHTUtCRiJGbDahvutEO5VNajD0JfRB4gkJnTuSTw=
+    Spot/Work: l9iPc0BkTbTBZT6yipHSpBCh2rlMUe3obfvTsBwK5yw=
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
