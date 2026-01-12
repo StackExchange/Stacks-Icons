@@ -48,4 +48,4 @@ jobs:
               run: dotnet pack -c Release ./dotnet /p:PackageId=StackExchange.StacksIcons.Legacy
 
             - name: Push package to Cloudsmith
-              run: dotnet nuget push **\StackExchange.StacksIcons.Legacy.*.nupkg -k ${{secrets.CLOUDSMITH_API_KEY}} -s https://nuget.stackoverflow.software/v3/index.json
+              run: dotnet nuget push **\StackExchange.StacksIcons.Legacy.*.nupkg --source https://nuget.stackoverflow.software/v3/index.json --api-key ${{secrets.CLOUDSMITH_API_KEY}}
