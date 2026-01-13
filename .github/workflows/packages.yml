@@ -9,7 +9,7 @@ on:
             ignoreNpmErrors:
                 description: "Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists."
                 required: false
-                default: false
+                default: 'false'
 
 jobs:
     build-ubuntu:
@@ -33,7 +33,7 @@ jobs:
               run: npm ci
 
             - name: Build and push package to npm
-              continue-on-error: ${{ inputs.ignoreNpmErrors }}
+              continue-on-error: ${{ inputs.ignoreNpmErrors }} == 'true'
               env:
                   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
