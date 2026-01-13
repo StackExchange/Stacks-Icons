@@ -7,9 +7,9 @@ on:
     workflow_dispatch:
       inputs:
         ignoreNpmErrors:
-        description: 'Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists.'
-        required: false
-        default: false
+          description: 'Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists.'
+          required: false
+          default: false
 
 jobs:
     build-ubuntu:
