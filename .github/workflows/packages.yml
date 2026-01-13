@@ -9,7 +9,7 @@ on:
             ignoreNpmErrors:
                 description: "Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists."
                 required: false
-                default: 'false'
+                default: "false"
 
 jobs:
     build-ubuntu:
