@@ -5,11 +5,11 @@ on:
         tags:
             - "v*" # only run when a new package version is tagged
     workflow_dispatch:
-      inputs:
-        ignoreNpmErrors:
-          description: 'Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists.'
-          required: false
-          default: false
+        inputs:
+            ignoreNpmErrors:
+                description: "Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists."
+                required: false
+                default: false
 
 jobs:
     build-ubuntu:
