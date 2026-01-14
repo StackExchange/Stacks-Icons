@@ -51,7 +51,7 @@ jobs:
               run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
             - name: Build renamed package for Cloudsmith
-              run: dotnet pack -c Release ./dotnet/src/StackExchange.StacksIcons.csproj /p:PackageId=StackExchange.StacksIcons.Legacy /p:AssemblyName=StackExchange.StacksIcons.Legacy
+              run: dotnet pack -c Release ./dotnet/src/StackExchange.StacksIcons.csproj /p:PackageId=StackExchange.StacksIcons.Legacy /p:AssemblyName=StackExchange.StacksIcons.Legacy /p:RootNamespace=StackExchange.StacksIcons.Legacy
 
             - name: Push package to Cloudsmith
               run: dotnet nuget push **\StackExchange.StacksIcons.Legacy.*.nupkg --source https://nuget.stackoverflow.software/v3/index.json --api-key ${{secrets.CLOUDSMITH_API_KEY}} --skip-duplicate
