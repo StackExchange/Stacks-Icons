@@ -5,6 +5,11 @@ on:
         tags:
             - "v*" # only run when a new package version is tagged
     workflow_dispatch:
+        inputs:
+            ignoreNpmErrors:
+                description: "Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists."
+                required: false
+                default: "false"
 
 jobs:
     build-ubuntu:
@@ -28,6 +33,7 @@ jobs:
               run: npm ci
 
             - name: Build and push package to npm
+              continue-on-error: ${{ inputs.ignoreNpmErrors == 'true' }}
               env:
                   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
@@ -42,4 +48,10 @@ jobs:
               run: npm run pack:nuget
 
             - name: Push package to nuget
-              run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}
+              run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+
+            - name: Build renamed package for Cloudsmith
+              run: dotnet pack -c Release ./dotnet/src/StackExchange.StacksIcons.csproj /p:PackageId=StackExchange.StacksIcons.Legacy /p:AssemblyName=StackExchange.StacksIcons.Legacy /p:RootNamespace=StackExchange.StacksIcons.Legacy
+
+            - name: Push package to Cloudsmith
+              run: dotnet nuget push **\StackExchange.StacksIcons.Legacy.*.nupkg --source https://nuget.stackoverflow.software/v3/index.json --api-key ${{secrets.CLOUDSMITH_API_KEY}} --skip-duplicate
