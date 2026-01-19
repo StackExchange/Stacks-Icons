@@ -172,7 +172,7 @@ definitions:
     Icon/Comment:
         Size=16, Style=Default: RtA62TYku8s2tQ+obCrtpnluE6ZX19kJyaZ3PJ/Mz+w=
         Size=16, Style=Fill: 7oYfQe68Et956ZD9aMeTU46zasspcMORy9arxDQDPcI=
-        Size=Default, Style=Default: rQFioU2kEfpbYhqVBkCkFXazuo1YemvmQiMfn/DH6fQ=
+        Size=Default, Style=Default: EzJeKZbMavRG3c+JYrKgshrSexzpbmYpV5SaPc4Lkf8=
         Size=Default, Style=Fill: nVfyn8T2i2oeMBy4liLlucenNB0mrUWJXMXkMs73W0w=
     Icon/Community:
         Size=Default, Style=Default, Stack=False: cnXjllgEWn/5HiySqfDFUOtNH+V8uJhUMPRS6M6cIZE=
@@ -184,10 +184,10 @@ definitions:
         Size=Default, Style=Default: 0elKKLCcn554U8toP7iKmuZVs7DuVXn2m93pmhhRfVQ=
         Size=Default, Style=Fill: qajsswMYq+UQyHRlL+BRniS9ZU2aJlNLIINvzchOQnc=
     Icon/Compose:
-        Size=Default, Type=Comment, Style=Default: v+hn0VgN7w9voM9GxncOo4Hz9mNN4uAP5EomoDhFHQo=
-        Size=Default, Type=Comment, Style=Fill: rbySHZp6x9Low7ao74kLIZrHT7VLccyApFFvnreWPmg=
+        Size=Default, Type=Comment, Style=Default: /7Vt7DqzxF3tQDVa5WYhXOc47TxJP2SRFMfDgSHoY/4=
+        Size=Default, Type=Comment, Style=Fill: bCNVcWWH6x0rMwxBJIFBVR1lexhWjREg0nysVKPNI3M=
         Size=Default, Type=Default, Style=Default: H6fW1BFIZVYFzEzH1is8zcALE1rKu6Wk9VY/XP0CyRI=
-        Size=Default, Type=Default, Style=Fill: Wg1DAwoJcMXE5o+cEka32bzVoa5+6L94HW+X57pONp4=
+        Size=Default, Type=Default, Style=Fill: mjk7NFbiHH4CxzdfvF9JFRGrb/Zj+VmwviFVaHrd7ek=
         Size=Default, Type=Document, Style=Default: sk/xrqTDrlJ2GDhyTkhr9zwGrUx8Qy+34avd5ZmzN4M=
         Size=Default, Type=Document, Style=Fill: PePerxUbzXPUhbV/6ausT0lCBALH9MLscuu3s50ohRo=
     Icon/Cross:
@@ -229,7 +229,7 @@ definitions:
         Size=Default, Style=Fill: BMDkmsCJ4cy9lfG/bjSvRsiay7i4TxsOVSU1JMXSx1Q=
     Icon/Eye:
         Size=16, Style=Default, Off=False: J8vU07yRWsC4SQhDpEH3pYxVWbZOGMI5cXL+tq9faR0=
-        Size=16, Style=Default, Off=True: fcN281ixCYvy/jSnqQozNamxdaDzDlPMqwt5jki8goE=
+        Size=16, Style=Default, Off=True: rBg2wduZIvYvlrmJ/OHfBzJYQmCF4yi39JTIcnopQ6I=
         Size=16, Style=Fill, Off=False: TOoF12kW5T0WGVKg8B6aXNXbA15RCRn1aY2bKHx4PIw=
         Size=16, Style=Fill, Off=True: XRsm4OhGmIUX9+DMWobSHxcouBxIRMrmFo5DxTLizRo=
         Size=Default, Style=Default, Off=False: qY0+lrXVB9/fM3UmttGXXwqYZvayq+kzCFHdo910yHc=
@@ -323,10 +323,10 @@ definitions:
         Size=Default, Style=Fill: yKIMbSNT3ZesXNhueuRZgtG6jWhYQEaN26b8a4usVnY=
     Icon/Mod:
         Size=Default, Type=Dashboard, Stack=False, Style=Default: sKgcJGufOXC8knHMefFvLOFF081ou8wT685i6L1lw/4=
-        Size=Default, Type=Dashboard, Stack=False, Style=Fill: ImStVBlK9XZ+etccQqqmZX1/Ipy07FGkQYyWkq3Lxpk=
+        Size=Default, Type=Dashboard, Stack=False, Style=Fill: 8NWkfMu1TioAFurT2j3l6wGx8s2R/gpbb4XruNyZjJ4=
         Size=Default, Type=Default, Stack=False, Style=Default: rr46Fj494QQW3MYjnrRgUWjUOTRNPFeb8TyfsRVC0LU=
         Size=Default, Type=Default, Stack=False, Style=Fill: oQmmtS+hmUrb2tGH2k1bJGF9RJsY9wl7R+hHJkXiQU0=
-        Size=Default, Type=Default, Stack=True, Style=Default: sRtuU3NrTd+GwZYDajriS8sC9x/D9U6THRSzbsfCrrY=
+        Size=Default, Type=Default, Stack=True, Style=Default: cpB8h+k6mJXbC6wbX9HEPBmQfAkTcnvyXQiX+L7Vsm0=
         Size=Default, Type=Default, Stack=True, Style=Fill: VSR/AfVFli1vZx/LrhrHcL1RTsZ/8FZCaRQu6FINV0w=
         Size=Default, Type=Messages, Stack=True, Style=Default: CeIK7uGQB0OGIEiKkn81GO/t4loGuOcAMlCm51H98xc=
         Size=Default, Type=Messages, Stack=True, Style=Fill: cURHERkz4ryCnN8H9FhIOAsSdrpJ1qYV8W+Uzjk7pQs=
@@ -410,6 +410,9 @@ definitions:
         Size=Default, Style=Default: s2zCjZIMWUhhMLYf1GO6Cs1Cn1RMK/bKMhsjybXbA/A=
     Icon/Receipt:
         Size=Default, Style=Default: urnt/UyLXIuqL4Af6oyL537QjkaIN77F9kiZmxC0p8U=
+    Icon/Refresh:
+        Size=Default, Direction=All, Style=Default: mShItHmSxUnDmM6hPkMMPdkhGdFV7Myu6PcW78+7oMc=
+        Size=Default, Direction=Default, Style=Default: FFfO3OV0C9SdImdyIJFeJ6GvkOamZew6lqfXk8hzoOU=
     Icon/Search:
         Size=Default, Style=Default: 7AT+eho8huSAlUD7KK9i6n6r+I7w+D9WqbBtLRimuOw=
         Size=Default, Style=Fill: W/mBt/TPzeAITvXJ+gMm5AGTcgI+1Z4ARpEIQBsJVTw=
@@ -613,6 +616,7 @@ definitions:
         Code=404: RbyIiFmx/ZWJmdZFH4Ivbn41Ed1E2zH3s6H14cP7aGc=
         Code=500: dQpy248NdHpruD0+Z2qkjntCHEBCX9pAlopARmq1MYE=
         Code=503: iqrllZJOiv3wQdPZT5EHEtZnmXuf8bWYDE1oSeJr7mw=
+        Code=Default: ZeTS6V0ApWLAGPdcy+oLVhpo2X3ryr0mDMG8gN5ge/Q=
     Spot/Idea: 41TPxswMk7+BBkM6hg0e9h+MnKqIB0qwc8DNCKkgm7U=
     Spot/Ideas: 6BML39ZsfZMas2gkxUClNErat197QNdvh42PE7WZsiY=
     Spot/Learning: cg02iZD2c6Uuly0plbK+y7Uohwm2lDU92UxLbEElfYA=
