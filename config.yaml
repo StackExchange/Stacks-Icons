@@ -24,11 +24,11 @@ definitions:
         Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
         Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
         Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
-        Size=24, Stack=False, Style=Default: oH3VbbH0SZ/bswycHOYpNxJsKpR303q+a9ZqLANnmLE=
-        Size=24, Stack=False, Style=Duotone: /buFBOiNT+fWH7eSXHShZ4k2We/wrGyQEXXUrNpBwEQ=
+        Size=24, Stack=False, Style=Default: GRCrOUTCnm0ao1Sj3DcJ/i53G0fAEaoNMEr3mwmlfyU=
+        Size=24, Stack=False, Style=Duotone: qvy+NWVywbAjIPJXzMgNpMi27RrUpPGzmJ9mLOSEMO0=
         Size=24, Stack=False, Style=Fill: 2ZoKztyQgMVxg1TkCkjnifFebvlaeCHMGgoDrUf7INw=
         Size=24, Stack=True, Style=Default: 7lEU66YhnTwA/XefJObrvwvmJF53F+I3otP5LLk7ZHg=
-        Size=24, Stack=True, Style=Duotone: /eaj3+RLsTs4GTDBFwrrGAMymi6Hm2BP7RIl/aTEtps=
+        Size=24, Stack=True, Style=Duotone: AnhnlumpwykYZr2CsFwjeifW6a3kI7AkUVuWSvNcl1U=
         Size=24, Stack=True, Style=Fill: jjuUUHo3CnkV5Q+kcXHSVhm1WUdeeZ8pjLWfdXI8p/o=
         Size=32, Stack=False, Style=Default: CdMo1n96LlnlyRU4ZuxBwH0OyWZWeKKnojAEO/R3lb8=
         Size=32, Stack=False, Style=Duotone: OZhgwOOvJjmb+NW0zmwEfVfzxEQxy9Novz2aguEQD9g=
@@ -36,14 +36,14 @@ definitions:
         Size=32, Stack=True, Style=Default: k3lM57gtnVRqjMW/0cRkUjN8bV6bWxUC1gDno7ZBUlA=
         Size=32, Stack=True, Style=Duotone: ds+L40UcrLN9fTdYcHC8NROM4fXhlT+0a3TgAmY5ZmM=
         Size=32, Stack=True, Style=Fill: sX/kH3DjGNNDa8O9X2ZuW9sfA2yPDcJSxDbjinZYd3A=
-        Size=64, Stack=False, Style=Default: EwdoOiAwegx/xZb8EEMAmX8EO4sPsiP38etDP08IQUU=
+        Size=64, Stack=False, Style=Default: qRevAY7Fgv09m4tBFz0NbxQv3bCceQRZVSsBzL1OoKo=
         Size=64, Stack=False, Style=Duotone: xhbjQ7C1MxGzCYCgU0TZqpNgdn5mH6mXm+S3LAqy1Lk=
         Size=64, Stack=False, Style=Fill: 6+bvGPnT8aM0q964vHpSP42niyW9HQIQvHZkCG8UbNU=
         Size=64, Stack=True, Style=Default: twD+FZ/DwKYmLA+f9DAsD2LHElH1gUVbPQADyTMZwFs=
         Size=64, Stack=True, Style=Duotone: uI2xZPiFmrTKnku7XxGiMU3A2x8BFahW5stmqk+oaok=
         Size=64, Stack=True, Style=Fill: gL0/qhdovHNcrDhf3qG70QF8CQaamJVmJkwrbopF8pI=
-        Size=Default, Stack=False, Style=Default: +UXvHOc8ZfwIvehKuBuBr1Lo/jBoEEhHwlHyCR7VGi4=
-        Size=Default, Stack=False, Style=Duotone: aeaRY0l/Kkq+Z4KNkeMsIqb5YCCn0ghDaIwh+Uiq4gA=
+        Size=Default, Stack=False, Style=Default: vwCyYLDbp4qiayKK2SBNp0koGEg2TkQunkmr84FjJLQ=
+        Size=Default, Stack=False, Style=Duotone: kXFRSCMCdmOW/fYM/wu5MFaKHgGmDtxu+MuVJJOvImc=
         Size=Default, Stack=False, Style=Fill: 2WB2t2CBMn/aLaz5M0GGTU1bxlCOlWZH9RNZdz4/E30=
         Size=Default, Stack=True, Style=Default: LIsoJ3s/18zeiJxWCPYMSWg2p7RIt/TK7dhiolXOgn0=
         Size=Default, Stack=True, Style=Duotone: E2gmqtKsZMTBaTEHS0Rs8n5lO3fWyBrlEp7xTjgVZ2Y=
@@ -147,7 +147,7 @@ definitions:
         Size=12, Direction=UpDown, Style=Default: XxxCnJY65CmJwG+KmRUgr5ZF17aepm5dRro3l2INWNY=
         Size=12, Direction=UpDown, Style=Fill: +3hvyxSv9MVx44DWJjEg8QnZ+DJfI+GgMePfvX4999I=
         Size=16, Direction=Down, Style=Default: 7D7dMJ4X+v+A7nzSJP30zY5JbpHaceMCAPazjZzJZoY=
-        Size=16, Direction=Down, Style=Fill: FYrnTtjpHNs3wCzaL6aycYnX39xhHlyeDQ/GivscdOM=
+        Size=16, Direction=Down, Style=Fill: 13nQnuz+zw9IreyVgv0VSW676++XezOaE+LiCE4xsOo=
         Size=16, Direction=DownUp, Style=Default: K3HNUtOeLxg+snRkdF0L6rjGmwGQwKsx5mewmljqhpE=
         Size=16, Direction=DownUp, Style=Fill: Q0tQpeN2ZBXZyWi4kcyH3+Ot92Virn8Y27oG2ixyFwM=
         Size=16, Direction=Left, Style=Default: aSzBTj5Ghi1KVwbk+VjH+5+5yH+VHHnt7UTE/M2or8Q=
@@ -155,7 +155,7 @@ definitions:
         Size=16, Direction=Right, Style=Default: flGPYux+ywMNVO9z+quPZ7hHiW6BAWlDTjRRv3Z0bNw=
         Size=16, Direction=Right, Style=Fill: lop+O9do4Uy3vl7rHG3mEfmIg227U9D8CQjX/gAcx2A=
         Size=16, Direction=Up, Style=Default: KzgC/2nFDEB2AwANKQldgSSZ+imsiDZsJXyrj1Vc1kA=
-        Size=16, Direction=Up, Style=Fill: pj+mCCFt0+Os2kZobxM9pb2tdmrKeleW4xzkqEIeKCg=
+        Size=16, Direction=Up, Style=Fill: jZAZt9bSs6KO1JS2t+7HSdvHVyoEJykaf7Gqod0NaDY=
         Size=16, Direction=UpDown, Style=Default: SH7JnzCdmJVKf4a2hG+mnrFn2ttXPF5KC0rz/8ucZy8=
         Size=16, Direction=UpDown, Style=Fill: lyPP71/mG82bccLoJeN+l0/dlhO+n54EaAWdC8yubCY=
         Size=Default, Direction=Down, Style=Default: gLRrvexuqliT39r2NLzZHszddvzLBKOljfP3SF7U19Q=
@@ -382,11 +382,11 @@ definitions:
         Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
         Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
         Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
-        Size=24, Stack=False, Style=Default: xfga2XLPd+ktucRNJ38arzbeFCNYIYi5H6eV9V7L9nc=
-        Size=24, Stack=False, Style=Duotone: Fmg6cQFG1y5Uu43ouFkreytkmT028cZaIxbqeFae+rc=
+        Size=24, Stack=False, Style=Default: ZXKxiLb0R/0470fPXPyQPrLrJfnEyu8qQpIaF4ZfefE=
+        Size=24, Stack=False, Style=Duotone: 3jQqTqRF7kjM7aVOy2czNSxLuZMEQ8zvJ4OWp3nWeeU=
         Size=24, Stack=False, Style=Fill: fmYnG572rGbRfxEidKtD7gJWObbDAH2kll3xYSf1ohM=
         Size=24, Stack=True, Style=Default: XxskWGNQAPx166nzJklDBNOmjxmtBHLAaBLu6h/UTzo=
-        Size=24, Stack=True, Style=Duotone: AE5iZxdKwKN6AGkaNcdOPewjqMbKjcKFsKqNNjkHzJ0=
+        Size=24, Stack=True, Style=Duotone: n6iPL/5BZB8xSTJmLps/+haJWpGf5g8SI68haw4M9c8=
         Size=24, Stack=True, Style=Fill: 4wkOQJZ6Vz6L4f4MHO3F/GUPP4AADq3TH75UrlV/Aps=
         Size=32, Stack=False, Style=Default: g6HvWripsnLRR8VbCAKcEnoFjxJleMaYkSZiQcxdSp4=
         Size=32, Stack=False, Style=Duotone: TeO7F6DT9Evp3VCRi46N6E98d4Axwb126Cef/uaiuBk=
@@ -400,11 +400,11 @@ definitions:
         Size=64, Stack=True, Style=Default: PBsqvlTA+xBvkIHLdSlrpyE7bQSldDrfz4jjydzMP58=
         Size=64, Stack=True, Style=Duotone: QsoBAIY3bnS+RWj+s30gvZjj+D0HmNwgNjZZHEodAtc=
         Size=64, Stack=True, Style=Fill: i150xoEMCTAj3KftwDzmKi5UmHStonxHqgIclyrHe4U=
-        Size=Default, Stack=False, Style=Default: Kv7Vralf/m7GaOwKwY7j2DzdEtlBHH3/8QU9zW0CyBA=
-        Size=Default, Stack=False, Style=Duotone: b85w81hgQSS2qb3KgIRJA9mNI3vIIMHITTNYb3T5urw=
+        Size=Default, Stack=False, Style=Default: bMNGk29pwOxnIUQmwMdqWCj2EVY99K+HqZ7HH82kkZo=
+        Size=Default, Stack=False, Style=Duotone: Z2UMrm+2BAF36U996+IX9zy0zR5yGL95HxdDmNa6wRU=
         Size=Default, Stack=False, Style=Fill: RiYQ/I7KQuzaVKHOHp4Xhpki1llssOP4iNPJegE9efg=
         Size=Default, Stack=True, Style=Default: mbmuRkNqjEEumr0X0ju3h2P9j48AScFuDUMFFFH+tx8=
-        Size=Default, Stack=True, Style=Duotone: Ht54fWWbSJK0Kdwn4cpk3G7azo4pDyP7uhMjG0qbLqQ=
+        Size=Default, Stack=True, Style=Duotone: 1o2hcJWk67JICCNyZHVlHqU0i0OGgkRI2ygkFpltT7w=
         Size=Default, Stack=True, Style=Fill: rsEy+yUNywPSLVQ6jkuAxRAlfvt7saii9HLIaiasHX8=
     Icon/RSS:
         Size=Default, Style=Default: s2zCjZIMWUhhMLYf1GO6Cs1Cn1RMK/bKMhsjybXbA/A=
@@ -525,7 +525,7 @@ definitions:
         Size=Default, Style=Default: /wHKM/CDulKMk6sSTYZUb//yCagUXltQS97ZmtlTNJw=
     Icon/Thumb:
         Size=Default, Style=Default, Direction=Down: UlcSnmHOx4NU+7OeqEJqHXfEndYFM7QAxvbd0fUR1qA=
-        Size=Default, Style=Default, Direction=Up: ebZp1AEf3wTWkRLuPku+rdBhSZoVclPry797cPvdS/4=
+        Size=Default, Style=Default, Direction=Up: NJLY7BSZtgQbAtmuMoZX1CATvfZXL/ZHCBB1hni7zx4=
     Icon/Tool:
         Size=16, Style=Default: N9IwPNlDdF/tu45lCH/9qJnqXT0u/+Nj2rx/RbUoeaw=
         Size=16, Style=Fill: Kt+eKYmf2SHmOjXqBVL0TB+cv5DUw9Bd98VQl1cpy5s=
@@ -635,14 +635,14 @@ definitions:
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
-    "#000": null
-    "#0f2465": var(--blue-600)
-    "#200b73": var(--purple-600)
-    "#201c1d": var(--black-600)
-    "#5176f2": var(--blue-400)
-    "#590405": var(--red-600)
-    "#f0efed": var(--black-150)
-    "#fff": var(--white)
+    '#000': null
+    '#0f2465': var(--blue-600)
+    '#200b73': var(--purple-600)
+    '#201c1d': var(--black-600)
+    '#5176f2': var(--blue-400)
+    '#590405': var(--red-600)
+    '#f0efed': var(--black-150)
+    '#fff': var(--white)
     black: null
     none: null
     white: null
