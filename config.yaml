@@ -21,8 +21,6 @@ definitions:
         Size=16, Stack=False, Style=Default: kG3Nl97Ovam0eE9FtqdcXLlIDowgmQXPNnHZvYXWr1Q=
         Size=16, Stack=False, Style=Duotone: yvBrqOCviDbrUqfqXxXv2ivdaRqDqVavLAdrFzCZf1I=
         Size=16, Stack=False, Style=Fill: 9p04KRU6PULxa8YBR5GVaBcPQbNiDRJaaJBGjbKYI3M=
-        Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
-        Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
         Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
         Size=24, Stack=False, Style=Default: GRCrOUTCnm0ao1Sj3DcJ/i53G0fAEaoNMEr3mwmlfyU=
         Size=24, Stack=False, Style=Duotone: qvy+NWVywbAjIPJXzMgNpMi27RrUpPGzmJ9mLOSEMO0=
@@ -381,8 +379,6 @@ definitions:
         Size=16, Stack=False, Style=Default: 3Y5tnQDXC7VoN9ehKhrNUhyvxPXO+gDSTay2+/5/RJY=
         Size=16, Stack=False, Style=Duotone: IJYwdVzT6ZK4i7dVJbyvqA31ZymUPYdRVp/t0otnCko=
         Size=16, Stack=False, Style=Fill: HVD22oGusWFRkiV2E3g5eXb2/yVHFfctk0xKS8iAoYg=
-        Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
-        Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
         Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
         Size=24, Stack=False, Style=Default: ZXKxiLb0R/0470fPXPyQPrLrJfnEyu8qQpIaF4ZfefE=
         Size=24, Stack=False, Style=Duotone: 3jQqTqRF7kjM7aVOy2czNSxLuZMEQ8zvJ4OWp3nWeeU=
@@ -497,11 +493,6 @@ definitions:
         Size=Default, Half=False, Style=Fill: 8L91Gia6ogfgO+JHq0VZdIs5V4XoohPpTki6vANCfKE=
         Size=Default, Half=True, Style=Fill: ZvmCP5rLX0VRfmAD/N26ssy6KtZ4IcvMfI11fpCgRcs=
     Icon/Tag:
-        Size=16, Stack=False, Style=Duotone: 7y8ZNtsKi1UnnS38uey7VE1xeRtDhwk/sqLiQKrwzqg=
-        Size=16, Stack=False, Style=Fill: L9rUOkuweFHywRylV0+7U2kSmluTwibuCKWPmM3k1ck=
-        Size=16, Stack=True, Style=Default: 1VDsknSL2Jts8TF09K8b0jwJa0TyWgfwmX32LUEGYqE=
-        Size=16, Stack=True, Style=Duotone: 0I2Q/BDn5kqvhiomrdyevXx4+bGUC8S6D2y4+0wrqLQ=
-        Size=16, Stack=True, Style=Fill: PpBIDX7GYxKMHnHBCrpcOTys1OjYi3GpvUEHDxo8uKU=
         Size=24, Stack=False, Style=Default: 55K351shaWDTLXplMpCA0wq/LsYkqbdRuE6H44tiL0Y=
         Size=24, Stack=False, Style=Duotone: ZRBZrw+ioTy4hrzETTiJo1F2pNvNqFyhHV3nCthUFoc=
         Size=24, Stack=False, Style=Fill: a316p8UqMeJfzsKDk7HKvNKijbqUP6IjvIXyKgIai9c=
