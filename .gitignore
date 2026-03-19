@@ -17,6 +17,9 @@ src/Spot
 # don't check in environmental variables / secrets
 .env
 
+# temporary output from sync:figma, used for PR generation
+.sync-output.json
+
 # don't check in any c# build data
 dotnet/**/obj
 dotnet/**/bin

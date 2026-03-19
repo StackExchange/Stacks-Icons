@@ -93,6 +93,47 @@ async function syncConfigFromFigma() {
     // Collect node IDs that we need to fetch hashes for
     const nodesToFetch: Array<{ nodeId: string; key: string }> = [];
 
+    // Track which nodes actually changed, for PR preview generation
+    const changedNodes: Array<{
+        nodeId: string;
+        componentName: string;
+        variantName: string | null;
+    }> = [];
+
+    // Track components present in config.yaml but missing from Figma (removed)
+    const removedComponents: Array<{
+        componentName: string;
+        variantName: string | null;
+    }> = [];
+
+    // Track components in Figma not yet in config.yaml (new)
+    const newComponents: Array<{ nodeId: string; componentName: string }> = [];
+
+    // Track components where the hash fetch failed (error)
+    const errorComponents: Array<{
+        componentName: string;
+        variantName: string | null;
+    }> = [];
+
+    // Detect new components: in Figma but absent from config.yaml
+    const configComponentNames = new Set(Object.keys(existingConfig.definitions));
+    const seenNewNames = new Set<string>();
+    for (const [, figmaComponent] of figmaByName) {
+        if (
+            !configComponentNames.has(figmaComponent.componentName) &&
+            !seenNewNames.has(figmaComponent.componentName)
+        ) {
+            seenNewNames.add(figmaComponent.componentName);
+            newComponents.push({
+                nodeId: figmaComponent.nodeId,
+                componentName: figmaComponent.componentName,
+            });
+        }
+    }
+    if (newComponents.length > 0) {
+        info(`Found ${newComponents.length} new component(s) in Figma not yet in config.yaml`);
+    }
+
     for (const [componentName, value] of Object.entries(
         existingConfig.definitions
     )) {
@@ -106,6 +147,7 @@ async function syncConfigFromFigma() {
                 });
             } else {
                 warn(`Component "${componentName}" not found in Figma`);
+                removedComponents.push({ componentName, variantName: null });
             }
         } else if (value != null) {
             // Variant group - fetch ALL variants from Figma for this component
@@ -127,6 +169,7 @@ async function syncConfigFromFigma() {
                 warn(
                     `No variants found in Figma for component "${componentName}"`
                 );
+                removedComponents.push({ componentName, variantName: null });
             }
         }
     }
@@ -194,6 +237,11 @@ async function syncConfigFromFigma() {
         const hash = hashMap.get(nodeId);
         if (!hash) {
             warn(`No hash calculated for ${key}`);
+            const parts = key.split("::");
+            errorComponents.push({
+                componentName: parts[0] ?? key,
+                variantName: parts[1] ?? null,
+            });
             continue;
         }
 
@@ -220,6 +268,11 @@ async function syncConfigFromFigma() {
             if (oldHash !== hash) {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 definitions.set(key, hash);
+                changedNodes.push({
+                    nodeId,
+                    componentName: key,
+                    variantName: null,
+                });
                 updates.push({
                     componentName: key,
                     isVariantSet: false,
@@ -256,6 +309,16 @@ async function syncConfigFromFigma() {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                     componentDef.set(variantName, newHash);
                     updatedVariants.push(variantName);
+                    const nodeEntry = nodesToFetch.find(
+                        (n) => n.key === `${componentName}::${variantName}`
+                    );
+                    if (nodeEntry) {
+                        changedNodes.push({
+                            nodeId: nodeEntry.nodeId,
+                            componentName,
+                            variantName,
+                        });
+                    }
                 }
             }
 
@@ -293,6 +356,47 @@ async function syncConfigFromFigma() {
     } else {
         success("All components are up to date");
     }
+
+    // Fetch PNG previews for updated and new components, then write sync output for PR generation
+    const previewNodes = [
+        ...changedNodes.map(({ nodeId }) => nodeId),
+        ...newComponents.map(({ nodeId }) => nodeId),
+    ];
+
+    let pngImages: Record<string, string | null> = {};
+    if (previewNodes.length > 0) {
+        info(`Fetching PNG previews for ${previewNodes.length} component(s)...`);
+        const pngResponse = await fetch.get<GetImagesResponse>(
+            `/images/${process.env["FIGMA_FILE_KEY"]}`,
+            {
+                params: {
+                    format: "png",
+                    ids: previewNodes.join(","),
+                    scale: 2,
+                },
+            }
+        );
+        pngImages = pngResponse.data.images;
+    }
+
+    const syncOutput = {
+        updated: changedNodes.map(({ nodeId, componentName, variantName }) => ({
+            componentName,
+            variantName,
+            nodeId,
+            pngUrl: pngImages[nodeId] ?? null,
+        })),
+        new: newComponents.map(({ nodeId, componentName }) => ({
+            componentName,
+            nodeId,
+            pngUrl: pngImages[nodeId] ?? null,
+        })),
+        removed: removedComponents,
+        errors: errorComponents,
+    };
+
+    await writeFile(".sync-output.json", JSON.stringify(syncOutput, null, 2));
+    info(`Wrote .sync-output.json`);
 }
 
 // Run the script

@@ -1,0 +1,141 @@
+name: Sync Figma
+
+on:
+    repository_dispatch:
+        types: [figma-sync]
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+
+            - run: npm ci
+
+            - name: Sync from Figma
+              env:
+                  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+                  FIGMA_FILE_KEY: Z5yoO4WH58QDHvmxwMWhr0
+              run: npm run sync:figma
+
+            - name: Check for changes
+              id: changes
+              run: |
+                  if git diff --exit-code config.yaml > /dev/null 2>&1; then
+                      echo "changed=false" >> $GITHUB_OUTPUT
+                  else
+                      echo "changed=true" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Create branch and commit
+              id: branch
+              if: steps.changes.outputs.changed == 'true'
+              run: |
+                  BRANCH="sync/figma-$(date +%Y%m%d-%H%M%S)"
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git checkout -b "$BRANCH"
+                  git add config.yaml
+                  git commit -m "sync: update icon hashes from Figma"
+                  git push origin "$BRANCH"
+                  echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+            - name: Generate PR body
+              if: steps.changes.outputs.changed == 'true'
+              env:
+                  FIGMA_FILE_KEY: Z5yoO4WH58QDHvmxwMWhr0
+                  FIGMA_TRIGGERED_BY: ${{ github.event.client_payload.triggered_by }}
+                  FIGMA_DESCRIPTION: ${{ github.event.client_payload.description }}
+              run: |
+                  node --input-type=module << 'EOF' > pr-body.md
+                  import { readFileSync } from 'fs';
+
+                  let output = { updated: [], new: [], removed: [], errors: [] };
+                  try {
+                      output = JSON.parse(readFileSync('.sync-output.json', 'utf8'));
+                  } catch {}
+
+                  const fileKey = process.env.FIGMA_FILE_KEY;
+                  const baseUrl = `https://www.figma.com/design/${fileKey}/Stacks-Icons--beta-`;
+                  const triggeredBy = process.env.FIGMA_TRIGGERED_BY || null;
+                  const description = process.env.FIGMA_DESCRIPTION || null;
+
+                  const updated = output.updated ?? [];
+                  const added = output.new ?? [];
+                  const removed = output.removed ?? [];
+                  const errors = output.errors ?? [];
+
+                  const makeImg = (componentName, nodeId, pngUrl) => {
+                      const figmaUrl = `${baseUrl}?node-id=${nodeId.replace(/:/g, '-')}`;
+                      return pngUrl
+                          ? `[![${componentName}](${pngUrl})](${figmaUrl})`
+                          : `[Open in Figma ↗](${figmaUrl})`;
+                  };
+
+                  const rows = [
+                      ...added.map(({ componentName, nodeId, pngUrl }) =>
+                          `| 🆕 New | ${componentName} | — | ${makeImg(componentName, nodeId, pngUrl)} |`
+                      ),
+                      ...updated.map(({ componentName, variantName, nodeId, pngUrl }) =>
+                          `| ✅ Updated | ${componentName} | ${variantName ?? '—'} | ${makeImg(componentName, nodeId, pngUrl)} |`
+                      ),
+                      ...removed.map(({ componentName, variantName }) =>
+                          `| 🗑️ Removed | ${componentName} | ${variantName ?? '—'} | — |`
+                      ),
+                      ...errors.map(({ componentName, variantName }) =>
+                          `| ❌ Error | ${componentName} | ${variantName ?? '—'} | — |`
+                      ),
+                  ].join('\n');
+
+                  const summary = [
+                      added.length > 0 ? `🆕 ${added.length} new` : null,
+                      updated.length > 0 ? `✅ ${updated.length} updated` : null,
+                      removed.length > 0 ? `🗑️ ${removed.length} removed` : null,
+                      errors.length > 0 ? `❌ ${errors.length} error${errors.length !== 1 ? 's' : ''}` : null,
+                  ].filter(Boolean).join(' · ');
+
+                  const lines = [
+                      '## Figma Library Sync',
+                      '',
+                      summary,
+                      triggeredBy ? `**Published by:** ${triggeredBy} (Figma)` : null,
+                      description ? `**Publish note:** ${description}` : null,
+                      '',
+                      '| Status | Component | Variant | Preview |',
+                      '|--------|-----------|---------|---------|',
+                      rows,
+                      '',
+                      '> Preview images expire ~48 hours after publish — click any image to open the component in Figma.',
+                      removed.length > 0 ? '\n> 🗑️ Removed components are still in `config.yaml` — delete their entries manually if the removal was intentional.' : null,
+                  ].filter(s => s != null && s !== '');
+
+                  process.stdout.write(lines.join('\n'));
+                  EOF
+
+            - name: Ensure asset label exists
+              if: steps.changes.outputs.changed == 'true'
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  gh label create "asset" --color "F5A623" --description "Figma asset sync" 2>/dev/null || true
+
+            - name: Open PR
+              if: steps.changes.outputs.changed == 'true'
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  gh pr create \
+                      --title "sync: Figma library update $(date +%Y-%m-%d)" \
+                      --body-file pr-body.md \
+                      --base beta \
+                      --head "${{ steps.branch.outputs.branch }}" \
+                      --label "asset"
