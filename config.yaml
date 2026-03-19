@@ -545,7 +545,7 @@ definitions:
         Size=Default, Direction=Down, Style=Default: dzAzHMnemcTeDJUvXbnX5AB3fbfGKcJCbDHln6fElIc=
         Size=Default, Direction=Up, Style=Default: bACYJc4jSqcgSHt4SIPGOVY8/D0qkyKzzZqQsfWu2m0=
     Icon/Trust:
-        Size=Default, Style=32: vU7MtK2TaNI1JWHKR3vprwrS/Lrcv+UhxOXvrpHDMns=
+        Size=32, Style=Default: XnX0fNq4KXvc38R9CLIagM+L4Qf5qXlXw7No9fJZ4SU=
         Size=Default, Style=Default: DU8F0IXiK6ozKXH9TfNSl9m9Yb4WPjzOTtsgfU2ul0w=
     Icon/User:
         Size=32, Stack=False, Style=Default: rX8GZI8pWoLzcHc79LLkD13yfFPdI2NDbcxmYR2LTyw=
