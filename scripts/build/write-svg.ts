@@ -177,7 +177,7 @@ ${hashEntries.reduce((p, [k, v]) => p + `${k}: ${v}\n`, "")}`;
         }
     }
 
-    return components;
+    return { components, names };
 };
 
 /** Optimizes svg files using svgo then writes them to build/lib */

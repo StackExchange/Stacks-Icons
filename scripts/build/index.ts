@@ -7,6 +7,7 @@ import { error, info, success, type OutputType } from "./utils.js";
 import { writeCSharp } from "./write-csharp.js";
 import { bundleCssIcons } from "./write-css.js";
 import { bundleHelperJsAsync, writeJsModule, writeJson } from "./write-js.js";
+import { writeManifest } from "./write-json.js";
 import { writeManifests } from "./write-manifests.js";
 import { fetchFromFigma, processSvgFilesAsync } from "./write-svg.js";
 
@@ -64,8 +65,15 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
 
     const hasCachedIcons =
         (await fs.stat(paths.src("Icon")))?.isDirectory() || false;
+
+    let figmaComponents: Awaited<
+        ReturnType<typeof fetchFromFigma>
+    >["components"] = [];
+    let figmaNames: Awaited<ReturnType<typeof fetchFromFigma>>["names"] = {};
+
     if (!options.cached || !hasCachedIcons) {
-        await fetchFromFigma(options.ignore);
+        ({ components: figmaComponents, names: figmaNames } =
+            await fetchFromFigma(options.ignore));
     } else {
         info("Skipping fetching from Figma...");
     }
@@ -82,6 +90,9 @@ Set "FIGMA_ACCESS_TOKEN" via an environment variable or with a .env file`;
 
     await writeManifests(iconsObj, spotsObj, cssIconsObj);
     success(`Successfully built index.html`);
+
+    await writeManifest(iconsObj, spotsObj, figmaComponents, figmaNames);
+    success(`Successfully built manifest.json`);
 })().catch((e) => {
     error(e);
     process.exit(1);

@@ -19,7 +19,8 @@
         "./src/Spot/*": "./src/Spot/*",
         "./dist/Icon/*": "./dist/lib/Icon/*",
         "./dist/Spot/*": "./dist/lib/Spot/*",
-        "./dist/icons.css": "./dist/icons.css"
+        "./dist/icons.css": "./dist/icons.css",
+        "./manifest": "./dist/manifest.json"
     },
     "files": [
         "dist/**/*",
