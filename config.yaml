@@ -446,9 +446,9 @@ definitions:
         Service=Microsoft, Size=32: KnbM0ZUACdNK0DNqFs0/xnhKPpIXQdHP3xI0g3uckE4=
         Service=Microsoft, Size=64: 6JsP5Pt6jMeCkVxeYiRyW9y+NzDTU/7YppBJTge4pVU=
         Service=Microsoft, Size=Default: BBA+l8CXShNkNMQsHotCf6kntMiD4mcuy5yltR73HYU=
-        Service=MicrosoftTeams, Size=32: hHmogVtN09S3KU4Rdx/Np/ZMVVD/fVgzCvWTCIv1KSo=
-        Service=MicrosoftTeams, Size=64: eahSG/30+qCmFkdqYxk0Y5QV/qMQsiR8jPLjvqB/9Lk=
-        Service=MicrosoftTeams, Size=Default: BZJ3wHN4i7ZdD3Fwa+oD6toXin4sfKpe9VQonsux2AQ=
+        Service=MicrosoftTeams, Size=32: 7E3c2p7EhxPcq51NluhDKcohCPIKEbOdHwEu076jR2E=
+        Service=MicrosoftTeams, Size=64: DwqEfpUFZ4wImC5p7981tBjW5u3qAEkdZ0cewsbOvX0=
+        Service=MicrosoftTeams, Size=Default: YYFBke0TmobcPupXd4vcbvNW9gm2nZxn4OpUvBy5Xcg=
         Service=Moveworks, Size=32: 95QQm1/0BROQb1ZIf5lOs+QucB5EjTVFTdveFTPY7Fo=
         Service=Moveworks, Size=64: 8uf4DFCXjlXL8lGY8UdTK6Qo1qJsV6u08SamkK2Ql/k=
         Service=Moveworks, Size=Default: MNhfjOV6oEMWlt9z5q8MRfZV8P/eibA3gTpWCwZmgRw=
@@ -633,14 +633,14 @@ definitions:
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
-    "#000": null
-    "#0f2465": "var(--blue-600, #0f2465)"
-    "#200b73": "var(--purple-600, #200b73)"
-    "#201c1d": "var(--black-600, #201c1d)"
-    "#5176f2": "var(--blue-400, #5176f2)"
-    "#590405": "var(--red-600, #590405)"
-    "#f0efed": "var(--black-150, #f0efed)"
-    "#fff": "var(--white, #fff)"
+    '#000': null
+    '#0f2465': 'var(--blue-600, #0f2465)'
+    '#200b73': 'var(--purple-600, #200b73)'
+    '#201c1d': 'var(--black-600, #201c1d)'
+    '#5176f2': 'var(--blue-400, #5176f2)'
+    '#590405': 'var(--red-600, #590405)'
+    '#f0efed': 'var(--black-150, #f0efed)'
+    '#fff': 'var(--white, #fff)'
     black: null
     none: null
     white: null

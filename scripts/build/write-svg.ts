@@ -19,7 +19,7 @@ import {
 } from "@figma/rest-api-spec";
 
 /** The upper limit to an icon's svg size in bytes */
-const MAX_ICON_SIZE_B = 4500;
+const MAX_ICON_SIZE_B = 10000;
 
 export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
     if (!process.env["FIGMA_ACCESS_TOKEN"] || !process.env["FIGMA_FILE_KEY"]) {
