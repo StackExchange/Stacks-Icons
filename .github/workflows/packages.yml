@@ -6,21 +6,25 @@ on:
             - "v*" # only run when a new package version is tagged
     workflow_dispatch:
 
+permissions:
+    id-token: write # required for npm trusted publishing (OIDC)
+    contents: read
+
 jobs:
     build-ubuntu:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup node
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24
                   registry-url: "https://registry.npmjs.org"
 
             - name: Install .NET SDK
-              uses: actions/setup-dotnet@v3
+              uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x" # latest LTS build
 
@@ -31,7 +35,6 @@ jobs:
               env:
                   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
                   FIGMA_FILE_KEY: Z5yoO4WH58QDHvmxwMWhr0
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
               run: |
                   if [[ ${{ github.ref }} == *"beta"* ]]; then
                     npm publish --tag beta
