@@ -79,6 +79,8 @@ definitions:
     Icon/Blog:
         Size=32, Style=Default: 2NWXC1WIUEMfqZLbh8KF0p3FXSE8tEM3NBSi/Lw275c=
         Size=Default, Style=Default: ui20qhMUqs1n035TDOo9uxdHMBFV1NBZuVPpqVOIMr0=
+    Icon/Book:
+        Size=Default, Style=Default: i7PlHWzQR8nVrJZ/2TPjJA6w7GhfmQz6eZtc8Xz+42M=
     Icon/Bookmark:
         Size=24, Stack=False, Style=Default: zr2HCKPBsnooGx06GuKc5w/WXIbWPEgEtLmHIdQBJ24=
         Size=32, Stack=False, Style=Default: NoUH/AjhMP+j+rOSApDE3N7KKtGpB1WpUZpxg19zVGQ=
