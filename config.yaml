@@ -322,6 +322,8 @@ definitions:
         Size=Default, Stack=False, Open=False, Style=Fill: 5axXRPhKJPGZid7weo3bgu7zFKerFIfA49U+2zBLZ4s=
         Size=Default, Stack=False, Open=True, Style=Default: hChkoMHSXMW74sK8b+ryn0HbkO1qNbaqCJI3nhyCLac=
         Size=Default, Stack=False, Open=True, Style=Fill: T2NU7h+a1lj+JDvKZ6sEkDlGIuPEuCH8qJcNqas3IFA=
+    Icon/Map:
+        Size=Default, Style=Default: 6L9JGgm9EMzAewcbryh+ZHPPtMHMwZCZDWPpwyoGE/s=
     Icon/Menu:
         Size=Default, Style=Default: 7cwQES7SsWT+9tz/MIQ3qb801YHP3Tie9uh+v6lHO3k=
     Icon/Meta:
