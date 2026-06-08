@@ -662,14 +662,14 @@ definitions:
 fills:
     # MARK: Fill maps
     # Key will be searched and replaced with value
-    '#000': null
-    '#0f2465': 'var(--blue-600, #0f2465)'
-    '#200b73': 'var(--purple-600, #200b73)'
-    '#201c1d': 'var(--black-600, #201c1d)'
-    '#5176f2': 'var(--blue-400, #5176f2)'
-    '#590405': 'var(--red-600, #590405)'
-    '#f0efed': 'var(--black-150, #f0efed)'
-    '#fff': 'var(--white, #fff)'
+    "#000": null
+    "#0f2465": "var(--blue-600, #0f2465)"
+    "#200b73": "var(--purple-600, #200b73)"
+    "#201c1d": "var(--black-600, #201c1d)"
+    "#5176f2": "var(--blue-400, #5176f2)"
+    "#590405": "var(--red-600, #590405)"
+    "#f0efed": "var(--black-150, #f0efed)"
+    "#fff": "var(--white, #fff)"
     black: null
     none: null
     white: null
