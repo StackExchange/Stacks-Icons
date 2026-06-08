@@ -119,15 +119,15 @@ function buildEntries(
             const component = componentByBuildKey.get(baseName);
             if (svg) {
                 variants.push({
-                    key: baseName,
-                    variantProps: null,
+                    createdAt: component?.created_at ?? "",
+                    description: component?.description ?? "",
+                    figmaComponentKey: component?.key ?? "",
                     figmaNodeId: component?.node_id ?? "",
                     figmaUrl: component ? figmaUrl(component.node_id) : "",
-                    figmaComponentKey: component?.key ?? "",
-                    description: component?.description ?? "",
-                    createdAt: component?.created_at ?? "",
-                    updatedAt: component?.updated_at ?? "",
+                    key: baseName,
                     svg,
+                    updatedAt: component?.updated_at ?? "",
+                    variantProps: null,
                 });
             }
         } else {
@@ -139,15 +139,15 @@ function buildEntries(
                 const component = componentByBuildKey.get(buildKey);
                 if (svg) {
                     variants.push({
-                        key: buildKey,
-                        variantProps: parseVariantProps(variantKey),
+                        createdAt: component?.created_at ?? "",
+                        description: component?.description ?? "",
+                        figmaComponentKey: component?.key ?? "",
                         figmaNodeId: component?.node_id ?? "",
                         figmaUrl: component ? figmaUrl(component.node_id) : "",
-                        figmaComponentKey: component?.key ?? "",
-                        description: component?.description ?? "",
-                        createdAt: component?.created_at ?? "",
-                        updatedAt: component?.updated_at ?? "",
+                        key: buildKey,
                         svg,
+                        updatedAt: component?.updated_at ?? "",
+                        variantProps: parseVariantProps(variantKey),
                     });
                 }
             }
@@ -160,11 +160,11 @@ function buildEntries(
                     .map((v) => componentByBuildKey.get(v.key)?.description)
                     .find((d) => d) ?? "";
             result.push({
-                name: baseName,
-                figmaName,
-                isSpot,
                 description,
                 dimensions: computeDimensions(sorted),
+                figmaName,
+                isSpot,
+                name: baseName,
                 variants: sorted,
             });
         }
@@ -190,10 +190,10 @@ export async function writeManifest(
     }
 
     const manifest = {
-        version: packageJson.version,
         generatedAt: new Date().toISOString(),
         icons: buildEntries(iconsObj, "Icon", componentByBuildKey),
         spots: buildEntries(spotsObj, "Spot", componentByBuildKey),
+        version: packageJson.version,
     };
 
     await fs.writeFile(
