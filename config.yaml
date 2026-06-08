@@ -443,9 +443,9 @@ definitions:
         Service=GitHub, Size=64: v+nS4FAhbhYUTPgxsOXDDPt/rjKF0KxX5Sj9Qk1Rl8Y=
         Service=GitHub, Size=Default: xPWsaZGrXGUQhVik4EBji/3EN5IHe4kpXKeUTqWF/kM=
         Service=Google, Size=Default: hrhcHXC9JsB9bcXDdLLZo+ojnCu7zEpDiDi4iPTOTFk=
-        Service=GoogleDrive, Size=32: /0KNKRmUGWA+zuDSEC+ssFkCMiV8/NWuHQm1BFpZVuE=
-        Service=GoogleDrive, Size=64: 1Yinwtt4nY9WaSjfu+jM8HhA4VDaRIFLe+8rjxj0sXg=
-        Service=GoogleDrive, Size=Default: 8jE8bWZfKcqp9X8hAZYv94oVmKoU0zyIhmxgYS9G5co=
+        Service=GoogleDrive, Size=32: xjLkz6X2CAe1w7BdZlnzmwn/KMEs5vZGxbbV7nbl0xw=
+        Service=GoogleDrive, Size=64: 54dHzUp7RmLBz/KElmJ/reXBWVIWYc9e9ha09o8tfE4=
+        Service=GoogleDrive, Size=Default: cdnszhIKuTDGwwGKsG36nzTOEJhf5ZDO6Q7DAaz77vw=
         Service=Instagram, Size=Default: DnqGsdf98MdDy9IDiem+knGhVEfceZbIbI2uGlPbDak=
         Service=Jira, Size=32: +0B6xHLH9mAYZ8mJUxcoO+eFxzQEXVbbNV4hWKTedw4=
         Service=Jira, Size=64: g6Dhdr5PxRQGHq+OBQW4ihul06cLfcH72ultsjmYF/g=
