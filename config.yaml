@@ -633,11 +633,12 @@ definitions:
     Spot/Document: Q9r2a60fvN9Pb4VCWWMj6ieWCe0QKLWfmVMrE1oBV20=
     Spot/Empty: uQ0ivsP35o/Kz6pOAon7iZHh2kSklEzcdzOK6fqmKfY=
     Spot/Error:
-        Code=401: WuwA5T0xqnX0RfNzNbYxyYlUCRmx6kcG4bn7WbA/9Aw=
+        Code=401: BYga4xtZzihS5udUB9qPjhV7Zu6DgfduIHi7fXlmbRg=
+        Code=403: 3V23JBwM2zA7xLGuJI2ullXsAum4cSQuo71LeHevBYA=
         Code=404: RbyIiFmx/ZWJmdZFH4Ivbn41Ed1E2zH3s6H14cP7aGc=
         Code=500: x211mfuUtSwzITxi5LLg/oFUfsK7I+mjrN7zQ3nmGG0=
         Code=503: iqrllZJOiv3wQdPZT5EHEtZnmXuf8bWYDE1oSeJr7mw=
-        Code=Default: ZeTS6V0ApWLAGPdcy+oLVhpo2X3ryr0mDMG8gN5ge/Q=
+        Code=Default: Gs8A/JLp4r5btuKN978iaLjshLXU6zRqbJS8YIu+8As=
     Spot/Expert: xyynVIDbxB0vGsbL0SlWYX1b3c46nFQt2BlXpcjJOzA=
     Spot/Finance: NPZJYL71dfGUYrJOnCXBfknuTo3WJDdTidn59PaAYdQ=
     Spot/Help: HFcySIJ9HJiTcH3n/K6Nftdhar+uaTfMmLe/aXPz1aE=
