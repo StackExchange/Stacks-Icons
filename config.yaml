@@ -440,6 +440,9 @@ definitions:
         Service=Backstage, Size=64: Va89FUecwAffiBMMWvDqGytlnw0czRVVEP3HLH5Gfqs=
         Service=Backstage, Size=Default: q7thnifbffOIcg4wYdrcT6fKHANSNG3yrTK/eG8Ooow=
         Service=CCPA, Size=Default: S846gTgOPYxRao9j9rA19rwWc855s6qZA9T0IRJTGiM=
+        Service=Claude, Size=32: V6lJj9SuB2u5qTnnnHqr1rORf6YLBd5t48rNiDPawSA=
+        Service=Claude, Size=64: GQIHfLVnL4W95FVNqIKinhquI9W2XwPRkjZ7yhTe/24=
+        Service=Claude, Size=Default: xY7leV255NT3z2voh+uRKtVpxaQ/UkzQL8OewmJv9V0=
         Service=Confluence, Size=32: YhjFScGXWnh+45v6zh2M7GJoTxJ1IG8pJ21f/wxgQA0=
         Service=Confluence, Size=64: 271pYhh2vXH9E1+6eGMTb+zGPQx5ycAtSbpTIIubMCg=
         Service=Confluence, Size=Default: ANZstCim6EwkxnV5s0MG2iyxr8oM3oa+/Ot2MfM3zKk=
