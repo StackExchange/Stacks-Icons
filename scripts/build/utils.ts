@@ -99,6 +99,15 @@ export function svgoPlugins(
                 ],
             },
         },
+        // Strip Figma-only metadata attributes (e.g. data-figma-gradient-fill,
+        // data-figma-skip-parse) that Figma emits for angular/conic gradients.
+        // These carry large JSON blobs and are useless outside Figma.
+        {
+            name: "removeAttrs",
+            params: {
+                attrs: "data-figma.*",
+            },
+        },
         // This runs in preset but run here to normalise colors to make it easier to replace them in the next step
         "convertColors",
         {
