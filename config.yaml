@@ -443,6 +443,9 @@ definitions:
         Service=Claude, Size=32: V6lJj9SuB2u5qTnnnHqr1rORf6YLBd5t48rNiDPawSA=
         Service=Claude, Size=64: GQIHfLVnL4W95FVNqIKinhquI9W2XwPRkjZ7yhTe/24=
         Service=Claude, Size=Default: xY7leV255NT3z2voh+uRKtVpxaQ/UkzQL8OewmJv9V0=
+        Service=Codex, Size=32: C6QVf1hIXjMYi9yf429OmJH/XHat3SDWIWGccgU+XaY=
+        Service=Codex, Size=64: SyixyzWtEZtgKXdIOZeHQqmEnJyhnLV9nVFnYJJsfuc=
+        Service=Codex, Size=Default: 3mlNo+X8mRElxj/ytIO4ODdf3dsQjcnj/tA8LJItqbM=
         Service=Confluence, Size=32: YhjFScGXWnh+45v6zh2M7GJoTxJ1IG8pJ21f/wxgQA0=
         Service=Confluence, Size=64: 271pYhh2vXH9E1+6eGMTb+zGPQx5ycAtSbpTIIubMCg=
         Service=Confluence, Size=Default: ANZstCim6EwkxnV5s0MG2iyxr8oM3oa+/Ot2MfM3zKk=
