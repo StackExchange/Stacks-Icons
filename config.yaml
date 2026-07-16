@@ -486,6 +486,9 @@ definitions:
         Service=Okta, Size=32: sXuhRZ1hcUaFb3l6owMQv0jc+fw0xEGi4ETnMTCIRAg=
         Service=Okta, Size=64: 4NDlo3+Al7YOO/e3bd2BShWfGyrUr5vo7yxelZsbgcs=
         Service=Okta, Size=Default: 9SjHKeGbBp53Xcx+rwcX/X8687cjQYE4HArd3o5oIaQ=
+        Service=OpenAI, Size=32: ZyjTPune1/Cnhdzqm3o2XDrxU6inS6mFd9MRVV9SGk8=
+        Service=OpenAI, Size=64: JX734D7riNzWn8mVcuOb1xEA6Q75O8BKo6OYDmBdVco=
+        Service=OpenAI, Size=Default: 7SRL1O2XEvvd2iTj3uhRFNPiGAKUSV4hDQN2BD96JiY=
         Service=SCIM, Size=32: odUFT9lFjAMMqDF27tsodN3rACszGpfukk8olH2NnBg=
         Service=SCIM, Size=64: GKtKZWRHNeJHoTdRUx/lb2uVj2gI3+PgVwEcJQSnOlk=
         Service=SCIM, Size=Default: eCD6lWV/HNPhc1aSz3a1cGUoi+WIoZ1Ye9VXMSofzhI=
