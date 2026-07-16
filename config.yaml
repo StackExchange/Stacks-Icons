@@ -166,6 +166,8 @@ definitions:
         Size=Default, Direction=Left, Style=Default: F7njLca8ClJcBbpIwNn66B2DBM0mEqSZ5c6otQyrK8I=
         Size=Default, Direction=Right, Style=Default: D72M8xp+AjhLDJiwfKRPCiiUhd62UrrsTNdE7RG3NRY=
         Size=Default, Direction=Up, Style=Default: 9uILqCkYQ2H11rUmOKB8zlDNuI0fZQ0+WddNJXKsrl0=
+    Icon/Clipboard:
+        Size=Default, Type=Default, Style=Default: Fw9Ej7LffbvWNX2BeRzeltqi/mVIFs16Bk6iJjL+kbI=
     Icon/Clock:
         Size=64, Style=Default: eeCgrcz1TQHsUCmhYvpKvpKdkqg1IfdRgz4vVMoZlDs=
         Size=Default, Style=Default: FEy/MZJRpSTaU4j3tVoOAX7Tmpj953IjQwE+ioW4S1o=
