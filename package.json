@@ -49,7 +49,7 @@
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
         "axios": "^1.8.4",
-        "chalk": "^5.4.1",
+        "chalk": "^6.0.0",
         "commander": "^13.1.0",
         "del": "^8.0.0",
         "dotenv": "^17.0.1",
