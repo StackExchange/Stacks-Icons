@@ -11,7 +11,7 @@
 	<PropertyGroup>
 		<Description>Stack Overflow's shared icon set</Description>
 		<PackageProjectUrl>https://github.com/StackExchange/Stacks-Icons</PackageProjectUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/StackExchange/Stacks-Icons.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -41,6 +41,6 @@
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		<PackageReference Include="System.Collections.Immutable" Version="9.0.9" />
+		<PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
 	</ItemGroup>
 </Project>

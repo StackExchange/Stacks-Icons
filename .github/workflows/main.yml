@@ -2,9 +2,9 @@ name: CI
 
 on:
     push:
-        branches: [production, beta]
+        branches: [beta, main]
     pull_request:
-        branches: [production, beta]
+        branches: [beta, main]
     workflow_dispatch:
 
 jobs:
@@ -35,6 +35,12 @@ jobs:
 
             - name: Run linters
               run: npm run lint
+
+            - name: Validate package metadata
+              run: npm run test:metadata
+
+            - name: Validate npm package
+              run: npm run test:package
 
             - name: .NET Build
               run: npm run build:nuget

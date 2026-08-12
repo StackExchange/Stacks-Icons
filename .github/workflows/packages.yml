@@ -5,14 +5,20 @@ on:
         tags:
             - "v*" # only run when a new package version is tagged
     workflow_dispatch:
-
-permissions:
-    id-token: write # required for npm trusted publishing (OIDC)
-    contents: read
+        inputs:
+            skipNpmPublish:
+                description: Skip npm when retrying a partially completed release
+                required: false
+                type: boolean
+                default: false
 
 jobs:
-    build-ubuntu:
+    build:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        outputs:
+            npm-tag: ${{ steps.release.outputs.npm-tag }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -23,6 +29,10 @@ jobs:
                   node-version: 24
                   registry-url: "https://registry.npmjs.org"
 
+            - name: Validate release ref
+              id: release
+              run: node ./scripts/prepare-release.mjs
+
             - name: Install .NET SDK
               uses: actions/setup-dotnet@v4
               with:
@@ -31,19 +41,77 @@ jobs:
             - name: Install npm dependencies
               run: npm ci
 
-            - name: Build and push package to npm
+            - name: Build packages
               env:
                   FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
                   FIGMA_FILE_KEY: Z5yoO4WH58QDHvmxwMWhr0
-              run: |
-                  if [[ ${{ github.ref }} == *"beta"* ]]; then
-                    npm publish --tag beta
-                  else
-                    npm publish --tag latest
-                  fi
+              run: npm run build
+
+            - name: Run linters
+              run: npm run lint
+
+            - name: Validate package metadata
+              run: npm run test:metadata
+
+            - name: Validate npm package
+              run: npm run test:package
 
             - name: .NET Build
+              run: npm run build:nuget
+
+            - name: .NET test
+              run: npm run test:nuget
+
+            - name: Pack NuGet package
               run: npm run pack:nuget
 
+            - name: Prepare release artifacts
+              run: |
+                  npm pack --ignore-scripts
+                  mkdir release-artifacts
+                  cp ./*.tgz release-artifacts/
+                  cp dotnet/src/bin/Release/*.nupkg release-artifacts/
+
+            - name: Upload release artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: release-packages
+                  path: release-artifacts/*
+                  if-no-files-found: error
+
+    publish:
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - name: Download release artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: release-packages
+                  path: release-artifacts
+
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  registry-url: "https://registry.npmjs.org"
+
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Push package to npm
+              if: inputs.skipNpmPublish != true
+              run: |
+                  packages=(release-artifacts/*.tgz)
+                  test ${#packages[@]} -eq 1
+                  npm publish "${packages[0]}" --ignore-scripts --tag "${{ needs.build.outputs.npm-tag }}"
+
             - name: Push package to nuget
-              run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}
+              run: |
+                  packages=(release-artifacts/*.nupkg)
+                  test ${#packages[@]} -eq 1
+                  dotnet nuget push "${packages[0]}" --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
