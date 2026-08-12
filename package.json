@@ -48,6 +48,8 @@
         "format:config": "yq eval 'sort_keys(..)' config.yaml -i --indent 4 --prettyPrint",
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
+        "test:metadata": "node ./scripts/test-metadata.mjs",
+        "test:package": "node ./scripts/test-package.mjs",
         "test:nuget": "dotnet test ./dotnet"
     },
     "devDependencies": {

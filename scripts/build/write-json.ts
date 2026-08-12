@@ -100,7 +100,7 @@ function sortVariants(variants: ManifestVariant[]): ManifestVariant[] {
 function buildEntries(
     svgObj: Record<string, string>,
     type: OutputType,
-    componentByBuildKey: Map<string, FigmaComponent>
+    componentByFigmaName: Map<string, FigmaComponent>
 ): ManifestEntry[] {
     const result: ManifestEntry[] = [];
     const isSpot = type === "Spot";
@@ -116,7 +116,7 @@ function buildEntries(
         if (typeof variantDefs === "string") {
             // Simple component — no variant properties
             const svg = svgObj[baseName];
-            const component = componentByBuildKey.get(baseName);
+            const component = componentByFigmaName.get(`${type}/${baseName}`);
             if (svg) {
                 variants.push({
                     createdAt: component?.created_at ?? "",
@@ -136,7 +136,9 @@ function buildEntries(
                 const flatName = flattenFigmaComponentVariantName(variantKey);
                 const buildKey = baseName + flatName;
                 const svg = svgObj[buildKey];
-                const component = componentByBuildKey.get(buildKey);
+                const component = componentByFigmaName.get(
+                    `${type}/${buildKey}`
+                );
                 if (svg) {
                     variants.push({
                         createdAt: component?.created_at ?? "",
@@ -154,10 +156,22 @@ function buildEntries(
         }
 
         if (variants.length > 0) {
-            const sorted = sortVariants(variants);
+            // Figma can contain equivalent default variants whose properties
+            // flatten to the same public build key. Generated assets use the
+            // last definition, so the manifest must expose that key once too.
+            const uniqueVariants = [
+                ...new Map(
+                    variants.map((variant) => [variant.key, variant])
+                ).values(),
+            ];
+            const sorted = sortVariants(uniqueVariants);
             const description =
-                variants
-                    .map((v) => componentByBuildKey.get(v.key)?.description)
+                uniqueVariants
+                    .map(
+                        (v) =>
+                            componentByFigmaName.get(`${type}/${v.key}`)
+                                ?.description
+                    )
                     .find((d) => d) ?? "";
             result.push({
                 description,
@@ -180,19 +194,18 @@ export async function writeManifest(
     /** nodeId → full Figma name e.g. "Icon/Alert16Fill" */
     figmaNames: Record<string, string>
 ) {
-    // Map flattened build key (e.g. "Alert16Fill") → Figma component metadata
-    const componentByBuildKey = new Map<string, FigmaComponent>();
+    // Map the typed build name (e.g. "Icon/Alert16Fill") to Figma metadata.
+    const componentByFigmaName = new Map<string, FigmaComponent>();
     for (const component of figmaComponents) {
         const figmaName = figmaNames[component.node_id];
         if (!figmaName) continue;
-        const buildKey = figmaName.replace(/^(?:Icon|Spot)\//, "");
-        componentByBuildKey.set(buildKey, component);
+        componentByFigmaName.set(figmaName, component);
     }
 
     const manifest = {
         generatedAt: new Date().toISOString(),
-        icons: buildEntries(iconsObj, "Icon", componentByBuildKey),
-        spots: buildEntries(spotsObj, "Spot", componentByBuildKey),
+        icons: buildEntries(iconsObj, "Icon", componentByFigmaName),
+        spots: buildEntries(spotsObj, "Spot", componentByFigmaName),
         version: packageJson.version,
     };
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+		<TargetFramework>net8.0</TargetFramework>
 		<Version>7.0.0-beta.28</Version>
 		<AssemblyName>StackExchange.StacksIcons</AssemblyName>
 		<PackageId>StackExchange.StacksIcons</PackageId>
@@ -11,7 +11,7 @@
 	<PropertyGroup>
 		<Description>Stack Overflow's shared icon set</Description>
 		<PackageProjectUrl>https://github.com/StackExchange/Stacks-Icons</PackageProjectUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/StackExchange/Stacks-Icons.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
