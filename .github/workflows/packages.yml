@@ -114,4 +114,10 @@ jobs:
               run: |
                   packages=(release-artifacts/*.nupkg)
                   test ${#packages[@]} -eq 1
-                  dotnet nuget push "${packages[0]}" --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+                  dotnet nuget push "./${packages[0]}" --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+
+            - name: Push package to Cloudsmith
+              run: |
+                  packages=(release-artifacts/*.nupkg)
+                  test ${#packages[@]} -eq 1
+                  dotnet nuget push "./${packages[0]}" --source 'https://nuget.stackoverflow.software/v3/index.json' --api-key ${{secrets.CLOUDSMITH_API_KEY}} --skip-duplicate
