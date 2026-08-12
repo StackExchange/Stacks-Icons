@@ -25,9 +25,9 @@ assert.equal(
     packageJson.license,
     "npm and NuGet licenses must match"
 );
-assert.equal(readElement("TargetFrameworks"), "net6.0;net8.0");
+assert.equal(readElement("TargetFramework"), "net8.0");
 assert.match(
     project,
-    /<PackageReference Include="System\.Collections\.Immutable" Version="8\.[^"]*" \/>/,
-    "System.Collections.Immutable must support every target framework"
+    /<PackageReference Include="System\.Collections\.Immutable" Version="9\.[^"]*" \/>/,
+    "System.Collections.Immutable must use the current .NET 9-compatible package line"
 );
