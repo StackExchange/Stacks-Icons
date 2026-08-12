@@ -108,7 +108,7 @@ jobs:
               run: |
                   packages=(release-artifacts/*.tgz)
                   test ${#packages[@]} -eq 1
-                  npm publish "${packages[0]}" --ignore-scripts --tag "${{ needs.build.outputs.npm-tag }}"
+                  npm publish "./${packages[0]}" --ignore-scripts --tag "${{ needs.build.outputs.npm-tag }}"
 
             - name: Push package to nuget
               run: |
