@@ -1,0 +1,73 @@
+name: Recover beta.29 to Cloudsmith
+
+on:
+    workflow_dispatch:
+        inputs:
+            releaseRef:
+                description: The immutable release tag to recover
+                required: true
+                type: string
+                default: v7.0.0-beta.29
+
+permissions:
+    contents: read
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Validate recovery ref
+              env:
+                  RELEASE_REF: ${{ inputs.releaseRef }}
+              run: test "$RELEASE_REF" = "v7.0.0-beta.29"
+
+            - name: Checkout release tag
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ inputs.releaseRef }}
+
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Install npm dependencies
+              run: npm ci
+
+            - name: Build packages
+              env:
+                  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+                  FIGMA_FILE_KEY: Z5yoO4WH58QDHvmxwMWhr0
+              run: npm run build
+
+            - name: Run linters
+              run: npm run lint
+
+            - name: Validate package metadata
+              run: npm run test:metadata
+
+            - name: Validate npm package contents
+              run: npm run test:package
+
+            - name: Build NuGet package
+              run: npm run build:nuget
+
+            - name: Test NuGet package
+              run: npm run test:nuget
+
+            - name: Pack NuGet package
+              run: npm run pack:nuget
+
+            - name: Push package to Cloudsmith
+              run: |
+                  packages=(dotnet/src/bin/Release/*.nupkg)
+                  test ${#packages[@]} -eq 1
+                  dotnet nuget push "./${packages[0]}" \
+                      --source 'https://nuget.stackoverflow.software/v3/index.json' \
+                      --api-key "${{ secrets.CLOUDSMITH_API_KEY }}" \
+                      --skip-duplicate
