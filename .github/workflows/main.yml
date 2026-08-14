@@ -2,9 +2,9 @@ name: CI
 
 on:
     push:
-        branches: [production]
+        branches: [v6]
     pull_request:
-        branches: [production]
+        branches: [v6]
     workflow_dispatch:
 
 jobs:
@@ -12,15 +12,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Setup node
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: 20
 
             - name: Install .NET SDK
-              uses: actions/setup-dotnet@v3
+              uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x" # latest LTS build
 
@@ -34,6 +34,12 @@ jobs:
 
             - name: Run linters
               run: npm run lint
+
+            - name: Validate V6 release policy
+              run: npm run test:release
+
+            - name: Validate documentation site
+              run: npm run test:site
 
             - name: .NET Build
               run: npm run build:nuget
