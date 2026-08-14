@@ -1,0 +1,11 @@
+[[redirects]]
+from = "https://logos.stackoverflow.design/*"
+to = "https://icons.stackoverflow.design/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://v2.icons.stackoverflow.design/*"
+to = "https://v6.icons.stackoverflow.design/:splat"
+status = 301
+force = true

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>[Beta] Stacks-Icons manifest</title>
+        <title>Stacks Icons manifest</title>
 
         <link
             rel="stylesheet"
@@ -24,64 +24,68 @@
 
     <body>
         <div class="ps-relative mx-auto pb64 sm:pb16 px32 sm:px16 pt12 sm:pt0">
-            <div class="ps-fixed gs12 d-flex t0 r0 p24 bg-white">
-                <label for="toggle-darkmode" class="d-flex ai-center">
-                    <div class="d-flex ai-center g8">
-                        <label class="s-label" for="toggle-native">
-                            Dark mode
-                        </label>
-                        <input
-                            class="s-toggle-switch"
-                            id="toggle-darkmode"
-                            type="checkbox"
-                        />
+            <header
+                class="d-flex ai-center jc-space-between fw-wrap g16 py16 bb bc-black-300"
+            >
+                <h1 class="fs-headline2 m0">Stacks Icons</h1>
+                <div class="d-flex ai-center fw-wrap g16">
+                    <nav aria-label="Version" class="d-flex ai-center g8">
+                        <span class="s-label">Version</span>
+                        <span aria-current="page" class="fw-bold">V7</span>
+                        <a
+                            class="s-link"
+                            href="https://v6.icons.stackoverflow.design/"
+                            >V6</a
+                        >
+                    </nav>
+                    <div class="gs12 d-flex fw-wrap">
+                        <div class="d-flex ai-center g8">
+                            <label class="s-label" for="toggle-darkmode">
+                                Dark mode
+                            </label>
+                            <input
+                                class="s-toggle-switch"
+                                id="toggle-darkmode"
+                                type="checkbox"
+                            />
+                        </div>
+                        <div class="d-flex ai-center g8">
+                            <label class="s-label" for="toggle-native">
+                                .native
+                            </label>
+                            <input
+                                class="s-toggle-switch"
+                                id="toggle-native"
+                                type="checkbox"
+                                checked
+                            />
+                        </div>
+                        <div class="d-flex ai-center g8">
+                            <label class="s-label" for="toggle-currentcolor">
+                                <span
+                                    class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
+                                    style="background: magenta"
+                                ></span>
+                                Override fill
+                            </label>
+                            <input
+                                class="s-toggle-switch"
+                                id="toggle-currentcolor"
+                                type="checkbox"
+                            />
+                        </div>
                     </div>
-                </label>
-                <label for="toggle-native" class="d-flex ai-center">
-                    <div class="d-flex ai-center g8">
-                        <label class="s-label" for="toggle-native">
-                            .native
-                        </label>
-                        <input
-                            class="s-toggle-switch"
-                            id="toggle-native"
-                            type="checkbox"
-                            checked
-                        />
-                    </div>
-                </label>
-                <label for="toggle-currentcolor" class="ml8 d-flex ai-center">
-                    <div class="d-flex ai-center g8">
-                        <label class="s-label" for="toggle-currentcolor">
-                            <span
-                                class="w8 h8 d-inline-block bar-circle mr2 va-middle mtn2"
-                                style="background: magenta"
-                            ></span>
-                            Override fill
-                        </label>
-                        <input
-                            class="s-toggle-switch"
-                            id="toggle-currentcolor"
-                            type="checkbox"
-                        />
-                    </div>
-                </label>
-            </div>
+                </div>
+            </header>
 
-            <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">
-                Icons
-                <span class="s-badge s-badge__new lh-lg">Beta</span>
-            </h2>
+            <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">Icons</h2>
             <div
                 class="d-grid grid__6 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 mt32 sm:mt16"
             >
                 {ICONS_MANIFEST}
             </div>
 
-            <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">
-                Spots
-                <span class="s-badge s-badge__new lh-lg">Beta</span>
-            </h2>
+            <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">Spots</h2>
             <div
                 class="d-grid grid__5 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 mt32 sm:mt16"
             >
@@ -89,7 +93,6 @@
             </div>
             <h2 class="fs-headline1 my64 sm:my32 bb bc-black-300 pb8">
                 CSS Icons
-                <span class="s-badge s-badge__new lh-lg">Beta</span>
             </h2>
             <div
                 class="d-grid grid__6 md:grid__3 sm:grid__2 gx32 gy64 sm:gx16 sm:gy32 ta-center fc-light mt32 sm:mt16"
