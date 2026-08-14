@@ -2,9 +2,9 @@ name: CI
 
 on:
     push:
-        branches: [production, beta, main]
+        branches: [main]
     pull_request:
-        branches: [production, beta, main]
+        branches: [main]
     workflow_dispatch:
 
 jobs:
@@ -41,6 +41,9 @@ jobs:
 
             - name: Validate npm package
               run: npm run test:package
+
+            - name: Validate documentation site
+              run: npm run test:site
 
             - name: .NET Build
               run: npm run build:nuget

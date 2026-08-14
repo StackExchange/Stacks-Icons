@@ -2,11 +2,20 @@
 
 ## Including Stacks Icons in your project
 
-Stacks Icons are [delivered via NPM](https://www.npmjs.com/package/@stackoverflow/stacks-icons). It can be installed with `npm i @stackoverflow/stacks-icons`
+Stacks Icons are [delivered via npm](https://www.npmjs.com/package/@stackoverflow/stacks-icons). Install them with `npm i @stackoverflow/stacks-icons`.
 
 ### Manifest
 
-See <https://icons.stackoverflow.design/> for an up-to-date list of all icons and spots.
+See <https://icons.stackoverflow.design/> for the current V7 icons and spots. The maintained V6 manifest is available at <https://v6.icons.stackoverflow.design/>.
+
+### Supported release lines
+
+| Version          | Branch | Documentation                            | Packages                                                                                                                |
+| ---------------- | ------ | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| V7 (current)     | `main` | <https://icons.stackoverflow.design/>    | `@stackoverflow/stacks-icons` and `StackExchange.StacksIcons`                                                           |
+| V6 (maintenance) | `v6`   | <https://v6.icons.stackoverflow.design/> | `@stackoverflow/stacks-icons`, `StackExchange.StacksIcons`, and the internal `StackExchange.StacksIcons.Legacy` package |
+
+`v2.icons.stackoverflow.design` redirects to the maintained V6 documentation. The `production` branch is retained during the initial V7 cutover but is not the current release line.
 
 ### Use in JavaScript or TypeScript
 
@@ -86,7 +95,7 @@ To add a new animation for an icon:
 
 ### Use in dotnet
 
-Stacks-Icons also provides a NuGet package that targets `net6.0;net8.0`.
+Stacks Icons also provides a NuGet package that targets `net8.0`.
 
 See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 
@@ -110,6 +119,7 @@ First, you'll need a [Figma personal access token](https://www.figma.com/develop
 
 ```env
 FIGMA_ACCESS_TOKEN="your_access_token_here"
+FIGMA_FILE_KEY="Z5yoO4WH58QDHvmxwMWhr0"
 ```
 
 Install the necessary dependencies:
@@ -247,7 +257,17 @@ npm run generate:powerpoint
 
 ## Publishing a new release
 
-In order to publish a new release to npm and NuGet, you just need to tag a new release and push it to origin:
+V7 releases are prepared on `main`. The package version must match the immutable Git tag exactly. The release workflow publishes the npm package and the same NuGet artifact to both public NuGet.org and the internal Cloudsmith feed.
+
+The initial stable V7 cutover already sets the package metadata to `7.0.0`. After that change is merged, publish it by tagging the reviewed merge commit without incrementing the version again:
+
+```sh
+git fetch origin main
+git tag v7.0.0 <verified-main-merge-sha>
+git push origin refs/tags/v7.0.0
+```
+
+For subsequent releases, update the package version before pushing its generated tag:
 
 ```sh
 npm version [major|minor|patch]
@@ -256,7 +276,9 @@ npm version [major|minor|patch]
 git push --follow-tags
 ```
 
-From there, our GitHub [packages action](.github/workflows/packages.yml) will build the packages and push them to their respective repositories.
+The GitHub [packages action](.github/workflows/packages.yml) validates the tag and package metadata before publishing. Do not retry a partially completed release without first verifying which registries already contain the version; the manual workflow can skip npm when only the NuGet destinations need recovery.
+
+V6 releases and the internal `StackExchange.StacksIcons.Legacy` package are maintained independently from the `v6` branch.
 
 Afterwards, make sure you mark a new [GitHub Release](https://github.com/StackExchange/Stacks-Icons/releases/new) based on what has changed.
 

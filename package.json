@@ -1,7 +1,7 @@
 {
     "name": "@stackoverflow/stacks-icons",
     "description": "The icon library for Stack Overflow, Stack Overflow Careers, and the Stack Exchange Network.",
-    "version": "7.0.0-beta.29",
+    "version": "7.0.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/StackExchange/Stacks-Icons.git"
@@ -50,6 +50,7 @@
         "pack:nuget": "dotnet pack -c Release ./dotnet",
         "test:metadata": "node ./scripts/test-metadata.mjs",
         "test:package": "node ./scripts/test-package.mjs",
+        "test:site": "node ./scripts/test-site.mjs",
         "test:nuget": "dotnet test ./dotnet"
     },
     "devDependencies": {

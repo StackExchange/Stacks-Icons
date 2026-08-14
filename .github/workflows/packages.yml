@@ -56,6 +56,9 @@ jobs:
             - name: Validate npm package
               run: npm run test:package
 
+            - name: Validate documentation site
+              run: npm run test:site
+
             - name: .NET Build
               run: npm run build:nuget
 
