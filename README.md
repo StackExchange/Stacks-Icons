@@ -2,11 +2,20 @@
 
 ## Including Stacks Icons in your project
 
-Stacks Icons are [delivered via NPM](https://www.npmjs.com/package/@stackoverflow/stacks-icons). It can be installed with `npm i @stackoverflow/stacks-icons`
+Stacks Icons V6 is the maintenance line for Stacks Classic V2 consumers. Install it with `npm i @stackoverflow/stacks-icons@^6`.
 
 ### Manifest
 
-See <https://icons.stackoverflow.design/> for an up-to-date list of all icons and spots.
+See <https://v6.icons.stackoverflow.design/> for the maintained V6 icons and spots. Current V7 documentation is available at <https://icons.stackoverflow.design/>.
+
+### Maintenance policy
+
+- `v6` is the integration and release branch for V6 fixes.
+- V6 npm releases use the `v6` dist-tag and must never replace V7 on `latest`.
+- V6 release candidates use the `rc` dist-tag.
+- `StackExchange.StacksIcons` is published to NuGet.org.
+- The renamed `StackExchange.StacksIcons.Legacy` compatibility package is published only to the internal Cloudsmith feed.
+- V7 `main` does not build or publish the Legacy package.
 
 ### Use in JavaScript or TypeScript
 
@@ -52,7 +61,7 @@ For performance / file size reasons, not all icons are available in css. You can
 
 ### Use in dotnet
 
-Stacks-Icons also provides a NuGet package that targets `netstandard2.0`.
+Stacks Icons V6 also provides NuGet packages targeting `net6.0` and `net8.0`.
 
 See the [dotnet/src/README.md](dotnet/src/README.md) file for more details.
 
@@ -144,16 +153,18 @@ When updating an existing icon, just update the hash as explained in the previou
 
 ## Publishing a new release
 
-In order to publish a new release to npm and NuGet, you just need to tag a new release and push it to origin:
+Prepare V6 releases on the `v6` branch. The package version must remain on major version 6 and match the Git tag exactly.
 
 ```sh
-npm version [major|minor|patch]
-# for prerelase candidates instead use:
+npm version [minor|patch]
+# for prerelease candidates instead use:
 # npm version prerelease --preid rc
 git push --follow-tags
 ```
 
-From there, our GitHub [packages action](.github/workflows/packages.yml) will build the packages and push them to their respective repositories.
+The GitHub [packages action](.github/workflows/packages.yml) validates the tag and V6 release policy before publishing. Stable V6 packages use the npm `v6` dist-tag; release candidates use `rc`. The normal NuGet package is published to NuGet.org, while the renamed Legacy package is published only to Cloudsmith.
+
+For a partial-release recovery, run the workflow from the immutable release tag and select `skipNpmPublish`. Never ignore an arbitrary npm failure or recreate an existing package version.
 
 Afterwards, make sure you mark a new [GitHub Release](https://github.com/StackExchange/Stacks-Icons/releases/new) based on what has changed.
 
