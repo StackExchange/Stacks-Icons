@@ -44,6 +44,9 @@
         "format": "prettier --write .",
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
+        "test:metadata": "node ./scripts/test-metadata.mjs",
+        "test:release": "node ./scripts/test-release.mjs",
+        "test:site": "node ./scripts/test-site.mjs",
         "test:nuget": "dotnet test ./dotnet"
     },
     "devDependencies": {
@@ -52,7 +55,7 @@
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
         "axios": "^1.8.4",
-        "chalk": "^5.4.1",
+        "chalk": "^6.0.0",
         "commander": "^13.1.0",
         "del": "^8.0.0",
         "dotenv": "^17.0.1",

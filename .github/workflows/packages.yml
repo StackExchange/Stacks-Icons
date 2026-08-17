@@ -3,57 +3,138 @@ name: Publish packages
 on:
     push:
         tags:
-            - "v*" # only run when a new package version is tagged
+            - "v6.*"
     workflow_dispatch:
         inputs:
-            ignoreNpmErrors:
-                description: "Whether to continue the workflow if the npm package publish fails or not. Useful when the npm package already exists."
+            skipNpmPublish:
+                description: Skip npm when retrying a partially completed release
                 required: false
-                default: "false"
-permissions:
-    id-token: write # required for npm trusted publishing (OIDC)
-    contents: read
+                type: boolean
+                default: false
 
 jobs:
-    build-ubuntu:
+    build:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        outputs:
+            npm-tag: ${{ steps.release.outputs.npm-tag }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
             - name: Setup node
               uses: actions/setup-node@v4
               with:
-                  node-version: 24
+                  node-version: 20
+                  registry-url: "https://registry.npmjs.org"
+
+            - name: Validate release ref
+              id: release
+              run: node ./scripts/prepare-release.mjs
+
+            - name: Validate V6 release branch
+              run: |
+                  git fetch --no-tags origin v6:refs/remotes/origin/v6
+                  git merge-base --is-ancestor "$GITHUB_SHA" refs/remotes/origin/v6
+
+            - name: Install .NET SDK
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Install npm dependencies
+              run: npm ci
+
+            - name: Build packages
+              env:
+                  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+              run: npm run build
+
+            - name: Run linters
+              run: npm run lint
+
+            - name: Validate package metadata
+              run: npm run test:metadata
+
+            - name: Validate V6 release policy
+              run: npm run test:release
+
+            - name: Validate documentation site
+              run: npm run test:site
+
+            - name: Build NuGet package
+              run: npm run build:nuget
+
+            - name: Test NuGet package
+              run: npm run test:nuget
+
+            - name: Pack NuGet package
+              run: npm run pack:nuget
+
+            - name: Pack Legacy NuGet package
+              run: dotnet pack -c Release ./dotnet/src/StackExchange.StacksIcons.csproj /p:PackageId=StackExchange.StacksIcons.Legacy /p:AssemblyName=StackExchange.StacksIcons.Legacy /p:RootNamespace=StackExchange.StacksIcons.Legacy
+
+            - name: Prepare release artifacts
+              run: |
+                  version=$(node -p "require('./package.json').version")
+                  normal_package="dotnet/src/bin/Release/StackExchange.StacksIcons.${version}.nupkg"
+                  legacy_package="dotnet/src/bin/Release/StackExchange.StacksIcons.Legacy.${version}.nupkg"
+                  test -f "$normal_package"
+                  test -f "$legacy_package"
+                  mkdir release-artifacts
+                  npm pack --ignore-scripts --pack-destination release-artifacts
+                  cp "$normal_package" "$legacy_package" release-artifacts/
+
+            - name: Upload release artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: release-packages
+                  path: release-artifacts/*
+                  if-no-files-found: error
+
+    publish:
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: Download release artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: release-packages
+                  path: release-artifacts
+
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
                   registry-url: "https://registry.npmjs.org"
 
             - name: Install .NET SDK
               uses: actions/setup-dotnet@v4
               with:
-                  dotnet-version: "8.0.x" # latest LTS build
+                  dotnet-version: "8.0.x"
 
-            - name: Install npm dependencies
-              run: npm ci
-
-            - name: Build and push package to npm
-              continue-on-error: ${{ inputs.ignoreNpmErrors == 'true' }}
+            - name: Push package to npm
+              if: inputs.skipNpmPublish != true
               env:
-                  FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
               run: |
-                  if [[ ${{ github.ref }} == *"rc"* ]]; then
-                    npm publish --tag rc
-                  else
-                    npm publish --tag latest
-                  fi
+                  packages=(release-artifacts/*.tgz)
+                  test ${#packages[@]} -eq 1
+                  npm publish "${packages[0]}" --ignore-scripts --tag "${{ needs.build.outputs.npm-tag }}"
 
-            - name: .NET Build
-              run: npm run pack:nuget
+            - name: Push package to NuGet.org
+              run: |
+                  packages=(release-artifacts/StackExchange.StacksIcons.[0-9]*.nupkg)
+                  test ${#packages[@]} -eq 1
+                  dotnet nuget push "${packages[0]}" --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
-            - name: Push package to nuget
-              run: dotnet nuget push **\*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
-
-            - name: Build renamed package for Cloudsmith
-              run: dotnet pack -c Release ./dotnet/src/StackExchange.StacksIcons.csproj /p:PackageId=StackExchange.StacksIcons.Legacy /p:AssemblyName=StackExchange.StacksIcons.Legacy /p:RootNamespace=StackExchange.StacksIcons.Legacy
-
-            - name: Push package to Cloudsmith
-              run: dotnet nuget push **\StackExchange.StacksIcons.Legacy.*.nupkg --source https://nuget.stackoverflow.software/v3/index.json --api-key ${{secrets.CLOUDSMITH_API_KEY}} --skip-duplicate
+            - name: Push Legacy package to Cloudsmith
+              run: |
+                  packages=(release-artifacts/StackExchange.StacksIcons.Legacy.*.nupkg)
+                  test ${#packages[@]} -eq 1
+                  dotnet nuget push "${packages[0]}" --source https://nuget.stackoverflow.software/v3/index.json --api-key ${{secrets.CLOUDSMITH_API_KEY}} --skip-duplicate
