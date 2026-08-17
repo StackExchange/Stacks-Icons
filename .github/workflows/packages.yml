@@ -100,6 +100,7 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             contents: read
+            id-token: write
         steps:
             - name: Download release artifacts
               uses: actions/download-artifact@v4
@@ -120,8 +121,6 @@ jobs:
 
             - name: Push package to npm
               if: inputs.skipNpmPublish != true
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_API_KEY }}
               run: |
                   packages=(release-artifacts/*.tgz)
                   test ${#packages[@]} -eq 1
