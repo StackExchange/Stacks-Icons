@@ -117,6 +117,8 @@ export function svgoPlugins(
                         const attrs = node.attributes;
                         if (!attrs) return;
 
+                        const originalFill = attrs["fill"];
+
                         // If we have a group named currentColor, swap it to a fill
                         // In the preset moveElemsAttrsToGroup will handle collapsing the group later by moving the fill to the children
                         if (attrs["id"] === "currentColor") {
@@ -139,6 +141,25 @@ export function svgoPlugins(
                                     attrs["fill"] = mapped as string;
                                 }
                             }
+                        }
+
+                        // Keep stroke-only shapes unfilled when the root's
+                        // fill="none" is removed by the fill map.
+                        if (
+                            [
+                                "path",
+                                "rect",
+                                "circle",
+                                "ellipse",
+                                "polygon",
+                                "polyline",
+                            ].includes(node.name) &&
+                            attrs["stroke"] &&
+                            attrs["stroke"] !== "none" &&
+                            (originalFill === undefined ||
+                                originalFill === "none")
+                        ) {
+                            attrs["fill"] = "none";
                         }
                     },
                 },

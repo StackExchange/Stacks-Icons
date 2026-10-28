@@ -70,6 +70,20 @@ try {
         "Generated CSS selectors must match the configured CSS icons"
     );
 
+    for (const name of ["Source", "Source24", "Source32"]) {
+        const svg = readFileSync(
+            resolve(repositoryRoot, `dist/lib/Icon/${name}.svg`),
+            "utf8"
+        );
+        assert.match(svg, /fill="none"/, `${name} must remain outlined`);
+        assert.match(svg, /<path\b/, `${name} must contain its strokes`);
+    }
+    const archiveSvg = readFileSync(
+        resolve(repositoryRoot, "dist/lib/Icon/Archive.svg"),
+        "utf8"
+    );
+    assert.match(archiveSvg, /<path\b/, "Filled icons must remain visible");
+
     /** @type {{ filename: string, files: { path: string }[] }} */
     const packResult = JSON.parse(
         runNpm(
