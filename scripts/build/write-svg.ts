@@ -134,16 +134,14 @@ export const fetchFromFigma = async (ignoreHashMismatch: boolean) => {
 
                     //debug(`💾 '${name}' (${url}) ${sha256}`);
 
-                    if (definitions[name] !== sha256) {
-                        incorrectHashes[name] = sha256;
-                    }
-
-                    if (definitions[name] === sha256 || ignoreHashMismatch) {
+                    if (definitions[name] === sha256) {
+                        // write to file
                         return fs.writeFile(location, data);
+                    } else {
+                        incorrectHashes[name] = sha256;
+                        // don't crash the process on a failed hash, resolve and error later
+                        return Promise.resolve();
                     }
-
-                    // Don't crash the process on a failed hash; report it later.
-                    return Promise.resolve();
                 })
                 .catch((err) => {
                     error(err);
