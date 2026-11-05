@@ -208,7 +208,7 @@ void [icon, spot];
 
     const typescriptBin = resolve(
         repositoryRoot,
-        "node_modules/typescript/bin/tsc"
+        "node_modules/typescript-native/bin/tsc"
     );
     run(execPath, [typescriptBin, "--project", "tsconfig.json"], {
         cwd: consumerDirectory,
