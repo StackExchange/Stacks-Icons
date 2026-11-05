@@ -1,4 +1,4 @@
-import rollupTypescript from "@rollup/plugin-typescript";
+import rollupSucrase from "@rollup/plugin-sucrase";
 import { promises as fs } from "fs";
 import { rollup } from "rollup";
 import packageJson from "../../package.json" with { type: "json" };
@@ -49,8 +49,9 @@ export async function bundleHelperJsAsync() {
     let bundle;
     // @ts-expect-error https://github.com/rollup/plugins/issues/1541
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const plugin = rollupTypescript({
+    const plugin = rollupSucrase({
         include: "**/src/js/*.ts",
+        transforms: ["typescript"],
     });
 
     try {

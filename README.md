@@ -115,6 +115,10 @@ This package looks out for elements that look like `svg[data-icon]`. If the icon
 
 ## Developing locally
 
+Use Node.js 24, as specified in `.nvmrc`.
+
+Build commands and package consumer checks use TypeScript 7 through the `typescript-native` npm alias. The `typescript` dependency stays on 5.9 because the shared ESLint configuration requires its compiler API. Rollup uses Sucrase to transpile the helper bundles.
+
 First, you'll need a [Figma personal access token](https://www.figma.com/developers/api#access-tokens). Once you have that, place it in a `.env` file in the root of the repo:
 
 ```env
