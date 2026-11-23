@@ -17,6 +17,20 @@ import packageJson from "../package.json" with { type: "json" };
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const temporaryDirectory = mkdtempSync(resolve(tmpdir(), "stacks-icons-"));
 const consumerDirectory = resolve(temporaryDirectory, "consumer");
+const newServiceIconExports = [
+    "IconServiceMonday",
+    "IconServiceMonday32",
+    "IconServiceMonday64",
+    "IconServiceSharepoint",
+    "IconServiceSharepoint32",
+    "IconServiceSharepoint64",
+    "IconServiceSlackDMs",
+    "IconServiceSlackDMs32",
+    "IconServiceSlackDMs64",
+    "IconServiceZoom",
+    "IconServiceZoom32",
+    "IconServiceZoom64",
+];
 
 /** @typedef {Omit<import("node:child_process").ExecFileSyncOptionsWithStringEncoding, "encoding">} RunOptions */
 
@@ -133,6 +147,9 @@ const { Icons, Spots } = require("@stackoverflow/stacks-icons");
 
 assert.equal(typeof Icons.IconArchive, "string");
 assert.equal(typeof Spots.SpotAds, "string");
+for (const name of ${JSON.stringify(newServiceIconExports)}) {
+    assert.match(Icons[name], /^<svg\\b/, "Missing CommonJS icon: " + name);
+}
 `
     );
     run(execPath, ["consumer.cjs"], { cwd: consumerDirectory });
@@ -158,6 +175,10 @@ assert.equal(typeof root.IconArchive, "string");
 assert.equal(root.IconArchive, icons.IconArchive);
 assert.equal(typeof spots.SpotAds, "string");
 assert.ok(readFileSync(cssPath, "utf8").includes(".svg-icon-bg"));
+for (const name of ${JSON.stringify(newServiceIconExports)}) {
+    assert.match(icons[name], /^<svg\\b/, "Missing ESM icon: " + name);
+    assert.equal(root[name], icons[name]);
+}
 
 for (const entry of [...manifest.icons, ...manifest.spots]) {
     const exports = entry.isSpot ? spots : icons;
@@ -184,12 +205,13 @@ assert.deepEqual(Object.keys(spots).sort(), expectedSpotExports.sort());
 
     writeFileSync(
         resolve(consumerDirectory, "consumer.ts"),
-        `import { IconArchive } from "@stackoverflow/stacks-icons/icons";
+        `import { IconArchive, ${newServiceIconExports.join(", ")} } from "@stackoverflow/stacks-icons/icons";
 import { SpotAds } from "@stackoverflow/stacks-icons/spots";
 
 const icon: string = IconArchive;
 const spot: string = SpotAds;
-void [icon, spot];
+const serviceIcons: string[] = [${newServiceIconExports.join(", ")}];
+void [icon, spot, serviceIcons];
 `
     );
     writeFileSync(
