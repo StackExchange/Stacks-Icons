@@ -92,8 +92,8 @@ definitions:
         Size=64, Stack=True, Style=Default: ApMSmh/HMHyhDAhhqzNU/aLrKBmMQwQ1lLs7FAQYoXw=
         Size=Default, Stack=False, Style=Default: Xbigqqfe2Ewv0Oa4vzS70AwRWcUblGh658simVt6rKc=
         Size=Default, Stack=False, Style=Fill: nq/w+zY6Q4zKuqO06oxScGb5mnHexuNtcZe5+lSN/oM=
-        Size=Default, Stack=True, Style=Default: fwKKE6I9ugfRxE4PGfTflBrecBv/LinfcnB4RCMSBOw=
-        Size=Default, Stack=True, Style=Fill: j4BW+VUB1qMPmOJcseOb3CR0/eVd5PomlwVj8xIOea4=
+        Size=Default, Stack=True, Style=Default: iJPKwgoHyD8s5xXoSfM0akjqfzeDQIedDwWkYaZnWMc=
+        Size=Default, Stack=True, Style=Fill: hOQ9mYRzSXCS2YY+sfZT9AUfvHdT6lHXillfBa2Aytg=
     Icon/Calendar:
         Size=64, Style=Default: Wc6SP3RnAiztIwjnftWad7p5eRR4p3a2wVEIDyGAWOs=
         Size=Default, Style=Default: 4bpZRLRbZ7PH7IUOglyqtF9IhIfcq5eBrnlDCs7nibo=
@@ -480,6 +480,9 @@ definitions:
         Service=MicrosoftTeams, Size=32: LdWn/BQDkfb8z8gQ1BRZI3oDeIKeN69F42CW9EnQnj0=
         Service=MicrosoftTeams, Size=64: SWMN1nJalFXyhdBFQYGrHqilE2zalftvhzHmRnNWMZw=
         Service=MicrosoftTeams, Size=Default: o/Q3y0lVRuIWbdRDhiwmnIi+FLEHVSPuG0wM/eDk6dg=
+        Service=Monday.com, Size=32: LI2sHSvv8/pwJ3Y4P1Rl2XqVOiSZJ70IvXaHttp3ZcM=
+        Service=Monday.com, Size=64: fl7KycCd8guw93nfeYZfGIiQ4Vq+OSHQn6ARjPPuDTc=
+        Service=Monday.com, Size=Default: agPpGp9OXkm5NaN6+RucU1HQEk8Xix3ffBSQeDhNUzU=
         Service=Moveworks, Size=32: GF9QfxSTwT8HIQc+/R0AbT82hdvzBokrvHsjV/t9MhM=
         Service=Moveworks, Size=64: XL2JEWxlcylwpateK+YIkFhCous/QQ+0a4I/TgS8Cf8=
         Service=Moveworks, Size=Default: PBCX2PYTrzRnhI99hhSoJ2RAhLiiypqVnR8agRgdy0g=
@@ -492,6 +495,12 @@ definitions:
         Service=SCIM, Size=32: vYcQ/q3qPVPlTDdQLbrh7FsOmti119oJeTKbNJeBwZs=
         Service=SCIM, Size=64: Zzr3CXhbKkd1aBXo/WN6yrqYGkkYq4Ci/K3QwnDs1vA=
         Service=SCIM, Size=Default: eKbCV+swv15SSoVKaqVaqcQp7TJ1nsWYCKqDsb+7FNY=
+        Service=Sharepoint, Size=32: q4eDrYQ6SdNeJcUNFBlt8RBl6nzNmDHnifCHRvGj1Gc=
+        Service=Sharepoint, Size=64: YOt4Ax8hHMaLsvekAJoQwiqzeNsl+Yh8MBYgboPQWqI=
+        Service=Sharepoint, Size=Default: uxlYS5lR/CzO3gaSv1DjvO2y0ae+SsGG8+u1hAj4Pp8=
+        Service=Slack DMs, Size=32: M6L7Z5Ctap1LHei6NfV9fVuK7TPgZvcgCWRIWE6qLyA=
+        Service=Slack DMs, Size=64: RKlmNqIyx02EUVp7i9vagZFQXE081qgKdIcY6hOdMNg=
+        Service=Slack DMs, Size=Default: qwXQ5lCcRy9ZAaj3gzU+hcJxV3d0y35uznoA6ojtvmo=
         Service=Slack, Size=32: yFeDyUJ2Jg1uuZF1xgVK2f3t76Rj/TBKYoo0n+gnp6I=
         Service=Slack, Size=64: Qo5+9fwrGEGiF+QuiqCLvR8a70ELTtiUl3eMZL74/ew=
         Service=Slack, Size=Default: eLTHbiynQs2GbaM7YrLupLGAa278mM6jjgVcHeV2d1A=
@@ -505,6 +514,9 @@ definitions:
         Service=Webhooks, Size=Default: oNbFh6OpcX6YF+2KXRMnwCO5iQDuuLoNEvu28r/i5WA=
         Service=X, Size=Default: QBGGuN5kXw+OyiTXe+zBZLLEIJzOvioqoYqhChRNR4w=
         Service=YouTube, Size=Default: 6C/7gaxTE8HJ3GGODq5XUK1rfHwl/w5iJbZsSn5lJtI=
+        Service=Zoom, Size=32: /9O13h9kSj1COYO9EeWKIkNqL/fwzx5l6GjeG4l7LZs=
+        Service=Zoom, Size=64: QGtsnVblE+kvSbRmS73VDoYevx8rO09K4//grGNM5IQ=
+        Service=Zoom, Size=Default: tYhXbVLJyw5qDCk92hDDsS1+HFh5K58g+ow83ltpeXo=
     Icon/Settings:
         Size=Default, Style=Default: XQMTaYKu95Xzs0jPk7jEG6M1FFz2mHeAi++hkwH/b1w=
         Size=Default, Style=Fill: UOtu6ywLAI8yse/O9lyL+ak1tzOooKl80b3JlhoTZdA=

@@ -227,6 +227,8 @@ Icons can have various property combinations depending on their Figma component 
 2. All entries are in alphabetical order for ease of reference
 3. The initial hash values can be left empty (`""`)
 
+For each new published icon variant, append its generated name (without the `Icon` prefix) to [`icon-enum-values.json`](dotnet/icon-enum-values.json), assigning the next unused numeric value. These values are part of the NuGet public API: never renumber or reuse existing values, even when adding an icon earlier alphabetically. Package tests require every published icon to have a permanent value. Custom `ASSET_CONFIG_PATH` builds generate only their selected enum members, retain the reserved values for known icons, and assign custom icons values beyond the reserved range; custom values are not a stable public contract. Spots use a separate generated enum.
+
 #### Syncing config with Figma
 
 To make adding new icons easier, you can use the sync script to programmatically update the `config.yaml` hashes:

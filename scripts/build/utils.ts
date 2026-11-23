@@ -46,6 +46,9 @@ export function flattenFigmaComponentVariantName(name: string): string {
                 return prop;
             }
 
+            // Preserve the Figma label while generating a valid public identifier.
+            if (prop === "Service" && val === "Monday.com") return "MondayCom";
+
             // Otherwise use the value, as before
             return val;
         })
