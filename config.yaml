@@ -480,9 +480,9 @@ definitions:
         Service=MicrosoftTeams, Size=32: LdWn/BQDkfb8z8gQ1BRZI3oDeIKeN69F42CW9EnQnj0=
         Service=MicrosoftTeams, Size=64: SWMN1nJalFXyhdBFQYGrHqilE2zalftvhzHmRnNWMZw=
         Service=MicrosoftTeams, Size=Default: o/Q3y0lVRuIWbdRDhiwmnIi+FLEHVSPuG0wM/eDk6dg=
-        Service=Monday.com, Size=32: LI2sHSvv8/pwJ3Y4P1Rl2XqVOiSZJ70IvXaHttp3ZcM=
-        Service=Monday.com, Size=64: fl7KycCd8guw93nfeYZfGIiQ4Vq+OSHQn6ARjPPuDTc=
-        Service=Monday.com, Size=Default: agPpGp9OXkm5NaN6+RucU1HQEk8Xix3ffBSQeDhNUzU=
+        Service=Monday, Size=32: qUcmUVCG/S7p65C0sghoKBO5bCqj0fEZ2uxY4UkP+V8=
+        Service=Monday, Size=64: T/0le+vkd6+WU5caEuMsmjQnp4p2uNt5yWR7nRjfGl0=
+        Service=Monday, Size=Default: H5hGzQBjvXolTJt7nFgVzlL54lXTupjIrMhP5l6/xAM=
         Service=Moveworks, Size=32: GF9QfxSTwT8HIQc+/R0AbT82hdvzBokrvHsjV/t9MhM=
         Service=Moveworks, Size=64: XL2JEWxlcylwpateK+YIkFhCous/QQ+0a4I/TgS8Cf8=
         Service=Moveworks, Size=Default: PBCX2PYTrzRnhI99hhSoJ2RAhLiiypqVnR8agRgdy0g=

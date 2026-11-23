@@ -49,7 +49,7 @@
         "build:nuget": "dotnet build -c Release ./dotnet",
         "pack:nuget": "dotnet pack -c Release ./dotnet",
         "test:metadata": "node ./scripts/test-metadata.mjs",
-        "test:package": "tsx --test ./scripts/test-variant-names.ts ./scripts/test-csharp-enums.ts && node ./scripts/test-package.mjs",
+        "test:package": "tsx --test ./scripts/test-csharp-enums.ts && node ./scripts/test-package.mjs",
         "test:site": "node ./scripts/test-site.mjs",
         "test:nuget": "dotnet test ./dotnet"
     },

@@ -18,9 +18,9 @@ const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const temporaryDirectory = mkdtempSync(resolve(tmpdir(), "stacks-icons-"));
 const consumerDirectory = resolve(temporaryDirectory, "consumer");
 const newServiceIconExports = [
-    "IconServiceMondayCom",
-    "IconServiceMondayCom32",
-    "IconServiceMondayCom64",
+    "IconServiceMonday",
+    "IconServiceMonday32",
+    "IconServiceMonday64",
     "IconServiceSharepoint",
     "IconServiceSharepoint32",
     "IconServiceSharepoint64",
