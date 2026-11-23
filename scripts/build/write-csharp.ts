@@ -1,7 +1,6 @@
 import { promises as fs } from "fs";
 import { paths } from "./paths.js";
 import type { OutputType } from "./utils.js";
-import releasedIconValues from "../../dotnet/icon-enum-values.json" with { type: "json" };
 
 export function writeCSharp(icons: string[], type: OutputType) {
     // Output the Razor helper
@@ -37,20 +36,11 @@ ${iconsOutput}
 }`;
     }
 
-    // Preserve released icon values even when an alternate config selects a subset.
-    // Custom icons receive values beyond the reserved public range.
-    const iconValues = new Map(Object.entries(releasedIconValues));
-    let nextCustomValue = Math.max(...iconValues.values()) + 1;
-    const enumMembers = icons.map((name) => {
-        if (isSpot) return `    ${name},`;
-        const value = iconValues.get(name) ?? nextCustomValue++;
-        return `    ${name} = ${value},`;
-    });
-
+    // add in the enums
     csOutput += `
 public enum Stacks${type}
 {
-${enumMembers.join("\n")}
+${icons.map((i) => `    ${i},`).join("\n")}
 }`;
 
     // add in the namespace and usings at the top
